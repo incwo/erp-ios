@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="PMx-ha-kiX">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="vZm-vD-Lau">
+            <objects>
+                <navigationController storyboardIdentifier="webViewNavigationController" definesPresentationContext="YES" modalTransitionStyle="crossDissolve" id="PMx-ha-kiX" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ad2-S5-n7B">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2AM-0B-dtv" kind="relationship" relationship="rootViewController" id="GuW-ky-Zse"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2TP-Ha-IYV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2271" y="2492"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="Yrp-D2-oLz">
+            <objects>
+                <viewController id="2AM-0B-dtv" customClass="PFWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="igo-2G-BcG"/>
+                        <viewControllerLayoutGuide type="bottom" id="pEL-Ts-R43"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EaP-BP-PFB">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lar-15-aG5">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2AM-0B-dtv" id="8Q7-aA-5e7"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.37665374089999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Lar-15-aG5" firstAttribute="leading" secondItem="EaP-BP-PFB" secondAttribute="leading" id="3Sg-Gi-jlp"/>
+                            <constraint firstItem="pEL-Ts-R43" firstAttribute="top" secondItem="Lar-15-aG5" secondAttribute="bottom" id="F1O-Ag-mBR"/>
+                            <constraint firstAttribute="trailing" secondItem="Lar-15-aG5" secondAttribute="trailing" id="UwZ-ZX-RT4"/>
+                            <constraint firstItem="Lar-15-aG5" firstAttribute="top" secondItem="igo-2G-BcG" secondAttribute="bottom" constant="-64" id="hVS-8U-c5L"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LjU-8t-K6d">
+                        <barButtonItem key="rightBarButtonItem" title="OK" id="6NU-N4-ufa">
+                            <connections>
+                                <action selector="dismiss:" destination="2AM-0B-dtv" id="u1T-Qh-elo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dismissBarButtonItem" destination="6NU-N4-ufa" id="z6g-oF-GsF"/>
+                        <outlet property="webView" destination="Lar-15-aG5" id="l4S-f6-Jd1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SpP-DE-Wh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1180" y="2499"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

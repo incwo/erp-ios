@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E4638F09-9BE7-4CDD-99E6-9F7BA63238B3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>facilescan</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BE28974834A172DD07C39B5E34936105457FCBE9</key>
+		<string>sss.pierlis.com:/facilescan/iphone</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>facilescan.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BE28974834A172DD07C39B5E34936105457FCBE9</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>sss.pierlis.com:/facilescan/iphone</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BE28974834A172DD07C39B5E34936105457FCBE9</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BE28974834A172DD07C39B5E34936105457FCBE9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>facile-scan-iphone</string>
+		</dict>
+	</array>
+</dict>
+</plist>

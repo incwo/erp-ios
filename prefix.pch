@@ -1,0 +1,25 @@
+//
+// Prefix header for all source files of the 'facilescan' target in the 'facilescan' project
+//
+#import <Availability.h>
+
+#define FACILE_HOSTNAME_DEV  @"dev.incwo.com"
+#define FACILE_BASEURL_DEV   @"https://dev.incwo.com"
+
+
+#define FACILE_DEV 0
+
+#if FACILE_DEV
+#warning Using dev server: dev.incwo.com
+#define FACILE_HOSTNAME   FACILE_HOSTNAME_DEV
+#define FACILE_BASEURL    FACILE_BASEURL_DEV
+#else
+#define FACILE_HOSTNAME        @"www.incwo.com"
+#define FACILE_BASEURL @"https://www.incwo.com"
+#endif
+
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+  #import <UIKit/UIKit.h>
+#endif

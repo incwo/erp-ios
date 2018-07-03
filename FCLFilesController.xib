@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FCLFilesController">
+            <connections>
+                <outlet property="authView" destination="18d-Rg-1lO" id="xHk-uD-0Rb"/>
+                <outlet property="tableView" destination="3" id="4"/>
+                <outlet property="view" destination="12" id="13"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="12">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bouncesZoom="NO" style="grouped" rowHeight="60" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="3">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="5"/>
+                        <outlet property="delegate" destination="-1" id="6"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18d-Rg-1lO">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connexion à incwo.com" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Xfz-N4-beS">
+                            <rect key="frame" x="100" y="121" width="160" height="19"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </label>
+                        <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" image="FCLFacileLogo" translatesAutoresizingMaskIntoConstraints="NO" id="4Ww-S2-6NX">
+                            <rect key="frame" x="59" y="116" width="29" height="29"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="58E-kk-F0z">
+                            <rect key="frame" x="20" y="218" width="280" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="735-ar-XAH"/>
+                                <constraint firstAttribute="width" constant="280" id="neL-lB-8ap"/>
+                            </constraints>
+                            <state key="normal" title="Connexion" backgroundImage="FCLButtonFrame">
+                                <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="signIn:" destination="-1" eventType="touchUpInside" id="blL-H7-2Kt"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AN5-Sg-T9i">
+                            <rect key="frame" x="20" y="270" width="280" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="280" id="5AX-3F-ub6"/>
+                                <constraint firstAttribute="height" constant="44" id="sXn-it-zUK"/>
+                            </constraints>
+                            <state key="normal" title="Créer un compte" backgroundImage="FCLButtonFrame">
+                                <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="signUp:" destination="-1" eventType="touchUpInside" id="L83-H6-W1L"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.18732063139999999" green="0.18732063139999999" blue="0.18732063139999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Xfz-N4-beS" firstAttribute="leading" secondItem="4Ww-S2-6NX" secondAttribute="trailing" constant="12" id="6fT-As-Ezw"/>
+                        <constraint firstItem="58E-kk-F0z" firstAttribute="top" secondItem="Xfz-N4-beS" secondAttribute="bottom" constant="78" id="Knd-gY-7RF"/>
+                        <constraint firstAttribute="centerX" secondItem="58E-kk-F0z" secondAttribute="centerX" id="R4f-1Y-aZH"/>
+                        <constraint firstAttribute="centerX" secondItem="Xfz-N4-beS" secondAttribute="centerX" constant="-20" id="Wqj-m6-gpn"/>
+                        <constraint firstItem="AN5-Sg-T9i" firstAttribute="top" secondItem="58E-kk-F0z" secondAttribute="bottom" constant="8" symbolic="YES" id="YKg-c8-DIF"/>
+                        <constraint firstItem="Xfz-N4-beS" firstAttribute="centerY" secondItem="4Ww-S2-6NX" secondAttribute="centerY" constant="0.5" id="eMP-j1-XJS"/>
+                        <constraint firstAttribute="centerX" secondItem="AN5-Sg-T9i" secondAttribute="centerX" id="lwM-df-aEY"/>
+                        <constraint firstAttribute="centerY" secondItem="58E-kk-F0z" secondAttribute="centerY" id="ojY-2V-Zqm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="3" firstAttribute="top" secondItem="12" secondAttribute="top" id="F0m-mH-CmP"/>
+                <constraint firstItem="18d-Rg-1lO" firstAttribute="leading" secondItem="12" secondAttribute="leading" id="IdS-SL-X8t"/>
+                <constraint firstAttribute="bottom" secondItem="18d-Rg-1lO" secondAttribute="bottom" id="YjP-ci-kNh"/>
+                <constraint firstItem="3" firstAttribute="leading" secondItem="12" secondAttribute="leading" id="Zmc-ZX-Cyn"/>
+                <constraint firstItem="18d-Rg-1lO" firstAttribute="top" secondItem="12" secondAttribute="top" id="aHw-X4-CZJ"/>
+                <constraint firstAttribute="trailing" secondItem="18d-Rg-1lO" secondAttribute="trailing" id="h2g-sa-zEc"/>
+                <constraint firstAttribute="trailing" secondItem="3" secondAttribute="trailing" id="k8J-dl-dKS"/>
+                <constraint firstAttribute="bottom" secondItem="3" secondAttribute="bottom" id="uqa-hh-18g"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="FCLButtonFrame" width="17" height="17"/>
+        <image name="FCLFacileLogo" width="29" height="29"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

@@ -1,0 +1,11 @@
+.DS_Store
+.Spotlight-V100
+
+xcuserdata
+*.ipa
+*.dSYM.zip
+/Pods
+fastlane/README.md
+fastlane/report.xml
+
+sensitive_info.plist

@@ -1,0 +1,4 @@
+
+@interface FCLNewsViewController : UITableViewController
+
+@end
