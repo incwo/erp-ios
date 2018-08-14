@@ -4,6 +4,7 @@
 #import "PDateExtension.h"
 #import "OAXMLDecoder.h"
 #import "OANetworkActivityIndicator.h"
+#import "UIViewController+Alert.h"
 
 @interface FCLNewsViewController ()
 @property(nonatomic) NSArray* newsItems;
@@ -58,6 +59,7 @@
 - (void) updateNews
 {
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://blog.incwo.com/xml/rss20/feed.xml?show_extended=1"]];
+
     
     NSCachedURLResponse* cachedResponse = [[NSURLCache sharedURLCache] cachedResponseForRequest:request];
     
@@ -82,10 +84,7 @@
                 
                 if (!data)
                 {
-                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Erreur", @"")
-                                                message:error.localizedDescription
-                                               delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                      otherButtonTitles:nil] show];
+                    [self FCL_presentAlertForError:error];
                     return;
                 }
                 
@@ -169,13 +168,8 @@
         //NSLog(@"Parsed %d video items: %@", videoItems.count, videoItems);
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (xmlDecoder.error)
-            {
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Erreur", @"")
-                                            message:xmlDecoder.error.localizedDescription
-                                           delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                  otherButtonTitles:nil] show];
+            if (xmlDecoder.error) {
+                [self FCL_presentAlertForError:xmlDecoder.error];
             }
             
             if (newsItems.count > 0)

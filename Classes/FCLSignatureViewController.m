@@ -1,6 +1,7 @@
 #import "FCLSignatureViewController.h"
 #import "FCLHandDrawingView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIViewController+Alert.h"
 
 @interface FCLSignatureViewController () <FCLHandDrawingViewDelegate>
 @property(nonatomic, readwrite) IBOutlet UILabel* descriptionLabel;
@@ -136,23 +137,12 @@
     }
 }
 
-- (void)               image: (UIImage *) image
-    didFinishSavingWithError: (NSError *) error
-                 contextInfo: (void *) contextInfo
-{
+- (void) image:(UIImage *) image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
 	NSLog(@"Finished saving image. Error: %@", error);
-	if (error)
-	{
-        [self _showAlertForError:error];
+	if (error) {
+        [self FCL_presentAlertForError:error];
 	}
 }
-
--(void) _showAlertForError:(NSError *)error {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[error localizedDescription] message:[error localizedFailureReason] preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
 
 
 - (void) handDrawingViewDidDraw:(FCLHandDrawingView*)drawingView

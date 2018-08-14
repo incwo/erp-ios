@@ -80,6 +80,7 @@
 		9EB58714BE28C650A5CBCFA9 /* Pods_facile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C360ED63F3A469BA96E35B5E /* Pods_facile.framework */; };
 		DF6447AB208E191700001A57 /* PDataExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91CE16BAAA1300C37D50 /* PDataExtension.m */; };
 		DFC2C1AD2087273E008B333B /* FCLNavigationItemTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */; };
+		DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */; };
 		E2BDD3302069180700BA988F /* FCLAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BDD32F2069180700BA988F /* FCLAppearance.m */; };
 		E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2BDD3332069316100BA988F /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
@@ -211,6 +212,8 @@
 		C8474124D611147C7B3BE800 /* Pods-facile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-facile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-facile/Pods-facile.debug.xcconfig"; sourceTree = "<group>"; };
 		DFC2C1AB2087273E008B333B /* FCLNavigationItemTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLNavigationItemTitleView.h; sourceTree = "<group>"; };
 		DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLNavigationItemTitleView.m; sourceTree = "<group>"; };
+		DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
+		DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
 		E2BDD32E2069180700BA988F /* FCLAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLAppearance.h; sourceTree = "<group>"; };
 		E2BDD32F2069180700BA988F /* FCLAppearance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLAppearance.m; sourceTree = "<group>"; };
 		E2BDD3332069316100BA988F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -269,6 +272,8 @@
 				2008E820118A25C100607BAC /* OAHTTPProtocols.h */,
 				2008E821118A25C100607BAC /* OAHTTPQueue.h */,
 				2008E822118A25C100607BAC /* OAHTTPQueue.m */,
+				DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */,
+				DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */,
 				2008E84C118A30DB00607BAC /* OASimpleAlert.h */,
 				2008E84D118A30DB00607BAC /* OASimpleAlert.m */,
 				20A6568A118ED30B00C94599 /* OANavigationState.h */,
@@ -661,6 +666,7 @@
 				20A65377118AD41A00C94599 /* FCLBusinessFile.m in Sources */,
 				20A6537A118AD4B600C94599 /* FCLCategory.m in Sources */,
 				20A6537D118AD51E00C94599 /* FCLBusinessFilesList.m in Sources */,
+				DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */,
 				20A65380118AD5F700C94599 /* FCLField.m in Sources */,
 				20A65383118AEC2700C94599 /* FCLModel.m in Sources */,
 				20A653F0118B040600C94599 /* FCLCategoriesController.m in Sources */,

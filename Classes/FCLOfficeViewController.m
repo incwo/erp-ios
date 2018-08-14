@@ -4,6 +4,7 @@
 #import "PFWebViewController.h"
 #import "OANetworkActivityIndicator.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIViewController+Alert.h"
 
 @interface FCLOfficeViewController () <UIWebViewDelegate>
 
@@ -259,18 +260,12 @@
     NSLog(@"%s %@", __PRETTY_FUNCTION__, error);
     
     if(![self _isURLCancellationError:error]) {
-        [self _showAlertForError:error];
+        [self FCL_presentAlertForError:error];
     }
 }
 
 -(BOOL) _isURLCancellationError:(NSError *)error {
     return error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled;
-}
-
--(void) _showAlertForError:(NSError *)error {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Erreur" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

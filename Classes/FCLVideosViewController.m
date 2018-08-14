@@ -3,7 +3,7 @@
 #import "FCLSession.h"
 #import "OAXMLDecoder.h"
 #import "OANetworkActivityIndicator.h"
-
+#import "UIViewController+Alert.h"
 
 typedef NS_ENUM(NSUInteger, FCLVideoSearchMode) {
     FCLVideoSearchModeNone,
@@ -124,10 +124,7 @@ typedef NS_ENUM(NSUInteger, FCLVideoSearchMode) {
                 
                 if (!data)
                 {
-                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Erreur", @"")
-                                               message:error.localizedDescription
-                                              delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                      otherButtonTitles:nil] show];
+                    [self FCL_presentAlertForError:error];
                     return;
                 }
                 
@@ -237,13 +234,8 @@ typedef NS_ENUM(NSUInteger, FCLVideoSearchMode) {
         //NSLog(@"Parsed %d video items: %@", videoItems.count, videoItems);
         
         dispatch_async(dispatch_get_main_queue(), ^{
-           
-            if (xmlDecoder.error)
-            {
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Erreur", @"")
-                                            message:xmlDecoder.error.localizedDescription
-                                           delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                  otherButtonTitles:nil] show];
+            if (xmlDecoder.error) {
+                [self FCL_presentAlertForError:xmlDecoder.error];
             }
             
             if (videoItems.count > 0)
