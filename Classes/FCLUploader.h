@@ -2,7 +2,10 @@
 
 @class FCLUploader;
 @protocol UploaderDelegate
-- (void) uploaderDidUpdateStatus:(FCLUploader*)anUploader;
+
+-(void) uploaderDidUpdateStatus:(FCLUploader *)uploader;
+-(void) uploader:(FCLUploader *)uploader didFailWithError:(NSError *)error;
+
 @end
 
 @class FCLUpload;

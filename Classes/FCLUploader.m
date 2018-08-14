@@ -6,8 +6,6 @@
 
 #import "NSData+Base64.h"
 
-#import "OASimpleAlert.h"
-
 static FCLUploader* sharedUploader;
 @implementation FCLUploader
 
@@ -61,7 +59,6 @@ static FCLUploader* sharedUploader;
 
 #pragma mark OAHTTPDownloadDelegate
 
-
 - (void) oadownloadDidFinishLoading:(id<OAHTTPDownload>)download
 {
     NSLog(@"Finished. Received data: %@", [[download receivedData] utf8EncodedString]);
@@ -71,7 +68,7 @@ static FCLUploader* sharedUploader;
 - (void) oadownload:(id<OAHTTPDownload>)download didFailWithError:(NSError*)error
 {
     NSLog(@"ERROR: OAHTTPDownload: %@", [error localizedDescription]);
-    [OASimpleAlert error:error];
+    [self.delegate uploader:self didFailWithError:error];
     if ([self.queue isNetworkError:error])
     {
         NSLog(@"isNetworkError => resetting download and appending to the queue once again");
@@ -80,8 +77,6 @@ static FCLUploader* sharedUploader;
     }
     [self.delegate uploaderDidUpdateStatus:self];
 }
-
-
 
 #pragma mark sharedUploader
 

@@ -4,6 +4,7 @@
 #import "FCLFormController.h"
 #import "FCLUploader.h"
 #import "FCLUpload.h"
+#import "UIViewController+Alert.h"
 
 @interface FCLCategoriesController () <UploaderDelegate>
 
@@ -99,8 +100,9 @@
     [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.0];
 }
 
-
-
+- (void)uploader:(FCLUploader *)uploader didFailWithError:(NSError *)error {
+    [self FCL_presentAlertForError:error];
+}
 
 #pragma mark UITableViewDataSource
 
@@ -184,6 +186,5 @@
     }
     
 }
-
 
 @end

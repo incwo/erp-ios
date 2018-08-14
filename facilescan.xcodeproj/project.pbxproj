@@ -16,7 +16,6 @@
 		2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E81F118A25C100607BAC /* OAHTTPDownload.m */; };
 		2008E824118A25C100607BAC /* OAHTTPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E822118A25C100607BAC /* OAHTTPQueue.m */; };
 		2008E830118A25F400607BAC /* OANetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E82F118A25F400607BAC /* OANetworkActivityIndicator.m */; };
-		2008E84E118A30DB00607BAC /* OASimpleAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E84D118A30DB00607BAC /* OASimpleAlert.m */; };
 		2010BF5B16C00264009EC753 /* FCLNewsCellContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2010BF5A16C00263009EC753 /* FCLNewsCellContentView.xib */; };
 		2010BF5D16C13CF6009EC753 /* FCLPhotoPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2010BF5C16C13CF6009EC753 /* FCLPhotoPlaceholder.png */; };
 		2010BF6116C14F71009EC753 /* FCLSignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2010BF5F16C14F6F009EC753 /* FCLSignatureViewController.m */; };
@@ -101,8 +100,6 @@
 		2008E822118A25C100607BAC /* OAHTTPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHTTPQueue.m; sourceTree = "<group>"; };
 		2008E82E118A25F400607BAC /* OANetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OANetworkActivityIndicator.h; sourceTree = "<group>"; };
 		2008E82F118A25F400607BAC /* OANetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OANetworkActivityIndicator.m; sourceTree = "<group>"; };
-		2008E84C118A30DB00607BAC /* OASimpleAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OASimpleAlert.h; sourceTree = "<group>"; };
-		2008E84D118A30DB00607BAC /* OASimpleAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OASimpleAlert.m; sourceTree = "<group>"; };
 		2010BF5A16C00263009EC753 /* FCLNewsCellContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FCLNewsCellContentView.xib; sourceTree = "<group>"; };
 		2010BF5C16C13CF6009EC753 /* FCLPhotoPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FCLPhotoPlaceholder.png; sourceTree = "<group>"; };
 		2010BF5E16C14F6C009EC753 /* FCLSignatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLSignatureViewController.h; sourceTree = "<group>"; };
@@ -274,8 +271,6 @@
 				2008E822118A25C100607BAC /* OAHTTPQueue.m */,
 				DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */,
 				DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */,
-				2008E84C118A30DB00607BAC /* OASimpleAlert.h */,
-				2008E84D118A30DB00607BAC /* OASimpleAlert.m */,
 				20A6568A118ED30B00C94599 /* OANavigationState.h */,
 				20A6568B118ED30B00C94599 /* OANavigationState.m */,
 				56E1F4AC18A23DA700DC6404 /* PXWWWFormSerialization.h */,
@@ -662,7 +657,6 @@
 				56E1F4AE18A23DA700DC6404 /* PXWWWFormSerialization.m in Sources */,
 				2008E824118A25C100607BAC /* OAHTTPQueue.m in Sources */,
 				2008E830118A25F400607BAC /* OANetworkActivityIndicator.m in Sources */,
-				2008E84E118A30DB00607BAC /* OASimpleAlert.m in Sources */,
 				20A65377118AD41A00C94599 /* FCLBusinessFile.m in Sources */,
 				20A6537A118AD4B600C94599 /* FCLCategory.m in Sources */,
 				20A6537D118AD51E00C94599 /* FCLBusinessFilesList.m in Sources */,
