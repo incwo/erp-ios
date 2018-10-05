@@ -1,6 +1,5 @@
 #import "FCLUpload.h"
 #import "OAHTTPDownload.h"
-#import "NSData+Base64.h"
 #import "FCLField.h"
 #import "FCLSession.h"
 
@@ -14,11 +13,6 @@
 @synthesize username;
 @synthesize password;
 
-
-- (NSData*) base64DataForData:(NSData*)data
-{
-    return [[data base64EncodedString] dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:NO];
-}
 
 - (NSMutableURLRequest*) request
 {
@@ -58,7 +52,7 @@
         [postData appendData:[[NSString stringWithFormat:@"<upload_file_size>%lu</upload_file_size>", (unsigned long)[imageData length]] dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
         
         [postData appendData:[@"<file_data_base64>" dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
-        [postData appendData:[self base64DataForData:imageData]];
+        [postData appendData:[imageData base64EncodedDataWithOptions:0]];
         [postData appendData:[@"</file_data_base64>" dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
     }
     
@@ -81,7 +75,7 @@
                 [fieldsTag appendFormat:@"<%@>", field.key];
                 [fieldsTag appendFormat:@"<file_name>%@.png</file_name>\n", field.key];
                 [fieldsTag appendFormat:@"<file_size>%lu</file_size>\n", (unsigned long)[signatureData length]];
-                [fieldsTag appendFormat:@"<file_data_base64>%@</file_data_base64>\n", [signatureData base64EncodedString]];
+                [fieldsTag appendFormat:@"<file_data_base64>%@</file_data_base64>\n", [signatureData base64EncodedDataWithOptions:0]];
                 [fieldsTag appendFormat:@"</%@>", field.key];
             }
         }
@@ -105,7 +99,7 @@
     
     // headers["Authorization"] = "Basic " + Base64.encode64("login:password")
     NSData* loginPassData = [[NSString stringWithFormat:@"%@:%@", self.username, self.password] dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
-    NSString* basicAuthHeader = [@"Basic " stringByAppendingString:[loginPassData base64EncodedString]];
+    NSString* basicAuthHeader = [@"Basic " stringByAppendingString:[loginPassData base64EncodedStringWithOptions:0]];
     [request setValue:basicAuthHeader forHTTPHeaderField:@"Authorization"];
     
     [request setHTTPBody:postData];
