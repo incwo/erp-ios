@@ -1,5 +1,4 @@
 #import "FCLSession.h"
-#import "NSData+Base64.h"
 #import "PXWWWFormSerialization.h"
 
 NSString* const FCLSessionNeedsSignInNotification = @"FCLSessionNeedsSignInNotification";
@@ -89,7 +88,7 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
 - (void) setFCLSession:(FCLSession*)session
 {
     NSData* data = [[NSString stringWithFormat:@"%@:%@", session.username, session.password] dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
-    NSString* value = [@"Basic " stringByAppendingString:[data base64EncodedString]];
+    NSString* value = [@"Basic " stringByAppendingString:[data base64EncodedStringWithOptions:0]];
     [self setValue:value forHTTPHeaderField:@"Authorization"];
 }
 

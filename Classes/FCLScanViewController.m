@@ -5,7 +5,6 @@
 #import "FCLCategoriesController.h"
 #import "FCLLoginController.h"
 #import "PFWebViewController.h"
-#import "NSData+Base64.h"
 
 #import "OAHTTPDownload.h"
 
