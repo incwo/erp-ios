@@ -1,6 +1,6 @@
 #import "FCLAppDelegate.h"
 #import "FCLAppearance.h"
-#import "FCLFilesController.h"
+#import "FCLScanViewController.h"
 #import "FCLOfficeViewController.h"
 #import "FCLVideosViewController.h"
 #import "FCLNewsViewController.h"
@@ -19,7 +19,7 @@
 @implementation FCLAppDelegate {
     UITabBarController*      _tabBarController;
     FCLOfficeViewController* _officeController;
-    FCLFilesController*      _scanController;
+    FCLScanViewController*      _scanController;
     FCLVideosViewController* _videosController;
     FCLNewsViewController*   _newsController;
 }
@@ -51,7 +51,7 @@
     _officeController = [[FCLOfficeViewController alloc] initWithNibName:nil bundle:nil];
     _officeController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Bureau" image:[UIImage imageNamed:@"FCLTabBarOffice"] selectedImage:[UIImage imageNamed:@"FCLTabBarOfficeSelected"]];
     
-    _scanController   = [[FCLFilesController alloc] initWithNibName:nil bundle:nil];
+    _scanController   = [[FCLScanViewController alloc] initWithNibName:nil bundle:nil];
     _scanController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Scan" image:[UIImage imageNamed:@"FCLTabBarScan"] selectedImage:[UIImage imageNamed:@"FCLTabBarScanSelected"]];
     
     _videosController = [FCLVideosViewController catalogController];

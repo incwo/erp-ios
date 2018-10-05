@@ -1,7 +1,7 @@
 
 @class OAHTTPDownload;
 @class FCLCategoriesController;
-@interface FCLFilesController : UIViewController
+@interface FCLScanViewController : UIViewController
 
 - (NSURL*) listURL;
 - (void) loadList;

@@ -1,5 +1,5 @@
 #import "FCLSession.h"
-#import "FCLFilesController.h"
+#import "FCLScanViewController.h"
 #import "FCLBusinessFilesList.h"
 #import "FCLBusinessFile.h"
 #import "FCLCategoriesController.h"
@@ -9,7 +9,7 @@
 
 #import "OAHTTPDownload.h"
 
-@interface FCLFilesController ()
+@interface FCLScanViewController ()
 @property(nonatomic) IBOutlet UIView *authView;
 @property(nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic) FCLSession* session;
@@ -19,7 +19,7 @@
 @property(nonatomic) FCLCategoriesController* categoriesController;
 @end
 
-@implementation FCLFilesController {
+@implementation FCLScanViewController {
     BOOL performingGoToFile;
     NSDate* _lastCheckDate;
 }
