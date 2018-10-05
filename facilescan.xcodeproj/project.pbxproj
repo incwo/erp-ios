@@ -61,7 +61,6 @@
 		20A6568C118ED30B00C94599 /* OANavigationState.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6568B118ED30B00C94599 /* OANavigationState.m */; };
 		20A659BE118F0F0700C94599 /* FCLUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A659BD118F0F0700C94599 /* FCLUploader.m */; };
 		20A659C1118F0F4900C94599 /* FCLUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A659C0118F0F4900C94599 /* FCLUpload.m */; };
-		20A65AD4118F22DC00C94599 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65AD3118F22DC00C94599 /* NSData+Base64.m */; };
 		20B9115416BADEF2009D1391 /* FCLTransparentPixel.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B9115316BADEF2009D1391 /* FCLTransparentPixel.png */; };
 		20B9115616BBC02C009D1391 /* FCLNoVideo.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B9115516BBC02C009D1391 /* FCLNoVideo.png */; };
 		20B9115A16BC1D5A009D1391 /* FCLVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B9115816BC1D58009D1391 /* FCLVideoViewController.m */; };
@@ -181,8 +180,6 @@
 		20A659BD118F0F0700C94599 /* FCLUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLUploader.m; sourceTree = "<group>"; };
 		20A659BF118F0F4900C94599 /* FCLUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLUpload.h; sourceTree = "<group>"; };
 		20A659C0118F0F4900C94599 /* FCLUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLUpload.m; sourceTree = "<group>"; };
-		20A65AD2118F22DC00C94599 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		20A65AD3118F22DC00C94599 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		20B9115316BADEF2009D1391 /* FCLTransparentPixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FCLTransparentPixel.png; sourceTree = "<group>"; };
 		20B9115516BBC02C009D1391 /* FCLNoVideo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FCLNoVideo.png; sourceTree = "<group>"; };
 		20B9115716BC1D57009D1391 /* FCLVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLVideoViewController.h; sourceTree = "<group>"; };
@@ -260,8 +257,6 @@
 			children = (
 				20BAEC7F119078610081484B /* UIImage+OAImageResize.h */,
 				20BAEC80119078610081484B /* UIImage+OAImageResize.m */,
-				20A65AD2118F22DC00C94599 /* NSData+Base64.h */,
-				20A65AD3118F22DC00C94599 /* NSData+Base64.m */,
 				2008E82E118A25F400607BAC /* OANetworkActivityIndicator.h */,
 				2008E82F118A25F400607BAC /* OANetworkActivityIndicator.m */,
 				2008E81E118A25C100607BAC /* OAHTTPDownload.h */,
@@ -668,7 +663,6 @@
 				20A6568C118ED30B00C94599 /* OANavigationState.m in Sources */,
 				20A659BE118F0F0700C94599 /* FCLUploader.m in Sources */,
 				20A659C1118F0F4900C94599 /* FCLUpload.m in Sources */,
-				20A65AD4118F22DC00C94599 /* NSData+Base64.m in Sources */,
 				2060C57E11901A9800EF2405 /* FCLOptionsController.m in Sources */,
 				20BAEC81119078610081484B /* UIImage+OAImageResize.m in Sources */,
 				209DCD9716B80FDA00BF1CC0 /* FCLOfficeViewController.m in Sources */,

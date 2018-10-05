@@ -4,8 +4,6 @@
 #import "OAHTTPQueue.h"
 #import "OAHTTPDownload.h"
 
-#import "NSData+Base64.h"
-
 static FCLUploader* sharedUploader;
 @implementation FCLUploader
 
@@ -61,7 +59,8 @@ static FCLUploader* sharedUploader;
 
 - (void) oadownloadDidFinishLoading:(id<OAHTTPDownload>)download
 {
-    NSLog(@"Finished. Received data: %@", [[download receivedData] utf8EncodedString]);
+    NSString *dataString = [[NSString alloc] initWithData:[download receivedData] encoding:NSUTF8StringEncoding];
+    NSLog(@"Finished. Received data: %@", dataString);
     [self.delegate uploaderDidUpdateStatus:self];
 }
 
