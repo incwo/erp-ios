@@ -16,18 +16,14 @@
     NSDateFormatter* _dateFormatter;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        self.title = NSLocalizedString(@"Actualités", @"");
-        [self updateNews];
-    }
-    return self;
-}
-
 // MARK: Lifecycle
+
+-(void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.title = NSLocalizedString(@"Actualités", @"");
+    [self updateNews];
+}
 
 - (void) viewDidAppear:(BOOL)animated
 {
