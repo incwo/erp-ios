@@ -255,6 +255,8 @@
 		2008E818118A24DA00607BAC /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				2081BFFB16D3822400106A2F /* MBProgressHUD.h */,
+				2081BFFC16D3822500106A2F /* MBProgressHUD.m */,
 				20BAEC7F119078610081484B /* UIImage+OAImageResize.h */,
 				20BAEC80119078610081484B /* UIImage+OAImageResize.m */,
 				2008E82E118A25F400607BAC /* OANetworkActivityIndicator.h */,
@@ -304,13 +306,6 @@
 		209DCDAE16B8183800BF1CC0 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				2081BFFB16D3822400106A2F /* MBProgressHUD.h */,
-				2081BFFC16D3822500106A2F /* MBProgressHUD.m */,
-				209DCDAF16B8188700BF1CC0 /* FCLSession.h */,
-				209DCDB016B8188700BF1CC0 /* FCLSession.m */,
-				28C286DF0D94DF7D0034E888 /* FCLLoginController.h */,
-				28C286E00D94DF7D0034E888 /* FCLLoginController.m */,
-				DF243647216B853300A41B31 /* Login.storyboard */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -318,6 +313,8 @@
 		20A6536F118ACFD500C94599 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				209DCDAF16B8188700BF1CC0 /* FCLSession.h */,
+				209DCDB016B8188700BF1CC0 /* FCLSession.m */,
 				20A6537B118AD51E00C94599 /* FCLBusinessFilesList.h */,
 				20A6537C118AD51E00C94599 /* FCLBusinessFilesList.m */,
 				20A65381118AEC2700C94599 /* FCLModel.h */,
@@ -346,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				DFFA8619206E1D7F00C52018 /* Application */,
+				DF243649216B903A00A41B31 /* Login */,
 				DFFA861A206E1D9100C52018 /* Office */,
 				DFFA861B206E1D9F00C52018 /* Scan */,
 				DFFA861C206E1DD600C52018 /* Videos */,
@@ -417,6 +415,16 @@
 				EE69DD725D0B596D53FD4D2E /* Pods-facile.distribution.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		DF243649216B903A00A41B31 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				28C286DF0D94DF7D0034E888 /* FCLLoginController.h */,
+				28C286E00D94DF7D0034E888 /* FCLLoginController.m */,
+				DF243647216B853300A41B31 /* Login.storyboard */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		DFFA8619206E1D7F00C52018 /* Application */ = {
