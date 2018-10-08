@@ -11,7 +11,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		2008E7841188411800607BAC /* FCLLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2008E7831188411800607BAC /* FCLLoginController.xib */; };
 		2008E8001188EDD100607BAC /* FCLScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E7FF1188EDD100607BAC /* FCLScanViewController.m */; };
 		2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E81F118A25C100607BAC /* OAHTTPDownload.m */; };
 		2008E824118A25C100607BAC /* OAHTTPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E822118A25C100607BAC /* OAHTTPQueue.m */; };
@@ -76,6 +75,7 @@
 		56E1F4AB18A23CE100DC6404 /* PFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1F4AA18A23CE100DC6404 /* PFWebViewController.m */; };
 		56E1F4AE18A23DA700DC6404 /* PXWWWFormSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1F4AD18A23DA700DC6404 /* PXWWWFormSerialization.m */; };
 		9EB58714BE28C650A5CBCFA9 /* Pods_facile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C360ED63F3A469BA96E35B5E /* Pods_facile.framework */; };
+		DF243648216B853300A41B31 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF243647216B853300A41B31 /* Login.storyboard */; };
 		DF6447AB208E191700001A57 /* PDataExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91CE16BAAA1300C37D50 /* PDataExtension.m */; };
 		DFC2C1AD2087273E008B333B /* FCLNavigationItemTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */; };
 		DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */; };
@@ -89,7 +89,6 @@
 		1D3623250D0F684500981E51 /* FCLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* facilescan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = facilescan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		2008E7831188411800607BAC /* FCLLoginController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLLoginController.xib; path = ../FCLLoginController.xib; sourceTree = "<group>"; };
 		2008E7FE1188EDD100607BAC /* FCLScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLScanViewController.h; sourceTree = "<group>"; };
 		2008E7FF1188EDD100607BAC /* FCLScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLScanViewController.m; sourceTree = "<group>"; };
 		2008E81E118A25C100607BAC /* OAHTTPDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHTTPDownload.h; sourceTree = "<group>"; };
@@ -204,6 +203,7 @@
 		8D1107310486CEB800E47090 /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C360ED63F3A469BA96E35B5E /* Pods_facile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_facile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8474124D611147C7B3BE800 /* Pods-facile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-facile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-facile/Pods-facile.debug.xcconfig"; sourceTree = "<group>"; };
+		DF243647216B853300A41B31 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		DFC2C1AB2087273E008B333B /* FCLNavigationItemTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLNavigationItemTitleView.h; sourceTree = "<group>"; };
 		DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLNavigationItemTitleView.m; sourceTree = "<group>"; };
 		DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
@@ -310,7 +310,7 @@
 				209DCDB016B8188700BF1CC0 /* FCLSession.m */,
 				28C286DF0D94DF7D0034E888 /* FCLLoginController.h */,
 				28C286E00D94DF7D0034E888 /* FCLLoginController.m */,
-				2008E7831188411800607BAC /* FCLLoginController.xib */,
+				DF243647216B853300A41B31 /* Login.storyboard */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -563,7 +563,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2008E7841188411800607BAC /* FCLLoginController.xib in Resources */,
 				20A65394118AF27300C94599 /* FCLScanViewController.xib in Resources */,
 				20A653F2118B06FD00C94599 /* FCLCategoriesController.xib in Resources */,
 				20A65461118B169800C94599 /* FCLFormController.xib in Resources */,
@@ -573,6 +572,7 @@
 				209DCDB316B822FB00BF1CC0 /* FCLOfficeViewController.xib in Resources */,
 				3AD230E3184DE43E0078C4C2 /* Images.xcassets in Resources */,
 				203C91DA16BAB3BF00C37D50 /* FCLNewsViewController.xib in Resources */,
+				DF243648216B853300A41B31 /* Login.storyboard in Resources */,
 				203C91DC16BAB3CE00C37D50 /* FCLVideosViewController.xib in Resources */,
 				56E1F4A818A23C9100DC6404 /* Main.storyboard in Resources */,
 				203C91E116BAB51300C37D50 /* FCLWebViewController.xib in Resources */,

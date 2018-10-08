@@ -108,7 +108,8 @@
 
 - (void)signInWithEmail:(NSString *)email
 {
-    FCLLoginController* loginViewController = [[FCLLoginController alloc] initWithNibName:nil bundle:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+    FCLLoginController* loginViewController = [storyboard instantiateInitialViewController];
     loginViewController.email = email;
     __weak FCLLoginController* wc = loginViewController;
     loginViewController.completionHandler = ^(FCLSession* session, NSError* error) {
@@ -116,7 +117,7 @@
         
         if (session)
             [self loadHomepage];
-        [self dismissViewControllerAnimated:wc completion:^{}];
+        [self dismissViewControllerAnimated:wc completion:nil];
     };
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:loginViewController] animated:YES completion:nil];
     [self updateView];
