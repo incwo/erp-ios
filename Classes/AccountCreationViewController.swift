@@ -52,21 +52,28 @@ public class AccountCreationViewController: UIViewController {
 }
 
 extension AccountCreationViewController: WKNavigationDelegate {
-    public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        guard let pageUrl = webView.url,
-            let components = URLComponents(url: pageUrl, resolvingAgainstBaseURL: false),
-            let queryItems = components.queryItems else {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        guard let pageUrl = navigationAction.request.url,
+            let components = URLComponents(url: pageUrl, resolvingAgainstBaseURL: false) else {
+                decisionHandler(.cancel)
                 return
         }
         
         // When the account is created, the page redirects to
         //   http://facilepos.app/signin?email=<email>
-        if components.host == "facilepos.app",
-            components.path == "/signin",
-            queryItems.count == 1,
-            queryItems.first?.name == "email",
-            let email = queryItems.first?.value {
-            delegate.accountCreationViewControllerDidCreateAccount(self, email: email.removingPercentEncoding!)
+        if components.host == "facilepos.app" {
+            // Since this is a false host, the webview will not be able to handle it
+            decisionHandler(.cancel)
+            
+            if components.path == "/signin",
+                let queryItems = components.queryItems,
+                queryItems.count == 1,
+                queryItems.first?.name == "email",
+                let email = queryItems.first?.value {
+                delegate.accountCreationViewControllerDidCreateAccount(self, email: email.removingPercentEncoding!)
+            }
+        } else {
+            decisionHandler(.allow)
         }
     }
     
