@@ -1,4 +1,5 @@
 #import "FCLAppDelegate.h"
+#import "facilescan-Swift.h"
 #import "FCLAppearance.h"
 #import "FCLScanViewController.h"
 #import "FCLOfficeContentViewController.h"
@@ -18,7 +19,7 @@
 
 @implementation FCLAppDelegate {
     UITabBarController*      _tabBarController;
-    FCLOfficeContentViewController* _officeController;
+    OfficeViewController* _officeController;
     FCLScanViewController*      _scanController;
     FCLVideosViewController* _videosController;
     FCLNewsViewController*   _newsController;
@@ -48,7 +49,7 @@
     }
     
     // Init 4 tabs: Work, Scan, Videos, News.
-    _officeController = [[FCLOfficeContentViewController alloc] initWithNibName:nil bundle:nil];
+    _officeController = [[OfficeViewController alloc] initWithNibName:nil bundle:nil];
     _officeController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Bureau" image:[UIImage imageNamed:@"FCLTabBarOffice"] selectedImage:[UIImage imageNamed:@"FCLTabBarOfficeSelected"]];
     
     _scanController   = [[FCLScanViewController alloc] initWithNibName:nil bundle:nil];

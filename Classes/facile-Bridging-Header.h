@@ -3,4 +3,6 @@
 //
 
 @import Foundation;
+@import UIKit;
+#import "FCLOfficeContentViewController.h"
 #import "FCLSession.h"
