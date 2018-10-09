@@ -1,4 +1,5 @@
 #import "FCLOfficeViewController.h"
+#import "facilescan-Swift.h"
 #import "FCLLoginController.h"
 #import "FCLSession.h"
 #import "PFWebViewController.h"
@@ -6,7 +7,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIViewController+Alert.h"
 
-@interface FCLOfficeViewController () <UIWebViewDelegate>
+@interface FCLOfficeViewController () <UIWebViewDelegate, AccountCreationViewControllerDelegate>
 
 @property(nonatomic) IBOutlet UIWebView* webView;
 @property(nonatomic) IBOutlet UIView* webViewControls;
@@ -111,13 +112,12 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
     FCLLoginController* loginViewController = [storyboard instantiateInitialViewController];
     loginViewController.email = email;
-    __weak FCLLoginController* wc = loginViewController;
     loginViewController.completionHandler = ^(FCLSession* session, NSError* error) {
         self.session = session;
         
         if (session)
             [self loadHomepage];
-        [self dismissViewControllerAnimated:wc completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     };
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:loginViewController] animated:YES completion:nil];
     [self updateView];
@@ -125,16 +125,9 @@
 
 - (IBAction)signUp:(id)sender
 {
-    NSString* storyBoardName = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? @"Main-iPad" : @"Main";
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:storyBoardName bundle:nil];
-    UINavigationController *webViewNavigationController = [storyBoard instantiateViewControllerWithIdentifier:@"webViewNavigationController"];
-
-    // webViewController may eventually emit FCLSessionNeedsSignInNotification
-    PFWebViewController* webViewController = webViewNavigationController.viewControllers[0];
-    webViewController.request = [FCLSession signupRequest];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sessionNeedsSignIn:) name:FCLSessionNeedsSignInNotification object:webViewController];
+    AccountCreationViewController *creationController = [[AccountCreationViewController alloc] initWithDelegate:self];
     
-    [self presentViewController:webViewNavigationController animated:YES completion:nil];
+    [self presentViewController:creationController animated:YES completion:nil];
 }
 
 - (IBAction)reloadPage:(id)sender
@@ -267,6 +260,26 @@
 
 -(BOOL) _isURLCancellationError:(NSError *)error {
     return error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled;
+}
+
+// MARK: AccountCreationViewControllerDelegate
+
+-(void)accountCreationViewControllerDidCreateAccount:(AccountCreationViewController *)controller email:(NSString *)email {
+    __typeof(self) __weak weakSelf = self;
+    [self dismissViewControllerAnimated:YES completion:^{
+        [weakSelf signInWithEmail:email];
+    }];
+}
+
+- (void)accountCreationViewControllerDidCancel:(AccountCreationViewController *)controller {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)accountCreationViewControllerDidFail:(AccountCreationViewController *)controller error:(NSError *)error {
+    __typeof(self) __weak weakSelf = self;
+    [self dismissViewControllerAnimated:YES completion:^{
+        [weakSelf FCL_presentAlertForError:error];
+    }];
 }
 
 @end
