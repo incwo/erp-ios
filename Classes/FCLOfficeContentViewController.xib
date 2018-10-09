@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FCLOfficeViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FCLOfficeContentViewController">
             <connections>
                 <outlet property="authView" destination="24" id="31"/>
                 <outlet property="backButton" destination="9" id="32"/>
@@ -44,7 +44,7 @@
                             <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
                         </label>
                         <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" image="FCLFacileLogo" translatesAutoresizingMaskIntoConstraints="NO" id="40">
-                            <rect key="frame" x="58" y="105.5" width="30" height="30"/>
+                            <rect key="frame" x="58" y="105" width="30" height="30"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28">
                             <rect key="frame" x="20" y="208" width="280" height="44"/>
@@ -101,7 +101,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="171" y="163"/>
+            <point key="canvasLocation" x="273.60000000000002" y="146.62668665667167"/>
         </view>
         <view opaque="NO" contentMode="scaleToFill" id="5" customClass="FCLNavigationItemTitleView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>

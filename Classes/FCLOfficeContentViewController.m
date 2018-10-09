@@ -1,4 +1,4 @@
-#import "FCLOfficeViewController.h"
+#import "FCLOfficeContentViewController.h"
 #import "facilescan-Swift.h"
 #import "FCLLoginController.h"
 #import "FCLSession.h"
@@ -7,7 +7,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIViewController+Alert.h"
 
-@interface FCLOfficeViewController () <UIWebViewDelegate, AccountCreationViewControllerDelegate>
+@interface FCLOfficeContentViewController () <UIWebViewDelegate, AccountCreationViewControllerDelegate>
 
 @property(nonatomic) IBOutlet UIWebView* webView;
 @property(nonatomic) IBOutlet UIView* webViewControls;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation FCLOfficeViewController
+@implementation FCLOfficeContentViewController
 
 // MARK: Lifecycle
 

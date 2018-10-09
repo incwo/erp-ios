@@ -39,11 +39,11 @@
 		2060C57E11901A9800EF2405 /* FCLOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2060C57D11901A9800EF2405 /* FCLOptionsController.m */; };
 		2060C58511901C5600EF2405 /* FCLOptionsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2060C58411901C5600EF2405 /* FCLOptionsController.xib */; };
 		2081BFFD16D3822500106A2F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2081BFFC16D3822500106A2F /* MBProgressHUD.m */; };
-		209DCD9716B80FDA00BF1CC0 /* FCLOfficeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209DCD9616B80FDA00BF1CC0 /* FCLOfficeViewController.m */; };
+		209DCD9716B80FDA00BF1CC0 /* FCLOfficeContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209DCD9616B80FDA00BF1CC0 /* FCLOfficeContentViewController.m */; };
 		209DCD9A16B8100500BF1CC0 /* FCLVideosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209DCD9916B8100500BF1CC0 /* FCLVideosViewController.m */; };
 		209DCD9D16B8101700BF1CC0 /* FCLNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209DCD9C16B8101700BF1CC0 /* FCLNewsViewController.m */; };
 		209DCDB116B8188700BF1CC0 /* FCLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 209DCDB016B8188700BF1CC0 /* FCLSession.m */; };
-		209DCDB316B822FB00BF1CC0 /* FCLOfficeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209DCDB216B822FB00BF1CC0 /* FCLOfficeViewController.xib */; };
+		209DCDB316B822FB00BF1CC0 /* FCLOfficeContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209DCDB216B822FB00BF1CC0 /* FCLOfficeContentViewController.xib */; };
 		209DCDB516B82F2F00BF1CC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209DCDB416B82F2F00BF1CC0 /* QuartzCore.framework */; };
 		209DCDCE16B9202000BF1CC0 /* PHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 209DCDC916B9202000BF1CC0 /* PHTTPConnection.m */; };
 		209DCDCF16B9202000BF1CC0 /* PMultipartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 209DCDCC16B9202000BF1CC0 /* PMultipartData.m */; };
@@ -141,15 +141,15 @@
 		2060C58411901C5600EF2405 /* FCLOptionsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLOptionsController.xib; path = ../FCLOptionsController.xib; sourceTree = "<group>"; };
 		2081BFFB16D3822400106A2F /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		2081BFFC16D3822500106A2F /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		209DCD9516B80FDA00BF1CC0 /* FCLOfficeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLOfficeViewController.h; sourceTree = "<group>"; };
-		209DCD9616B80FDA00BF1CC0 /* FCLOfficeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLOfficeViewController.m; sourceTree = "<group>"; };
+		209DCD9516B80FDA00BF1CC0 /* FCLOfficeContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLOfficeContentViewController.h; sourceTree = "<group>"; };
+		209DCD9616B80FDA00BF1CC0 /* FCLOfficeContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLOfficeContentViewController.m; sourceTree = "<group>"; };
 		209DCD9816B8100500BF1CC0 /* FCLVideosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLVideosViewController.h; sourceTree = "<group>"; };
 		209DCD9916B8100500BF1CC0 /* FCLVideosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLVideosViewController.m; sourceTree = "<group>"; };
 		209DCD9B16B8101700BF1CC0 /* FCLNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLNewsViewController.h; sourceTree = "<group>"; };
 		209DCD9C16B8101700BF1CC0 /* FCLNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLNewsViewController.m; sourceTree = "<group>"; };
 		209DCDAF16B8188700BF1CC0 /* FCLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLSession.h; sourceTree = "<group>"; };
 		209DCDB016B8188700BF1CC0 /* FCLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLSession.m; sourceTree = "<group>"; };
-		209DCDB216B822FB00BF1CC0 /* FCLOfficeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FCLOfficeViewController.xib; sourceTree = "<group>"; };
+		209DCDB216B822FB00BF1CC0 /* FCLOfficeContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FCLOfficeContentViewController.xib; sourceTree = "<group>"; };
 		209DCDB416B82F2F00BF1CC0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		209DCDC816B9202000BF1CC0 /* PHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHTTPConnection.h; sourceTree = "<group>"; };
 		209DCDC916B9202000BF1CC0 /* PHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHTTPConnection.m; sourceTree = "<group>"; };
@@ -440,9 +440,9 @@
 		DFFA861A206E1D9100C52018 /* Office */ = {
 			isa = PBXGroup;
 			children = (
-				209DCD9516B80FDA00BF1CC0 /* FCLOfficeViewController.h */,
-				209DCD9616B80FDA00BF1CC0 /* FCLOfficeViewController.m */,
-				209DCDB216B822FB00BF1CC0 /* FCLOfficeViewController.xib */,
+				209DCD9516B80FDA00BF1CC0 /* FCLOfficeContentViewController.h */,
+				209DCD9616B80FDA00BF1CC0 /* FCLOfficeContentViewController.m */,
+				209DCDB216B822FB00BF1CC0 /* FCLOfficeContentViewController.xib */,
 				DFC2C1AB2087273E008B333B /* FCLNavigationItemTitleView.h */,
 				DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */,
 			);
@@ -575,7 +575,7 @@
 				2060C58511901C5600EF2405 /* FCLOptionsController.xib in Resources */,
 				E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */,
 				20E88FB011919B8B00C8D766 /* Entitlements.plist in Resources */,
-				209DCDB316B822FB00BF1CC0 /* FCLOfficeViewController.xib in Resources */,
+				209DCDB316B822FB00BF1CC0 /* FCLOfficeContentViewController.xib in Resources */,
 				3AD230E3184DE43E0078C4C2 /* Images.xcassets in Resources */,
 				203C91DA16BAB3BF00C37D50 /* FCLNewsViewController.xib in Resources */,
 				DF243648216B853300A41B31 /* Login.storyboard in Resources */,
@@ -672,7 +672,7 @@
 				20A659C1118F0F4900C94599 /* FCLUpload.m in Sources */,
 				2060C57E11901A9800EF2405 /* FCLOptionsController.m in Sources */,
 				20BAEC81119078610081484B /* UIImage+OAImageResize.m in Sources */,
-				209DCD9716B80FDA00BF1CC0 /* FCLOfficeViewController.m in Sources */,
+				209DCD9716B80FDA00BF1CC0 /* FCLOfficeContentViewController.m in Sources */,
 				DFC2C1AD2087273E008B333B /* FCLNavigationItemTitleView.m in Sources */,
 				209DCD9A16B8100500BF1CC0 /* FCLVideosViewController.m in Sources */,
 				209DCD9D16B8101700BF1CC0 /* FCLNewsViewController.m in Sources */,

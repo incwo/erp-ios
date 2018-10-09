@@ -1,7 +1,7 @@
 #import "FCLAppDelegate.h"
 #import "FCLAppearance.h"
 #import "FCLScanViewController.h"
-#import "FCLOfficeViewController.h"
+#import "FCLOfficeContentViewController.h"
 #import "FCLVideosViewController.h"
 #import "FCLNewsViewController.h"
 
@@ -18,7 +18,7 @@
 
 @implementation FCLAppDelegate {
     UITabBarController*      _tabBarController;
-    FCLOfficeViewController* _officeController;
+    FCLOfficeContentViewController* _officeController;
     FCLScanViewController*      _scanController;
     FCLVideosViewController* _videosController;
     FCLNewsViewController*   _newsController;
@@ -48,7 +48,7 @@
     }
     
     // Init 4 tabs: Work, Scan, Videos, News.
-    _officeController = [[FCLOfficeViewController alloc] initWithNibName:nil bundle:nil];
+    _officeController = [[FCLOfficeContentViewController alloc] initWithNibName:nil bundle:nil];
     _officeController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Bureau" image:[UIImage imageNamed:@"FCLTabBarOffice"] selectedImage:[UIImage imageNamed:@"FCLTabBarOfficeSelected"]];
     
     _scanController   = [[FCLScanViewController alloc] initWithNibName:nil bundle:nil];

@@ -1,6 +1,6 @@
 
 @class FCLSession;
-@interface FCLOfficeViewController : UIViewController
+@interface FCLOfficeContentViewController : UIViewController
 
 @property(nonatomic) FCLSession* session;
 
