@@ -12,9 +12,7 @@ class OfficeRouter: NSObject {
     @objc public let navigationController: UINavigationController
     private lazy var loginViewController: FCLLoginController = {
         let loginController = FCLLoginController(eMail: FCLSession.saved()?.username, success: { [weak self] (session) in
-            if session != nil {
                 self?.pushContentViewController(animated: true)
-            }
         }, failure: { [weak self] (error) in
             self?.navigationController.topViewController?.fcl_presentAlert(forError: error)
         })

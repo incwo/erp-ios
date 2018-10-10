@@ -41,16 +41,7 @@
     self.loginTextField.delegate = self;
     self.passwordTextField.delegate = self;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                             initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                             target:self
-                                             action:@selector(cancel:)];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                              target:self
-                                              action:@selector(done:)];
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Connecter" style:(UIBarButtonItemStyleDone) target:self action:@selector(logIn:)];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Connexion", @"") style:UIBarButtonItemStylePlain target:nil action:nil];
     
     self.loginTextField.text = self.email ?: [self loginField];
@@ -84,15 +75,7 @@
 
 // MARK: Actions
 
-- (void) cancel:(id)sender
-{
-    [self.connection cancel];
-    self.connection = nil;
-    
-    self.successHandler(nil);
-}
-
-- (void) done:(id)sender
+- (void) logIn:(id)sender
 {
     if (_connection) return; // ignore repeated taps
     
@@ -155,7 +138,7 @@
     if (textField == self.passwordTextField)
     {
         [textField resignFirstResponder];
-        [self done: self];
+        [self logIn: self];
     }
     return YES;
 }

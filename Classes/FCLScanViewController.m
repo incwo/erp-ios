@@ -43,6 +43,7 @@
     [rc addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
     self.tableView.tableHeaderView = rc;
     
+    self.navigationItem.hidesBackButton = true;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"FCLNavSignOut"] style:UIBarButtonItemStylePlain target:self action:@selector(signOut:)];
 }
 
