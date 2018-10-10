@@ -7,11 +7,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIViewController+Alert.h"
 
-@interface FCLOfficeContentViewController () <UIWebViewDelegate, AccountCreationViewControllerDelegate>
+@interface FCLOfficeContentViewController () <UIWebViewDelegate>
 
 @property(nonatomic) IBOutlet UIWebView* webView;
 @property(nonatomic) IBOutlet UIView* webViewControls;
-@property(nonatomic) IBOutlet UIView* authView;
 
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UIButton *forwardButton;
@@ -19,7 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *stopButton;
 
 @property (nonatomic) BOOL didLoadSomethingAlready;
-@property(nonatomic) BOOL loading;
+@property (nonatomic) BOOL loading;
 
 @end
 
@@ -30,17 +29,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    FCLSession* session = [FCLSession savedSession];
-    if ([session isValid]) {
-        self.session = session;
-    }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSignOut:) name:FCLSessionDidSignOutNotification object:nil];
-    
-    [self updateView];
+    self.navigationItem.titleView = self.webViewControls;
+    [self updateControls];
 }
 
 - (void) dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.loading = NO;
 }
 
@@ -82,56 +75,8 @@
 
 #pragma - Actions
 
-
-- (void) didSignOut:(id)_
-{
-    self.session = nil;
-    [self.webView stopLoading];
-    [self.webView loadHTMLString:@"" baseURL:[NSURL URLWithString:@"http://example.com"]]; // clear the webview for securing
-    self.didLoadSomethingAlready = NO;
-    [self updateView];
-    [self.delegate officeContentViewControllerDidLogOut:self];
-}
-
-- (IBAction)signOut:(id)sender
-{
-    [FCLSession removeSavedSession];
-}
-
-- (void) sessionNeedsSignIn:(NSNotification *)notification
-{
-    [self signInWithEmail:notification.userInfo[FCLSessionEmailKey]];
-}
-
-- (IBAction)signIn:(id)sender
-{
-    [self signInWithEmail:nil];
-}
-
-- (void)signInWithEmail:(NSString *)email
-{
-    __typeof(self) __weak weakSelf = self;
-    FCLLoginController *loginViewController = [[FCLLoginController alloc] initWithEMail:email success:^(FCLSession *session) {
-        weakSelf.session = session;
-        if(session) {
-            weakSelf.session = session;
-            [weakSelf loadHomepage];
-        }
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
-    } failure:^(NSError *error) {
-        weakSelf.session = nil;
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:loginViewController] animated:YES completion:nil];
-    [self updateView];
-}
-
-- (IBAction)signUp:(id)sender
-{
-    AccountCreationViewController *creationController = [[AccountCreationViewController alloc] initWithDelegate:self];
-    
-    [self presentViewController:creationController animated:YES completion:nil];
+- (IBAction)signOut:(id)sender {
+    [FCLSession removeSavedSession]; // Emits a FCLSessionDidSignOutNotification
 }
 
 - (IBAction)reloadPage:(id)sender
@@ -181,32 +126,6 @@
     [request setFCLSession:self.session];
     [self.webView loadRequest:request];
     [self updateControls];
-}
-
-@synthesize session = _session;
-- (void) setSession:(FCLSession *)session {
-    if (_session == session) {
-        return;
-    }
-    _session = session;
-    
-    [self updateView];
-}
-
-- (void) updateView {
-    [self updateControls];
-    
-    if(self.session) {
-        self.webView.hidden = NO;
-        self.authView.hidden = YES;
-        self.navigationItem.titleView = self.webViewControls;
-    } else {
-        self.navigationItem.titleView = nil;
-        self.navigationItem.title = @"Bureau";
-        self.navigationItem.prompt = nil;
-        self.webView.hidden = YES;
-        self.authView.hidden = NO;
-    }
 }
 
 - (void) updateControls {
@@ -264,26 +183,6 @@
 
 -(BOOL) _isURLCancellationError:(NSError *)error {
     return error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled;
-}
-
-// MARK: AccountCreationViewControllerDelegate
-
--(void)accountCreationViewControllerDidCreateAccount:(AccountCreationViewController *)controller email:(NSString *)email {
-    __typeof(self) __weak weakSelf = self;
-    [self dismissViewControllerAnimated:YES completion:^{
-        [weakSelf signInWithEmail:email];
-    }];
-}
-
-- (void)accountCreationViewControllerDidCancel:(AccountCreationViewController *)controller {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)accountCreationViewControllerDidFail:(AccountCreationViewController *)controller error:(NSError *)error {
-    __typeof(self) __weak weakSelf = self;
-    [self dismissViewControllerAnimated:YES completion:^{
-        [weakSelf FCL_presentAlertForError:error];
-    }];
 }
 
 @end

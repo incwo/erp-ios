@@ -31,19 +31,17 @@ class OfficeRouter: NSObject {
         if let session = FCLSession.saved(), session.isValid() {
             pushContentViewController(animated: false)
         }
+        
+        // Go back to the Root VC (Log in) when the user is signing out
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignOut, object: nil, queue: nil) { [weak self] (notification) in
+            self?.navigationController.popToRootViewController(animated: true)
+        }
     }
     
     private func pushContentViewController(animated: Bool) {
         let contentController = FCLOfficeContentViewController(nibName: nil, bundle: nil)
-        contentController.delegate = self
         contentController.session = FCLSession.saved()
         
         navigationController.pushViewController(contentController, animated: animated)
-    }
-}
-
-extension OfficeRouter: FCLOfficeContentViewControllerDelegate {
-    func officeContentViewControllerDidLogOut(_ controller: FCLOfficeContentViewController!) {
-        navigationController.popViewController(animated: true)
     }
 }

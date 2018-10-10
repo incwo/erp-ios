@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FCLOfficeContentViewController">
             <connections>
-                <outlet property="authView" destination="24" id="31"/>
                 <outlet property="backButton" destination="9" id="32"/>
                 <outlet property="forwardButton" destination="11" id="33"/>
                 <outlet property="reloadButton" destination="14" id="36"/>
@@ -33,71 +32,13 @@
                         <outlet property="delegate" destination="-1" id="8"/>
                     </connections>
                 </webView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                    <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connexion à incwo.com" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="39">
-                            <rect key="frame" x="100" y="111" width="160" height="19"/>
-                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                            <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                        </label>
-                        <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" image="FCLFacileLogo" translatesAutoresizingMaskIntoConstraints="NO" id="40">
-                            <rect key="frame" x="58" y="105" width="30" height="30"/>
-                        </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28">
-                            <rect key="frame" x="20" y="208" width="280" height="44"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="280" id="53D-kO-ByA"/>
-                                <constraint firstAttribute="height" constant="44" id="rPW-10-xwJ"/>
-                            </constraints>
-                            <state key="normal" title="Connexion" backgroundImage="FCLButtonFrame">
-                                <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="signIn:" destination="-1" eventType="touchUpInside" id="29"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrV-jt-1ou">
-                            <rect key="frame" x="20" y="260" width="280" height="44"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="280" id="VVL-Zq-tNL"/>
-                                <constraint firstAttribute="height" constant="44" id="g8o-m1-Zjx"/>
-                            </constraints>
-                            <state key="normal" title="Créer un compte" backgroundImage="FCLButtonFrame">
-                                <color key="titleColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="signUp:" destination="-1" eventType="touchUpInside" id="fy6-N4-gXC"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="0.18732063139999999" green="0.18732063139999999" blue="0.18732063139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="centerX" secondItem="nrV-jt-1ou" secondAttribute="centerX" id="6JL-RJ-oaR"/>
-                        <constraint firstItem="nrV-jt-1ou" firstAttribute="top" secondItem="28" secondAttribute="bottom" constant="8" symbolic="YES" id="OdN-ES-C7E"/>
-                        <constraint firstItem="39" firstAttribute="centerY" secondItem="40" secondAttribute="centerY" constant="0.5" id="ba8-aa-tn0"/>
-                        <constraint firstAttribute="centerY" secondItem="28" secondAttribute="centerY" id="cqj-Oy-BBr"/>
-                        <constraint firstAttribute="centerX" secondItem="28" secondAttribute="centerX" id="hXg-gL-ktI"/>
-                        <constraint firstAttribute="centerX" secondItem="39" secondAttribute="centerX" constant="-20" id="oHJ-OP-uRE"/>
-                        <constraint firstItem="28" firstAttribute="top" secondItem="39" secondAttribute="bottom" constant="78" id="sft-L8-z4a"/>
-                        <constraint firstItem="39" firstAttribute="leading" secondItem="40" secondAttribute="trailing" constant="12" id="wpK-IT-uug"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="24" secondAttribute="bottom" id="1hu-9w-0xF"/>
-                <constraint firstItem="24" firstAttribute="top" secondItem="1" secondAttribute="top" id="5fs-HM-4mg"/>
                 <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="K3y-Ne-bbI"/>
                 <constraint firstAttribute="bottom" secondItem="4" secondAttribute="bottom" id="Kvn-zl-COj"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" id="Wqc-eN-wki"/>
                 <constraint firstItem="4" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="aPf-px-t9X"/>
-                <constraint firstAttribute="trailing" secondItem="24" secondAttribute="trailing" id="pfy-0i-d0V"/>
-                <constraint firstItem="24" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="qUz-cy-ufw"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -211,11 +152,10 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="274" y="-130"/>
         </view>
     </objects>
     <resources>
-        <image name="FCLButtonFrame" width="16" height="16"/>
-        <image name="FCLFacileLogo" width="30" height="30"/>
         <image name="FCLNavBack" width="30" height="30"/>
         <image name="FCLNavForward" width="30" height="30"/>
         <image name="FCLNavReload" width="30" height="30"/>
