@@ -15,15 +15,16 @@
 
 
 @interface FCLAppDelegate ()
+
+@property (nonatomic) UITabBarController *tabBarController;
+@property (nonatomic) OfficeRouter *officeController;
+@property (nonatomic) FCLScanViewController *scanController;
+@property (nonatomic) FCLVideosViewController *videosController;
+@property (nonatomic) FCLNewsViewController *newsController;
+
 @end
 
-@implementation FCLAppDelegate {
-    UITabBarController*      _tabBarController;
-    OfficeRouter* _officeController;
-    FCLScanViewController*      _scanController;
-    FCLVideosViewController* _videosController;
-    FCLNewsViewController*   _newsController;
-}
+@implementation FCLAppDelegate
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
@@ -49,29 +50,29 @@
     }
     
     // Init 4 tabs: Work, Scan, Videos, News.
-    _officeController = [[OfficeRouter alloc] init];
-//    _officeController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Bureau" image:[UIImage imageNamed:@"FCLTabBarOffice"] selectedImage:[UIImage imageNamed:@"FCLTabBarOfficeSelected"]];
+    self.officeController = [[OfficeRouter alloc] init];
+//    self.officeController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Bureau" image:[UIImage imageNamed:@"FCLTabBarOffice"] selectedImage:[UIImage imageNamed:@"FCLTabBarOfficeSelected"]];
     
-    _scanController   = [[FCLScanViewController alloc] initWithNibName:nil bundle:nil];
-    _scanController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Scan" image:[UIImage imageNamed:@"FCLTabBarScan"] selectedImage:[UIImage imageNamed:@"FCLTabBarScanSelected"]];
+    self.scanController   = [[FCLScanViewController alloc] initWithNibName:nil bundle:nil];
+    self.scanController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Scan" image:[UIImage imageNamed:@"FCLTabBarScan"] selectedImage:[UIImage imageNamed:@"FCLTabBarScanSelected"]];
     
-    _videosController = [FCLVideosViewController catalogController];
-    _videosController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Vidéos" image:[UIImage imageNamed:@"FCLTabBarVideos"] selectedImage:[UIImage imageNamed:@"FCLTabBarVideosSelected"]];
+    self.videosController = [FCLVideosViewController catalogController];
+    self.videosController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Vidéos" image:[UIImage imageNamed:@"FCLTabBarVideos"] selectedImage:[UIImage imageNamed:@"FCLTabBarVideosSelected"]];
     
-    _newsController   = [[FCLNewsViewController alloc] initWithNibName:nil bundle:nil];
-    _newsController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Actualités" image:[UIImage imageNamed:@"FCLTabBarNews"] selectedImage:[UIImage imageNamed:@"FCLTabBarNewsSelected"]];
+    self.newsController   = [[FCLNewsViewController alloc] initWithNibName:nil bundle:nil];
+    self.newsController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Actualités" image:[UIImage imageNamed:@"FCLTabBarNews"] selectedImage:[UIImage imageNamed:@"FCLTabBarNewsSelected"]];
     
-    _tabBarController = [[UITabBarController alloc] init];
-    _tabBarController.viewControllers = @[
-        _officeController.navigationController,
-        [[UINavigationController alloc] initWithRootViewController:_scanController],
-        [[UINavigationController alloc] initWithRootViewController:_videosController],
-        [[UINavigationController alloc] initWithRootViewController:_newsController]
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = @[
+        self.officeController.navigationController,
+        [[UINavigationController alloc] initWithRootViewController:self.scanController],
+        [[UINavigationController alloc] initWithRootViewController:self.videosController],
+        [[UINavigationController alloc] initWithRootViewController:self.newsController]
     ];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-	[_window setRootViewController:_tabBarController];
-    [_window makeKeyAndVisible];
+	[self.window setRootViewController:self.tabBarController];
+    [self.window makeKeyAndVisible];
     
 	return YES;
 }
