@@ -11,7 +11,7 @@
 @property PHTTPConnection *connection;
 @property MBProgressHUD *loadingHUD;
 
-@property(nonatomic, strong) IBOutlet UITextField* loginTextField;
+@property(nonatomic, strong) IBOutlet UITextField* emailTextField;
 @property(nonatomic, strong) IBOutlet UITextField* passwordTextField;
 
 @end
@@ -38,20 +38,13 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"Connexion";
-    self.loginTextField.delegate = self;
+    self.emailTextField.delegate = self;
     self.passwordTextField.delegate = self;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Connecter" style:(UIBarButtonItemStyleDone) target:self action:@selector(logIn:)];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Connexion", @"") style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    self.loginTextField.text = self.email ?: [self loginField];
+    self.emailTextField.text = self.email ?: [self loginField];
     self.passwordTextField.text = [self passwordField];
-}
-
-- (void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.loginTextField becomeFirstResponder];
 }
 
 // MARK: Rotation
@@ -75,7 +68,7 @@
 
 // MARK: Actions
 
-- (void) logIn:(id)sender
+- (IBAction) logIn:(id)sender
 {
     if (_connection) return; // ignore repeated taps
     
@@ -116,7 +109,7 @@
 
 - (NSString *) loginField
 {
-    return (self.loginTextField.text && ![self.loginTextField.text isEqualToString:@""]) ? self.loginTextField.text : nil;
+    return (self.emailTextField.text && ![self.emailTextField.text isEqualToString:@""]) ? self.emailTextField.text : nil;
 }
 
 - (NSString *) passwordField
@@ -129,7 +122,7 @@
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField == self.loginTextField)
+    if (textField == self.emailTextField)
     {
         [textField resignFirstResponder];
         [self.passwordTextField becomeFirstResponder];
