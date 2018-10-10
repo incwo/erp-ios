@@ -4,5 +4,6 @@
 
 @import Foundation;
 @import UIKit;
+#import "FCLLoginController.h"
 #import "FCLOfficeContentViewController.h"
 #import "FCLSession.h"

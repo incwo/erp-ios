@@ -75,7 +75,7 @@
 		56E1F4AB18A23CE100DC6404 /* PFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1F4AA18A23CE100DC6404 /* PFWebViewController.m */; };
 		56E1F4AE18A23DA700DC6404 /* PXWWWFormSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1F4AD18A23DA700DC6404 /* PXWWWFormSerialization.m */; };
 		9EB58714BE28C650A5CBCFA9 /* Pods_facile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C360ED63F3A469BA96E35B5E /* Pods_facile.framework */; };
-		DF179028216CE82500BE89F7 /* OfficeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF179027216CE82500BE89F7 /* OfficeViewController.swift */; };
+		DF179028216CE82500BE89F7 /* OfficeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF179027216CE82500BE89F7 /* OfficeRouter.swift */; };
 		DF17902A216CE8AE00BE89F7 /* UIViewController+child.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF179029216CE8AE00BE89F7 /* UIViewController+child.swift */; };
 		DF243648216B853300A41B31 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF243647216B853300A41B31 /* Login.storyboard */; };
 		DF32F19D216C965C003297D8 /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */; };
@@ -206,7 +206,7 @@
 		8D1107310486CEB800E47090 /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C360ED63F3A469BA96E35B5E /* Pods_facile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_facile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8474124D611147C7B3BE800 /* Pods-facile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-facile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-facile/Pods-facile.debug.xcconfig"; sourceTree = "<group>"; };
-		DF179027216CE82500BE89F7 /* OfficeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeViewController.swift; sourceTree = "<group>"; };
+		DF179027216CE82500BE89F7 /* OfficeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeRouter.swift; sourceTree = "<group>"; };
 		DF179029216CE8AE00BE89F7 /* UIViewController+child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+child.swift"; sourceTree = "<group>"; };
 		DF243647216B853300A41B31 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		DF32F19A216C965C003297D8 /* facile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "facile-Bridging-Header.h"; path = "Classes/facile-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -445,7 +445,7 @@
 		DFFA861A206E1D9100C52018 /* Office */ = {
 			isa = PBXGroup;
 			children = (
-				DF179027216CE82500BE89F7 /* OfficeViewController.swift */,
+				DF179027216CE82500BE89F7 /* OfficeRouter.swift */,
 				209DCD9516B80FDA00BF1CC0 /* FCLOfficeContentViewController.h */,
 				209DCD9616B80FDA00BF1CC0 /* FCLOfficeContentViewController.m */,
 				209DCDB216B822FB00BF1CC0 /* FCLOfficeContentViewController.xib */,
@@ -694,7 +694,7 @@
 				203C91CC16BAA9B900C37D50 /* PStringExtensions.m in Sources */,
 				DF6447AB208E191700001A57 /* PDataExtension.m in Sources */,
 				203C91D216BAAA1300C37D50 /* PDateExtension.m in Sources */,
-				DF179028216CE82500BE89F7 /* OfficeViewController.swift in Sources */,
+				DF179028216CE82500BE89F7 /* OfficeRouter.swift in Sources */,
 				203C91D516BAAA5300C37D50 /* PFeedItemThumbnail.m in Sources */,
 				203C91D816BAAF8F00C37D50 /* FCLFeedLoader.m in Sources */,
 				203C91E016BAB51300C37D50 /* FCLWebViewController.m in Sources */,

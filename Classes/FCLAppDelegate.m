@@ -19,7 +19,7 @@
 
 @implementation FCLAppDelegate {
     UITabBarController*      _tabBarController;
-    OfficeViewController* _officeController;
+    OfficeRouter* _officeController;
     FCLScanViewController*      _scanController;
     FCLVideosViewController* _videosController;
     FCLNewsViewController*   _newsController;
@@ -49,8 +49,8 @@
     }
     
     // Init 4 tabs: Work, Scan, Videos, News.
-    _officeController = [[OfficeViewController alloc] initWithNibName:nil bundle:nil];
-    _officeController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Bureau" image:[UIImage imageNamed:@"FCLTabBarOffice"] selectedImage:[UIImage imageNamed:@"FCLTabBarOfficeSelected"]];
+    _officeController = [[OfficeRouter alloc] init];
+//    _officeController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Bureau" image:[UIImage imageNamed:@"FCLTabBarOffice"] selectedImage:[UIImage imageNamed:@"FCLTabBarOfficeSelected"]];
     
     _scanController   = [[FCLScanViewController alloc] initWithNibName:nil bundle:nil];
     _scanController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Scan" image:[UIImage imageNamed:@"FCLTabBarScan"] selectedImage:[UIImage imageNamed:@"FCLTabBarScanSelected"]];
@@ -63,7 +63,7 @@
     
     _tabBarController = [[UITabBarController alloc] init];
     _tabBarController.viewControllers = @[
-        [[UINavigationController alloc] initWithRootViewController:_officeController],
+        _officeController.navigationController,
         [[UINavigationController alloc] initWithRootViewController:_scanController],
         [[UINavigationController alloc] initWithRootViewController:_videosController],
         [[UINavigationController alloc] initWithRootViewController:_newsController]

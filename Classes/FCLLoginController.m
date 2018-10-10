@@ -114,7 +114,6 @@
             {
                 [session saveSession];
                 weakSelf.completionHandler(session, nil);
-                weakSelf.completionHandler = nil;
             }
         }
         else

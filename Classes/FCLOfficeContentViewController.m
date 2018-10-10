@@ -90,6 +90,7 @@
     [self.webView loadHTMLString:@"" baseURL:[NSURL URLWithString:@"http://example.com"]]; // clear the webview for securing
     self.didLoadSomethingAlready = NO;
     [self updateView];
+    [self.delegate officeContentViewControllerDidLogOut:self];
 }
 
 - (IBAction)signOut:(id)sender
