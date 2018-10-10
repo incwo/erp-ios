@@ -5,9 +5,8 @@
 
 @interface FCLLoginController () <UITextFieldDelegate>
 
+@property (weak) id <FCLLoginControllerDelegate> delegate;
 @property NSString *email;
-@property FCLLoginControllerSuccessHandler successHandler;
-@property FCLLoginControllerFailureHandler failureHandler;
 @property PHTTPConnection *connection;
 @property MBProgressHUD *loadingHUD;
 
@@ -18,15 +17,13 @@
 
 @implementation FCLLoginController
 
--(nonnull instancetype) initWithEMail:(nullable NSString *)email success:(nonnull FCLLoginControllerSuccessHandler)successHandler failure:(nonnull FCLLoginControllerFailureHandler)failureHandler {
+-(nonnull instancetype) initWithDelegate:(id <FCLLoginControllerDelegate>)delegate email:(nullable NSString *)email {
     self = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateInitialViewController];
     NSAssert(self, @"Could not load the Login view controller from its Storyboard.");
     if (self) {
+        NSParameterAssert(delegate);
+        _delegate = delegate;
         _email = email;
-        NSParameterAssert(successHandler);
-        _successHandler = successHandler;
-        NSParameterAssert(failureHandler);
-        _failureHandler = failureHandler;
     }
     return self;
 }
@@ -98,13 +95,17 @@
         
         if (weakSelf.connection.data) {
             [session saveSession];
-            weakSelf.successHandler(session);
+            [weakSelf.delegate loginControllerDidLogIn:self session:session];
         } else {
             NSLog(@"COULD NOT LOG IN: %@", weakSelf.connection.error);
-            weakSelf.failureHandler(weakSelf.connection.error);
+            [weakSelf.delegate loginControllerDidFail:self error:weakSelf.connection.error];
         }
         weakSelf.connection = nil;
     }];
+}
+
+- (IBAction)createAccount:(id)sender {
+    [self.delegate loginControllerWantsAccountCreation:self];
 }
 
 - (NSString *) loginField

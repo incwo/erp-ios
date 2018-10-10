@@ -116,6 +116,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2l-2a-pHg">
                                                     <rect key="frame" x="102.5" y="44" width="115" height="30"/>
                                                     <state key="normal" title="Créer un compte"/>
+                                                    <connections>
+                                                        <action selector="createAccount:" destination="vSA-rU-23M" eventType="touchUpInside" id="STN-Ht-U7k"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

@@ -11,12 +11,7 @@ import UIKit
 class OfficeRouter: NSObject {
     @objc public let navigationController: UINavigationController
     private lazy var loginViewController: FCLLoginController = {
-        let loginController = FCLLoginController(eMail: FCLSession.saved()?.username, success: { [weak self] (session) in
-                self?.pushContentViewController(animated: true)
-        }, failure: { [weak self] (error) in
-            self?.navigationController.topViewController?.fcl_presentAlert(forError: error)
-        })
-        
+        let loginController = FCLLoginController(delegate: self, email: FCLSession.saved()?.username)
         loginController.title = "Bureau"
         return loginController
     }()
@@ -41,5 +36,19 @@ class OfficeRouter: NSObject {
         contentController.session = FCLSession.saved()
         
         navigationController.pushViewController(contentController, animated: animated)
+    }
+}
+
+extension OfficeRouter: FCLLoginControllerDelegate {
+    func loginControllerDidLog(in controller: FCLLoginController, session: FCLSession) {
+        self.pushContentViewController(animated: true)
+    }
+    
+    func loginControllerWantsAccountCreation(_ controller: FCLLoginController) {
+        
+    }
+    
+    func loginControllerDidFail(_ controller: FCLLoginController, error: Error) {
+        self.navigationController.topViewController?.fcl_presentAlert(forError: error)
     }
 }

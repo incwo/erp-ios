@@ -1,10 +1,17 @@
 
 @class FCLSession;
+@class FCLLoginController;
+
+@protocol FCLLoginControllerDelegate <NSObject>
+
+-(void) loginControllerDidLogIn:(nonnull FCLLoginController *)controller session:(nonnull FCLSession *)session;
+-(void) loginControllerWantsAccountCreation:(nonnull FCLLoginController *)controller;
+-(void) loginControllerDidFail:(nonnull FCLLoginController *)controller error:(nonnull NSError *)error;
+
+@end
+
 @interface FCLLoginController : UITableViewController
 
-typedef void (^FCLLoginControllerSuccessHandler)(FCLSession * _Nonnull session);
-typedef void (^FCLLoginControllerFailureHandler)(NSError * _Nonnull error);
-
--(nonnull instancetype) initWithEMail:(nullable NSString *)email success:(nonnull FCLLoginControllerSuccessHandler)successHandler failure:(nonnull FCLLoginControllerFailureHandler)failureHandler;
+-(nonnull instancetype) initWithDelegate:(nonnull id <FCLLoginControllerDelegate>)delegate email:(nullable NSString *)email;
 
 @end
