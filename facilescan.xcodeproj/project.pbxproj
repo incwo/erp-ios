@@ -425,8 +425,8 @@
 			children = (
 				28C286DF0D94DF7D0034E888 /* FCLLoginController.h */,
 				28C286E00D94DF7D0034E888 /* FCLLoginController.m */,
-				DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */,
 				DF243647216B853300A41B31 /* Login.storyboard */,
+				DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";

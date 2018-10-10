@@ -46,8 +46,15 @@ public class AccountCreationViewController: UIViewController {
 
         assert(delegate != nil, "The delegate must be set.")
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        
         webView.navigationDelegate = self
         webView.load(FCLSession.signupRequest())
+    }
+    
+    @objc
+    func cancel() {
+        delegate.accountCreationViewControllerDidCancel(self)
     }
 }
 
