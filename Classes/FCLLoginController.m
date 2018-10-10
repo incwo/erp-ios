@@ -5,6 +5,9 @@
 
 @interface FCLLoginController () <UITextFieldDelegate>
 
+@property NSString *email;
+@property FCLLoginControllerSuccessHandler successHandler;
+@property FCLLoginControllerFailureHandler failureHandler;
 @property PHTTPConnection *connection;
 @property MBProgressHUD *loadingHUD;
 
@@ -14,6 +17,19 @@
 @end
 
 @implementation FCLLoginController
+
+-(nonnull instancetype) initWithEMail:(nullable NSString *)email success:(nonnull FCLLoginControllerSuccessHandler)successHandler failure:(nonnull FCLLoginControllerFailureHandler)failureHandler {
+    self = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateInitialViewController];
+    NSAssert(self, @"Could not load the Login view controller from its Storyboard.");
+    if (self) {
+        _email = email;
+        NSParameterAssert(successHandler);
+        _successHandler = successHandler;
+        NSParameterAssert(failureHandler);
+        _failureHandler = failureHandler;
+    }
+    return self;
+}
 
 #pragma mark - UIViewController
 
@@ -73,11 +89,7 @@
     [self.connection cancel];
     self.connection = nil;
     
-    if (self.completionHandler)
-    {
-        self.completionHandler(nil, nil);
-        self.completionHandler = nil;
-    }
+    self.successHandler(nil);
 }
 
 - (void) done:(id)sender
@@ -108,28 +120,15 @@
         [weakSelf.loadingHUD hide:YES];
         weakSelf.loadingHUD = nil;
         
-        if (weakSelf.connection.data)
-        {
-            if (weakSelf.completionHandler)
-            {
-                [session saveSession];
-                weakSelf.completionHandler(session, nil);
-            }
-        }
-        else
-        {
-            NSLog(@"CANNOT LOG IN: %@", weakSelf.connection.error);
-            NSString *message = [weakSelf.connection.error localizedDescription] ?: @"Merci d'indiquer un email valide pour vous connecter.";
-            [weakSelf _showAlertWithTitle:@"Erreur" message:message];
+        if (weakSelf.connection.data) {
+            [session saveSession];
+            weakSelf.successHandler(session);
+        } else {
+            NSLog(@"COULD NOT LOG IN: %@", weakSelf.connection.error);
+            weakSelf.failureHandler(weakSelf.connection.error);
         }
         weakSelf.connection = nil;
     }];
-}
-
--(void) _showAlertWithTitle:(NSString *)title message:(NSString *)message {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (NSString *) loginField

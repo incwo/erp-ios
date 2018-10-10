@@ -11,13 +11,14 @@ import UIKit
 class OfficeRouter: NSObject {
     @objc public let navigationController: UINavigationController
     private lazy var loginViewController: FCLLoginController = {
-        let loginController = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController() as! FCLLoginController
-        loginController.email = FCLSession.saved()?.username
-        loginController.completionHandler = { [weak self] (session, error) in
+        let loginController = FCLLoginController(eMail: FCLSession.saved()?.username, success: { [weak self] (session) in
             if session != nil {
                 self?.pushContentViewController(animated: true)
             }
-        }
+        }, failure: { [weak self] (error) in
+            self?.navigationController.topViewController?.fcl_presentAlert(forError: error)
+        })
+        
         return loginController
     }()
     

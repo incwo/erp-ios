@@ -110,16 +110,19 @@
 
 - (void)signInWithEmail:(NSString *)email
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    FCLLoginController* loginViewController = [storyboard instantiateInitialViewController];
-    loginViewController.email = email;
-    loginViewController.completionHandler = ^(FCLSession* session, NSError* error) {
-        self.session = session;
-        
-        if (session)
-            [self loadHomepage];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    };
+    __typeof(self) __weak weakSelf = self;
+    FCLLoginController *loginViewController = [[FCLLoginController alloc] initWithEMail:email success:^(FCLSession *session) {
+        weakSelf.session = session;
+        if(session) {
+            weakSelf.session = session;
+            [weakSelf loadHomepage];
+        }
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    } failure:^(NSError *error) {
+        weakSelf.session = nil;
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:loginViewController] animated:YES completion:nil];
     [self updateView];
 }
