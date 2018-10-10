@@ -10,11 +10,9 @@
 
 #import "OAHTTPDownload.h"
 
-@interface FCLScanViewController () <AccountCreationViewControllerDelegate>
+@interface FCLScanViewController ()
 
-@property(nonatomic) IBOutlet UIView *authView;
 @property(nonatomic) IBOutlet UITableView *tableView;
-@property(nonatomic) FCLSession* session;
 @property(nonatomic) OAHTTPDownload* download;
 @property(nonatomic) NSArray* files;
 @property(nonatomic) NSData* xmlData;
@@ -37,40 +35,27 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    NSParameterAssert(self.session);
     
-    self.title = @"Scan";
-    
-    FCLSession* s = [FCLSession savedSession];
-    if ([s isValid])
-    {
-        self.session = s;
-    }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSignOut:) name:FCLSessionDidSignOutNotification object:nil];
+    self.navigationItem.title = @"Scan";
     
     UIRefreshControl* rc = [[UIRefreshControl alloc] init];
     [rc addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
     self.tableView.tableHeaderView = rc;
-    [self updateView];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"FCLNavSignOut"] style:UIBarButtonItemStylePlain target:self action:@selector(signOut:)];
 }
 
 - (void) dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.download.target = nil;
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (![self.session isValid])
-    {
-        FCLSession* s = [FCLSession savedSession];
-        if ([s isValid])
-        {
-            self.session = s;
-        }
-    }
-    if (self.session.isValid && (!_lastCheckDate || [[NSDate date] timeIntervalSinceDate:_lastCheckDate] > 300.0))
+
+    if (!_lastCheckDate || [[NSDate date] timeIntervalSinceDate:_lastCheckDate] > 300.0)
     {
         _lastCheckDate = [NSDate date];
         [self loadList];
@@ -141,71 +126,9 @@
     [self.navigationController pushViewController:self.categoriesController animated:YES];
 }
 
-- (void) sessionNeedsSignIn:(NSNotification *)notification
+- (void) signOut:(id)sender
 {
-    [self signInWithEmail:notification.userInfo[FCLSessionEmailKey]];
-}
-
-- (IBAction)signIn:(id)sender
-{
-    [self signInWithEmail:nil];
-}
-
-- (void)signInWithEmail:(NSString *)email
-{
-    __typeof(self) __weak weakSelf = self;
-    FCLLoginController *loginViewController = [[FCLLoginController alloc] initWithEMail:email success:^(FCLSession *session) {
-        weakSelf.session = session;
-        [weakSelf updateView];
-        [weakSelf loadList];
-        [weakSelf dismissViewControllerAnimated:YES completion:^{}];
-    } failure:^(NSError *error) {
-        weakSelf.session = nil;
-        [weakSelf dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:loginViewController] animated:YES completion:nil];
-    [self updateView];
-}
-
-- (IBAction)signUp:(id)sender {
-    AccountCreationViewController *signUpController = [[AccountCreationViewController alloc] initWithDelegate:self];
-    [self presentViewController:signUpController animated:YES completion: nil];
-}
-
-- (void) setSession:(FCLSession *)session
-{
-    if (_session == session) return;
-    _session = session;
-    [self updateView];
-}
-
-- (void) updateView
-{
-    self.authView.hidden = [self.session isValid];
-    [self.tableView reloadData];
-    
-    if (self.session)
-    {
-        UIImage* image = [UIImage imageNamed:@"FCLNavSignOut"];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image  style:UIBarButtonItemStylePlain target:self action:@selector(signOut:)];
-    }
-    else
-    {
-        self.navigationItem.rightBarButtonItem = nil;
-    }
-}
-
-- (void) didSignOut:(id)_
-{
-    self.session = nil;
-    self.files = nil;
-    [self updateView];
-}
-
-- (void) signOut:(id)_
-{
-    [FCLSession removeSavedSession];
+    [FCLSession removeSavedSession]; // Emits FCLSessionDidSignOutNotification
 }
 
 - (IBAction)reload:(id)sender
@@ -296,26 +219,6 @@
     {
         [self goToFile:[self.files objectAtIndex:indexPath.row]];
     }
-}
-
-// MARK: AccountCreationViewControllerDelegate
-
--(void)accountCreationViewControllerDidCreateAccount:(AccountCreationViewController *)controller email:(NSString *)email {
-    __typeof(self) __weak weakSelf = self;
-    [self dismissViewControllerAnimated:YES completion:^{
-        [weakSelf signInWithEmail:email];
-    }];
-}
-
--(void)accountCreationViewControllerDidCancel:(AccountCreationViewController *)controller {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void)accountCreationViewControllerDidFail:(AccountCreationViewController *)controller error:(NSError *)error {
-    __typeof(self) __weak weakSelf = self;
-    [self dismissViewControllerAnimated:YES completion:^{
-        [weakSelf FCL_presentAlertForError:error];
-    }];
 }
 
 @end

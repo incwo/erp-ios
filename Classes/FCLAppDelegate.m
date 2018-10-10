@@ -1,8 +1,6 @@
 #import "FCLAppDelegate.h"
 #import "facilescan-Swift.h"
 #import "FCLAppearance.h"
-#import "FCLScanViewController.h"
-#import "FCLOfficeContentViewController.h"
 #import "FCLVideosViewController.h"
 #import "FCLNewsViewController.h"
 
@@ -17,8 +15,8 @@
 @interface FCLAppDelegate ()
 
 @property (nonatomic) UITabBarController *tabBarController;
-@property (nonatomic) OfficeRouter *officeController;
-@property (nonatomic) FCLScanViewController *scanController;
+@property (nonatomic) OfficeRouter *officeRouter;
+@property (nonatomic) ScanRouter *scanRouter;
 @property (nonatomic) FCLVideosViewController *videosController;
 @property (nonatomic) FCLNewsViewController *newsController;
 
@@ -50,11 +48,11 @@
     }
     
     // Init 4 tabs: Work, Scan, Videos, News.
-    self.officeController = [[OfficeRouter alloc] init];
-    self.officeController.navigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Bureau" image:[UIImage imageNamed:@"FCLTabBarOffice"] selectedImage:[UIImage imageNamed:@"FCLTabBarOfficeSelected"]];
+    self.officeRouter = [[OfficeRouter alloc] init];
+    self.officeRouter.navigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Bureau" image:[UIImage imageNamed:@"FCLTabBarOffice"] selectedImage:[UIImage imageNamed:@"FCLTabBarOfficeSelected"]];
     
-    self.scanController   = [[FCLScanViewController alloc] initWithNibName:nil bundle:nil];
-    self.scanController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Scan" image:[UIImage imageNamed:@"FCLTabBarScan"] selectedImage:[UIImage imageNamed:@"FCLTabBarScanSelected"]];
+    self.scanRouter = [[ScanRouter alloc] init];
+    self.scanRouter.navigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Scan" image:[UIImage imageNamed:@"FCLTabBarScan"] selectedImage:[UIImage imageNamed:@"FCLTabBarScanSelected"]];
     
     self.videosController = [FCLVideosViewController catalogController];
     self.videosController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Vidéos" image:[UIImage imageNamed:@"FCLTabBarVideos"] selectedImage:[UIImage imageNamed:@"FCLTabBarVideosSelected"]];
@@ -64,8 +62,8 @@
     
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = @[
-        self.officeController.navigationController,
-        [[UINavigationController alloc] initWithRootViewController:self.scanController],
+        self.officeRouter.navigationController,
+        self.scanRouter.navigationController,
         [[UINavigationController alloc] initWithRootViewController:self.videosController],
         [[UINavigationController alloc] initWithRootViewController:self.newsController]
     ];
@@ -120,28 +118,6 @@
     return mask | UIInterfaceOrientationMaskPortrait;
 }
 
-@end
-
-
-@implementation UINavigationController(FLCOrientation)
-/*
-- (NSUInteger)supportedInterfaceOrientations
-{
-    NSUInteger mask = UIInterfaceOrientationPortrait;
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        mask = UIInterfaceOrientationMaskAllButUpsideDown;
-
-    return mask;
-//    return [[self.viewControllers lastObject] supportedInterfaceOrientations] | UIInterfaceOrientationMaskPortrait;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return self.interfaceOrientation;
-//    return [[self.viewControllers lastObject] preferredInterfaceOrientationForPresentation];
-}
-
-*/
 @end
 
 
