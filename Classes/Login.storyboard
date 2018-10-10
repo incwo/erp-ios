@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Connexion à incwo-->
+        <!--Connexion-->
         <scene sceneID="Va8-ZA-iNH">
             <objects>
-                <tableViewController title="Connexion à incwo" id="vSA-rU-23M" customClass="FCLLoginController" sceneMemberID="viewController">
+                <tableViewController title="Connexion" id="vSA-rU-23M" customClass="FCLLoginController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Yia-5T-6wZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

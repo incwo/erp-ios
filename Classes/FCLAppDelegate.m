@@ -51,7 +51,7 @@
     
     // Init 4 tabs: Work, Scan, Videos, News.
     self.officeController = [[OfficeRouter alloc] init];
-//    self.officeController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Bureau" image:[UIImage imageNamed:@"FCLTabBarOffice"] selectedImage:[UIImage imageNamed:@"FCLTabBarOfficeSelected"]];
+    self.officeController.navigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Bureau" image:[UIImage imageNamed:@"FCLTabBarOffice"] selectedImage:[UIImage imageNamed:@"FCLTabBarOfficeSelected"]];
     
     self.scanController   = [[FCLScanViewController alloc] initWithNibName:nil bundle:nil];
     self.scanController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Scan" image:[UIImage imageNamed:@"FCLTabBarScan"] selectedImage:[UIImage imageNamed:@"FCLTabBarScanSelected"]];

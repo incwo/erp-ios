@@ -36,8 +36,8 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"incwo", @"");
     
+    self.navigationItem.title = @"Connexion";
     self.loginTextField.delegate = self;
     self.passwordTextField.delegate = self;
     

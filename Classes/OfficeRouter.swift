@@ -19,6 +19,7 @@ class OfficeRouter: NSObject {
             self?.navigationController.topViewController?.fcl_presentAlert(forError: error)
         })
         
+        loginController.title = "Bureau"
         return loginController
     }()
     
