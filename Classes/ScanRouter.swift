@@ -37,18 +37,39 @@ class ScanRouter: NSObject {
         
         navigationController.pushViewController(contentController, animated: animated)
     }
+    
+    private func pushAccountCreationViewController() {
+        let accountCreationController = AccountCreationViewController(delegate: self)
+        navigationController.pushViewController(accountCreationController, animated: true)
+    }
 }
 
 extension ScanRouter: FCLLoginControllerDelegate {
     func loginControllerDidLog(in controller: FCLLoginController, session: FCLSession) {
-        self.pushContentViewController(animated: true)
+        pushContentViewController(animated: true)
     }
     
     func loginControllerWantsAccountCreation(_ controller: FCLLoginController) {
-        
+        pushAccountCreationViewController()
     }
     
     func loginControllerDidFail(_ controller: FCLLoginController, error: Error) {
-        self.navigationController.topViewController?.fcl_presentAlert(forError: error)
+        navigationController.topViewController?.fcl_presentAlert(forError: error)
+    }
+}
+
+extension ScanRouter: AccountCreationViewControllerDelegate {
+    func accountCreationViewControllerDidCreateAccount(_ controller: AccountCreationViewController, email: String) {
+        loginViewController.email = email;
+        navigationController.popViewController(animated: true)
+    }
+    
+    func accountCreationViewControllerDidCancel(_ controller: AccountCreationViewController) {
+        navigationController.popViewController(animated: true)
+    }
+    
+    func accountCreationViewControllerDidFail(_ controller: AccountCreationViewController, error: NSError) {
+        navigationController.topViewController?.fcl_presentAlert(forError: error)
+        navigationController.popViewController(animated: true)
     }
 }

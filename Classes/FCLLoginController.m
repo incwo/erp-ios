@@ -6,7 +6,6 @@
 @interface FCLLoginController () <UITextFieldDelegate>
 
 @property (weak) id <FCLLoginControllerDelegate> delegate;
-@property NSString *email;
 @property PHTTPConnection *connection;
 @property MBProgressHUD *loadingHUD;
 
@@ -61,6 +60,14 @@
 - (BOOL) shouldAutorotate
 {
     return YES;
+}
+
+-(void)setEmail:(NSString *)email {
+    if(email == _email) {
+        return;
+    }
+    
+    self.emailTextField.text = email;
 }
 
 // MARK: Actions

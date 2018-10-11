@@ -13,5 +13,6 @@
 @interface FCLLoginController : UITableViewController
 
 -(nonnull instancetype) initWithDelegate:(nonnull id <FCLLoginControllerDelegate>)delegate email:(nullable NSString *)email;
+@property (nullable, nonatomic) NSString *email;
 
 @end
