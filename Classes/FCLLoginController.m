@@ -43,6 +43,13 @@
     self.passwordTextField.text = [self passwordField];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.emailTextField.text = [FCLSession savedSession].username;
+    self.passwordTextField.text = [FCLSession savedSession].password;
+}
+
 // MARK: Rotation
 
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations
@@ -76,9 +83,7 @@
 {
     if (_connection) return; // ignore repeated taps
     
-    FCLSession* session = [[FCLSession alloc] init];
-    session.username = [self loginField];
-    session.password = [self passwordField];
+    FCLSession *session = [[FCLSession alloc] initWithUsername:[self loginField] password:[self passwordField]];
   
 //#warning Need a more efficient way to sign in.
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d", session.facileBaseURL, rand()]];

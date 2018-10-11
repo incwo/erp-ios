@@ -21,7 +21,7 @@ class OfficeRouter: NSObject {
         super.init()
         
         navigationController.viewControllers = [loginViewController];
-        if let session = FCLSession.saved(), session.isValid() {
+        if FCLSession.saved() != nil {
             pushContentViewController(animated: false)
         }
         

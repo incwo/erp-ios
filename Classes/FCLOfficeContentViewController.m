@@ -41,14 +41,9 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if (![self.session isValid]) {
-        FCLSession* session = [FCLSession savedSession];
-        if ([session isValid]) {
-            self.session = session;
-        }
-    }
+    NSParameterAssert(self.session);
     
-    if ([self.session isValid] && !self.didLoadSomethingAlready) {
+    if (!self.didLoadSomethingAlready) {
         self.didLoadSomethingAlready = YES;
         [self loadHomepage];
     }

@@ -11,17 +11,26 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
 
 @implementation FCLSession
 
-+ (instancetype) savedSession
-{
-    FCLSession* session = [[self alloc] init];
-    session.username = [[NSUserDefaults standardUserDefaults] objectForKey:@"FCLSessionUsername"];
-    session.password = [[NSUserDefaults standardUserDefaults] objectForKey:@"FCLSessionPassword"];
-    
-    if (session.username.length > 0 && session.password.length > 0)
-    {
-        return session;
+-(nonnull instancetype) initWithUsername:(nonnull NSString *)username password:(nonnull NSString *)password {
+    self = [super init];
+    if (self) {
+        NSParameterAssert(username);
+        _username = username;
+        NSParameterAssert(password);
+        _password = password;
     }
-    return nil;
+    return self;
+}
+
++ (instancetype) savedSession {
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"FCLSessionUsername"];
+    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"FCLSessionPassword"];
+    
+    if (username.length > 0 && password.length > 0) {
+        return [[FCLSession alloc] initWithUsername:username password:password];
+    } else {
+        return nil;
+    }
 }
 
 + (void) removeSavedSession
@@ -33,9 +42,13 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
     [[NSNotificationCenter defaultCenter] postNotificationName:FCLSessionDidSignOutNotification object:nil];
 }
 
-+ (NSString*) facileBaseURL
-{
-    return [([FCLSession savedSession] ?: [[FCLSession alloc] init]) facileBaseURL];
++ (NSString*) facileBaseURL {
+    FCLSession *savedSession = [FCLSession savedSession];
+    if(savedSession) {
+        return [savedSession facileBaseURL];
+    } else {
+        return FACILE_BASEURL;
+    }
 }
 
 - (void) saveSession
@@ -45,11 +58,6 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:FCLSessionDidSignInNotification object:self];
-}
-
-- (BOOL) isValid
-{
-    return (self.username.length > 0 && self.password.length > 0);
 }
 
 - (NSString*) facileBaseURL
@@ -85,7 +93,7 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
 
 @implementation NSMutableURLRequest (FCLSession)
 
-- (void) setFCLSession:(FCLSession*)session
+- (void) setFCLSession:(nonnull FCLSession *)session
 {
     NSData* data = [[NSString stringWithFormat:@"%@:%@", session.username, session.password] dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
     NSString* value = [@"Basic " stringByAppendingString:[data base64EncodedStringWithOptions:0]];

@@ -28,9 +28,7 @@
         }
     }
     
-    FCLSession* session = [[FCLSession alloc] init];
-    session.username = self.username;
-    session.password = self.password;
+    FCLSession* session = [[FCLSession alloc] initWithUsername:self.username password:self.password];
     
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/upload_files.xml", session.facileBaseURL, self.fileId]];
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
