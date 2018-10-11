@@ -4,7 +4,6 @@
 
 @protocol FCLLoginControllerDelegate <NSObject>
 
--(void) loginControllerDidLogIn:(nonnull FCLLoginController *)controller session:(nonnull FCLSession *)session;
 -(void) loginControllerWantsAccountCreation:(nonnull FCLLoginController *)controller;
 -(void) loginControllerDidFail:(nonnull FCLLoginController *)controller error:(nonnull NSError *)error;
 

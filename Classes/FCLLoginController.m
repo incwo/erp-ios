@@ -106,8 +106,7 @@
         weakSelf.loadingHUD = nil;
         
         if (weakSelf.connection.data) {
-            [session saveSession];
-            [weakSelf.delegate loginControllerDidLogIn:self session:session];
+            [session saveSession]; // Emits FCLSessionDidSignInNotification
         } else {
             NSLog(@"COULD NOT LOG IN: %@", weakSelf.connection.error);
             [weakSelf.delegate loginControllerDidFail:self error:weakSelf.connection.error];

@@ -25,6 +25,11 @@ class OfficeRouter: NSObject {
             pushContentViewController(animated: false)
         }
         
+        // Present the content when the user gets logged in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignIn, object: nil, queue: nil) { [weak self] (_) in
+            self?.pushContentViewController(animated: true)
+        }
+        
         // Go back to the Root VC (Log in) when the user is signing out
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignOut, object: nil, queue: nil) { [weak self] (notification) in
             self?.navigationController.popToRootViewController(animated: true)
@@ -45,10 +50,6 @@ class OfficeRouter: NSObject {
 }
 
 extension OfficeRouter: FCLLoginControllerDelegate {
-    func loginControllerDidLog(in controller: FCLLoginController, session: FCLSession) {
-        pushContentViewController(animated: true)
-    }
-    
     func loginControllerWantsAccountCreation(_ controller: FCLLoginController) {
         pushAccountCreationViewController()
     }
