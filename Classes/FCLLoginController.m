@@ -9,8 +9,9 @@
 @property PHTTPConnection *connection;
 @property MBProgressHUD *loadingHUD;
 
-@property(nonatomic, strong) IBOutlet UITextField* emailTextField;
-@property(nonatomic, strong) IBOutlet UITextField* passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField* emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField* passwordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *logInButton;
 
 @end
 
@@ -38,9 +39,6 @@
     self.passwordTextField.delegate = self;
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Connexion", @"") style:UIBarButtonItemStylePlain target:nil action:nil];
-    
-    self.emailTextField.text = self.email ?: [self loginField];
-    self.passwordTextField.text = [self passwordField];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -48,6 +46,7 @@
     
     self.emailTextField.text = [FCLSession savedSession].username;
     self.passwordTextField.text = [FCLSession savedSession].password;
+    [self updateLogInButtonEnabled];
 }
 
 // MARK: Rotation
@@ -78,10 +77,22 @@
 }
 
 // MARK: Actions
+- (IBAction)emailEditingChanged:(id)sender {
+    [self updateLogInButtonEnabled];
+}
+
+- (IBAction)passwordEditingChanged:(id)sender {
+    [self updateLogInButtonEnabled];
+}
+
 
 - (IBAction) logIn:(id)sender
 {
     if (_connection) return; // ignore repeated taps
+    
+    if([self loginField] == nil || [self passwordField] == nil) { // Can happen if validating with the Keyboard
+        return;
+    }
     
     FCLSession *session = [[FCLSession alloc] initWithUsername:[self loginField] password:[self passwordField]];
   
@@ -117,6 +128,10 @@
 
 - (IBAction)createAccount:(id)sender {
     [self.delegate loginControllerWantsAccountCreation:self];
+}
+
+-(void) updateLogInButtonEnabled {
+    self.logInButton.enabled = [self loginField] && [self passwordField];
 }
 
 - (NSString *) loginField
