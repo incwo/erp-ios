@@ -4,10 +4,6 @@
 
 @interface FCLScanViewController : UIViewController
 
-@property(nonatomic) FCLSession *session; // input
-
-- (NSURL*) listURL;
-- (void) loadList;
-- (void) resetData;
+-(nonnull instancetype) initWithSession:(nonnull FCLSession *)session;
 
 @end

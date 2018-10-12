@@ -12,6 +12,7 @@
 
 @interface FCLScanViewController ()
 
+@property (nonatomic, readonly) FCLSession *session;
 @property(nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic) OAHTTPDownload* download;
 @property(nonatomic) NSArray* files;
@@ -30,12 +31,20 @@
 @synthesize categoriesController;
 @synthesize files;
 
+-(nonnull instancetype) initWithSession:(nonnull FCLSession *)session {
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        NSParameterAssert(session);
+        _session = session;
+    }
+    return self;
+}
+
 #pragma mark Lifecycle
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    NSParameterAssert(self.session);
     
     self.navigationItem.title = @"Scan";
     

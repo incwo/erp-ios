@@ -37,9 +37,11 @@ class ScanRouter: NSObject {
     }
     
     private func pushContentViewController(animated: Bool) {
-        let contentController = FCLScanViewController(nibName: nil, bundle: nil)
-        contentController.session = FCLSession.saved()
+        guard let session = FCLSession.saved() else {
+            fatalError("It is expected to have a saved Session at this stage")
+        }
         
+        let contentController = FCLScanViewController(session: session)
         navigationController.pushViewController(contentController, animated: animated)
     }
     
