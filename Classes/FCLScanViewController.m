@@ -17,19 +17,12 @@
 @property(nonatomic) OAHTTPDownload* download;
 @property(nonatomic) NSArray* businessFiles;
 @property(nonatomic) NSData* xmlData;
-@property(nonatomic) FCLCategoriesController* categoriesController;
+@property BOOL performingGoToFile;
+@property NSDate *lastCheckDate;
+
 @end
 
-@implementation FCLScanViewController {
-    BOOL performingGoToFile;
-    NSDate* _lastCheckDate;
-}
-
-
-@synthesize download;
-@synthesize xmlData;
-@synthesize categoriesController;
-@synthesize businessFiles;
+@implementation FCLScanViewController
 
 -(nonnull instancetype) initWithSession:(nonnull FCLSession *)session {
     self = [super initWithNibName:nil bundle:nil];
@@ -65,9 +58,9 @@
 {
     [super viewDidAppear:animated];
 
-    if (!_lastCheckDate || [[NSDate date] timeIntervalSinceDate:_lastCheckDate] > 300.0)
+    if (!self.lastCheckDate || [[NSDate date] timeIntervalSinceDate:self.lastCheckDate] > 300.0)
     {
-        _lastCheckDate = [NSDate date];
+        self.lastCheckDate = [NSDate date];
         [self loadBusinessFiles];
     }
 }
@@ -76,11 +69,11 @@
 
 - (NSArray*) businessFiles
 {
-    if (!businessFiles && self.xmlData)
+    if (!_businessFiles && self.xmlData)
     {
-        self.businessFiles = [FCLBusinessFilesParser businessFilesFromXMLData:self.xmlData];
+        _businessFiles = [FCLBusinessFilesParser businessFilesFromXMLData:self.xmlData];
     }
-    return businessFiles;
+    return _businessFiles;
 }
 
 
@@ -111,13 +104,13 @@
     [request setFCLSession:self.session];
     
     self.download = [OAHTTPDownload downloadWithRequest:request];
-    download.username = self.session.username;
-    download.password = self.session.password;
-    download.target = self;
-    download.successAction = @selector(listDidFinishLoading:);
-    download.failureActionWithError = @selector(listDownload:didFailWithError:);
-    download.shouldAllowSelfSignedCert = YES;
-    [download start];
+    self.download.username = self.session.username;
+    self.download.password = self.session.password;
+    self.download.target = self;
+    self.download.successAction = @selector(listDidFinishLoading:);
+    self.download.failureActionWithError = @selector(listDownload:didFailWithError:);
+    self.download.shouldAllowSelfSignedCert = YES;
+    [self.download start];
 }
 
 - (void) goBack
@@ -127,13 +120,13 @@
 
 - (void) presentBusinessFile:(FCLBusinessFile *)file
 {
-    performingGoToFile = NO;
-    self.categoriesController = [[FCLCategoriesController alloc] initWithNibName:nil bundle:nil];
-    self.categoriesController.file = file;
-    self.categoriesController.username = self.session.username;
-    self.categoriesController.password = self.session.password;
+    self.performingGoToFile = NO;
+    FCLCategoriesController *categoriesController =  [[FCLCategoriesController alloc] initWithNibName:nil bundle:nil];
+    categoriesController.file = file;
+    categoriesController.username = self.session.username;
+    categoriesController.password = self.session.password;
     
-    [self.navigationController pushViewController:self.categoriesController animated:YES];
+    [self.navigationController pushViewController:categoriesController animated:YES];
 }
 
 - (void) signOut:(id)sender
@@ -225,7 +218,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    if (!performingGoToFile)
+    if (!self.performingGoToFile)
     {
         [self presentBusinessFile:[self.businessFiles objectAtIndex:indexPath.row]];
     }
