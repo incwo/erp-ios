@@ -1,22 +1,18 @@
 #import "FCLSession.h"
 #import "facilescan-Swift.h"
 #import "FCLScanViewController.h"
-#import "FCLBusinessFilesParser.h"
+#import "FCLBusinessFilesFetch.h"
 #import "FCLBusinessFile.h"
 #import "FCLCategoriesController.h"
-#import "FCLLoginController.h"
-#import "PFWebViewController.h"
 #import "UIViewController+Alert.h"
-
-#import "OAHTTPDownload.h"
 
 @interface FCLScanViewController ()
 
-@property (nonatomic, readonly) FCLSession *session;
 @property(nonatomic) IBOutlet UITableView *tableView;
-@property(nonatomic) OAHTTPDownload* download;
-@property(nonatomic) NSArray* businessFiles;
-@property(nonatomic) NSData* xmlData;
+
+@property (nonatomic, readonly) FCLSession *session;
+@property FCLBusinessFilesFetch *businessFilesFetch;
+@property NSArray <FCLBusinessFile *> *businessFiles;
 @property NSDate *lastCheckDate;
 
 @end
@@ -27,7 +23,7 @@
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         NSParameterAssert(session);
-        _session = session;
+        _businessFilesFetch = [[FCLBusinessFilesFetch alloc] initWithSession:session];
     }
     return self;
 }
@@ -48,11 +44,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"FCLNavSignOut"] style:UIBarButtonItemStylePlain target:self action:@selector(signOut:)];
 }
 
-- (void) dealloc
-{
-    self.download.target = nil;
-}
-
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -66,55 +57,21 @@
 
 // MARK: Contents
 
-- (NSArray*) businessFiles
-{
-    if (!_businessFiles && self.xmlData)
-    {
-        _businessFiles = [FCLBusinessFilesParser businessFilesFromXMLData:self.xmlData];
-    }
-    return _businessFiles;
-}
-
-
-- (NSURL*) businessFilesURL
-{
-    return [NSURL URLWithString:
-            [NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d", self.session.facileBaseURL, rand()]];
-}
-
-- (void) resetData
-{
-    self.xmlData = nil;
-    self.businessFiles = nil;
-    [self.tableView reloadData];
-}
-
-
-- (void) loadBusinessFiles
-{
-    NSURL* url = [self businessFilesURL];
-    NSLog(@"Loading URL: %@", url);
-    
-    // Note: I avoid using iPhone NSURLConnection credentials API here to avoid unnecessary request
-    //       This makes things 2 times faster on slow networks.
-    
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60];
-    [request setHTTPShouldHandleCookies:NO];
-    [request setFCLSession:self.session];
-    
-    self.download = [OAHTTPDownload downloadWithRequest:request];
-    self.download.username = self.session.username;
-    self.download.password = self.session.password;
-    self.download.target = self;
-    self.download.successAction = @selector(listDidFinishLoading:);
-    self.download.failureActionWithError = @selector(listDownload:didFailWithError:);
-    self.download.shouldAllowSelfSignedCert = YES;
-    [self.download start];
-}
-
-- (void) goBack
-{
-    [self.navigationController popViewControllerAnimated:YES];
+-(void) loadBusinessFiles {
+    __typeof(self) __weak weakSelf = self;
+    [self.businessFilesFetch fetchSuccess:^(NSArray<FCLBusinessFile *> * _Nonnull businessFiles) {
+        weakSelf.businessFiles = businessFiles;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.tableView reloadData];
+            [((UIRefreshControl *) weakSelf.tableView.tableHeaderView) endRefreshing];
+        });
+    } failure:^(NSError * _Nonnull error) {
+        weakSelf.businessFiles = nil;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf FCL_presentAlertForError:error];
+            [((UIRefreshControl *) weakSelf.tableView.tableHeaderView) endRefreshing];
+        });
+    }];
 }
 
 - (void) presentBusinessFile:(FCLBusinessFile *)file
@@ -125,6 +82,13 @@
     categoriesController.password = self.session.password;
     
     [self.navigationController pushViewController:categoriesController animated:YES];
+}
+
+// MARK: Actions
+
+- (void) goBack
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) signOut:(id)sender
@@ -156,36 +120,6 @@
     return YES;
 }
 
-
-#pragma mark OAHTTPDownload target/actions
-
-
-- (void) listDidFinishLoading:(OAHTTPDownload*)aDownload
-{
-    //NSLog(@"did load XML: %@", [[[NSString alloc] initWithData:aDownload.receivedData encoding:NSUTF8StringEncoding] autorelease]);
-    self.businessFiles = nil;
-    self.xmlData = aDownload.receivedData;
-    
-    [((UIRefreshControl*) self.tableView.tableHeaderView) endRefreshing];
-    
-    [self.tableView reloadData];
-}
-
-- (void) listDownload:(OAHTTPDownload*)aDownload didFailWithError:(NSError*)error
-{
-    [self _showAlertForError:error];
-    [self performSelector:@selector(goBack) withObject:nil afterDelay:0.6];
-
-    [((UIRefreshControl*) self.tableView.tableHeaderView) endRefreshing];
-}
-
--(void) _showAlertForError:(NSError *)error {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:error.localizedDescription message:error.localizedFailureReason preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-
 #pragma mark UITableViewDataSource
 
 
@@ -211,7 +145,6 @@
     
     return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

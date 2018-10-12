@@ -80,6 +80,7 @@
 		DF17902C216E04C800BE89F7 /* ScanRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF17902B216E04C800BE89F7 /* ScanRouter.swift */; };
 		DF243648216B853300A41B31 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF243647216B853300A41B31 /* Login.storyboard */; };
 		DF32F19D216C965C003297D8 /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */; };
+		DF4A0C6B21709F84004F72F0 /* FCLBusinessFilesFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4A0C6A21709F84004F72F0 /* FCLBusinessFilesFetch.m */; };
 		DF6447AB208E191700001A57 /* PDataExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91CE16BAAA1300C37D50 /* PDataExtension.m */; };
 		DFC2C1AD2087273E008B333B /* FCLNavigationItemTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */; };
 		DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */; };
@@ -213,6 +214,8 @@
 		DF243647216B853300A41B31 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		DF32F19A216C965C003297D8 /* facile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "facile-Bridging-Header.h"; path = "Classes/facile-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
+		DF4A0C6921709F84004F72F0 /* FCLBusinessFilesFetch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLBusinessFilesFetch.h; sourceTree = "<group>"; };
+		DF4A0C6A21709F84004F72F0 /* FCLBusinessFilesFetch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLBusinessFilesFetch.m; sourceTree = "<group>"; };
 		DFC2C1AB2087273E008B333B /* FCLNavigationItemTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLNavigationItemTitleView.h; sourceTree = "<group>"; };
 		DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLNavigationItemTitleView.m; sourceTree = "<group>"; };
 		DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
@@ -317,6 +320,8 @@
 			children = (
 				209DCDAF16B8188700BF1CC0 /* FCLSession.h */,
 				209DCDB016B8188700BF1CC0 /* FCLSession.m */,
+				DF4A0C6921709F84004F72F0 /* FCLBusinessFilesFetch.h */,
+				DF4A0C6A21709F84004F72F0 /* FCLBusinessFilesFetch.m */,
 				20A6537B118AD51E00C94599 /* FCLBusinessFilesParser.h */,
 				20A6537C118AD51E00C94599 /* FCLBusinessFilesParser.m */,
 				20A65381118AEC2700C94599 /* FCLModel.h */,
@@ -678,6 +683,7 @@
 				20A65437118B106800C94599 /* FCLFormController.m in Sources */,
 				20A6568C118ED30B00C94599 /* OANavigationState.m in Sources */,
 				20A659BE118F0F0700C94599 /* FCLUploader.m in Sources */,
+				DF4A0C6B21709F84004F72F0 /* FCLBusinessFilesFetch.m in Sources */,
 				20A659C1118F0F4900C94599 /* FCLUpload.m in Sources */,
 				2060C57E11901A9800EF2405 /* FCLOptionsController.m in Sources */,
 				20BAEC81119078610081484B /* UIImage+OAImageResize.m in Sources */,
