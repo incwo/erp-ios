@@ -3,25 +3,22 @@
 #import "FCLBusinessFilesViewController.h"
 #import "FCLBusinessFilesFetch.h"
 #import "FCLBusinessFile.h"
-#import "FCLCategoriesController.h"
 #import "UIViewController+Alert.h"
 
 @interface FCLBusinessFilesViewController ()
 
-@property (nonatomic, readonly) FCLSession *session;
-@property FCLBusinessFilesFetch *businessFilesFetch;
-@property NSArray <FCLBusinessFile *> *businessFiles;
+@property id <FCLBusinessFilesViewControllerDelegate> delegate;
 @property NSDate *lastCheckDate;
 
 @end
 
 @implementation FCLBusinessFilesViewController
 
--(nonnull instancetype) initWithSession:(nonnull FCLSession *)session {
+-(nonnull instancetype) initWithDelegate:(nonnull id <FCLBusinessFilesViewControllerDelegate>)delegate {
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
-        NSParameterAssert(session);
-        _businessFilesFetch = [[FCLBusinessFilesFetch alloc] initWithSession:session];
+        NSParameterAssert(delegate);
+        _delegate = delegate;
     }
     return self;
 }
@@ -35,7 +32,7 @@
     self.navigationItem.title = @"Scan";
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     
     self.navigationItem.hidesBackButton = true;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"FCLNavSignOut"] style:UIBarButtonItemStylePlain target:self action:@selector(signOut:)];
@@ -48,54 +45,42 @@
     if (!self.lastCheckDate || [[NSDate date] timeIntervalSinceDate:self.lastCheckDate] > 300.0)
     {
         self.lastCheckDate = [NSDate date];
-        [self loadBusinessFiles];
+        [self.delegate businessFilesViewControllerRefresh:self];
     }
 }
 
 // MARK: Contents
 
--(void) loadBusinessFiles {
+@synthesize businessFiles = _businessFiles;
+-(void)setBusinessFiles:(NSArray<FCLBusinessFile *> *)businessFiles {
     __typeof(self) __weak weakSelf = self;
-    [self.businessFilesFetch fetchSuccess:^(NSArray<FCLBusinessFile *> * _Nonnull businessFiles) {
-        weakSelf.businessFiles = businessFiles;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.tableView reloadData];
-            [weakSelf.refreshControl endRefreshing];
-        });
-    } failure:^(NSError * _Nonnull error) {
-        weakSelf.businessFiles = nil;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf FCL_presentAlertForError:error];
-            [weakSelf.refreshControl endRefreshing];
-        });
-    }];
+    
+    @synchronized (self) {
+        if(businessFiles != _businessFiles) {
+            _businessFiles = businessFiles;
+        }
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.tableView reloadData];
+        [weakSelf.refreshControl endRefreshing];
+    });
 }
 
-- (void) presentBusinessFile:(FCLBusinessFile *)file
-{
-    FCLCategoriesController *categoriesController =  [[FCLCategoriesController alloc] initWithNibName:nil bundle:nil];
-    categoriesController.file = file;
-    categoriesController.username = self.session.username;
-    categoriesController.password = self.session.password;
-    
-    [self.navigationController pushViewController:categoriesController animated:YES];
+-(NSArray<FCLBusinessFile *> *)businessFiles {
+    @synchronized (self) {
+        return _businessFiles;
+    }
 }
 
 // MARK: Actions
 
-- (void) goBack
-{
-    [self.navigationController popViewControllerAnimated:YES];
+- (void) signOut:(id)sender {
+    [self.delegate businessFilesViewControllerLogOut:self];
 }
 
-- (void) signOut:(id)sender
-{
-    [FCLSession removeSavedSession]; // Emits FCLSessionDidSignOutNotification
-}
-
-- (IBAction)reload:(id)sender
-{
-    [self loadBusinessFiles];
+- (IBAction)refresh:(id)sender {
+    [self.delegate businessFilesViewControllerRefresh:self];
 }
 
 // MARK: Rotation
@@ -143,10 +128,9 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    [self presentBusinessFile:[self.businessFiles objectAtIndex:indexPath.row]];
+    [self.delegate businessFilesViewController:self didSelectBusinessFile:[self.businessFiles objectAtIndex:indexPath.row]];
 }
 
 @end

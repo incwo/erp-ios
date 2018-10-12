@@ -4,6 +4,10 @@
 
 @import Foundation;
 @import UIKit;
+
+#import "FCLBusinessFile.h"
+#import "FCLBusinessFilesFetch.h"
+#import "FCLCategoriesController.h"
 #import "FCLLoginController.h"
 #import "FCLOfficeContentViewController.h"
 #import "FCLBusinessFilesViewController.h"

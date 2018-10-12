@@ -1,9 +1,22 @@
-@class FCLSession;
-@class OAHTTPDownload;
-@class FCLCategoriesController;
+@class FCLBusinessFilesViewController;
+@class FCLBusinessFile;
+
+@protocol FCLBusinessFilesViewControllerDelegate
+
+/// The controller wants the list of business files to be refreshed, either because the user did a "Pull to refresh" or because the same list was shown for too long.
+-(void) businessFilesViewControllerRefresh:(nonnull FCLBusinessFilesViewController *)controller;
+
+-(void) businessFilesViewController:(nonnull FCLBusinessFilesViewController *)controller didSelectBusinessFile:(nonnull FCLBusinessFile *)businessFile;
+
+-(void) businessFilesViewControllerLogOut:(nonnull FCLBusinessFilesViewController *)controller;
+
+@end
 
 @interface FCLBusinessFilesViewController : UITableViewController
 
--(nonnull instancetype) initWithSession:(nonnull FCLSession *)session;
+-(nonnull instancetype) initWithDelegate:(nonnull id <FCLBusinessFilesViewControllerDelegate>)delegate;
+
+// Must be passed 'nil' on errors, to indicate the end of loading (to hide the Refresh Control)
+@property (nullable) NSArray <FCLBusinessFile *> *businessFiles;
 
 @end

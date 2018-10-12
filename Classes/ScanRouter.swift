@@ -15,6 +15,7 @@ class ScanRouter: NSObject {
         loginController.title = "Scan"
         return loginController
     }()
+    private var businessFilesFetch: FCLBusinessFilesFetch!
     
     @objc override init() {
         navigationController = UINavigationController()
@@ -22,12 +23,12 @@ class ScanRouter: NSObject {
         
         navigationController.viewControllers = [loginViewController];
         if FCLSession.saved() != nil {
-            pushContentViewController(animated: false)
+            pushBusinessFilesViewController(animated: false)
         }
         
         // Present the content when the user gets logged in
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignIn, object: nil, queue: nil) { [weak self] (_) in
-            self?.pushContentViewController(animated: true)
+            self?.pushBusinessFilesViewController(animated: true)
         }
         
         // Go back to the Root VC (Log in) when the user is signing out
@@ -36,18 +37,47 @@ class ScanRouter: NSObject {
         }
     }
     
-    private func pushContentViewController(animated: Bool) {
+    private func pushBusinessFilesViewController(animated: Bool) {
         guard let session = FCLSession.saved() else {
             fatalError("It is expected to have a saved Session at this stage")
         }
+        self.businessFilesFetch = FCLBusinessFilesFetch(session: session)
         
-        let contentController = FCLBusinessFilesViewController(session: session)
-        navigationController.pushViewController(contentController, animated: animated)
+        let businessFilesController = FCLBusinessFilesViewController(delegate: self)
+        navigationController.pushViewController(businessFilesController, animated: animated)
+        provideBusinessFiles(to: businessFilesController)
+    }
+    
+    private func provideBusinessFiles(to controller: FCLBusinessFilesViewController) {
+        businessFilesFetch.fetchSuccess({ (businessFiles) in
+            controller.businessFiles = businessFiles
+        }, failure: { (error) in
+            controller.businessFiles = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.presentAlert(for: error)
+            }
+        })
     }
     
     private func pushAccountCreationViewController() {
         let accountCreationController = AccountCreationViewController(delegate: self)
         navigationController.pushViewController(accountCreationController, animated: true)
+    }
+    
+    private func pushCategoriesViewController(for businessFile: FCLBusinessFile) {
+        guard let session = FCLSession.saved() else {
+            fatalError("It is expected to have a saved Session at this stage")
+        }
+        
+        let categoriesController = FCLCategoriesController(nibName: nil, bundle: nil)
+        categoriesController.file = businessFile
+        categoriesController.username = session.username
+        categoriesController.password = session.password
+        navigationController.pushViewController(categoriesController, animated: true)
+    }
+    
+    private func presentAlert(for error: Error) {
+        navigationController.topViewController?.fcl_presentAlert(forError: error)
     }
 }
 
@@ -57,7 +87,7 @@ extension ScanRouter: FCLLoginControllerDelegate {
     }
     
     func loginControllerDidFail(_ controller: FCLLoginController, error: Error) {
-        navigationController.topViewController?.fcl_presentAlert(forError: error)
+        presentAlert(for: error)
     }
 }
 
@@ -72,7 +102,21 @@ extension ScanRouter: AccountCreationViewControllerDelegate {
     }
     
     func accountCreationViewControllerDidFail(_ controller: AccountCreationViewController, error: NSError) {
-        navigationController.topViewController?.fcl_presentAlert(forError: error)
+        presentAlert(for: error)
         navigationController.popViewController(animated: true)
+    }
+}
+
+extension ScanRouter: FCLBusinessFilesViewControllerDelegate {
+    func businessFilesViewControllerRefresh(_ controller: FCLBusinessFilesViewController) {
+        provideBusinessFiles(to: controller)
+    }
+    
+    func businessFilesViewController(_ controller: FCLBusinessFilesViewController, didSelect businessFile: FCLBusinessFile) {
+        pushCategoriesViewController(for: businessFile)
+    }
+    
+    func businessFilesViewControllerLogOut(_ controller: FCLBusinessFilesViewController) {
+        FCLSession.removeSavedSession() // Emits FCLSessionDidSignOut
     }
 }
