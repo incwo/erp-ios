@@ -17,7 +17,6 @@
 @property(nonatomic) OAHTTPDownload* download;
 @property(nonatomic) NSArray* businessFiles;
 @property(nonatomic) NSData* xmlData;
-@property BOOL performingGoToFile;
 @property NSDate *lastCheckDate;
 
 @end
@@ -120,7 +119,6 @@
 
 - (void) presentBusinessFile:(FCLBusinessFile *)file
 {
-    self.performingGoToFile = NO;
     FCLCategoriesController *categoriesController =  [[FCLCategoriesController alloc] initWithNibName:nil bundle:nil];
     categoriesController.file = file;
     categoriesController.username = self.session.username;
@@ -218,10 +216,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    if (!self.performingGoToFile)
-    {
-        [self presentBusinessFile:[self.businessFiles objectAtIndex:indexPath.row]];
-    }
+    [self presentBusinessFile:[self.businessFiles objectAtIndex:indexPath.row]];
 }
 
 @end
