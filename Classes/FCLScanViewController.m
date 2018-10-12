@@ -8,8 +8,6 @@
 
 @interface FCLScanViewController ()
 
-@property(nonatomic) IBOutlet UITableView *tableView;
-
 @property (nonatomic, readonly) FCLSession *session;
 @property FCLBusinessFilesFetch *businessFilesFetch;
 @property NSArray <FCLBusinessFile *> *businessFiles;
@@ -36,9 +34,8 @@
     
     self.navigationItem.title = @"Scan";
     
-    UIRefreshControl* rc = [[UIRefreshControl alloc] init];
-    [rc addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
-    self.tableView.tableHeaderView = rc;
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
     
     self.navigationItem.hidesBackButton = true;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"FCLNavSignOut"] style:UIBarButtonItemStylePlain target:self action:@selector(signOut:)];
@@ -63,13 +60,13 @@
         weakSelf.businessFiles = businessFiles;
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.tableView reloadData];
-            [((UIRefreshControl *) weakSelf.tableView.tableHeaderView) endRefreshing];
+            [weakSelf.refreshControl endRefreshing];
         });
     } failure:^(NSError * _Nonnull error) {
         weakSelf.businessFiles = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf FCL_presentAlertForError:error];
-            [((UIRefreshControl *) weakSelf.tableView.tableHeaderView) endRefreshing];
+            [weakSelf.refreshControl endRefreshing];
         });
     }];
 }
