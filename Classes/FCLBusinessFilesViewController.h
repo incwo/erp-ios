@@ -2,7 +2,7 @@
 @class OAHTTPDownload;
 @class FCLCategoriesController;
 
-@interface FCLScanViewController : UITableViewController
+@interface FCLBusinessFilesViewController : UITableViewController
 
 -(nonnull instancetype) initWithSession:(nonnull FCLSession *)session;
 

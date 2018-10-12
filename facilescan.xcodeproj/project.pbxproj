@@ -11,7 +11,7 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		2008E8001188EDD100607BAC /* FCLScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E7FF1188EDD100607BAC /* FCLScanViewController.m */; };
+		2008E8001188EDD100607BAC /* FCLBusinessFilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E7FF1188EDD100607BAC /* FCLBusinessFilesViewController.m */; };
 		2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E81F118A25C100607BAC /* OAHTTPDownload.m */; };
 		2008E824118A25C100607BAC /* OAHTTPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E822118A25C100607BAC /* OAHTTPQueue.m */; };
 		2008E830118A25F400607BAC /* OANetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E82F118A25F400607BAC /* OANetworkActivityIndicator.m */; };
@@ -52,7 +52,7 @@
 		20A6537D118AD51E00C94599 /* FCLBusinessFilesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6537C118AD51E00C94599 /* FCLBusinessFilesParser.m */; };
 		20A65380118AD5F700C94599 /* FCLField.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6537F118AD5F700C94599 /* FCLField.m */; };
 		20A65383118AEC2700C94599 /* FCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65382118AEC2700C94599 /* FCLModel.m */; };
-		20A65394118AF27300C94599 /* FCLScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A65393118AF27300C94599 /* FCLScanViewController.xib */; };
+		20A65394118AF27300C94599 /* FCLBusinessFilesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A65393118AF27300C94599 /* FCLBusinessFilesViewController.xib */; };
 		20A653F0118B040600C94599 /* FCLCategoriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A653EF118B040600C94599 /* FCLCategoriesController.m */; };
 		20A653F2118B06FD00C94599 /* FCLCategoriesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A653F1118B06FD00C94599 /* FCLCategoriesController.xib */; };
 		20A65437118B106800C94599 /* FCLFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65436118B106800C94599 /* FCLFormController.m */; };
@@ -94,8 +94,8 @@
 		1D3623250D0F684500981E51 /* FCLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* facilescan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = facilescan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		2008E7FE1188EDD100607BAC /* FCLScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLScanViewController.h; sourceTree = "<group>"; };
-		2008E7FF1188EDD100607BAC /* FCLScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLScanViewController.m; sourceTree = "<group>"; };
+		2008E7FE1188EDD100607BAC /* FCLBusinessFilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLBusinessFilesViewController.h; sourceTree = "<group>"; };
+		2008E7FF1188EDD100607BAC /* FCLBusinessFilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLBusinessFilesViewController.m; sourceTree = "<group>"; };
 		2008E81E118A25C100607BAC /* OAHTTPDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHTTPDownload.h; sourceTree = "<group>"; };
 		2008E81F118A25C100607BAC /* OAHTTPDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHTTPDownload.m; sourceTree = "<group>"; };
 		2008E820118A25C100607BAC /* OAHTTPProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHTTPProtocols.h; sourceTree = "<group>"; };
@@ -171,7 +171,7 @@
 		20A6537F118AD5F700C94599 /* FCLField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLField.m; sourceTree = "<group>"; };
 		20A65381118AEC2700C94599 /* FCLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLModel.h; sourceTree = "<group>"; };
 		20A65382118AEC2700C94599 /* FCLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLModel.m; sourceTree = "<group>"; };
-		20A65393118AF27300C94599 /* FCLScanViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLScanViewController.xib; path = ../FCLScanViewController.xib; sourceTree = "<group>"; };
+		20A65393118AF27300C94599 /* FCLBusinessFilesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLBusinessFilesViewController.xib; path = ../FCLBusinessFilesViewController.xib; sourceTree = "<group>"; };
 		20A653EE118B040600C94599 /* FCLCategoriesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLCategoriesController.h; sourceTree = "<group>"; };
 		20A653EF118B040600C94599 /* FCLCategoriesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLCategoriesController.m; sourceTree = "<group>"; };
 		20A653F1118B06FD00C94599 /* FCLCategoriesController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLCategoriesController.xib; path = ../FCLCategoriesController.xib; sourceTree = "<group>"; };
@@ -466,9 +466,9 @@
 			isa = PBXGroup;
 			children = (
 				DF17902B216E04C800BE89F7 /* ScanRouter.swift */,
-				2008E7FE1188EDD100607BAC /* FCLScanViewController.h */,
-				2008E7FF1188EDD100607BAC /* FCLScanViewController.m */,
-				20A65393118AF27300C94599 /* FCLScanViewController.xib */,
+				2008E7FE1188EDD100607BAC /* FCLBusinessFilesViewController.h */,
+				2008E7FF1188EDD100607BAC /* FCLBusinessFilesViewController.m */,
+				20A65393118AF27300C94599 /* FCLBusinessFilesViewController.xib */,
 				20A653EE118B040600C94599 /* FCLCategoriesController.h */,
 				20A653EF118B040600C94599 /* FCLCategoriesController.m */,
 				20A653F1118B06FD00C94599 /* FCLCategoriesController.xib */,
@@ -583,7 +583,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20A65394118AF27300C94599 /* FCLScanViewController.xib in Resources */,
+				20A65394118AF27300C94599 /* FCLBusinessFilesViewController.xib in Resources */,
 				20A653F2118B06FD00C94599 /* FCLCategoriesController.xib in Resources */,
 				20A65461118B169800C94599 /* FCLFormController.xib in Resources */,
 				2060C58511901C5600EF2405 /* FCLOptionsController.xib in Resources */,
@@ -666,7 +666,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* FCLAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* FCLLoginController.m in Sources */,
-				2008E8001188EDD100607BAC /* FCLScanViewController.m in Sources */,
+				2008E8001188EDD100607BAC /* FCLBusinessFilesViewController.m in Sources */,
 				56E1F4AB18A23CE100DC6404 /* PFWebViewController.m in Sources */,
 				2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */,
 				56E1F4AE18A23DA700DC6404 /* PXWWWFormSerialization.m in Sources */,

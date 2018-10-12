@@ -6,6 +6,6 @@
 @import UIKit;
 #import "FCLLoginController.h"
 #import "FCLOfficeContentViewController.h"
-#import "FCLScanViewController.h"
+#import "FCLBusinessFilesViewController.h"
 #import "FCLSession.h"
 #import "UIViewController+Alert.h"

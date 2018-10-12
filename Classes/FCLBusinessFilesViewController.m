@@ -1,12 +1,12 @@
 #import "FCLSession.h"
 #import "facilescan-Swift.h"
-#import "FCLScanViewController.h"
+#import "FCLBusinessFilesViewController.h"
 #import "FCLBusinessFilesFetch.h"
 #import "FCLBusinessFile.h"
 #import "FCLCategoriesController.h"
 #import "UIViewController+Alert.h"
 
-@interface FCLScanViewController ()
+@interface FCLBusinessFilesViewController ()
 
 @property (nonatomic, readonly) FCLSession *session;
 @property FCLBusinessFilesFetch *businessFilesFetch;
@@ -15,7 +15,7 @@
 
 @end
 
-@implementation FCLScanViewController
+@implementation FCLBusinessFilesViewController
 
 -(nonnull instancetype) initWithSession:(nonnull FCLSession *)session {
     self = [super initWithNibName:nil bundle:nil];

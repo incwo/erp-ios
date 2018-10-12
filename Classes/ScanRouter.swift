@@ -41,7 +41,7 @@ class ScanRouter: NSObject {
             fatalError("It is expected to have a saved Session at this stage")
         }
         
-        let contentController = FCLScanViewController(session: session)
+        let contentController = FCLBusinessFilesViewController(session: session)
         navigationController.pushViewController(contentController, animated: animated)
     }
     

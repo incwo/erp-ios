@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FCLScanViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FCLBusinessFilesViewController">
             <connections>
                 <outlet property="tableView" destination="3" id="umo-4C-rvn"/>
                 <outlet property="view" destination="3" id="fJR-h8-apV"/>
