@@ -1,7 +1,7 @@
 #import "FCLSession.h"
 #import "facilescan-Swift.h"
 #import "FCLScanViewController.h"
-#import "FCLBusinessFilesList.h"
+#import "FCLBusinessFilesParser.h"
 #import "FCLBusinessFile.h"
 #import "FCLCategoriesController.h"
 #import "FCLLoginController.h"
@@ -15,7 +15,7 @@
 @property (nonatomic, readonly) FCLSession *session;
 @property(nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic) OAHTTPDownload* download;
-@property(nonatomic) NSArray* files;
+@property(nonatomic) NSArray* businessFiles;
 @property(nonatomic) NSData* xmlData;
 @property(nonatomic) FCLCategoriesController* categoriesController;
 @end
@@ -29,7 +29,7 @@
 @synthesize download;
 @synthesize xmlData;
 @synthesize categoriesController;
-@synthesize files;
+@synthesize businessFiles;
 
 -(nonnull instancetype) initWithSession:(nonnull FCLSession *)session {
     self = [super initWithNibName:nil bundle:nil];
@@ -68,23 +68,23 @@
     if (!_lastCheckDate || [[NSDate date] timeIntervalSinceDate:_lastCheckDate] > 300.0)
     {
         _lastCheckDate = [NSDate date];
-        [self loadList];
+        [self loadBusinessFiles];
     }
 }
 
 // MARK: Contents
 
-- (NSArray*) files
+- (NSArray*) businessFiles
 {
-    if (!files && self.xmlData)
+    if (!businessFiles && self.xmlData)
     {
-        self.files = [FCLBusinessFilesList arrayOfBusinessFilesForXMLData:self.xmlData];
+        self.businessFiles = [FCLBusinessFilesParser businessFilesFromXMLData:self.xmlData];
     }
-    return files;
+    return businessFiles;
 }
 
 
-- (NSURL*) listURL
+- (NSURL*) businessFilesURL
 {
     return [NSURL URLWithString:
             [NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d", self.session.facileBaseURL, rand()]];
@@ -93,14 +93,14 @@
 - (void) resetData
 {
     self.xmlData = nil;
-    self.files = nil;
+    self.businessFiles = nil;
     [self.tableView reloadData];
 }
 
 
-- (void) loadList
+- (void) loadBusinessFiles
 {
-    NSURL* url = [self listURL];
+    NSURL* url = [self businessFilesURL];
     NSLog(@"Loading URL: %@", url);
     
     // Note: I avoid using iPhone NSURLConnection credentials API here to avoid unnecessary request
@@ -125,7 +125,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) goToFile:(FCLBusinessFile*)file
+- (void) presentBusinessFile:(FCLBusinessFile *)file
 {
     performingGoToFile = NO;
     self.categoriesController = [[FCLCategoriesController alloc] initWithNibName:nil bundle:nil];
@@ -143,7 +143,7 @@
 
 - (IBAction)reload:(id)sender
 {
-    [self loadList];
+    [self loadBusinessFiles];
 }
 
 // MARK: Rotation
@@ -172,7 +172,7 @@
 - (void) listDidFinishLoading:(OAHTTPDownload*)aDownload
 {
     //NSLog(@"did load XML: %@", [[[NSString alloc] initWithData:aDownload.receivedData encoding:NSUTF8StringEncoding] autorelease]);
-    self.files = nil;
+    self.businessFiles = nil;
     self.xmlData = aDownload.receivedData;
     
     [((UIRefreshControl*) self.tableView.tableHeaderView) endRefreshing];
@@ -200,7 +200,7 @@
 
 - (NSInteger)tableView:(UITableView*)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.files ? [self.files count] : 0;
+    return self.businessFiles ? [self.businessFiles count] : 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -213,9 +213,9 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     
-    FCLBusinessFile* aFile = [self.files objectAtIndex:indexPath.row];
-    cell.textLabel.text = aFile.name;
-    cell.detailTextLabel.text = aFile.kind ? aFile.kind : @"";
+    FCLBusinessFile *businessFile = [self.businessFiles objectAtIndex:indexPath.row];
+    cell.textLabel.text = businessFile.name;
+    cell.detailTextLabel.text = businessFile.kind ? businessFile.kind : @"";
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
@@ -227,7 +227,7 @@
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     if (!performingGoToFile)
     {
-        [self goToFile:[self.files objectAtIndex:indexPath.row]];
+        [self presentBusinessFile:[self.businessFiles objectAtIndex:indexPath.row]];
     }
 }
 

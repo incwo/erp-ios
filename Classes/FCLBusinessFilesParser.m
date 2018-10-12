@@ -1,8 +1,17 @@
-#import "FCLBusinessFilesList.h"
+#import "FCLBusinessFilesParser.h"
 #import "FCLBusinessFile.h"
-@implementation FCLBusinessFilesList
 
-+ (NSArray*) arrayOfBusinessFilesForXMLData:(NSData*)data
+@interface FCLBusinessFilesParser () <NSXMLParserDelegate>
+
+@property(nonatomic, strong) NSMutableArray* businessFiles;
+
+- (NSArray*) arrayOfBusinessFilesForXMLData:(NSData*)data;
+
+@end
+
+@implementation FCLBusinessFilesParser
+
++ (NSArray*) businessFilesFromXMLData:(NSData*)data
 {
     return [[[self alloc] init] arrayOfBusinessFilesForXMLData:data];
 }

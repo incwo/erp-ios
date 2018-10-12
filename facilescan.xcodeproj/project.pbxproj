@@ -49,7 +49,7 @@
 		209DCDCF16B9202000BF1CC0 /* PMultipartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 209DCDCC16B9202000BF1CC0 /* PMultipartData.m */; };
 		20A65377118AD41A00C94599 /* FCLBusinessFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65376118AD41A00C94599 /* FCLBusinessFile.m */; };
 		20A6537A118AD4B600C94599 /* FCLCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65379118AD4B600C94599 /* FCLCategory.m */; };
-		20A6537D118AD51E00C94599 /* FCLBusinessFilesList.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6537C118AD51E00C94599 /* FCLBusinessFilesList.m */; };
+		20A6537D118AD51E00C94599 /* FCLBusinessFilesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6537C118AD51E00C94599 /* FCLBusinessFilesParser.m */; };
 		20A65380118AD5F700C94599 /* FCLField.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6537F118AD5F700C94599 /* FCLField.m */; };
 		20A65383118AEC2700C94599 /* FCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65382118AEC2700C94599 /* FCLModel.m */; };
 		20A65394118AF27300C94599 /* FCLScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A65393118AF27300C94599 /* FCLScanViewController.xib */; };
@@ -164,8 +164,8 @@
 		20A65376118AD41A00C94599 /* FCLBusinessFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLBusinessFile.m; sourceTree = "<group>"; };
 		20A65378118AD4B600C94599 /* FCLCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLCategory.h; sourceTree = "<group>"; };
 		20A65379118AD4B600C94599 /* FCLCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLCategory.m; sourceTree = "<group>"; };
-		20A6537B118AD51E00C94599 /* FCLBusinessFilesList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLBusinessFilesList.h; sourceTree = "<group>"; };
-		20A6537C118AD51E00C94599 /* FCLBusinessFilesList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLBusinessFilesList.m; sourceTree = "<group>"; };
+		20A6537B118AD51E00C94599 /* FCLBusinessFilesParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLBusinessFilesParser.h; sourceTree = "<group>"; };
+		20A6537C118AD51E00C94599 /* FCLBusinessFilesParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLBusinessFilesParser.m; sourceTree = "<group>"; };
 		20A6537E118AD5F700C94599 /* FCLField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLField.h; sourceTree = "<group>"; };
 		20A6537F118AD5F700C94599 /* FCLField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLField.m; sourceTree = "<group>"; };
 		20A65381118AEC2700C94599 /* FCLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLModel.h; sourceTree = "<group>"; };
@@ -317,8 +317,8 @@
 			children = (
 				209DCDAF16B8188700BF1CC0 /* FCLSession.h */,
 				209DCDB016B8188700BF1CC0 /* FCLSession.m */,
-				20A6537B118AD51E00C94599 /* FCLBusinessFilesList.h */,
-				20A6537C118AD51E00C94599 /* FCLBusinessFilesList.m */,
+				20A6537B118AD51E00C94599 /* FCLBusinessFilesParser.h */,
+				20A6537C118AD51E00C94599 /* FCLBusinessFilesParser.m */,
 				20A65381118AEC2700C94599 /* FCLModel.h */,
 				20A65382118AEC2700C94599 /* FCLModel.m */,
 				20A65375118AD41A00C94599 /* FCLBusinessFile.h */,
@@ -670,7 +670,7 @@
 				2008E830118A25F400607BAC /* OANetworkActivityIndicator.m in Sources */,
 				20A65377118AD41A00C94599 /* FCLBusinessFile.m in Sources */,
 				20A6537A118AD4B600C94599 /* FCLCategory.m in Sources */,
-				20A6537D118AD51E00C94599 /* FCLBusinessFilesList.m in Sources */,
+				20A6537D118AD51E00C94599 /* FCLBusinessFilesParser.m in Sources */,
 				DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */,
 				20A65380118AD5F700C94599 /* FCLField.m in Sources */,
 				20A65383118AEC2700C94599 /* FCLModel.m in Sources */,
