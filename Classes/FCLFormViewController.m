@@ -182,11 +182,11 @@
     if (section < self.fields.count)
     {
         FCLField* field = [self.fields objectAtIndex:section];
-        if ([field isEnum])
+        if (field.type == FCLFieldTypeEnum)
         {
             return 1; // we display a navigation controller to select from the list
         }
-        else if ([field isSignature])
+        else if (field.type == FCLFieldTypeSignature)
         {
             return 2;
         }
@@ -244,12 +244,12 @@
     {
         FCLField* field = (FCLField*)[self.fields objectAtIndex:indexPath.section];
         
-        if ([field isEnum])
+        if (field.type == FCLFieldTypeEnum)
         {
             cell.textLabel.text = [field value] ? [field.valueTitles objectAtIndex:field.enumSelectionIndex] : @"";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        else if ([field isSignature])
+        else if (field.type == FCLFieldTypeSignature)
         {
             if (indexPath.row == 0)
             {
@@ -275,7 +275,7 @@
         else
         {
             UIView* uifield = nil;
-            if ([field isString] || [field isNumeric])
+            if (field.type == FCLFieldTypeString || field.type == FCLFieldTypeNumeric)
             {
                 uifield = field.textField;
                 [uifield setFrame:CGRectInset(CGRectMake(0, 0, cellSize.width, cellSize.height), 10.0, 0.0)];
@@ -329,11 +329,11 @@
     {
         FCLField* field = [self.fields objectAtIndex:indexPath.section];
         
-        if ([field isText])
+        if (field.type == FCLFieldTypeText)
         {
             return 132.0;
         }
-        if ([field isSignature] && indexPath.row == 0)
+        if (field.type == FCLFieldTypeSignature && indexPath.row == 0)
         {
             return 70.0;
         }
@@ -373,14 +373,14 @@
     if (indexPath.section < [self.fields count])
     {
         FCLField* field = [self.fields objectAtIndex:indexPath.section];
-        if ([field isEnum])
+        if (field.type == FCLFieldTypeEnum)
         {
             FCLOptionsViewController* optionsController = [[FCLOptionsViewController alloc] initWithNibName:nil bundle:nil];
             optionsController.delegate = self;
             optionsController.field = field;
             [self.navigationController pushViewController:optionsController animated:YES];
         }
-        else if ([field isSignature])
+        else if (field.type == FCLFieldTypeSignature)
         {
             FCLSignatureViewController* vc = [[FCLSignatureViewController alloc] initWithNibName:nil bundle:nil];
             

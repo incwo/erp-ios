@@ -15,7 +15,7 @@
 {
     for (FCLField* f in self.fields)
     {
-        if ([f isSignature]) return YES;
+        if (f.type == FCLFieldTypeSignature) return YES;
     }
     return NO;
 }

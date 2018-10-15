@@ -58,7 +58,7 @@
     [fieldsTag appendString:@"<les_champs>"];
     for (FCLField* field in self.fields)
     {
-        if ([field isSignature])
+        if(field.type == FCLFieldTypeSignature)
         {
             NSData* signatureData = UIImageJPEGRepresentation([field image], 0.7);
             /*

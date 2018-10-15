@@ -1,9 +1,19 @@
 #import "FCLModel.h"
+
+typedef enum : NSUInteger {
+    FCLFieldTypeUnknown,
+    FCLFieldTypeString,
+    FCLFieldTypeText,
+    FCLFieldTypeNumeric,
+    FCLFieldTypeEnum,
+    FCLFieldTypeSignature,
+} FCLFieldType;
+
 @interface FCLField : FCLModel<UITextFieldDelegate, UITextViewDelegate>
 
 @property(nonatomic, strong) NSString* key;
 @property(nonatomic, strong) NSString* name;
-@property(nonatomic, strong) NSString* type;
+@property (readonly) FCLFieldType type;
 @property(nonatomic, strong) NSString* fieldDescription;
 @property(nonatomic, strong) UIImage* image;
 @property(nonatomic, strong) NSMutableArray* values;
@@ -18,12 +28,6 @@
 - (NSString*) textValue;
 - (NSString*) enumValue;
 - (NSString*) value;
-
-- (BOOL) isString;
-- (BOOL) isText;
-- (BOOL) isNumeric;
-- (BOOL) isEnum;
-- (BOOL) isSignature;
 
 - (void) reset;
 

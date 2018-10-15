@@ -1,5 +1,11 @@
 #import "FCLField.h"
 
+@interface FCLField ()
+
+@property (readwrite) FCLFieldType type;
+
+@end
+
 @implementation FCLField
 
 - (id) init
@@ -30,35 +36,6 @@
 }
 
 
-
-- (BOOL) isString
-{
-    return [self.type isEqualToString:@"string"];
-}
-
-- (BOOL) isText
-{
-    return [self.type isEqualToString:@"text"];
-}
-
-- (BOOL) isNumeric
-{
-    return [self.type isEqualToString:@"numeric"];
-}
-
-- (BOOL) isEnum
-{
-    return [self.type isEqualToString:@"enum"];
-}
-
-- (BOOL) isSignature
-{
-    return [self.type isEqualToString:@"signature"];
-}
-
-
-
-
 #pragma mark - Remembering defaults
 
 
@@ -69,7 +46,7 @@
 
 - (void) saveDefaults
 {
-    if ([self isEnum])
+    if(self.type == FCLFieldTypeEnum)
     {
         [[NSUserDefaults standardUserDefaults] setInteger:_enumSelectionIndex forKey:[self defaultsKey]];
     }
@@ -77,7 +54,7 @@
 
 - (void) loadDefaults
 {
-    if ([self isEnum] && [[NSUserDefaults standardUserDefaults] objectForKey:[self defaultsKey]])
+    if ((self.type == FCLFieldTypeEnum) && [[NSUserDefaults standardUserDefaults] objectForKey:[self defaultsKey]])
     {
         self.enumSelectionIndex = [[NSUserDefaults standardUserDefaults] integerForKey:[self defaultsKey]];
     }
@@ -98,7 +75,7 @@
         _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         _textField.delegate = self;
         _textField.returnKeyType = UIReturnKeyDone;
-        if ([self isNumeric])
+        if(self.type == FCLFieldTypeNumeric)
         {
             _textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         }
@@ -131,7 +108,7 @@
     if (![anObject isKindOfClass:[FCLField class]]) return NO;
     FCLField* other = (FCLField*)anObject;
     return [self.key isEqualToString:other.key] &&
-    [self.type isEqualToString:other.type] &&
+    self.type == other.type &&
     [self.values isEqualToArray:other.values];
 }
 
@@ -158,21 +135,22 @@
     return nil;
 }
 
-- (NSString*) value
-{
-    if ([self isString] || [self isNumeric])
-    {
-        return [self stringValue];
+-(NSString *)value {
+    switch (self.type) {
+        case FCLFieldTypeString:
+        case FCLFieldTypeNumeric:
+            return [self stringValue];
+            break;
+        case FCLFieldTypeText:
+            return [self textValue];
+            break;
+        case FCLFieldTypeEnum:
+            return [self enumValue];
+            break;
+        default:
+            return nil;
+            break;
     }
-    if ([self isText])
-    {
-        return [self textValue];
-    }
-    if ([self isEnum])
-    {
-        return [self enumValue];
-    }
-    return nil;
 }
 
 
@@ -208,11 +186,7 @@
     }
     else if ([elementName isEqualToString:@"le_type"])
     {
-        self.type = self.currentStringDuringParsing;
-        if ([self.type isEqualToString:@"my_signature"])
-        {
-            self.type = @"signature";
-        }
+        self.type = [[self class] typeFromTypeString:self.currentStringDuringParsing];
     }
     else if ([elementName isEqualToString:@"la_valeur"])
     {
@@ -226,8 +200,25 @@
     [super parser:parser didEndElement:elementName namespaceURI:namespaceURI qualifiedName:qName];
 }
 
-
-
++(FCLFieldType) typeFromTypeString:(NSString *)typeString {
+    if([typeString isEqualToString:@"string"]) {
+        return FCLFieldTypeString;
+    } else if([typeString isEqualToString:@"text"]) {
+        return FCLFieldTypeText;
+    } else if([typeString isEqualToString:@"numeric"]) {
+        return FCLFieldTypeNumeric;
+    } else if([typeString isEqualToString:@"enum"]) {
+        return FCLFieldTypeEnum;
+    } else if([typeString isEqualToString:@"signature"]) {
+        return FCLFieldTypeSignature;
+    } else if([typeString isEqualToString:@"my_signature"]) {
+        return FCLFieldTypeSignature;
+    } else {
+        NSLog(@" %s: Unknown type: %@", __PRETTY_FUNCTION__, typeString);
+        return FCLFieldTypeUnknown;
+    }
+}
+       
 #pragma mark UITextFieldDelegate
 
 
