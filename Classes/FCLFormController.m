@@ -1,4 +1,4 @@
-#import "FCLFormController.h"
+#import "FCLFormViewController.h"
 #import "FCLCategory.h"
 #import "FCLField.h"
 #import "FCLOptionsController.h"
@@ -6,7 +6,7 @@
 #import "UIImage+OAImageResize.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface FCLFormController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface FCLFormViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property(nonatomic, strong) NSOperationQueue* operationQueue;
 @property(nonatomic, strong) NSInvocationOperation* resizingOperation;
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation FCLFormController {
+@implementation FCLFormViewController {
     BOOL cameraDidCancel;
 }
 

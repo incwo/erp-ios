@@ -1,7 +1,7 @@
 #import "FCLScanCategoriesController.h"
 #import "FCLBusinessFile.h"
 #import "FCLCategory.h"
-#import "FCLFormController.h"
+#import "FCLFormViewController.h"
 #import "FCLUploader.h"
 #import "FCLUpload.h"
 #import "UIViewController+Alert.h"
@@ -129,7 +129,7 @@
 {
     if (indexPath.section == 0)
     {
-        self.formController = [[FCLFormController alloc] initWithNibName:nil bundle:nil];
+        self.formController = [[FCLFormViewController alloc] initWithNibName:nil bundle:nil];
         formController.delegate = self;
         formController.category = [self.file.categories objectAtIndex:indexPath.row];
         [formController.category reset];
@@ -166,7 +166,7 @@
 
 // MARK: FCLFormViewControllerDelegate
 
--(void) formViewControllerSend:(FCLFormController *)formController {
+-(void) formViewControllerSend:(FCLFormViewController *)formController {
     [self.navigationController popViewControllerAnimated:YES];
     
     FCLUpload* upload = [[FCLUpload alloc] init];

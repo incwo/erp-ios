@@ -1,14 +1,15 @@
 
 @class FCLCategory;
-@class FCLFormController;
+@class FCLFormViewController;
 
 @protocol FCLFormViewControllerDelegate <NSObject>
 
--(void) formViewControllerSend:(FCLFormController *)controller;
+/// The "Send" button was tapped.
+-(void) formViewControllerSend:(FCLFormViewController *)controller;
 
 @end
 
-@interface FCLFormController : UITableViewController
+@interface FCLFormViewController : UITableViewController
 
 @property (nonatomic, weak) id <FCLFormViewControllerDelegate> delegate;
 @property(nonatomic, strong) FCLCategory* category;

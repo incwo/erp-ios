@@ -1,12 +1,12 @@
 #import "FCLUploader.h"
 @class FCLBusinessFile;
-@class FCLFormController;
+@class FCLFormViewController;
 
 /// Presents the list of Scan forms
 @interface FCLScanCategoriesController : UITableViewController
 
 @property(nonatomic, strong) FCLBusinessFile* file;
-@property(nonatomic, strong) FCLFormController* formController;
+@property(nonatomic, strong) FCLFormViewController* formController;
 
 @property(nonatomic,strong) NSString* username;
 @property(nonatomic,strong) NSString* password;
