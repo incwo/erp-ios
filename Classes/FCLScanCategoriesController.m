@@ -27,6 +27,8 @@
     __typeof(self) __weak weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf.refreshControl endRefreshing];
+        weakSelf.title = businessFile.name;
+        [weakSelf.tableView reloadData];
     });
 }
 
@@ -45,8 +47,6 @@
     NSParameterAssert(self.delegate);
     NSParameterAssert(self.username);
     NSParameterAssert(self.password);
-    
-    self.title = self.businessFile.name;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];

@@ -77,11 +77,20 @@ class ScanRouter: NSObject {
         navigationController.pushViewController(categoriesController, animated: true)
     }
     
-    private func refreshCategoriesViewController(_ controller: FCLScanCategoriesController) {
-        // Temporary implementation: just set the same businessFile to end the RefreshControll refreshing
-        let businessFile = controller.businessFile
-        controller.businessFile = nil;
-        controller.businessFile = businessFile;
+    private func refreshCategoriesViewController(_ categoriesController: FCLScanCategoriesController) {
+        guard let currentBusinessFile = categoriesController.businessFile else {
+            fatalError("A business file should be currently shown.")
+        }
+        
+        self.businessFilesFetch.fetchSuccess({ [weak self] (businessFiles) in
+            if let refreshedBusinessFile = businessFiles.first(where: { $0.identifier == currentBusinessFile.identifier }) {
+                categoriesController.businessFile = refreshedBusinessFile
+            } else { // The business file is absent from the new list
+                self?.navigationController.popViewController(animated: true)
+            }
+        }, failure: { [weak self] (error) in
+            self?.presentAlert(for: error)
+        })
     }
     
     private func presentAlert(for error: Error) {
