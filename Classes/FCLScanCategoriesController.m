@@ -6,7 +6,7 @@
 #import "FCLUpload.h"
 #import "UIViewController+Alert.h"
 
-@interface FCLScanCategoriesController () <UploaderDelegate>
+@interface FCLScanCategoriesController () <UploaderDelegate, FCLFormViewControllerDelegate>
 
 @property(nonatomic,strong) IBOutlet UIView* loadingView;
 @property(nonatomic,strong) IBOutlet UILabel* helpFooterView;
@@ -23,28 +23,6 @@
 
 @synthesize loadingView;
 @synthesize helpFooterView;
-
-
-- (void) onSend:(FCLFormController*)form
-{
-    [self.navigationController popViewControllerAnimated:YES];
-    
-    FCLUpload* upload = [[FCLUpload alloc] init];
-    
-    [form.category saveDefaults];
-    
-    NSLog(@"Sending category %@ (%@) to business_file %@ (%@)", form.category.name, form.category.key, self.file.name, self.file.identifier);
-    
-    upload.fileId = self.file.identifier;
-    upload.categoryKey = form.category.key;
-    upload.fields = [form fields];
-    upload.image = form.image;
-    upload.username = self.username;
-    upload.password = self.password;
-    
-    [[FCLUploader sharedUploader] addUpload:upload];
-    
-}
 
 
 #pragma mark Lifecycle
@@ -152,11 +130,10 @@
     if (indexPath.section == 0)
     {
         self.formController = [[FCLFormController alloc] initWithNibName:nil bundle:nil];
+        formController.delegate = self;
         formController.category = [self.file.categories objectAtIndex:indexPath.row];
         [formController.category reset];
         [formController.category loadDefaults];
-        formController.target = self;
-        formController.action = @selector(onSend:);
         [self.navigationController pushViewController:formController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
@@ -185,6 +162,27 @@
         return nil;
     }
     
+}
+
+// MARK: FCLFormViewControllerDelegate
+
+-(void) formViewControllerSend:(FCLFormController *)formController {
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    FCLUpload* upload = [[FCLUpload alloc] init];
+    
+    [formController.category saveDefaults];
+    
+    NSLog(@"Sending category %@ (%@) to business_file %@ (%@)", formController.category.name, formController.category.key, self.file.name, self.file.identifier);
+    
+    upload.fileId = self.file.identifier;
+    upload.categoryKey = formController.category.key;
+    upload.fields = [formController fields];
+    upload.image = formController.image;
+    upload.username = self.username;
+    upload.password = self.password;
+    
+    [[FCLUploader sharedUploader] addUpload:upload];
 }
 
 @end

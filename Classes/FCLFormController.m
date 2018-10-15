@@ -426,11 +426,7 @@
                 self.image = self.resizedImage;
             }
             
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-//#warning Replace this with a block to make it safe and nice.
-            [self.target performSelector:self.action withObject:self];
-#pragma clang diagnostic pop
+            [self.delegate formViewControllerSend:self];
         }
         else 
         {
