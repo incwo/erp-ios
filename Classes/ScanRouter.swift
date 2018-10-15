@@ -70,10 +70,18 @@ class ScanRouter: NSObject {
         }
         
         let categoriesController = FCLScanCategoriesController(nibName: nil, bundle: nil)
-        categoriesController.file = businessFile
+        categoriesController.delegate = self
+        categoriesController.businessFile = businessFile
         categoriesController.username = session.username
         categoriesController.password = session.password
         navigationController.pushViewController(categoriesController, animated: true)
+    }
+    
+    private func refreshCategoriesViewController(_ controller: FCLScanCategoriesController) {
+        // Temporary implementation: just set the same businessFile to end the RefreshControll refreshing
+        let businessFile = controller.businessFile
+        controller.businessFile = nil;
+        controller.businessFile = businessFile;
     }
     
     private func presentAlert(for error: Error) {
@@ -118,5 +126,11 @@ extension ScanRouter: FCLBusinessFilesViewControllerDelegate {
     
     func businessFilesViewControllerLogOut(_ controller: FCLBusinessFilesViewController) {
         FCLSession.removeSavedSession() // Emits FCLSessionDidSignOut
+    }
+}
+
+extension ScanRouter: FCLScanCategoriesControllerDelegate {
+    func scanCategoriesControllerRefresh(_ controller: FCLScanCategoriesController) {
+        refreshCategoriesViewController(controller);
     }
 }

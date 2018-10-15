@@ -16,23 +16,42 @@
 
 @implementation FCLScanCategoriesController
 
-@synthesize file;
-@synthesize formController;
+@synthesize businessFile = _businessFile;
+-(void)setBusinessFile:(FCLBusinessFile *)businessFile {
+    @synchronized (self) {
+        if(businessFile != _businessFile) {
+            _businessFile = businessFile;
+        }
+    }
+    
+    __typeof(self) __weak weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.refreshControl endRefreshing];
+    });
+}
 
-@synthesize username;
-@synthesize password;
-
-@synthesize loadingView;
-@synthesize helpFooterView;
-
+-(FCLBusinessFile *)businessFile {
+    @synchronized (self) {
+        return _businessFile;
+    }
+}
 
 #pragma mark Lifecycle
-
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    self.title = self.file.name;
+    
+    NSParameterAssert(self.delegate);
+    NSParameterAssert(self.username);
+    NSParameterAssert(self.password);
+    
+    self.title = self.businessFile.name;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Tirer pour rafraichir"];
+    
     self.helpFooterView.text = NSLocalizedString(@"Insérez des photos et signatures sur votre application", @"");
 }
 
@@ -47,6 +66,12 @@
 {
     [super viewWillDisappear:animated];
     [FCLUploader sharedUploader].delegate = nil;
+}
+
+// MARK: Actions
+
+-(void)refresh:(id)sender {
+    [self.delegate scanCategoriesControllerRefresh:self];
 }
 
 // MARK: Rotation
@@ -95,7 +120,7 @@
 
 - (NSInteger)tableView:(UITableView*)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) return self.file ? [self.file.categories count] : 0;
+    if (section == 0) return self.businessFile ? [self.businessFile.categories count] : 0;
     if (section == 1) return 1;
     return 0;
 }
@@ -108,7 +133,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        cell.textLabel.text = [[self.file.categories objectAtIndex:indexPath.row] name];
+        cell.textLabel.text = [[self.businessFile.categories objectAtIndex:indexPath.row] name];
         
         return cell;
     } else {
@@ -131,11 +156,11 @@
     if (indexPath.section == 0)
     {
         self.formController = [[FCLFormViewController alloc] initWithNibName:nil bundle:nil];
-        formController.delegate = self;
-        formController.category = [self.file.categories objectAtIndex:indexPath.row];
-        [formController.category reset];
-        [formController.category loadDefaults];
-        [self.navigationController pushViewController:formController animated:YES];
+        self.formController.delegate = self;
+        self.formController.category = [self.businessFile.categories objectAtIndex:indexPath.row];
+        [self.formController.category reset];
+        [self.formController.category loadDefaults];
+        [self.navigationController pushViewController:self.formController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
@@ -174,9 +199,9 @@
     
     [formController.category saveDefaults];
     
-    NSLog(@"Sending category %@ (%@) to business_file %@ (%@)", formController.category.name, formController.category.key, self.file.name, self.file.identifier);
+    NSLog(@"Sending category %@ (%@) to business_file %@ (%@)", formController.category.name, formController.category.key, self.businessFile.name, self.businessFile.identifier);
     
-    upload.fileId = self.file.identifier;
+    upload.fileId = self.businessFile.identifier;
     upload.categoryKey = formController.category.key;
     upload.fields = [formController fields];
     upload.image = formController.image;
