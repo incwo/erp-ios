@@ -54,7 +54,7 @@
 		20A65383118AEC2700C94599 /* FCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65382118AEC2700C94599 /* FCLModel.m */; };
 		20A65394118AF27300C94599 /* FCLBusinessFilesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A65393118AF27300C94599 /* FCLBusinessFilesViewController.xib */; };
 		20A653F0118B040600C94599 /* FCLScanCategoriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A653EF118B040600C94599 /* FCLScanCategoriesController.m */; };
-		20A653F2118B06FD00C94599 /* FCLCategoriesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A653F1118B06FD00C94599 /* FCLCategoriesController.xib */; };
+		20A653F2118B06FD00C94599 /* FCLScanCategoriesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A653F1118B06FD00C94599 /* FCLScanCategoriesController.xib */; };
 		20A65437118B106800C94599 /* FCLFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65436118B106800C94599 /* FCLFormViewController.m */; };
 		20A65461118B169800C94599 /* FCLFormController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A65460118B169800C94599 /* FCLFormController.xib */; };
 		20A6568C118ED30B00C94599 /* OANavigationState.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6568B118ED30B00C94599 /* OANavigationState.m */; };
@@ -174,7 +174,7 @@
 		20A65393118AF27300C94599 /* FCLBusinessFilesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLBusinessFilesViewController.xib; path = ../FCLBusinessFilesViewController.xib; sourceTree = "<group>"; };
 		20A653EE118B040600C94599 /* FCLScanCategoriesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLScanCategoriesController.h; sourceTree = "<group>"; };
 		20A653EF118B040600C94599 /* FCLScanCategoriesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLScanCategoriesController.m; sourceTree = "<group>"; };
-		20A653F1118B06FD00C94599 /* FCLCategoriesController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLCategoriesController.xib; path = ../FCLCategoriesController.xib; sourceTree = "<group>"; };
+		20A653F1118B06FD00C94599 /* FCLScanCategoriesController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLScanCategoriesController.xib; path = ../FCLScanCategoriesController.xib; sourceTree = "<group>"; };
 		20A65435118B106800C94599 /* FCLFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLFormViewController.h; sourceTree = "<group>"; };
 		20A65436118B106800C94599 /* FCLFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLFormViewController.m; sourceTree = "<group>"; };
 		20A65460118B169800C94599 /* FCLFormController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLFormController.xib; path = ../FCLFormController.xib; sourceTree = "<group>"; };
@@ -471,7 +471,7 @@
 				20A65393118AF27300C94599 /* FCLBusinessFilesViewController.xib */,
 				20A653EE118B040600C94599 /* FCLScanCategoriesController.h */,
 				20A653EF118B040600C94599 /* FCLScanCategoriesController.m */,
-				20A653F1118B06FD00C94599 /* FCLCategoriesController.xib */,
+				20A653F1118B06FD00C94599 /* FCLScanCategoriesController.xib */,
 				DFFA861E206E57D200C52018 /* Form */,
 				2010BF5E16C14F6C009EC753 /* FCLSignatureViewController.h */,
 				2010BF5F16C14F6F009EC753 /* FCLSignatureViewController.m */,
@@ -584,7 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20A65394118AF27300C94599 /* FCLBusinessFilesViewController.xib in Resources */,
-				20A653F2118B06FD00C94599 /* FCLCategoriesController.xib in Resources */,
+				20A653F2118B06FD00C94599 /* FCLScanCategoriesController.xib in Resources */,
 				20A65461118B169800C94599 /* FCLFormController.xib in Resources */,
 				2060C58511901C5600EF2405 /* FCLOptionsController.xib in Resources */,
 				E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */,
