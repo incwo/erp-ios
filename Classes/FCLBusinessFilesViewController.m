@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"Scan";
+    self.title = @"Dossiers d'entreprise";
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];

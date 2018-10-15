@@ -56,7 +56,7 @@
 		20A653F0118B040600C94599 /* FCLScanCategoriesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A653EF118B040600C94599 /* FCLScanCategoriesController.m */; };
 		20A653F2118B06FD00C94599 /* FCLScanCategoriesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A653F1118B06FD00C94599 /* FCLScanCategoriesController.xib */; };
 		20A65437118B106800C94599 /* FCLFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65436118B106800C94599 /* FCLFormViewController.m */; };
-		20A65461118B169800C94599 /* FCLFormFormController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A65460118B169800C94599 /* FCLFormFormController.xib */; };
+		20A65461118B169800C94599 /* FCLFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A65460118B169800C94599 /* FCLFormViewController.xib */; };
 		20A6568C118ED30B00C94599 /* OANavigationState.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6568B118ED30B00C94599 /* OANavigationState.m */; };
 		20A659BE118F0F0700C94599 /* FCLUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A659BD118F0F0700C94599 /* FCLUploader.m */; };
 		20A659C1118F0F4900C94599 /* FCLUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A659C0118F0F4900C94599 /* FCLUpload.m */; };
@@ -177,7 +177,7 @@
 		20A653F1118B06FD00C94599 /* FCLScanCategoriesController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLScanCategoriesController.xib; path = ../FCLScanCategoriesController.xib; sourceTree = "<group>"; };
 		20A65435118B106800C94599 /* FCLFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLFormViewController.h; sourceTree = "<group>"; };
 		20A65436118B106800C94599 /* FCLFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLFormViewController.m; sourceTree = "<group>"; };
-		20A65460118B169800C94599 /* FCLFormFormController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLFormFormController.xib; path = ../FCLFormFormController.xib; sourceTree = "<group>"; };
+		20A65460118B169800C94599 /* FCLFormViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLFormViewController.xib; path = ../FCLFormViewController.xib; sourceTree = "<group>"; };
 		20A6568A118ED30B00C94599 /* OANavigationState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OANavigationState.h; sourceTree = "<group>"; };
 		20A6568B118ED30B00C94599 /* OANavigationState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OANavigationState.m; sourceTree = "<group>"; };
 		20A659BC118F0F0700C94599 /* FCLUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLUploader.h; sourceTree = "<group>"; };
@@ -515,7 +515,7 @@
 			children = (
 				20A65435118B106800C94599 /* FCLFormViewController.h */,
 				20A65436118B106800C94599 /* FCLFormViewController.m */,
-				20A65460118B169800C94599 /* FCLFormFormController.xib */,
+				20A65460118B169800C94599 /* FCLFormViewController.xib */,
 				2060C57C11901A9800EF2405 /* FCLOptionsViewController.h */,
 				2060C57D11901A9800EF2405 /* FCLOptionsViewController.m */,
 				2060C58411901C5600EF2405 /* FCLOptionsViewController.xib */,
@@ -585,7 +585,7 @@
 			files = (
 				20A65394118AF27300C94599 /* FCLBusinessFilesViewController.xib in Resources */,
 				20A653F2118B06FD00C94599 /* FCLScanCategoriesController.xib in Resources */,
-				20A65461118B169800C94599 /* FCLFormFormController.xib in Resources */,
+				20A65461118B169800C94599 /* FCLFormViewController.xib in Resources */,
 				2060C58511901C5600EF2405 /* FCLOptionsViewController.xib in Resources */,
 				E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */,
 				20E88FB011919B8B00C8D766 /* Entitlements.plist in Resources */,
