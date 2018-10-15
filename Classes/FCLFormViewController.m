@@ -73,11 +73,6 @@
 
 // MARK: Handlers
 
-- (void) onCancel
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void) presentImagePickerWithSourceType:(UIImagePickerControllerSourceType) type
 {
     self.picker = [[UIImagePickerController alloc] init];
