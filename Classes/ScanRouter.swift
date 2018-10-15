@@ -69,7 +69,7 @@ class ScanRouter: NSObject {
             fatalError("It is expected to have a saved Session at this stage")
         }
         
-        let categoriesController = FCLCategoriesController(nibName: nil, bundle: nil)
+        let categoriesController = FCLScanCategoriesController(nibName: nil, bundle: nil)
         categoriesController.file = businessFile
         categoriesController.username = session.username
         categoriesController.password = session.password

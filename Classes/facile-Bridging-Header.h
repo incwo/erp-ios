@@ -7,7 +7,7 @@
 
 #import "FCLBusinessFile.h"
 #import "FCLBusinessFilesFetch.h"
-#import "FCLCategoriesController.h"
+#import "FCLScanCategoriesController.h"
 #import "FCLLoginController.h"
 #import "FCLOfficeContentViewController.h"
 #import "FCLBusinessFilesViewController.h"

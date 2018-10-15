@@ -2,7 +2,8 @@
 @class FCLBusinessFile;
 @class FCLFormController;
 
-@interface FCLCategoriesController : UITableViewController
+/// Presents the list of Scan forms
+@interface FCLScanCategoriesController : UITableViewController
 
 @property(nonatomic, strong) FCLBusinessFile* file;
 @property(nonatomic, strong) FCLFormController* formController;

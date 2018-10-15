@@ -1,4 +1,4 @@
-#import "FCLCategoriesController.h"
+#import "FCLScanCategoriesController.h"
 #import "FCLBusinessFile.h"
 #import "FCLCategory.h"
 #import "FCLFormController.h"
@@ -6,14 +6,14 @@
 #import "FCLUpload.h"
 #import "UIViewController+Alert.h"
 
-@interface FCLCategoriesController () <UploaderDelegate>
+@interface FCLScanCategoriesController () <UploaderDelegate>
 
 @property(nonatomic,strong) IBOutlet UIView* loadingView;
 @property(nonatomic,strong) IBOutlet UILabel* helpFooterView;
 
 @end
 
-@implementation FCLCategoriesController
+@implementation FCLScanCategoriesController
 
 @synthesize file;
 @synthesize formController;
