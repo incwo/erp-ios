@@ -1,24 +1,15 @@
 #import "FCLCategory.h"
 #import "FCLField.h"
 
-@implementation FCLCategory {
-    NSString* key;
-    NSString* name;
-    NSMutableArray* fields;
-}
+@interface FCLCategory ()
 
-@synthesize key;
-@synthesize name;
+@property (readwrite) NSString *key;
+@property (readwrite) NSString *name;
+@property (readwrite) NSArray *fields;
 
-@synthesize fields;
-- (NSMutableArray*) fields
-{
-    if (!fields)
-    {
-        self.fields = [NSMutableArray array];
-    }
-    return fields;
-}
+@end
+
+@implementation FCLCategory
 
 - (BOOL) hasSignatureField
 {
@@ -29,10 +20,8 @@
     return NO;
 }
 
-- (BOOL) wantsUploadPicture
-{
+- (BOOL) wantsUploadPicture {
     return YES;
-// old debug:    return ![self hasSignatureField];
 }
 
 - (void) reset
@@ -82,7 +71,11 @@
     {
         FCLField* field = [[FCLField alloc] init];
         field.parentNode = self;
-        [self.fields addObject:field];
+        if(self.fields == nil) {
+            self.fields = [NSArray arrayWithObject:field];
+        } else {
+            self.fields = [self.fields arrayByAddingObject:field];
+        }
         [parser setDelegate:field];
     }
 }
