@@ -1,7 +1,7 @@
 #import "FCLFormViewController.h"
 #import "FCLCategory.h"
 #import "FCLField.h"
-#import "FCLOptionsController.h"
+#import "FCLOptionsViewController.h"
 #import "FCLSignatureViewController.h"
 #import "UIImage+OAImageResize.h"
 #import <QuartzCore/QuartzCore.h>
@@ -380,7 +380,7 @@
         FCLField* field = [self.fields objectAtIndex:indexPath.section];
         if ([field isEnum])
         {
-            FCLOptionsController* optionsController = [[FCLOptionsController alloc] initWithNibName:nil bundle:nil];
+            FCLOptionsViewController* optionsController = [[FCLOptionsViewController alloc] initWithNibName:nil bundle:nil];
             optionsController.field = field;
             optionsController.target = self;
             optionsController.action = @selector(optionsControllerDidFinish:);
@@ -442,7 +442,7 @@
 
 #pragma mark - OptionsController
 
-- (void) optionsControllerDidFinish:(FCLOptionsController*)optionsController
+- (void) optionsControllerDidFinish:(FCLOptionsViewController*)optionsController
 {
     [self.tableView reloadData];
     [self.navigationController popViewControllerAnimated:YES];

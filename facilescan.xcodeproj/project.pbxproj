@@ -36,7 +36,7 @@
 		2047B09B16C1708500DFFA34 /* CG+OAHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2047B09816C1708500DFFA34 /* CG+OAHelpers.m */; };
 		2047B09C16C1708500DFFA34 /* OAPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 2047B09A16C1708500DFFA34 /* OAPath.m */; };
 		2047B09E16C172C400DFFA34 /* FCLSignatureSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 2047B09D16C172C400DFFA34 /* FCLSignatureSample.png */; };
-		2060C57E11901A9800EF2405 /* FCLOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2060C57D11901A9800EF2405 /* FCLOptionsController.m */; };
+		2060C57E11901A9800EF2405 /* FCLOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2060C57D11901A9800EF2405 /* FCLOptionsViewController.m */; };
 		2060C58511901C5600EF2405 /* FCLOptionsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2060C58411901C5600EF2405 /* FCLOptionsController.xib */; };
 		2081BFFD16D3822500106A2F /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2081BFFC16D3822500106A2F /* MBProgressHUD.m */; };
 		209DCD9716B80FDA00BF1CC0 /* FCLOfficeContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209DCD9616B80FDA00BF1CC0 /* FCLOfficeContentViewController.m */; };
@@ -140,8 +140,8 @@
 		2047B09916C1708500DFFA34 /* OAPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAPath.h; sourceTree = "<group>"; };
 		2047B09A16C1708500DFFA34 /* OAPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAPath.m; sourceTree = "<group>"; };
 		2047B09D16C172C400DFFA34 /* FCLSignatureSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FCLSignatureSample.png; sourceTree = "<group>"; };
-		2060C57C11901A9800EF2405 /* FCLOptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLOptionsController.h; sourceTree = "<group>"; };
-		2060C57D11901A9800EF2405 /* FCLOptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLOptionsController.m; sourceTree = "<group>"; };
+		2060C57C11901A9800EF2405 /* FCLOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLOptionsViewController.h; sourceTree = "<group>"; };
+		2060C57D11901A9800EF2405 /* FCLOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLOptionsViewController.m; sourceTree = "<group>"; };
 		2060C58411901C5600EF2405 /* FCLOptionsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLOptionsController.xib; path = ../FCLOptionsController.xib; sourceTree = "<group>"; };
 		2081BFFB16D3822400106A2F /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		2081BFFC16D3822500106A2F /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -516,8 +516,8 @@
 				20A65435118B106800C94599 /* FCLFormViewController.h */,
 				20A65436118B106800C94599 /* FCLFormViewController.m */,
 				20A65460118B169800C94599 /* FCLFormController.xib */,
-				2060C57C11901A9800EF2405 /* FCLOptionsController.h */,
-				2060C57D11901A9800EF2405 /* FCLOptionsController.m */,
+				2060C57C11901A9800EF2405 /* FCLOptionsViewController.h */,
+				2060C57D11901A9800EF2405 /* FCLOptionsViewController.m */,
 				2060C58411901C5600EF2405 /* FCLOptionsController.xib */,
 			);
 			name = Form;
@@ -685,7 +685,7 @@
 				20A659BE118F0F0700C94599 /* FCLUploader.m in Sources */,
 				DF4A0C6B21709F84004F72F0 /* FCLBusinessFilesFetch.m in Sources */,
 				20A659C1118F0F4900C94599 /* FCLUpload.m in Sources */,
-				2060C57E11901A9800EF2405 /* FCLOptionsController.m in Sources */,
+				2060C57E11901A9800EF2405 /* FCLOptionsViewController.m in Sources */,
 				20BAEC81119078610081484B /* UIImage+OAImageResize.m in Sources */,
 				209DCD9716B80FDA00BF1CC0 /* FCLOfficeContentViewController.m in Sources */,
 				DFC2C1AD2087273E008B333B /* FCLNavigationItemTitleView.m in Sources */,

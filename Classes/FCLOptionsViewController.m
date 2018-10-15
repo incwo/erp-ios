@@ -1,7 +1,7 @@
-#import "FCLOptionsController.h"
+#import "FCLOptionsViewController.h"
 #import "FCLField.h"
 
-@implementation FCLOptionsController {
+@implementation FCLOptionsViewController {
     FCLField* field;
 }
 

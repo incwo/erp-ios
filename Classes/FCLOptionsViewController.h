@@ -2,7 +2,7 @@
 @class FCLField;
 
 /// TableViewController to pick among a list of options
-@interface FCLOptionsController : UITableViewController
+@interface FCLOptionsViewController : UITableViewController
 
 @property(nonatomic, strong) FCLField* field;
 
