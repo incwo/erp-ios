@@ -14,10 +14,6 @@
 @property(nonatomic,weak) id<OAHTTPDownloadDelegate> delegate;
 @property(nonatomic,weak) id<OAHTTPQueue> queue;
 
-@property(nonatomic,weak) id target;
-@property(nonatomic,assign) SEL successAction;
-@property(nonatomic,assign) SEL failureActionWithError;
-
 @property(nonatomic,assign) BOOL shouldAllowSelfSignedCert;
 
 - (void) setURL:(NSURL*)url; 

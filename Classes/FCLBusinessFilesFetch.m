@@ -9,7 +9,7 @@
 #import "OAHTTPDownload.h"
 #import "FCLBusinessFilesParser.h"
 
-@interface FCLBusinessFilesFetch ()
+@interface FCLBusinessFilesFetch () <OAHTTPDownloadDelegate>
 
 @property FCLSession *session;
 @property FCLBusinessFilesFetchSuccess successHandler;
@@ -28,10 +28,6 @@
         _session = session;
     }
     return self;
-}
-
-- (void) dealloc {
-    self.download.target = nil;
 }
 
 -(void) fetchSuccess:(FCLBusinessFilesFetchSuccess)successHandler failure:(FCLBusinessFilesFetchFailure)failureHandler {
@@ -58,9 +54,7 @@
     self.download = [OAHTTPDownload downloadWithRequest:request];
     self.download.username = self.session.username;
     self.download.password = self.session.password;
-    self.download.target = self;
-    self.download.successAction = @selector(listDidFinishLoading:);
-    self.download.failureActionWithError = @selector(listDownload:didFailWithError:);
+    self.download.delegate = self;
     self.download.shouldAllowSelfSignedCert = YES;
     [self.download start];
 }
@@ -69,10 +63,9 @@
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d", session.facileBaseURL, rand()]];
 }
 
-// MARK: OAHTTPDownload target/actions
-
-- (void) listDidFinishLoading:(OAHTTPDownload*)aDownload {
-    NSData *xmlData = aDownload.receivedData;
+// MARK: OAHTTPDownloadDelegate
+- (void) oadownloadDidFinishLoading:(id<OAHTTPDownload>)download {
+    NSData *xmlData = download.receivedData;
     NSArray *businessFiles = [FCLBusinessFilesParser businessFilesFromXMLData:xmlData];
     if(businessFiles) {
         self.successHandler(businessFiles);
@@ -80,8 +73,7 @@
         self.failureHandler([NSError errorWithDomain:@"Business Files" code:0 userInfo:@{NSLocalizedDescriptionKey: @"Could not parse the Business Files XML data."}]);
     }
 }
-
-- (void) listDownload:(OAHTTPDownload*)aDownload didFailWithError:(NSError*)error {
+- (void) oadownload:(id<OAHTTPDownload>)download didFailWithError:(NSError *)error {
     self.failureHandler(error);
 }
 

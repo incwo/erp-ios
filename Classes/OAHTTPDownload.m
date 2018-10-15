@@ -172,12 +172,9 @@
         isActive = NO;
         [OANetworkActivityIndicator pop];
     }
-    [_delegate oadownloadDidFinishLoading:self];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-//#warning Replace this with a block to make it safe and nice.
-    [_target performSelector:_successAction withObject:self];
-#pragma clang diagnostic pop
+    
+    [self.delegate oadownloadDidFinishLoading:self];
+
     [_queue oadownloadDidFinishLoading:self];
 }
 
@@ -189,11 +186,6 @@
         [OANetworkActivityIndicator pop];
     }
     [_delegate oadownload:self didFailWithError:error];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-//#warning Replace this with a block to make it safe and nice.
-    [_target performSelector:_failureActionWithError withObject:self withObject:error];
-#pragma clang diagnostic pop
     [_queue oadownload:self didFailWithError:error];
 }
 
