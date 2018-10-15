@@ -60,14 +60,11 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
     [[NSNotificationCenter defaultCenter] postNotificationName:FCLSessionDidSignInNotification object:self];
 }
 
-- (NSString*) facileBaseURL
-{
-    if ([self.username.lowercaseString isEqualToString:@"guillaume.besse@gmail.com"])
-    {
+- (NSString*) facileBaseURL {
+    NSArray *devAccounts = @[@"guillaume.besse@gmail.com"];
+    if ([devAccounts containsObject:[self.username lowercaseString]]) {
         return FACILE_BASEURL_DEV;
-    }
-    else
-    {
+    } else {
         return FACILE_BASEURL;
     }
 }
@@ -81,14 +78,6 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
 }
 
 @end
-
-
-
-
-
-
-
-
 
 
 @implementation NSMutableURLRequest (FCLSession)
