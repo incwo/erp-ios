@@ -1,13 +1,17 @@
 
 @class FCLField;
+@class FCLOptionsViewController;
+
+@protocol FCLOptionsViewControllerDelegate <NSObject>
+
+-(void) optionsViewControllerDidPick:(FCLOptionsViewController *)controller;
+
+@end
 
 /// TableViewController to pick among a list of options
 @interface FCLOptionsViewController : UITableViewController
 
+@property (nonatomic, weak) id <FCLOptionsViewControllerDelegate> delegate;
 @property(nonatomic, strong) FCLField* field;
-
-// WTF: Target-action is used to provide the parent View controller with data
-@property(nonatomic, weak) id target;
-@property(nonatomic, assign) SEL action;
 
 @end

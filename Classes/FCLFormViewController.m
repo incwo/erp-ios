@@ -6,7 +6,7 @@
 #import "UIImage+OAImageResize.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface FCLFormViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface FCLFormViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, FCLOptionsViewControllerDelegate>
 
 @property(nonatomic, strong) NSOperationQueue* operationQueue;
 @property(nonatomic, strong) NSInvocationOperation* resizingOperation;
@@ -381,9 +381,8 @@
         if ([field isEnum])
         {
             FCLOptionsViewController* optionsController = [[FCLOptionsViewController alloc] initWithNibName:nil bundle:nil];
+            optionsController.delegate = self;
             optionsController.field = field;
-            optionsController.target = self;
-            optionsController.action = @selector(optionsControllerDidFinish:);
             [self.navigationController pushViewController:optionsController animated:YES];
         }
         else if ([field isSignature])
@@ -436,18 +435,11 @@
     }
 }
 
+// MARK: FCLOptionsViewControllerDelegate
 
-
-
-
-#pragma mark - OptionsController
-
-- (void) optionsControllerDidFinish:(FCLOptionsViewController*)optionsController
-{
+-(void) optionsViewControllerDidPick:(FCLOptionsViewController *)controller {
     [self.tableView reloadData];
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
 
 @end
