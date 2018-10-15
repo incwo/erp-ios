@@ -8,6 +8,7 @@
 
 @interface FCLScanCategoriesController () <UploaderDelegate, FCLFormViewControllerDelegate>
 
+@property(nonatomic, strong) FCLFormViewController* formController;
 @property(nonatomic,strong) IBOutlet UIView* loadingView;
 @property(nonatomic,strong) IBOutlet UILabel* helpFooterView;
 

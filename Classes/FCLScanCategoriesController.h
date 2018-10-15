@@ -6,7 +6,6 @@
 @interface FCLScanCategoriesController : UITableViewController
 
 @property(nonatomic, strong) FCLBusinessFile* file;
-@property(nonatomic, strong) FCLFormViewController* formController;
 
 @property(nonatomic,strong) NSString* username;
 @property(nonatomic,strong) NSString* password;
