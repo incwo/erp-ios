@@ -1,36 +1,28 @@
 #import "FCLBusinessFile.h"
 #import "FCLCategory.h"
 
-@implementation FCLBusinessFile {
-    NSString* identifier;
-    NSString* name;
-    NSString* kind;
-    NSMutableArray* categories;
-}
+@interface FCLBusinessFile ()
 
-@synthesize identifier;
-@synthesize name;
-@synthesize kind;
+@property (nonnull, readwrite) NSString *identifier;
+@property (nonnull, readwrite) NSString *name;
+@property (nonnull, readwrite) NSString *kind;
+@property (nonnull, readwrite) NSArray <FCLCategory *> *categories;
 
-@synthesize categories;
-- (NSMutableArray*) categories
-{
-    if (!categories)
-    {
-        self.categories = [NSMutableArray array];
+@end
+
+
+@implementation FCLBusinessFile
+
+- (BOOL)isEqual:(id)anObject {
+    FCLBusinessFile *other = (FCLBusinessFile *)anObject;
+    if(other == self) {
+        return YES;
     }
-    return categories;
-}
-
-
-- (BOOL)isEqual:(id)anObject
-{
+    
     if (![anObject isKindOfClass:[FCLBusinessFile class]]) return NO;
-    FCLBusinessFile* other = (FCLBusinessFile*)anObject;
+    
     return [self.identifier isEqualToString:other.identifier] && [self.categories isEqualToArray:other.categories];
 }
-
-
 
 #pragma mark NSXMLParser delegate
 
@@ -46,7 +38,12 @@
     {
         FCLCategory* category = [[FCLCategory alloc] init];
         category.parentNode = self;
-        [self.categories addObject:category];
+        if(self.categories) {
+            self.categories = [self.categories arrayByAddingObject:category];
+        } else {
+            self.categories = [NSArray arrayWithObject:category];
+        }
+        
         [parser setDelegate:category];
     }
 }
