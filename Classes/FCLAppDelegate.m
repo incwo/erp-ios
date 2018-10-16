@@ -15,6 +15,7 @@
 @interface FCLAppDelegate ()
 
 @property (nonatomic) UITabBarController *tabBarController;
+@property (nonatomic) AppRouter *appRouter;
 @property (nonatomic) OfficeRouter *officeRouter;
 @property (nonatomic) ScanRouter *scanRouter;
 @property (nonatomic) FCLVideosViewController *videosController;
@@ -67,6 +68,8 @@
         [[UINavigationController alloc] initWithRootViewController:self.videosController],
         [[UINavigationController alloc] initWithRootViewController:self.newsController]
     ];
+    
+    self.appRouter = [[AppRouter alloc] initWithOfficeRouter:self.officeRouter scanRouter:self.scanRouter];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	[self.window setRootViewController:self.tabBarController];

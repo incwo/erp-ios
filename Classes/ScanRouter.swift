@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol ScanRouterDelegate: class {
+    func scanRouterDidPresentListOfBusinessFiles()
+    func scanRouterDidPresentBusinessFile(identifier: String)
+}
+
 @objc
 class ScanRouter: NSObject {
+    public weak var delegate: ScanRouterDelegate?
     @objc public let navigationController: UINavigationController
     private lazy var loginViewController: FCLLoginController = {
         let loginController = FCLLoginController(delegate: self, email: FCLSession.saved()?.username)
@@ -17,10 +23,11 @@ class ScanRouter: NSObject {
     }()
     private var businessFilesFetch: FCLBusinessFilesFetch!
     
-    @objc override init() {
-        navigationController = UINavigationController()
+    override init() {
+        self.navigationController = UINavigationController()
         super.init()
         
+        navigationController.delegate = self
         navigationController.viewControllers = [loginViewController];
         if FCLSession.saved() != nil {
             pushBusinessFilesViewController(animated: false)
@@ -95,6 +102,19 @@ class ScanRouter: NSObject {
     
     private func presentAlert(for error: Error) {
         navigationController.topViewController?.fcl_presentAlert(forError: error)
+    }
+}
+
+extension ScanRouter: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        if viewController is FCLBusinessFilesViewController {
+            delegate?.scanRouterDidPresentListOfBusinessFiles()
+        } else if viewController is FCLScanCategoriesController {
+            let scanCategoriesController = viewController as! FCLScanCategoriesController
+            if let identifier = scanCategoriesController.businessFile?.identifier {
+                delegate?.scanRouterDidPresentBusinessFile(identifier: identifier)
+            }
+        }
     }
 }
 

@@ -82,6 +82,7 @@
 		DF32F19D216C965C003297D8 /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */; };
 		DF4A0C6B21709F84004F72F0 /* FCLBusinessFilesFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4A0C6A21709F84004F72F0 /* FCLBusinessFilesFetch.m */; };
 		DF6447AB208E191700001A57 /* PDataExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91CE16BAAA1300C37D50 /* PDataExtension.m */; };
+		DF6CA49A2175DB2D001E8207 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6CA4992175DB2D001E8207 /* AppRouter.swift */; };
 		DFC2C1AD2087273E008B333B /* FCLNavigationItemTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */; };
 		DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */; };
 		E2BDD3302069180700BA988F /* FCLAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BDD32F2069180700BA988F /* FCLAppearance.m */; };
@@ -216,6 +217,7 @@
 		DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
 		DF4A0C6921709F84004F72F0 /* FCLBusinessFilesFetch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLBusinessFilesFetch.h; sourceTree = "<group>"; };
 		DF4A0C6A21709F84004F72F0 /* FCLBusinessFilesFetch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLBusinessFilesFetch.m; sourceTree = "<group>"; };
+		DF6CA4992175DB2D001E8207 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		DFC2C1AB2087273E008B333B /* FCLNavigationItemTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLNavigationItemTitleView.h; sourceTree = "<group>"; };
 		DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLNavigationItemTitleView.m; sourceTree = "<group>"; };
 		DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 				3ACF002318D8A7C900BEEA95 /* Main-iPad.storyboard */,
 				1D3623240D0F684500981E51 /* FCLAppDelegate.h */,
 				1D3623250D0F684500981E51 /* FCLAppDelegate.m */,
+				DF6CA4992175DB2D001E8207 /* AppRouter.swift */,
 				E2BDD32E2069180700BA988F /* FCLAppearance.h */,
 				E2BDD32F2069180700BA988F /* FCLAppearance.m */,
 			);
@@ -708,6 +711,7 @@
 				203C91D816BAAF8F00C37D50 /* FCLFeedLoader.m in Sources */,
 				203C91E016BAB51300C37D50 /* FCLWebViewController.m in Sources */,
 				DF17902C216E04C800BE89F7 /* ScanRouter.swift in Sources */,
+				DF6CA49A2175DB2D001E8207 /* AppRouter.swift in Sources */,
 				20B9115A16BC1D5A009D1391 /* FCLVideoViewController.m in Sources */,
 				2010BF6116C14F71009EC753 /* FCLSignatureViewController.m in Sources */,
 				2010BF6816C16FCC009EC753 /* FCLHandDrawingView.m in Sources */,

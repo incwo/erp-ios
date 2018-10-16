@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol OfficeRouterDelegate: class {
+    func officeRouterDidPresentListOfBusinessFiles()
+    func officeRouterDidPresentBusinessFile(identifier: String)
+}
+
 @objc
 class OfficeRouter: NSObject {
+    public weak var delegate: OfficeRouterDelegate?
     @objc public let navigationController: UINavigationController
     private lazy var loginViewController: FCLLoginController = {
         let loginController = FCLLoginController(delegate: self, email: FCLSession.saved()?.username)
