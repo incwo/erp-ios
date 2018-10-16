@@ -152,6 +152,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSLog(@"Web view URL: %@", request.URL);
+    [self.delegate officeContentViewController:self didPresentURL:request.URL];
     return YES;
 }
 
