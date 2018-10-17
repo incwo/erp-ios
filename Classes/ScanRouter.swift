@@ -14,14 +14,26 @@ protocol ScanRouterDelegate: class {
 
 @objc
 class ScanRouter: NSObject {
+    enum State {
+        case loggedOut
+        case emptyBusinessFilesList(FCLSession)
+        case businessFilesList ([FCLBusinessFile])
+        case formList(FCLBusinessFile)
+        // There are no states for the next view controllers yet (Form, enum picking, signature, etc.)
+    }
+    
     public weak var delegate: ScanRouterDelegate?
+    private var state: State = .loggedOut
+    private var businessFilesFetch: FCLBusinessFilesFetch!
+    
     @objc public let navigationController: UINavigationController
     private lazy var loginViewController: FCLLoginController = {
         let loginController = FCLLoginController(delegate: self, email: FCLSession.saved()?.username)
         loginController.title = "Scan"
         return loginController
     }()
-    private var businessFilesFetch: FCLBusinessFilesFetch!
+    private var businessFilesListViewController: FCLBusinessFilesViewController!
+    private var formListViewController: FCLFormListViewController!
     
     override init() {
         self.navigationController = UINavigationController()
@@ -29,41 +41,101 @@ class ScanRouter: NSObject {
         
         navigationController.delegate = self
         navigationController.viewControllers = [loginViewController];
-        if FCLSession.saved() != nil {
-            pushBusinessFilesViewController(animated: false)
+        if let session = FCLSession.saved() {
+            applyState(.emptyBusinessFilesList(session), animated: false)
         }
         
         // Present the content when the user gets logged in
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignIn, object: nil, queue: nil) { [weak self] (_) in
-            self?.pushBusinessFilesViewController(animated: true)
+            guard let session = FCLSession.saved() else {
+                fatalError("Should be logged in")
+            }
+            
+            self?.applyState(.emptyBusinessFilesList(session), animated: true)
         }
         
         // Go back to the Root VC (Log in) when the user is signing out
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignOut, object: nil, queue: nil) { [weak self] (notification) in
-            self?.navigationController.popToRootViewController(animated: true)
+            self?.applyState(.loggedOut, animated: true)
         }
     }
     
-    private func pushBusinessFilesViewController(animated: Bool) {
-        guard let session = FCLSession.saved() else {
-            fatalError("It is expected to have a saved Session at this stage")
+    // MARK: State machine
+    private func applyState(_ newState: State, animated: Bool) {
+        switch(state) {
+        case .loggedOut:
+            goFromLoggedOutState(to: newState)
+        case .emptyBusinessFilesList:
+            goFromEmptyBusinessFilesListState(to: newState)
+        case .businessFilesList:
+            goFromBusinessFilesListState(to: newState)
+        case .formList:
+            goFromFormListState(to: newState)
         }
-        self.businessFilesFetch = FCLBusinessFilesFetch(session: session)
         
-        let businessFilesController = FCLBusinessFilesViewController(delegate: self)
-        navigationController.pushViewController(businessFilesController, animated: animated)
-        provideBusinessFiles(to: businessFilesController)
+        state = newState
     }
     
-    private func provideBusinessFiles(to controller: FCLBusinessFilesViewController) {
-        businessFilesFetch.fetchAllSuccess({ (businessFiles) in
-            controller.businessFiles = businessFiles
-        }, failure: { (error) in
-            controller.businessFiles = nil
-            DispatchQueue.main.async { [weak self] in
-                self?.presentAlert(for: error)
-            }
-        })
+    private func goFromLoggedOutState(to newState: State) {
+        switch newState {
+        case .emptyBusinessFilesList (let session):
+            pushBusinessFiles(nil, animated: true)
+            
+            self.businessFilesFetch = FCLBusinessFilesFetch(session: session)
+            self.businessFilesFetch.fetchAllSuccess({ [weak self] (businessFiles) in
+                self?.applyState(.businessFilesList(businessFiles), animated: true)
+            }, failure: { [weak self] (error) in
+                DispatchQueue.main.async { [weak self] in
+                    self?.presentAlert(for: error)
+                }
+            })
+        default:
+            fatalError("Unexpected state")
+        }
+    }
+    
+    private func goFromEmptyBusinessFilesListState(to newState: State) {
+        switch newState {
+        case .loggedOut:
+            navigationController.popViewController(animated: true)
+            businessFilesListViewController = nil
+        case .businessFilesList(let businessFiles):
+            businessFilesListViewController.businessFiles = businessFiles
+        default:
+            fatalError("Unexpected state")
+        }
+    }
+    
+    private func goFromBusinessFilesListState(to newState: State) {
+        switch newState {
+        case .loggedOut:
+            navigationController.popViewController(animated: true)
+        case .businessFilesList(let businessFiles):
+            businessFilesListViewController.businessFiles = businessFiles // Refresh the list
+        case .formList(let businessFile):
+            pushFormList(for: businessFile)
+        default:
+            fatalError("Unexpected state")
+        }
+    }
+    
+    private func goFromFormListState(to newState: State) {
+        switch newState {
+        case .businessFilesList:
+            navigationController.popViewController(animated: true)
+        case .formList(let businessFile):
+            formListViewController.businessFile = businessFile // Refresh the list
+        default:
+            fatalError("Unexpected state")
+        }
+    }
+    
+    // MARK: View Controllers
+    private func pushBusinessFiles(_ businessFiles: [FCLBusinessFile]?, animated: Bool) {
+        self.businessFilesListViewController = FCLBusinessFilesViewController(delegate: self)
+        businessFilesListViewController.businessFiles = businessFiles
+        navigationController.pushViewController(businessFilesListViewController, animated: animated)
+    
     }
     
     private func pushAccountCreationViewController() {
@@ -71,33 +143,17 @@ class ScanRouter: NSObject {
         navigationController.pushViewController(accountCreationController, animated: true)
     }
     
-    private func pushFormsViewController(for businessFile: FCLBusinessFile) {
+    private func pushFormList(for businessFile: FCLBusinessFile) {
         guard let session = FCLSession.saved() else {
             fatalError("It is expected to have a saved Session at this stage")
         }
         
-        let formListController = FCLFormListViewController(nibName: nil, bundle: nil)
-        formListController.delegate = self
-        formListController.businessFile = businessFile
-        formListController.username = session.username
-        formListController.password = session.password
-        navigationController.pushViewController(formListController, animated: true)
-    }
-    
-    private func refreshFormListController(_ formListController: FCLFormListViewController) {
-        guard let currentBusinessFile = formListController.businessFile else {
-            fatalError("A business file should be currently shown.")
-        }
-        
-        self.businessFilesFetch.fetchAllSuccess({ [weak self] (businessFiles) in
-            if let refreshedBusinessFile = businessFiles.first(where: { $0.identifier == currentBusinessFile.identifier }) {
-                formListController.businessFile = refreshedBusinessFile
-            } else { // The business file is absent from the new list
-                self?.navigationController.popViewController(animated: true)
-            }
-        }, failure: { [weak self] (error) in
-            self?.presentAlert(for: error)
-        })
+        self.formListViewController = FCLFormListViewController(nibName: nil, bundle: nil)
+        formListViewController.delegate = self
+        formListViewController.businessFile = businessFile
+        formListViewController.username = session.username
+        formListViewController.password = session.password
+        navigationController.pushViewController(formListViewController, animated: true)
     }
     
     private func presentAlert(for error: Error) {
@@ -105,14 +161,18 @@ class ScanRouter: NSObject {
     }
 }
 
+// Interpreting the current view controller on the navigation stack is the easiest way to handle Back button items
 extension ScanRouter: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        if viewController is FCLBusinessFilesViewController {
+        if viewController == businessFilesListViewController {
+            if let businessFiles = businessFilesListViewController.businessFiles {
+                state = .businessFilesList(businessFiles)
+            }
             delegate?.scanRouterDidPresentListOfBusinessFiles()
-        } else if viewController is FCLFormListViewController {
-            let formListController = viewController as! FCLFormListViewController
-            if let identifier = formListController.businessFile?.identifier {
-                delegate?.scanRouterDidPresentBusinessFile(identifier: identifier)
+        } else if viewController == formListViewController {
+            if let businessFile = formListViewController.businessFile {
+                state = .formList(businessFile)
+                delegate?.scanRouterDidPresentBusinessFile(identifier: businessFile.identifier)
             }
         }
     }
@@ -146,11 +206,17 @@ extension ScanRouter: AccountCreationViewControllerDelegate {
 
 extension ScanRouter: FCLBusinessFilesViewControllerDelegate {
     func businessFilesViewControllerRefresh(_ controller: FCLBusinessFilesViewController) {
-        provideBusinessFiles(to: controller)
+        businessFilesFetch.fetchAllSuccess({ [weak self] (businessFiles) in
+            self?.applyState(.businessFilesList(businessFiles), animated: true)
+        }, failure: { [weak self] (error) in
+            DispatchQueue.main.async { [weak self] in
+                self?.presentAlert(for: error)
+            }
+        })
     }
     
     func businessFilesViewController(_ controller: FCLBusinessFilesViewController, didSelect businessFile: FCLBusinessFile) {
-        pushFormsViewController(for: businessFile)
+        applyState(.formList(businessFile), animated: true)
     }
     
     func businessFilesViewControllerLogOut(_ controller: FCLBusinessFilesViewController) {
@@ -160,6 +226,12 @@ extension ScanRouter: FCLBusinessFilesViewControllerDelegate {
 
 extension ScanRouter: FCLFormListViewControllerDelegate {
     func formListViewControllerRefresh(_ controller: FCLFormListViewController) {
-        refreshFormListController(controller);
+        businessFilesFetch.fetchOne(withId: controller.businessFile!.identifier, success: { [weak self] (businessFile) in
+            self?.applyState(.formList(businessFile), animated: true)
+        }, failure: { [weak self] (error) in
+            DispatchQueue.main.async { [weak self] in
+                self?.presentAlert(for: error)
+            }
+        })
     }
 }
