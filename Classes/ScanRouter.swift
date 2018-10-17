@@ -60,6 +60,36 @@ class ScanRouter: NSObject {
         }
     }
     
+    public func goToListOfBusinessFiles() {
+        switch state {
+        case .loggedOut:
+            fatalError("The Scan Router is not logged in.")
+        case .emptyBusinessFilesList :
+            // Do nothing, it must be loading the list
+            break
+        case .businessFilesList:
+            // Do nothing, the list is being shown
+            break
+        case .formList:
+            if let businessFiles = businessFilesListViewController.businessFiles {
+                applyState(.businessFilesList(businessFiles), animated: false)
+            } else if let session = FCLSession.saved() {
+                applyState(.emptyBusinessFilesList(session), animated: false)
+            }
+        }
+    }
+    
+    public func goToBusinessFile(identifier: String) {
+        switch state {
+        case .loggedOut:
+            fatalError("The Scan Router is not logged in.")
+        case .emptyBusinessFilesList, .businessFilesList, .formList:
+            fetchBusinessFile(id: identifier) { [weak self] (businessFile) in
+                self?.applyState(.formList(businessFile), animated: true)
+            }
+        }
+    }
+    
     // MARK: State machine
     private func applyState(_ newState: State, animated: Bool) {
         switch(state) {
@@ -82,13 +112,9 @@ class ScanRouter: NSObject {
             pushBusinessFiles(nil, animated: true)
             
             self.businessFilesFetch = FCLBusinessFilesFetch(session: session)
-            self.businessFilesFetch.fetchAllSuccess({ [weak self] (businessFiles) in
+            fetchBusinessFiles { [weak self] (businessFiles) in
                 self?.applyState(.businessFilesList(businessFiles), animated: true)
-            }, failure: { [weak self] (error) in
-                DispatchQueue.main.async { [weak self] in
-                    self?.presentAlert(for: error)
-                }
-            })
+            }
         default:
             fatalError("Unexpected state")
         }
@@ -121,13 +147,36 @@ class ScanRouter: NSObject {
     
     private func goFromFormListState(to newState: State) {
         switch newState {
-        case .businessFilesList:
-            navigationController.popViewController(animated: true)
+        case .emptyBusinessFilesList, .businessFilesList:
+            // In the Form state, we can be on the FormVC but also on next view controllers
+            navigationController.popToViewController(businessFilesListViewController, animated: true)
         case .formList(let businessFile):
             formListViewController.businessFile = businessFile // Refresh the list
+            navigationController.popToViewController(formListViewController, animated: true) // If we're on a next view controller
         default:
             fatalError("Unexpected state")
         }
+    }
+    
+    // MARK: Fetching business files
+    private func fetchBusinessFiles(success: @escaping ([FCLBusinessFile])->() ) {
+        businessFilesFetch.fetchAllSuccess({ (businessFiles) in
+            success(businessFiles)
+        }, failure: { (error) in
+            DispatchQueue.main.async { [weak self] in
+                self?.presentAlert(for: error)
+            }
+        })
+    }
+    
+    private func fetchBusinessFile(id: String, success: @escaping (FCLBusinessFile)->() ) {
+        businessFilesFetch.fetchOne(withId: id, success: { (businessFile) in
+            success(businessFile)
+        }, failure: { (error) in
+            DispatchQueue.main.async { [weak self] in
+                self?.presentAlert(for: error)
+            }
+        })
     }
     
     // MARK: View Controllers
@@ -206,13 +255,9 @@ extension ScanRouter: AccountCreationViewControllerDelegate {
 
 extension ScanRouter: FCLBusinessFilesViewControllerDelegate {
     func businessFilesViewControllerRefresh(_ controller: FCLBusinessFilesViewController) {
-        businessFilesFetch.fetchAllSuccess({ [weak self] (businessFiles) in
+        fetchBusinessFiles { [weak self] (businessFiles) in
             self?.applyState(.businessFilesList(businessFiles), animated: true)
-        }, failure: { [weak self] (error) in
-            DispatchQueue.main.async { [weak self] in
-                self?.presentAlert(for: error)
-            }
-        })
+        }
     }
     
     func businessFilesViewController(_ controller: FCLBusinessFilesViewController, didSelect businessFile: FCLBusinessFile) {
@@ -226,12 +271,8 @@ extension ScanRouter: FCLBusinessFilesViewControllerDelegate {
 
 extension ScanRouter: FCLFormListViewControllerDelegate {
     func formListViewControllerRefresh(_ controller: FCLFormListViewController) {
-        businessFilesFetch.fetchOne(withId: controller.businessFile!.identifier, success: { [weak self] (businessFile) in
+        fetchBusinessFile(id: controller.businessFile!.identifier) { [weak self] (businessFile) in
             self?.applyState(.formList(businessFile), animated: true)
-        }, failure: { [weak self] (error) in
-            DispatchQueue.main.async { [weak self] in
-                self?.presentAlert(for: error)
-            }
-        })
+        }
     }
 }

@@ -25,14 +25,12 @@ class AppRouter: NSObject {
 
 extension AppRouter: OfficeRouterDelegate {
     func officeRouterDidPresentListOfBusinessFiles() {
-        print("officeRouterDidPresentListOfBusinessFiles")
+        scanRouter.goToListOfBusinessFiles()
     }
     
     func officeRouterDidPresentBusinessFile(identifier: String) {
-        print("officeRouterDidPresentBusinessFile(\(identifier))")
+        scanRouter.goToBusinessFile(identifier: identifier)
     }
-    
-    
 }
 
 extension AppRouter: ScanRouterDelegate {
