@@ -153,14 +153,14 @@ class ScanRouter: NSObject {
     
     private func goFromFormListState(to newState: State) {
         switch newState {
+        case .loggedOut:
+            navigationController.popToViewController(loginViewController, animated: true)
         case .emptyBusinessFilesList, .businessFilesList:
             // In the Form state, we can be on the FormVC but also on next view controllers
             navigationController.popToViewController(businessFilesListViewController, animated: true)
         case .formList(let businessFile):
             formListViewController.businessFile = businessFile // Refresh the list
             navigationController.popToViewController(formListViewController, animated: true) // If we're on a next view controller
-        default:
-            fatalError("Unexpected state")
         }
     }
     

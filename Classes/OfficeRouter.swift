@@ -48,9 +48,13 @@ class OfficeRouter: NSObject {
     }
     
     public func goToBusinessFile(id: String) {
+        // Showing a business file
         if let currentUrl = contentViewController?.currentURL(),
-            let currentId = businessFileId(from: currentUrl),
-            currentId != id {
+            let currentId = businessFileId(from: currentUrl) {
+            if currentId != id { // Different business file
+                contentViewController?.loadBusinessFile(withId: id)
+            }
+        } else { // Not a business file
             contentViewController?.loadBusinessFile(withId: id)
         }
     }
