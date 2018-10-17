@@ -49,6 +49,10 @@
     }
 }
 
+-(NSURL *)currentURL {
+    return self.webView.request.URL;
+}
+
 // MARK: Rotation
 
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations
@@ -122,6 +126,12 @@
     [request setFCLSession:self.session];
     [self.webView loadRequest:request];
     [self updateControls];
+}
+
+-(void) loadBusinessFileWithId:(NSString *)businessFileId {
+    NSString *urlString = [@"https://www.incwo.com/navigation_mobile/home/" stringByAppendingString:businessFileId];
+    NSURL *url = [NSURL URLWithString:urlString];
+    [self.webView loadRequest:[NSMutableURLRequest requestWithURL:url]];
 }
 
 - (void) updateControls {

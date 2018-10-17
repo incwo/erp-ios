@@ -35,12 +35,10 @@ extension AppRouter: OfficeRouterDelegate {
 
 extension AppRouter: ScanRouterDelegate {
     func scanRouterDidPresentListOfBusinessFiles() {
-        print("scanRouterDidPresentListOfBusinessFiles")
+        officeRouter.goToListOfBusinessFiles()
     }
     
     func scanRouterDidPresentBusinessFile(identifier: String) {
-        print("scanRouterDidPresentBusinessFile(\(identifier))")
+        officeRouter.goToBusinessFile(id: identifier)
     }
-    
-    
 }

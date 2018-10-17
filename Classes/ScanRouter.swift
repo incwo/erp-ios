@@ -83,9 +83,15 @@ class ScanRouter: NSObject {
         switch state {
         case .loggedOut:
             fatalError("The Scan Router is not logged in.")
-        case .emptyBusinessFilesList, .businessFilesList, .formList:
+        case .emptyBusinessFilesList, .businessFilesList:
             fetchBusinessFile(id: identifier) { [weak self] (businessFile) in
                 self?.applyState(.formList(businessFile), animated: true)
+            }
+        case .formList(let currentBusinessFile):
+            if identifier != currentBusinessFile.identifier {
+                fetchBusinessFile(id: identifier) { [weak self] (businessFile) in
+                    self?.applyState(.formList(businessFile), animated: true)
+                }
             }
         }
     }

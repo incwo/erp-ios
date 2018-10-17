@@ -21,6 +21,7 @@ class OfficeRouter: NSObject {
         loginController.title = "Bureau"
         return loginController
     }()
+    private var contentViewController: FCLOfficeContentViewController? = nil
     
     @objc override init() {
         navigationController = UINavigationController()
@@ -42,15 +43,27 @@ class OfficeRouter: NSObject {
         }
     }
     
+    public func goToListOfBusinessFiles() {
+        contentViewController?.loadHomepage()
+    }
+    
+    public func goToBusinessFile(id: String) {
+        if let currentUrl = contentViewController?.currentURL(),
+            let currentId = businessFileId(from: currentUrl),
+            currentId != id {
+            contentViewController?.loadBusinessFile(withId: id)
+        }
+    }
+    
     private func pushContentViewController(animated: Bool) {
         guard let session = FCLSession.saved() else {
             fatalError("There must be a session opened at that point")
         }
         
-        let contentController = FCLOfficeContentViewController(nibName: nil, bundle: nil)
-        contentController.delegate = self
-        contentController.session = session
-        navigationController.pushViewController(contentController, animated: animated)
+        self.contentViewController = FCLOfficeContentViewController(nibName: nil, bundle: nil)
+        contentViewController!.delegate = self
+        contentViewController!.session = session
+        navigationController.pushViewController(contentViewController!, animated: animated)
     }
     
     private func pushAccountCreationViewController() {

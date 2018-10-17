@@ -13,4 +13,8 @@
 @property (nullable, weak) id <FCLOfficeContentViewControllerDelegate> delegate;
 @property (nonnull, nonatomic) FCLSession* session;
 
+-(void) loadHomepage;
+-(void) loadBusinessFileWithId:(nonnull NSString *)businessFileId;
+-(NSURL *)currentURL;
+
 @end
