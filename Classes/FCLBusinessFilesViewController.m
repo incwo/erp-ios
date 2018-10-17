@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Dossiers d'entreprise";
+    self.title = @"Vos applications";
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
