@@ -1,5 +1,5 @@
 #import "FCLModel.h"
-@interface FCLCategory : FCLModel
+@interface FCLForm : FCLModel
 
 // Properties set by parsing XML
 @property (readonly) NSString *key;

@@ -1,12 +1,12 @@
-#import "FCLScanCategoriesController.h"
+#import "FCLFormListViewController.h"
 #import "FCLBusinessFile.h"
-#import "FCLCategory.h"
+#import "FCLForm.h"
 #import "FCLFormViewController.h"
 #import "FCLUploader.h"
 #import "FCLUpload.h"
 #import "UIViewController+Alert.h"
 
-@interface FCLScanCategoriesController () <UploaderDelegate, FCLFormViewControllerDelegate>
+@interface FCLFormListViewController () <UploaderDelegate, FCLFormViewControllerDelegate>
 
 @property(nonatomic, strong) FCLFormViewController* formController;
 @property(nonatomic,strong) IBOutlet UIView* loadingView;
@@ -14,7 +14,7 @@
 
 @end
 
-@implementation FCLScanCategoriesController
+@implementation FCLFormListViewController
 
 @synthesize businessFile = _businessFile;
 -(void)setBusinessFile:(FCLBusinessFile *)businessFile {
@@ -71,7 +71,7 @@
 // MARK: Actions
 
 -(void)refresh:(id)sender {
-    [self.delegate scanCategoriesControllerRefresh:self];
+    [self.delegate formListViewControllerRefresh:self];
 }
 
 // MARK: Rotation
@@ -120,20 +120,20 @@
 
 - (NSInteger)tableView:(UITableView*)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) return self.businessFile ? [self.businessFile.categories count] : 0;
+    if (section == 0) return self.businessFile ? [self.businessFile.forms count] : 0;
     if (section == 1) return 1;
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:@"CategoryName"];
+        UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:@"FormName"];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CategoryName"];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FormName"];
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        cell.textLabel.text = [[self.businessFile.categories objectAtIndex:indexPath.row] name];
+        cell.textLabel.text = [[self.businessFile.forms objectAtIndex:indexPath.row] name];
         
         return cell;
     } else {
@@ -157,9 +157,9 @@
     {
         self.formController = [[FCLFormViewController alloc] initWithNibName:nil bundle:nil];
         self.formController.delegate = self;
-        self.formController.category = [self.businessFile.categories objectAtIndex:indexPath.row];
-        [self.formController.category reset];
-        [self.formController.category loadDefaults];
+        self.formController.form = [self.businessFile.forms objectAtIndex:indexPath.row];
+        [self.formController.form reset];
+        [self.formController.form loadDefaults];
         [self.navigationController pushViewController:self.formController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
@@ -197,12 +197,12 @@
     
     FCLUpload* upload = [[FCLUpload alloc] init];
     
-    [formController.category saveDefaults];
+    [formController.form saveDefaults];
     
-    NSLog(@"Sending category %@ (%@) to business_file %@ (%@)", formController.category.name, formController.category.key, self.businessFile.name, self.businessFile.identifier);
+    NSLog(@"Sending form %@ (%@) to business_file %@ (%@)", formController.form.name, formController.form.key, self.businessFile.name, self.businessFile.identifier);
     
     upload.fileId = self.businessFile.identifier;
-    upload.categoryKey = formController.category.key;
+    upload.categoryKey = formController.form.key;
     upload.fields = [formController fields];
     upload.image = formController.image;
     upload.username = self.username;

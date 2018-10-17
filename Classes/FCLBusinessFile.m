@@ -1,12 +1,12 @@
 #import "FCLBusinessFile.h"
-#import "FCLCategory.h"
+#import "FCLForm.h"
 
 @interface FCLBusinessFile ()
 
 @property (nonnull, readwrite) NSString *identifier;
 @property (nonnull, readwrite) NSString *name;
 @property (nonnull, readwrite) NSString *kind;
-@property (nonnull, readwrite) NSArray <FCLCategory *> *categories;
+@property (nonnull, readwrite) NSArray <FCLForm *> *forms;
 
 @end
 
@@ -21,7 +21,7 @@
     
     if (![anObject isKindOfClass:[FCLBusinessFile class]]) return NO;
     
-    return [self.identifier isEqualToString:other.identifier] && [self.categories isEqualToArray:other.categories];
+    return [self.identifier isEqualToString:other.identifier] && [self.forms isEqualToArray:other.forms];
 }
 
 #pragma mark NSXMLParser delegate
@@ -36,15 +36,15 @@
     [super parser:parser didStartElement:elementName namespaceURI:namespaceURI qualifiedName:qualifiedName attributes:attributeDict];
     if ([elementName isEqualToString:@"object"])
     {
-        FCLCategory* category = [[FCLCategory alloc] init];
-        category.parentNode = self;
-        if(self.categories) {
-            self.categories = [self.categories arrayByAddingObject:category];
+        FCLForm *form = [[FCLForm alloc] init];
+        form.parentNode = self;
+        if(self.forms) {
+            self.forms = [self.forms arrayByAddingObject:form];
         } else {
-            self.categories = [NSArray arrayWithObject:category];
+            self.forms = [NSArray arrayWithObject:form];
         }
         
-        [parser setDelegate:category];
+        [parser setDelegate:form];
     }
 }
 

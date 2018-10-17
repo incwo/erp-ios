@@ -1,7 +1,7 @@
-#import "FCLCategory.h"
+#import "FCLForm.h"
 #import "FCLField.h"
 
-@interface FCLCategory ()
+@interface FCLForm ()
 
 @property (readwrite) NSString *key;
 @property (readwrite) NSString *name;
@@ -9,7 +9,7 @@
 
 @end
 
-@implementation FCLCategory
+@implementation FCLForm
 
 - (BOOL) hasSignatureField
 {
@@ -51,8 +51,8 @@
 
 - (BOOL)isEqual:(id)anObject
 {
-    if (![anObject isKindOfClass:[FCLCategory class]]) return NO;
-    FCLCategory* other = (FCLCategory*)anObject;
+    if (![anObject isKindOfClass:[FCLForm class]]) return NO;
+    FCLForm *other = (FCLForm *)anObject;
     return [self.key isEqualToString:other.key] && [self.fields isEqualToArray:other.fields];
 }
 

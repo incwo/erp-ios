@@ -71,27 +71,27 @@ class ScanRouter: NSObject {
         navigationController.pushViewController(accountCreationController, animated: true)
     }
     
-    private func pushCategoriesViewController(for businessFile: FCLBusinessFile) {
+    private func pushFormsViewController(for businessFile: FCLBusinessFile) {
         guard let session = FCLSession.saved() else {
             fatalError("It is expected to have a saved Session at this stage")
         }
         
-        let categoriesController = FCLScanCategoriesController(nibName: nil, bundle: nil)
-        categoriesController.delegate = self
-        categoriesController.businessFile = businessFile
-        categoriesController.username = session.username
-        categoriesController.password = session.password
-        navigationController.pushViewController(categoriesController, animated: true)
+        let formListController = FCLFormListViewController(nibName: nil, bundle: nil)
+        formListController.delegate = self
+        formListController.businessFile = businessFile
+        formListController.username = session.username
+        formListController.password = session.password
+        navigationController.pushViewController(formListController, animated: true)
     }
     
-    private func refreshCategoriesViewController(_ categoriesController: FCLScanCategoriesController) {
-        guard let currentBusinessFile = categoriesController.businessFile else {
+    private func refreshFormListController(_ formListController: FCLFormListViewController) {
+        guard let currentBusinessFile = formListController.businessFile else {
             fatalError("A business file should be currently shown.")
         }
         
         self.businessFilesFetch.fetchAllSuccess({ [weak self] (businessFiles) in
             if let refreshedBusinessFile = businessFiles.first(where: { $0.identifier == currentBusinessFile.identifier }) {
-                categoriesController.businessFile = refreshedBusinessFile
+                formListController.businessFile = refreshedBusinessFile
             } else { // The business file is absent from the new list
                 self?.navigationController.popViewController(animated: true)
             }
@@ -109,9 +109,9 @@ extension ScanRouter: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if viewController is FCLBusinessFilesViewController {
             delegate?.scanRouterDidPresentListOfBusinessFiles()
-        } else if viewController is FCLScanCategoriesController {
-            let scanCategoriesController = viewController as! FCLScanCategoriesController
-            if let identifier = scanCategoriesController.businessFile?.identifier {
+        } else if viewController is FCLFormListViewController {
+            let formListController = viewController as! FCLFormListViewController
+            if let identifier = formListController.businessFile?.identifier {
                 delegate?.scanRouterDidPresentBusinessFile(identifier: identifier)
             }
         }
@@ -150,7 +150,7 @@ extension ScanRouter: FCLBusinessFilesViewControllerDelegate {
     }
     
     func businessFilesViewController(_ controller: FCLBusinessFilesViewController, didSelect businessFile: FCLBusinessFile) {
-        pushCategoriesViewController(for: businessFile)
+        pushFormsViewController(for: businessFile)
     }
     
     func businessFilesViewControllerLogOut(_ controller: FCLBusinessFilesViewController) {
@@ -158,8 +158,8 @@ extension ScanRouter: FCLBusinessFilesViewControllerDelegate {
     }
 }
 
-extension ScanRouter: FCLScanCategoriesControllerDelegate {
-    func scanCategoriesControllerRefresh(_ controller: FCLScanCategoriesController) {
-        refreshCategoriesViewController(controller);
+extension ScanRouter: FCLFormListViewControllerDelegate {
+    func formListViewControllerRefresh(_ controller: FCLFormListViewController) {
+        refreshFormListController(controller);
     }
 }

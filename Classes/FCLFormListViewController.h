@@ -1,18 +1,18 @@
 #import "FCLUploader.h"
-@class FCLScanCategoriesController;
+@class FCLFormListViewController;
 @class FCLBusinessFile;
 
-@protocol FCLScanCategoriesControllerDelegate <NSObject>
+@protocol FCLFormListViewControllerDelegate <NSObject>
 
 /// Informs the delegate that the businessFile must be refreshed. The property must be set (even to nil) for the Refresh Control to end refreshing.
--(void) scanCategoriesControllerRefresh:(nonnull FCLScanCategoriesController *)controller;
+-(void) formListViewControllerRefresh:(nonnull FCLFormListViewController *)controller;
 
 @end
 
 /// Presents the list of Scan forms
-@interface FCLScanCategoriesController : UITableViewController
+@interface FCLFormListViewController : UITableViewController
 
-@property (nullable, weak) id <FCLScanCategoriesControllerDelegate> delegate;
+@property (nullable, weak) id <FCLFormListViewControllerDelegate> delegate;
 @property (nullable, strong) FCLBusinessFile *businessFile;
 
 @property (nonnull) NSString *username;

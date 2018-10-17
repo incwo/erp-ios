@@ -1,5 +1,5 @@
 #import "FCLFormViewController.h"
-#import "FCLCategory.h"
+#import "FCLForm.h"
 #import "FCLField.h"
 #import "FCLOptionsViewController.h"
 #import "FCLSignatureViewController.h"
@@ -32,7 +32,7 @@
 
 - (NSArray*) fields
 {
-    return self.category.fields;
+    return self.form.fields;
 }
 
 // MARK: Lifecycle
@@ -48,7 +48,7 @@
     {
         NSLog(@"form view was reloaded. setting image to imageView");
     }
-    self.title = self.category.name;
+    self.title = self.form.name;
     self.imageView.image = self.image ?: [UIImage imageNamed:@"FCLPhotoPlaceholder"];
 }
 
@@ -156,12 +156,12 @@
 
 - (BOOL) showExtraFieldForPicture
 {
-    return [self.category wantsUploadPicture];
+    return [self.form wantsUploadPicture];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return (self.category.fields ? [self.category.fields count] : 0) + ([self showExtraFieldForPicture] ? 1 : 0) + 1;
+    return (self.form.fields ? [self.form.fields count] : 0) + ([self showExtraFieldForPicture] ? 1 : 0) + 1;
 }
 
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -411,7 +411,7 @@
     }
     else
     {
-        if (self.image || [self.category hasSignatureField])
+        if (self.image || [self.form hasSignatureField])
         {
             [self.operationQueue waitUntilAllOperationsAreFinished];
             

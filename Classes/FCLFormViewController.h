@@ -1,5 +1,5 @@
 
-@class FCLCategory;
+@class FCLForm;
 @class FCLFormViewController;
 
 @protocol FCLFormViewControllerDelegate <NSObject>
@@ -12,7 +12,7 @@
 @interface FCLFormViewController : UITableViewController
 
 @property (nonatomic, weak) id <FCLFormViewControllerDelegate> delegate;
-@property(nonatomic, strong) FCLCategory* category;
+@property(nonatomic, strong) FCLForm* form;
 @property(nonatomic, strong) UIImage* image;
 
 - (NSArray*) fields;
