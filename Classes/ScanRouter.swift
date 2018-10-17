@@ -56,7 +56,7 @@ class ScanRouter: NSObject {
     }
     
     private func provideBusinessFiles(to controller: FCLBusinessFilesViewController) {
-        businessFilesFetch.fetchSuccess({ (businessFiles) in
+        businessFilesFetch.fetchAllSuccess({ (businessFiles) in
             controller.businessFiles = businessFiles
         }, failure: { (error) in
             controller.businessFiles = nil
@@ -89,7 +89,7 @@ class ScanRouter: NSObject {
             fatalError("A business file should be currently shown.")
         }
         
-        self.businessFilesFetch.fetchSuccess({ [weak self] (businessFiles) in
+        self.businessFilesFetch.fetchAllSuccess({ [weak self] (businessFiles) in
             if let refreshedBusinessFile = businessFiles.first(where: { $0.identifier == currentBusinessFile.identifier }) {
                 categoriesController.businessFile = refreshedBusinessFile
             } else { // The business file is absent from the new list
