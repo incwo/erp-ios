@@ -30,18 +30,29 @@
     return self;
 }
 
--(void) fetchSuccess:(FCLBusinessFilesFetchSuccess)successHandler failure:(FCLBusinessFilesFetchFailure)failureHandler {
+-(void) fetchAllSuccess:(FCLBusinessFilesFetchSuccess)successHandler failure:(FCLBusinessFilesFetchFailure)failureHandler {
     NSParameterAssert(successHandler);
     _successHandler = successHandler;
     NSParameterAssert(failureHandler);
     _failureHandler = failureHandler;
     
     [self.download cancel]; // The method might be called while still fetching
-    [self loadBusinessFiles];
+    [self loadBusinessFilesAtURL:[[self class] URLForSession:self.session]];
 }
 
-- (void) loadBusinessFiles {
-    NSURL* url = [[self class] URLForSession:self.session];
+-(void) fetchOneWithId:(nonnull NSString *)identifier success:(nonnull FCLBusinessFilesSingleFetchSuccess)successHandler failure:(nonnull FCLBusinessFilesFetchFailure)failureHandler {
+    NSParameterAssert(successHandler);
+    _successHandler = ^(NSArray *businessFiles) {
+        successHandler(businessFiles.count > 0 ? businessFiles[0] : @[]);
+    };
+    NSParameterAssert(failureHandler);
+    _failureHandler = failureHandler;
+    
+    [self.download cancel]; // The method might be called while still fetching
+    [self loadBusinessFilesAtURL:[[self class] URLForSession:self.session businessFileId:identifier]];
+}
+
+- (void) loadBusinessFilesAtURL:(NSURL *)url {
     NSLog(@"Loading URL: %@", url);
     
     // Note: I avoid using iPhone NSURLConnection credentials API here to avoid unnecessary request
@@ -61,6 +72,10 @@
 
 +(NSURL *) URLForSession:(FCLSession *)session {
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d", session.facileBaseURL, rand()]];
+}
+
++(NSURL *) URLForSession:(FCLSession *)session businessFileId:(NSString *)businessFileId {
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d&file_id=%@", session.facileBaseURL, rand(), businessFileId]];
 }
 
 // MARK: OAHTTPDownloadDelegate
