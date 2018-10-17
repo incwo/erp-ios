@@ -41,14 +41,6 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Connexion", @"") style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.emailTextField.text = [FCLSession savedSession].username;
-    self.passwordTextField.text = [FCLSession savedSession].password;
-    [self updateLogInButtonEnabled];
-}
-
 // MARK: Rotation
 
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations
@@ -118,6 +110,10 @@
         
         if (weakSelf.connection.data) {
             [session saveSession]; // Emits FCLSessionDidSignInNotification
+            
+            // This is a little trick to leave the view controller in a consistent state between the Office and Scan tabs.
+            weakSelf.emailTextField.text = nil;
+            weakSelf.passwordTextField.text = nil;
         } else {
             NSLog(@"COULD NOT LOG IN: %@", weakSelf.connection.error);
             [weakSelf.delegate loginControllerDidFail:self error:weakSelf.connection.error];
