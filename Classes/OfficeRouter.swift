@@ -70,7 +70,7 @@ class OfficeRouter: NSObject {
         contentViewController!.session = session
         navigationController.pushViewController(contentViewController!, animated: animated)
         
-        contentViewController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "BFiles", style: .plain, target: self, action: #selector(showSidePanel))
+        contentViewController?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.init(named: "Menu"), style: .plain, target: self, action: #selector(showSidePanel))
     }
     
     @objc public func showSidePanel() {
