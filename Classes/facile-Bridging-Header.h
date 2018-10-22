@@ -11,6 +11,6 @@
 #import "FCLFormListViewController.h"
 #import "FCLLoginController.h"
 #import "FCLOfficeContentViewController.h"
-#import "FCLBusinessFilesViewController.h"
+#import "FCLSelectedBusinessFile.h"
 #import "FCLSession.h"
 #import "UIViewController+Alert.h"

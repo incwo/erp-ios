@@ -31,26 +31,10 @@ extension AppRouter: OfficeRouterDelegate {
     func officeRouterPresentSidePanel() {
         sidePanelController.present(from: rootViewController)
     }
-    
-    func officeRouterDidPresentListOfBusinessFiles() {
-        scanRouter.goToListOfBusinessFiles()
-    }
-    
-    func officeRouterDidPresentBusinessFile(identifier: String) {
-        scanRouter.goToBusinessFile(identifier: identifier)
-    }
 }
 
 extension AppRouter: ScanRouterDelegate {
     func scanRouterPresentSidePanel() {
         sidePanelController.present(from: rootViewController)
-    }
-    
-    func scanRouterDidPresentListOfBusinessFiles() {
-        officeRouter.goToListOfBusinessFiles()
-    }
-    
-    func scanRouterDidPresentBusinessFile(identifier: String) {
-        officeRouter.goToBusinessFile(id: identifier)
     }
 }

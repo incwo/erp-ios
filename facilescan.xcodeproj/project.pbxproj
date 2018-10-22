@@ -11,7 +11,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		2008E8001188EDD100607BAC /* FCLBusinessFilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E7FF1188EDD100607BAC /* FCLBusinessFilesViewController.m */; };
 		2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E81F118A25C100607BAC /* OAHTTPDownload.m */; };
 		2008E824118A25C100607BAC /* OAHTTPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E822118A25C100607BAC /* OAHTTPQueue.m */; };
 		2008E830118A25F400607BAC /* OANetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E82F118A25F400607BAC /* OANetworkActivityIndicator.m */; };
@@ -52,7 +51,6 @@
 		20A6537D118AD51E00C94599 /* FCLBusinessFilesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6537C118AD51E00C94599 /* FCLBusinessFilesParser.m */; };
 		20A65380118AD5F700C94599 /* FCLField.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6537F118AD5F700C94599 /* FCLField.m */; };
 		20A65383118AEC2700C94599 /* FCLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65382118AEC2700C94599 /* FCLModel.m */; };
-		20A65394118AF27300C94599 /* FCLBusinessFilesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A65393118AF27300C94599 /* FCLBusinessFilesViewController.xib */; };
 		20A653F0118B040600C94599 /* FCLFormListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A653EF118B040600C94599 /* FCLFormListViewController.m */; };
 		20A653F2118B06FD00C94599 /* FCLFormListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A653F1118B06FD00C94599 /* FCLFormListViewController.xib */; };
 		20A65437118B106800C94599 /* FCLFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65436118B106800C94599 /* FCLFormViewController.m */; };
@@ -84,6 +82,7 @@
 		DF1C7950217DB84C005419EA /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C794B217DB84B005419EA /* LoggedInViewController.swift */; };
 		DF1C7951217DB84C005419EA /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C794C217DB84C005419EA /* SidePanelViewController.swift */; };
 		DF1C7955217DB9A5005419EA /* SidePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C7954217DB9A5005419EA /* SidePanelController.swift */; };
+		DF1C795F217E0503005419EA /* FCLSelectedBusinessFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1C795E217E0503005419EA /* FCLSelectedBusinessFile.m */; };
 		DF243648216B853300A41B31 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF243647216B853300A41B31 /* Login.storyboard */; };
 		DF32F19D216C965C003297D8 /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */; };
 		DF4A0C6B21709F84004F72F0 /* FCLBusinessFilesFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4A0C6A21709F84004F72F0 /* FCLBusinessFilesFetch.m */; };
@@ -101,8 +100,6 @@
 		1D3623250D0F684500981E51 /* FCLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* facilescan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = facilescan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		2008E7FE1188EDD100607BAC /* FCLBusinessFilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLBusinessFilesViewController.h; sourceTree = "<group>"; };
-		2008E7FF1188EDD100607BAC /* FCLBusinessFilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLBusinessFilesViewController.m; sourceTree = "<group>"; };
 		2008E81E118A25C100607BAC /* OAHTTPDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHTTPDownload.h; sourceTree = "<group>"; };
 		2008E81F118A25C100607BAC /* OAHTTPDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHTTPDownload.m; sourceTree = "<group>"; };
 		2008E820118A25C100607BAC /* OAHTTPProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHTTPProtocols.h; sourceTree = "<group>"; };
@@ -178,7 +175,6 @@
 		20A6537F118AD5F700C94599 /* FCLField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLField.m; sourceTree = "<group>"; };
 		20A65381118AEC2700C94599 /* FCLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLModel.h; sourceTree = "<group>"; };
 		20A65382118AEC2700C94599 /* FCLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLModel.m; sourceTree = "<group>"; };
-		20A65393118AF27300C94599 /* FCLBusinessFilesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLBusinessFilesViewController.xib; path = ../FCLBusinessFilesViewController.xib; sourceTree = "<group>"; };
 		20A653EE118B040600C94599 /* FCLFormListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLFormListViewController.h; sourceTree = "<group>"; };
 		20A653EF118B040600C94599 /* FCLFormListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLFormListViewController.m; sourceTree = "<group>"; };
 		20A653F1118B06FD00C94599 /* FCLFormListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLFormListViewController.xib; path = ../FCLFormListViewController.xib; sourceTree = "<group>"; };
@@ -224,6 +220,8 @@
 		DF1C794B217DB84B005419EA /* LoggedInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
 		DF1C794C217DB84C005419EA /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
 		DF1C7954217DB9A5005419EA /* SidePanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidePanelController.swift; sourceTree = "<group>"; };
+		DF1C795D217E0503005419EA /* FCLSelectedBusinessFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLSelectedBusinessFile.h; sourceTree = "<group>"; };
+		DF1C795E217E0503005419EA /* FCLSelectedBusinessFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLSelectedBusinessFile.m; sourceTree = "<group>"; };
 		DF243647216B853300A41B31 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		DF32F19A216C965C003297D8 /* facile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "facile-Bridging-Header.h"; path = "Classes/facile-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
@@ -442,6 +440,8 @@
 		DF1C7947217DB835005419EA /* Side Panel */ = {
 			isa = PBXGroup;
 			children = (
+				DF1C795D217E0503005419EA /* FCLSelectedBusinessFile.h */,
+				DF1C795E217E0503005419EA /* FCLSelectedBusinessFile.m */,
 				DF1C7954217DB9A5005419EA /* SidePanelController.swift */,
 				DF1C7948217DB84B005419EA /* SidePanel.storyboard */,
 				DF1C794C217DB84C005419EA /* SidePanelViewController.swift */,
@@ -495,9 +495,6 @@
 			isa = PBXGroup;
 			children = (
 				DF17902B216E04C800BE89F7 /* ScanRouter.swift */,
-				2008E7FE1188EDD100607BAC /* FCLBusinessFilesViewController.h */,
-				2008E7FF1188EDD100607BAC /* FCLBusinessFilesViewController.m */,
-				20A65393118AF27300C94599 /* FCLBusinessFilesViewController.xib */,
 				20A653EE118B040600C94599 /* FCLFormListViewController.h */,
 				20A653EF118B040600C94599 /* FCLFormListViewController.m */,
 				20A653F1118B06FD00C94599 /* FCLFormListViewController.xib */,
@@ -612,7 +609,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20A65394118AF27300C94599 /* FCLBusinessFilesViewController.xib in Resources */,
 				20A653F2118B06FD00C94599 /* FCLFormListViewController.xib in Resources */,
 				20A65461118B169800C94599 /* FCLFormViewController.xib in Resources */,
 				2060C58511901C5600EF2405 /* FCLOptionsViewController.xib in Resources */,
@@ -697,7 +693,6 @@
 				DF1C7955217DB9A5005419EA /* SidePanelController.swift in Sources */,
 				1D3623260D0F684500981E51 /* FCLAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* FCLLoginController.m in Sources */,
-				2008E8001188EDD100607BAC /* FCLBusinessFilesViewController.m in Sources */,
 				56E1F4AB18A23CE100DC6404 /* PFWebViewController.m in Sources */,
 				2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */,
 				DF1C7951217DB84C005419EA /* SidePanelViewController.swift in Sources */,
@@ -728,6 +723,7 @@
 				209DCDCE16B9202000BF1CC0 /* PHTTPConnection.m in Sources */,
 				DF17902A216CE8AE00BE89F7 /* UIViewController+child.swift in Sources */,
 				209DCDCF16B9202000BF1CC0 /* PMultipartData.m in Sources */,
+				DF1C795F217E0503005419EA /* FCLSelectedBusinessFile.m in Sources */,
 				203C91BD16BAA84300C37D50 /* OAXMLDecoder.m in Sources */,
 				203C91C416BAA99000C37D50 /* PFeed.m in Sources */,
 				203C91C516BAA99000C37D50 /* PFeedItem.m in Sources */,

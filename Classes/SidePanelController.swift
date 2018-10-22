@@ -43,6 +43,10 @@ class SidePanelController: NSObject {
         if let businessFilesFetch = businessFilesFetch {
             businessFilesFetch.fetchAllSuccess({ (businessFiles) in
                 sideViewController?.businessFilesTableViewController?.businessFiles = businessFiles
+                sideViewController?.businessFilesTableViewController?.onSelection = { [weak self] (businessFile) in
+                    NotificationCenter.default.post(name: Notification.Name.FCLSelectedBusinessFile, object: nil, userInfo: [FCLSelectedBusinessFileKey: businessFile])
+                    self?.dismiss()
+                }
             }, failure: { (error) in
                 viewController.fcl_presentAlert(forError: error)
             })
