@@ -11,6 +11,8 @@ import UIKit
 class SidePanelController: NSObject {
     var navigationController: UINavigationController?
     var businessFilesFetch: FCLBusinessFilesFetch?
+    var lastFetchDate: Date?
+    var businessFiles: [FCLFormsBusinessFile]?
     
     override init() {
         super.init()
@@ -34,24 +36,39 @@ class SidePanelController: NSObject {
     
     func present(from viewController: UIViewController) {
         self.navigationController = UIStoryboard.init(name: "SidePanel", bundle: nil).instantiateInitialViewController() as? UINavigationController
-        let sideViewController = navigationController?.viewControllers.first as? SidePanelViewController
-        sideViewController?.onCloseButton = { [weak self] in
+        guard let sideViewController = navigationController?.viewControllers.first as? SidePanelViewController else {
+            fatalError("SidePanelVC should be on the navigation stack at that point.")
+        }
+        
+        sideViewController.onCloseButton = { [weak self] in
             self?.dismiss()
         }
-        viewController.present(navigationController!, animated: true, completion: nil)
-        
-        if let businessFilesFetch = businessFilesFetch {
-            businessFilesFetch.fetchAllSuccess({ (businessFiles) in
-                sideViewController?.businessFilesTableViewController?.businessFiles = businessFiles
-                sideViewController?.businessFilesTableViewController?.onSelection = { [weak self] (businessFile) in
-                    NotificationCenter.default.post(name: Notification.Name.FCLSelectedBusinessFile, object: nil, userInfo: [FCLSelectedBusinessFileKey: businessFile])
-                    self?.dismiss()
-                }
-            }, failure: { (error) in
-                viewController.fcl_presentAlert(forError: error)
-            })
+        sideViewController.onBusinessFileSelection = { [weak self] (businessFile) in
+            NotificationCenter.default.post(name: Notification.Name.FCLSelectedBusinessFile, object: nil, userInfo: [FCLSelectedBusinessFileKey: businessFile])
+            self?.dismiss()
         }
         
+        if lastFetchDate == nil || (Date().timeIntervalSince(lastFetchDate!) > 60*5) {
+            loadBusinessFiles(in: sideViewController)
+        } else {
+            sideViewController.businessFiles = businessFiles
+        }
+        
+        viewController.present(navigationController!, animated: true, completion: nil)
+    }
+    
+    private func loadBusinessFiles(in sideViewController: SidePanelViewController) {
+        guard let businessFilesFetch = businessFilesFetch else {
+            return
+        }
+        
+        businessFilesFetch.fetchAllSuccess({ [weak self] (businessFiles) in
+            self?.businessFiles = businessFiles
+            sideViewController.businessFiles = businessFiles
+            self?.lastFetchDate = Date()
+        }, failure: { (error) in
+            sideViewController.fcl_presentAlert(forError: error)
+        })
     }
     
     func dismiss() {

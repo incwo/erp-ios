@@ -9,7 +9,17 @@ import UIKit
 
 class SidePanelViewController: UIViewController {
     public var onCloseButton: ( ()->() )?
-    public private (set) var businessFilesTableViewController: BusinessFilesTableViewController?
+    public var onBusinessFileSelection: ( (FCLFormsBusinessFile) -> () )? {
+        didSet {
+            businessFilesTableViewController?.onSelection = onBusinessFileSelection
+        }
+    }
+    public var businessFiles: [FCLFormsBusinessFile]? {
+        didSet {
+            businessFilesTableViewController?.businessFiles = businessFiles
+        }
+    }
+    private var businessFilesTableViewController: BusinessFilesTableViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +29,9 @@ class SidePanelViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "EmbedBusinessFiles":
-            businessFilesTableViewController = segue.destination as? BusinessFilesTableViewController
+            self.businessFilesTableViewController = segue.destination as? BusinessFilesTableViewController
+            businessFilesTableViewController!.businessFiles = businessFiles
+            businessFilesTableViewController!.onSelection = onBusinessFileSelection
         default:
             break
         }
