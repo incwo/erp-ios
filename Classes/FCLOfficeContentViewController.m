@@ -17,7 +17,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *reloadButton;
 @property (strong, nonatomic) IBOutlet UIButton *stopButton;
 
-@property (nonatomic) BOOL didLoadSomethingAlready;
 @property (nonatomic) BOOL loading;
 
 @end
@@ -43,11 +42,6 @@
     [super viewDidAppear:animated];
     
     NSParameterAssert(self.session);
-    
-    if (!self.didLoadSomethingAlready) {
-        self.didLoadSomethingAlready = YES;
-        [self loadHomepage];
-    }
 }
 
 -(NSURL *)currentURL {

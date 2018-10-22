@@ -36,9 +36,21 @@ class OfficeRouter: NSObject {
             self?.pushContentViewController(animated: true)
         }
         
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSelectedBusinessFile, object: nil, queue: nil) { [weak self] (notification) in
+            if let businessFile = notification.userInfo?[FCLSelectedBusinessFileKey] as? FCLFormsBusinessFile {
+                if let contentViewController = self?.contentViewController {
+                    contentViewController.loadBusinessFile(withId: businessFile.identifier)
+                } else {
+                    self?.pushContentViewController(animated: true)
+                    self?.contentViewController?.loadBusinessFile(withId: businessFile.identifier)
+                }
+            }
+        }
+        
         // Go back to the Root VC (Log in) when the user is signing out
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignOut, object: nil, queue: nil) { [weak self] (notification) in
             self?.navigationController.popToRootViewController(animated: true)
+            self?.contentViewController = nil
         }
     }
     

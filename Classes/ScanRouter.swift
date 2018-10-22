@@ -58,6 +58,7 @@ class ScanRouter: NSObject {
             
             self?.businessFilesFetch = nil
             self?.navigationController.popToRootViewController(animated: true)
+            self?.formListViewController = nil
         }
     }
     
