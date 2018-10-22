@@ -277,6 +277,10 @@ extension ScanRouter: FCLBusinessFilesViewControllerDelegate {
 }
 
 extension ScanRouter: FCLFormListViewControllerDelegate {
+    func formListViewControllerSidePanel(_ controller: FCLFormListViewController) {
+        delegate?.scanRouterPresentSidePanel()
+    }
+    
     func formListViewControllerRefresh(_ controller: FCLFormListViewController) {
         fetchBusinessFile(id: controller.businessFile!.identifier) { [weak self] (businessFile) in
             self?.applyState(.formList(businessFile), animated: true)

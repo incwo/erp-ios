@@ -29,6 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"] style:(UIBarButtonItemStylePlain) target:self action:@selector(showSidePanel:)];
+    
     self.navigationItem.titleView = self.webViewControls;
     [self updateControls];
 }
@@ -74,6 +76,10 @@
 
 #pragma - Actions
 
+-(void) showSidePanel:(id)sender {
+    [self.delegate officeContentViewControllerPresentSidePanel:self];
+}
+                                             
 - (IBAction)signOut:(id)sender {
     [FCLSession removeSavedSession]; // Emits a FCLSessionDidSignOutNotification
 }

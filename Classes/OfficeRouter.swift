@@ -69,12 +69,6 @@ class OfficeRouter: NSObject {
         contentViewController!.delegate = self
         contentViewController!.session = session
         navigationController.pushViewController(contentViewController!, animated: animated)
-        
-        contentViewController?.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.init(named: "Menu"), style: .plain, target: self, action: #selector(showSidePanel))
-    }
-    
-    @objc public func showSidePanel() {
-        delegate?.officeRouterPresentSidePanel()
     }
     
     private func pushAccountCreationViewController() {
@@ -142,6 +136,10 @@ extension OfficeRouter: AccountCreationViewControllerDelegate {
 }
 
 extension OfficeRouter: FCLOfficeContentViewControllerDelegate {
+    func officeContentViewControllerPresentSidePanel(_ controller: FCLOfficeContentViewController) {
+        delegate?.officeRouterPresentSidePanel()
+    }
+    
     func officeContentViewController(_ controller: FCLOfficeContentViewController, didPresent url: URL) {
         didPresentContent(url: url)
     }

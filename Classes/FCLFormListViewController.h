@@ -4,6 +4,8 @@
 
 @protocol FCLFormListViewControllerDelegate <NSObject>
 
+-(void) formListViewControllerSidePanel:(nonnull FCLFormListViewController *)controller;
+
 /// Informs the delegate that the businessFile must be refreshed. The property must be set (even to nil) for the Refresh Control to end refreshing.
 -(void) formListViewControllerRefresh:(nonnull FCLFormListViewController *)controller;
 

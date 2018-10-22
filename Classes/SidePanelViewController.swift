@@ -17,7 +17,6 @@ class SidePanelViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(segue.identifier)
         switch segue.identifier {
         case "EmbedBusinessFiles":
             businessFilesTableViewController = segue.destination as? BusinessFilesTableViewController

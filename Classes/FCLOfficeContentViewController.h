@@ -4,6 +4,7 @@
 
 @protocol FCLOfficeContentViewControllerDelegate <NSObject>
 
+-(void) officeContentViewControllerPresentSidePanel:(nonnull FCLOfficeContentViewController *)controller;
 -(void) officeContentViewController:(nonnull FCLOfficeContentViewController *)controller didPresentURL:(nonnull NSURL *)url;
 
 @end
@@ -15,6 +16,6 @@
 
 -(void) loadHomepage;
 -(void) loadBusinessFileWithId:(nonnull NSString *)businessFileId;
--(NSURL *)currentURL;
+-(nullable NSURL *)currentURL;
 
 @end

@@ -52,6 +52,8 @@
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Tirer pour rafraichir"];
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"] style:UIBarButtonItemStylePlain target:self action:@selector(showSidePanel:)];
+    
     self.helpFooterView.text = NSLocalizedString(@"Insérez des photos et signatures sur votre application", @"");
 }
 
@@ -72,6 +74,10 @@
 
 -(void)refresh:(id)sender {
     [self.delegate formListViewControllerRefresh:self];
+}
+
+-(void) showSidePanel:(id)sender {
+    [self.delegate formListViewControllerSidePanel:self];
 }
 
 // MARK: Rotation
