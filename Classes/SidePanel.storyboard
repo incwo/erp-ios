@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-986" y="156"/>
         </scene>
-        <!--Side Panel View Controller-->
+        <!--Vos applications-->
         <scene sceneID="tIf-ml-4BQ">
             <objects>
                 <viewController id="Kex-TN-p1e" customClass="SidePanelViewController" customModule="facilescan" customModuleProvider="target" sceneMemberID="viewController">
@@ -62,7 +62,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EgW-5p-phG"/>
                     </view>
-                    <navigationItem key="navigationItem" id="LB7-zw-0Ue">
+                    <navigationItem key="navigationItem" title="Vos applications" id="LB7-zw-0Ue">
                         <barButtonItem key="rightBarButtonItem" image="Close" style="plain" id="b0a-Wl-poZ">
                             <connections>
                                 <action selector="close:" destination="Kex-TN-p1e" id="TKJ-Ih-hJq"/>
@@ -92,7 +92,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="rpradenc@incwo.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDQ-9X-Q2O">
                                 <rect key="frame" x="71" y="8" width="241" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vo9-PQ-dbP">
@@ -105,7 +105,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.1137254902" green="0.19215686269999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Y4o-eO-z0t" firstAttribute="bottom" secondItem="vo9-PQ-dbP" secondAttribute="bottom" constant="8" id="4gP-oc-mDn"/>
                             <constraint firstItem="hXJ-XG-cgq" firstAttribute="firstBaseline" secondItem="KDQ-9X-Q2O" secondAttribute="firstBaseline" id="53B-nl-atf"/>
@@ -184,7 +184,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Déconnecté" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8nn-bO-FPt">
                                 <rect key="frame" x="71" y="8" width="83" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="br5-OS-Dqo">
@@ -195,7 +195,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.1137254902" green="0.19215686269999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="KYn-KV-Ah0" firstAttribute="leading" secondItem="5yN-x0-y8R" secondAttribute="leading" constant="8" id="7fZ-v3-70A"/>
                             <constraint firstItem="KYn-KV-Ah0" firstAttribute="top" secondItem="5yN-x0-y8R" secondAttribute="top" constant="8" id="7wn-pc-Jbx"/>
