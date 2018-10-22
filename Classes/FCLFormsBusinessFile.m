@@ -1,7 +1,7 @@
-#import "FCLBusinessFile.h"
+#import "FCLFormsBusinessFile.h"
 #import "FCLForm.h"
 
-@interface FCLBusinessFile ()
+@interface FCLFormsBusinessFile ()
 
 @property (nonnull, readwrite) NSString *identifier;
 @property (nonnull, readwrite) NSString *name;
@@ -11,15 +11,15 @@
 @end
 
 
-@implementation FCLBusinessFile
+@implementation FCLFormsBusinessFile
 
 - (BOOL)isEqual:(id)anObject {
-    FCLBusinessFile *other = (FCLBusinessFile *)anObject;
+    FCLFormsBusinessFile *other = (FCLFormsBusinessFile *)anObject;
     if(other == self) {
         return YES;
     }
     
-    if (![anObject isKindOfClass:[FCLBusinessFile class]]) return NO;
+    if (![anObject isKindOfClass:[FCLFormsBusinessFile class]]) return NO;
     
     return [self.identifier isEqualToString:other.identifier] && [self.forms isEqualToArray:other.forms];
 }

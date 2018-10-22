@@ -1,7 +1,7 @@
-@class FCLBusinessFile;
+@class FCLFormsBusinessFile;
 
 @interface FCLBusinessFilesParser : NSObject
 
-+ (NSArray <FCLBusinessFile *> *) businessFilesFromXMLData:(NSData*)data;
++ (NSArray <FCLFormsBusinessFile *> *) businessFilesFromXMLData:(NSData*)data;
 
 @end

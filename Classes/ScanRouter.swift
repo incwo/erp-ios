@@ -8,6 +8,7 @@
 import UIKit
 
 protocol ScanRouterDelegate: class {
+    func scanRouterPresentSidePanel()
     func scanRouterDidPresentListOfBusinessFiles()
     func scanRouterDidPresentBusinessFile(identifier: String)
 }
@@ -17,8 +18,8 @@ class ScanRouter: NSObject {
     enum State {
         case loggedOut
         case emptyBusinessFilesList(FCLSession)
-        case businessFilesList ([FCLBusinessFile])
-        case formList(FCLBusinessFile)
+        case businessFilesList ([FCLFormsBusinessFile])
+        case formList(FCLFormsBusinessFile)
         // There are no states for the next view controllers yet (Form, enum picking, signature, etc.)
     }
     
@@ -165,7 +166,7 @@ class ScanRouter: NSObject {
     }
     
     // MARK: Fetching business files
-    private func fetchBusinessFiles(success: @escaping ([FCLBusinessFile])->() ) {
+    private func fetchBusinessFiles(success: @escaping ([FCLFormsBusinessFile])->() ) {
         businessFilesFetch.fetchAllSuccess({ (businessFiles) in
             success(businessFiles)
         }, failure: { (error) in
@@ -175,7 +176,7 @@ class ScanRouter: NSObject {
         })
     }
     
-    private func fetchBusinessFile(id: String, success: @escaping (FCLBusinessFile)->() ) {
+    private func fetchBusinessFile(id: String, success: @escaping (FCLFormsBusinessFile)->() ) {
         businessFilesFetch.fetchOne(withId: id, success: { (businessFile) in
             success(businessFile)
         }, failure: { (error) in
@@ -186,7 +187,7 @@ class ScanRouter: NSObject {
     }
     
     // MARK: View Controllers
-    private func pushBusinessFiles(_ businessFiles: [FCLBusinessFile]?, animated: Bool) {
+    private func pushBusinessFiles(_ businessFiles: [FCLFormsBusinessFile]?, animated: Bool) {
         self.businessFilesListViewController = FCLBusinessFilesViewController(delegate: self)
         businessFilesListViewController.businessFiles = businessFiles
         navigationController.pushViewController(businessFilesListViewController, animated: animated)
@@ -198,7 +199,7 @@ class ScanRouter: NSObject {
         navigationController.pushViewController(accountCreationController, animated: true)
     }
     
-    private func pushFormList(for businessFile: FCLBusinessFile) {
+    private func pushFormList(for businessFile: FCLFormsBusinessFile) {
         guard let session = FCLSession.saved() else {
             fatalError("It is expected to have a saved Session at this stage")
         }
@@ -266,7 +267,7 @@ extension ScanRouter: FCLBusinessFilesViewControllerDelegate {
         }
     }
     
-    func businessFilesViewController(_ controller: FCLBusinessFilesViewController, didSelect businessFile: FCLBusinessFile) {
+    func businessFilesViewController(_ controller: FCLBusinessFilesViewController, didSelect businessFile: FCLFormsBusinessFile) {
         applyState(.formList(businessFile), animated: true)
     }
     

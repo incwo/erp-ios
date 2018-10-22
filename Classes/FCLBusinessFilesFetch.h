@@ -7,12 +7,12 @@
 
 #import <Foundation/Foundation.h>
 #import "FCLSession.h"
-@class FCLBusinessFile;
+@class FCLFormsBusinessFile;
 
 @interface FCLBusinessFilesFetch : NSObject
 
-typedef void (^FCLBusinessFilesFetchSuccess)( NSArray <FCLBusinessFile *> * _Nonnull businessFiles);
-typedef void (^FCLBusinessFilesSingleFetchSuccess)(FCLBusinessFile * _Nonnull businessFile);
+typedef void (^FCLBusinessFilesFetchSuccess)( NSArray <FCLFormsBusinessFile *> * _Nonnull businessFiles);
+typedef void (^FCLBusinessFilesSingleFetchSuccess)(FCLFormsBusinessFile * _Nonnull businessFile);
 typedef void (^FCLBusinessFilesFetchFailure)( NSError * _Nonnull error);
 
 -(nonnull instancetype) initWithSession:(nonnull FCLSession *)session;

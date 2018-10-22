@@ -1,5 +1,5 @@
 #import "FCLBusinessFilesParser.h"
-#import "FCLBusinessFile.h"
+#import "FCLFormsBusinessFile.h"
 
 @interface FCLBusinessFilesParser () <NSXMLParserDelegate>
 
@@ -51,7 +51,7 @@
 {
     if ([elementName isEqualToString:@"business_file"])
     {
-        FCLBusinessFile* businessFile = [[FCLBusinessFile alloc] init];
+        FCLFormsBusinessFile* businessFile = [[FCLFormsBusinessFile alloc] init];
         businessFile.parentNode = self;
         [self.businessFiles addObject:businessFile];
         [parser setDelegate:businessFile];

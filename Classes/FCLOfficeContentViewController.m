@@ -29,7 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.hidesBackButton = true;
     self.navigationItem.titleView = self.webViewControls;
     [self updateControls];
 }

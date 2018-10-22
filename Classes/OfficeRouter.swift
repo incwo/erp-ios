@@ -8,6 +8,7 @@
 import UIKit
 
 protocol OfficeRouterDelegate: class {
+    func officeRouterPresentSidePanel()
     func officeRouterDidPresentListOfBusinessFiles()
     func officeRouterDidPresentBusinessFile(identifier: String)
 }
@@ -68,6 +69,12 @@ class OfficeRouter: NSObject {
         contentViewController!.delegate = self
         contentViewController!.session = session
         navigationController.pushViewController(contentViewController!, animated: animated)
+        
+        contentViewController?.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "BFiles", style: .plain, target: self, action: #selector(showSidePanel))
+    }
+    
+    @objc public func showSidePanel() {
+        delegate?.officeRouterPresentSidePanel()
     }
     
     private func pushAccountCreationViewController() {

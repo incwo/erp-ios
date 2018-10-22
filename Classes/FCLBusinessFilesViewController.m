@@ -2,7 +2,7 @@
 #import "facilescan-Swift.h"
 #import "FCLBusinessFilesViewController.h"
 #import "FCLBusinessFilesFetch.h"
-#import "FCLBusinessFile.h"
+#import "FCLFormsBusinessFile.h"
 #import "UIViewController+Alert.h"
 
 @interface FCLBusinessFilesViewController ()
@@ -53,7 +53,7 @@
 // MARK: Contents
 
 @synthesize businessFiles = _businessFiles;
--(void)setBusinessFiles:(NSArray<FCLBusinessFile *> *)businessFiles {
+-(void)setBusinessFiles:(NSArray<FCLFormsBusinessFile *> *)businessFiles {
     __typeof(self) __weak weakSelf = self;
     
     @synchronized (self) {
@@ -68,7 +68,7 @@
     });
 }
 
--(NSArray<FCLBusinessFile *> *)businessFiles {
+-(NSArray<FCLFormsBusinessFile *> *)businessFiles {
     @synchronized (self) {
         return _businessFiles;
     }
@@ -121,7 +121,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     
-    FCLBusinessFile *businessFile = [self.businessFiles objectAtIndex:indexPath.row];
+    FCLFormsBusinessFile *businessFile = [self.businessFiles objectAtIndex:indexPath.row];
     cell.textLabel.text = businessFile.name;
     cell.detailTextLabel.text = businessFile.kind ? businessFile.kind : @"";
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

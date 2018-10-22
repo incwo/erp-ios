@@ -1,5 +1,5 @@
 #import "FCLFormListViewController.h"
-#import "FCLBusinessFile.h"
+#import "FCLFormsBusinessFile.h"
 #import "FCLForm.h"
 #import "FCLFormViewController.h"
 #import "FCLUploader.h"
@@ -17,7 +17,7 @@
 @implementation FCLFormListViewController
 
 @synthesize businessFile = _businessFile;
--(void)setBusinessFile:(FCLBusinessFile *)businessFile {
+-(void)setBusinessFile:(FCLFormsBusinessFile *)businessFile {
     @synchronized (self) {
         if(businessFile != _businessFile) {
             _businessFile = businessFile;
@@ -32,7 +32,7 @@
     });
 }
 
--(FCLBusinessFile *)businessFile {
+-(FCLFormsBusinessFile *)businessFile {
     @synchronized (self) {
         return _businessFile;
     }

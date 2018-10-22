@@ -2,7 +2,7 @@
 
 @class FCLForm;
 
-@interface FCLBusinessFile : FCLModel
+@interface FCLFormsBusinessFile : FCLModel
 
 // Initialized through XML parsing
 

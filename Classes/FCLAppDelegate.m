@@ -69,7 +69,7 @@
         [[UINavigationController alloc] initWithRootViewController:self.newsController]
     ];
     
-    self.appRouter = [[AppRouter alloc] initWithOfficeRouter:self.officeRouter scanRouter:self.scanRouter];
+    self.appRouter = [[AppRouter alloc] initWithRootViewController:self.tabBarController officeRouter:self.officeRouter scanRouter:self.scanRouter];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	[self.window setRootViewController:self.tabBarController];

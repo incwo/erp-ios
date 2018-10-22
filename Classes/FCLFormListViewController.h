@@ -1,6 +1,6 @@
 #import "FCLUploader.h"
 @class FCLFormListViewController;
-@class FCLBusinessFile;
+@class FCLFormsBusinessFile;
 
 @protocol FCLFormListViewControllerDelegate <NSObject>
 
@@ -13,7 +13,7 @@
 @interface FCLFormListViewController : UITableViewController
 
 @property (nullable, weak) id <FCLFormListViewControllerDelegate> delegate;
-@property (nullable, strong) FCLBusinessFile *businessFile;
+@property (nullable, strong) FCLFormsBusinessFile *businessFile;
 
 @property (nonnull) NSString *username;
 @property (nonnull) NSString *password;

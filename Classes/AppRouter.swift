@@ -9,13 +9,17 @@ import Foundation
 
 @objc
 class AppRouter: NSObject {
+    let rootViewController: UIViewController
     let officeRouter: OfficeRouter
     let scanRouter: ScanRouter
+    let sidePanelController: SidePanelController
     
     @objc
-    init(officeRouter: OfficeRouter, scanRouter: ScanRouter) {
+    init(rootViewController: UIViewController, officeRouter: OfficeRouter, scanRouter: ScanRouter) {
+        self.rootViewController = rootViewController
         self.officeRouter = officeRouter
         self.scanRouter = scanRouter
+        self.sidePanelController = SidePanelController()
         super.init()
         
         officeRouter.delegate = self;
@@ -24,6 +28,10 @@ class AppRouter: NSObject {
 }
 
 extension AppRouter: OfficeRouterDelegate {
+    func officeRouterPresentSidePanel() {
+        sidePanelController.present(from: rootViewController)
+    }
+    
     func officeRouterDidPresentListOfBusinessFiles() {
         scanRouter.goToListOfBusinessFiles()
     }
@@ -34,6 +42,10 @@ extension AppRouter: OfficeRouterDelegate {
 }
 
 extension AppRouter: ScanRouterDelegate {
+    func scanRouterPresentSidePanel() {
+        sidePanelController.present(from: rootViewController)
+    }
+    
     func scanRouterDidPresentListOfBusinessFiles() {
         officeRouter.goToListOfBusinessFiles()
     }
