@@ -8,17 +8,23 @@
 import UIKit
 
 class SidePanelViewController: UIViewController {
+    struct ViewModel {
+        let businessFiles: [FCLFormsBusinessFile]
+        let selectedBusinessFile: FCLFormsBusinessFile
+    }
+    
+    public var viewModel: ViewModel? {
+        didSet {
+            setBusinessFilesTableViewControllerViewModel()
+        }
+    }
     public var onCloseButton: ( ()->() )?
     public var onBusinessFileSelection: ( (FCLFormsBusinessFile) -> () )? {
         didSet {
             businessFilesTableViewController?.onSelection = onBusinessFileSelection
         }
     }
-    public var businessFiles: [FCLFormsBusinessFile]? {
-        didSet {
-            businessFilesTableViewController?.businessFiles = businessFiles
-        }
-    }
+
     private var businessFilesTableViewController: BusinessFilesTableViewController?
 
     override func viewDidLoad() {
@@ -30,10 +36,18 @@ class SidePanelViewController: UIViewController {
         switch segue.identifier {
         case "EmbedBusinessFiles":
             self.businessFilesTableViewController = segue.destination as? BusinessFilesTableViewController
-            businessFilesTableViewController!.businessFiles = businessFiles
+            setBusinessFilesTableViewControllerViewModel()
             businessFilesTableViewController!.onSelection = onBusinessFileSelection
         default:
             break
+        }
+    }
+    
+    private func setBusinessFilesTableViewControllerViewModel() {
+        if let viewModel = viewModel {
+            businessFilesTableViewController?.viewModel = BusinessFilesTableViewController.ViewModel(businessFiles: viewModel.businessFiles, selectedBusinessFile: viewModel.selectedBusinessFile)
+        } else {
+            businessFilesTableViewController?.viewModel = nil
         }
     }
     

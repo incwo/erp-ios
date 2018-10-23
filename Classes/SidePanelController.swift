@@ -57,8 +57,11 @@ class SidePanelController: NSObject {
         
         if lastFetchDate == nil || (Date().timeIntervalSince(lastFetchDate!) > 60*5) {
             loadBusinessFiles(in: sideViewController)
+        } else if let businessFiles = businessFiles,
+            let selectedBusinessFile = selectedBusinessFile {
+            sideViewController.viewModel = SidePanelViewController.ViewModel(businessFiles: businessFiles, selectedBusinessFile: selectedBusinessFile)
         } else {
-            sideViewController.businessFiles = businessFiles
+            sideViewController.viewModel = nil
         }
         
         navigationController!.modalPresentationStyle = .custom
@@ -72,14 +75,26 @@ class SidePanelController: NSObject {
         }
         
         businessFilesFetch.fetchAllSuccess({ [weak self] (businessFiles) in
-            self?.businessFiles = businessFiles
-            sideViewController.businessFiles = businessFiles
             self?.lastFetchDate = Date()
+            self?.businessFiles = businessFiles
+            
+            guard businessFiles.count > 0 else {
+                sideViewController.viewModel = nil
+                return
+            }
             
             // If the selected business file is not part of the new list, select the first one from the new list
-            if self?.selectedBusinessFile == nil || !businessFiles.contains((self?.selectedBusinessFile)!) {
-                self?.selectedBusinessFile = businessFiles.first
+            let selected: FCLFormsBusinessFile
+            if let selectedBusinessFile = self?.selectedBusinessFile {
+                if businessFiles.contains(selectedBusinessFile) {
+                    selected = selectedBusinessFile
+                } else {
+                    selected = businessFiles[0]
+                }
+            } else {
+                selected = businessFiles[0]
             }
+            sideViewController.viewModel = SidePanelViewController.ViewModel(businessFiles: businessFiles, selectedBusinessFile: selected)
         }, failure: { (error) in
             sideViewController.fcl_presentAlert(forError: error)
         })
