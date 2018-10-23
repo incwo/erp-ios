@@ -13,6 +13,11 @@ class SidePanelController: NSObject {
     var businessFilesFetch: FCLBusinessFilesFetch?
     var lastFetchDate: Date?
     var businessFiles: [FCLFormsBusinessFile]?
+    var selectedBusinessFile: FCLFormsBusinessFile? {
+        didSet {
+            NotificationCenter.default.post(name: Notification.Name.FCLSelectedBusinessFile, object: nil, userInfo: [FCLSelectedBusinessFileKey: selectedBusinessFile as Any])
+        }
+    }
     
     override init() {
         super.init()
@@ -44,7 +49,7 @@ class SidePanelController: NSObject {
             self?.dismiss()
         }
         sideViewController.onBusinessFileSelection = { [weak self] (businessFile) in
-            NotificationCenter.default.post(name: Notification.Name.FCLSelectedBusinessFile, object: nil, userInfo: [FCLSelectedBusinessFileKey: businessFile])
+            self?.selectedBusinessFile = businessFile
             self?.dismiss()
         }
         
@@ -66,6 +71,11 @@ class SidePanelController: NSObject {
             self?.businessFiles = businessFiles
             sideViewController.businessFiles = businessFiles
             self?.lastFetchDate = Date()
+            
+            // If the selected business file is not part of the new list, select the first one from the new list
+            if self?.selectedBusinessFile == nil || !businessFiles.contains((self?.selectedBusinessFile)!) {
+                self?.selectedBusinessFile = businessFiles.first
+            }
         }, failure: { (error) in
             sideViewController.fcl_presentAlert(forError: error)
         })
