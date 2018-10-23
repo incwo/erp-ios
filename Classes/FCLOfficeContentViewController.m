@@ -131,7 +131,9 @@
 -(void) loadBusinessFileWithId:(NSString *)businessFileId {
     NSString *urlString = [@"https://www.incwo.com/navigation_mobile/home/" stringByAppendingString:businessFileId];
     NSURL *url = [NSURL URLWithString:urlString];
-    [self.webView loadRequest:[NSMutableURLRequest requestWithURL:url]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setFCLSession:self.session];
+    [self.webView loadRequest:request];
 }
 
 - (void) updateControls {
