@@ -19,6 +19,8 @@ class SidePanelController: NSObject {
         }
     }
     
+    lazy var sideTransitioningDelegate = SideTransitioningDelegate()
+    
     override init() {
         super.init()
     
@@ -59,6 +61,8 @@ class SidePanelController: NSObject {
             sideViewController.businessFiles = businessFiles
         }
         
+        navigationController!.modalPresentationStyle = .custom
+        navigationController!.transitioningDelegate = sideTransitioningDelegate
         viewController.present(navigationController!, animated: true, completion: nil)
     }
     

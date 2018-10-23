@@ -83,6 +83,7 @@
 		DF1C7951217DB84C005419EA /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C794C217DB84C005419EA /* SidePanelViewController.swift */; };
 		DF1C7955217DB9A5005419EA /* SidePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C7954217DB9A5005419EA /* SidePanelController.swift */; };
 		DF1C795F217E0503005419EA /* FCLSelectedBusinessFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1C795E217E0503005419EA /* FCLSelectedBusinessFile.m */; };
+		DF1C7964217F1D0B005419EA /* SideTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C7963217F1D0B005419EA /* SideTransition.swift */; };
 		DF243648216B853300A41B31 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF243647216B853300A41B31 /* Login.storyboard */; };
 		DF32F19D216C965C003297D8 /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */; };
 		DF4A0C6B21709F84004F72F0 /* FCLBusinessFilesFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4A0C6A21709F84004F72F0 /* FCLBusinessFilesFetch.m */; };
@@ -222,6 +223,7 @@
 		DF1C7954217DB9A5005419EA /* SidePanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidePanelController.swift; sourceTree = "<group>"; };
 		DF1C795D217E0503005419EA /* FCLSelectedBusinessFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLSelectedBusinessFile.h; sourceTree = "<group>"; };
 		DF1C795E217E0503005419EA /* FCLSelectedBusinessFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLSelectedBusinessFile.m; sourceTree = "<group>"; };
+		DF1C7963217F1D0B005419EA /* SideTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideTransition.swift; sourceTree = "<group>"; };
 		DF243647216B853300A41B31 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		DF32F19A216C965C003297D8 /* facile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "facile-Bridging-Header.h"; path = "Classes/facile-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				DF1C794A217DB84B005419EA /* BusinessFilesTableViewController.swift */,
 				DF1C7949217DB84B005419EA /* LoggedOutViewController.swift */,
 				DF1C794B217DB84B005419EA /* LoggedInViewController.swift */,
+				DF1C7963217F1D0B005419EA /* SideTransition.swift */,
 			);
 			name = "Side Panel";
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				2047B09C16C1708500DFFA34 /* OAPath.m in Sources */,
 				2081BFFD16D3822500106A2F /* MBProgressHUD.m in Sources */,
 				E2BDD3302069180700BA988F /* FCLAppearance.m in Sources */,
+				DF1C7964217F1D0B005419EA /* SideTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
