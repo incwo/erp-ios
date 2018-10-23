@@ -15,6 +15,14 @@ extension SideTransitioningDelegate: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         return SidePresentationController(presentedViewController: presented, presenting: presenting)
     }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SidePresentationAnimator(action: .presentation)
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SidePresentationAnimator(action: .dismissal)
+    }
 }
 
 
@@ -77,5 +85,52 @@ class SidePresentationController: UIPresentationController {
     
     override var frameOfPresentedViewInContainerView: CGRect {
         return CGRect(origin: CGPoint.zero, size: size(forChildContentContainer: presentedViewController, withParentContainerSize: containerView!.bounds.size))
+    }
+}
+
+final class SidePresentationAnimator: NSObject {
+    enum Action {
+        case presentation
+        case dismissal
+    }
+    
+    let action: Action
+    
+    init(action: Action) {
+        self.action = action
+        super.init()
+    }
+}
+
+extension SidePresentationAnimator: UIViewControllerAnimatedTransitioning {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.3
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let isPresentation = action == .presentation
+        let key = isPresentation ? UITransitionContextViewControllerKey.to
+            : UITransitionContextViewControllerKey.from
+        
+        let controller = transitionContext.viewController(forKey: key)!
+
+        if isPresentation {
+            transitionContext.containerView.addSubview(controller.view)
+        }
+        
+        let presentedFrame = transitionContext.finalFrame(for: controller)
+        var dismissedFrame = presentedFrame
+        dismissedFrame.origin.x = -presentedFrame.width
+        
+        let initialFrame = isPresentation ? dismissedFrame : presentedFrame
+        let finalFrame = isPresentation ? presentedFrame : dismissedFrame
+        
+        let animationDuration = transitionDuration(using: transitionContext)
+        controller.view.frame = initialFrame
+        UIView.animate(withDuration: animationDuration, animations: {
+            controller.view.frame = finalFrame
+        }) { finished in
+            transitionContext.completeTransition(finished)
+        }
     }
 }
