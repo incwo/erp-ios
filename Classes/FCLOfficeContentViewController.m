@@ -74,10 +74,6 @@
 -(void) showSidePanel:(id)sender {
     [self.delegate officeContentViewControllerPresentSidePanel:self];
 }
-                                             
-- (IBAction)signOut:(id)sender {
-    [FCLSession removeSavedSession]; // Emits a FCLSessionDidSignOutNotification
-}
 
 - (IBAction)reloadPage:(id)sender
 {
