@@ -6,6 +6,7 @@
 #import "OANetworkActivityIndicator.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIViewController+Alert.h"
+#import "MBProgressHUD.h"
 
 @interface FCLOfficeContentViewController () <UIWebViewDelegate>
 
@@ -151,9 +152,13 @@
     
     if (_loading) {
         [OANetworkActivityIndicator push];
+        [MBProgressHUD showHUDAddedTo:self.webView animated:YES];
     } else {
         [OANetworkActivityIndicator pop];
+        [MBProgressHUD hideHUDForView:self.webView animated:YES];
     }
+    
+    [self updateControls];
 }
 
 #pragma mark - UIWebViewDelegate
@@ -168,13 +173,11 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     self.loading = YES;
-    [self updateControls];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     self.loading = NO;
-    [self updateControls];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
