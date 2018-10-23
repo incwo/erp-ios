@@ -24,6 +24,11 @@ class SidePanelViewController: UIViewController {
             businessFilesTableViewController?.onSelection = onBusinessFileSelection
         }
     }
+    public var onPullToRefresh: ( ()->() )? {
+        didSet {
+            businessFilesTableViewController?.onPullToRefresh = onPullToRefresh
+        }
+    }
 
     private var businessFilesTableViewController: BusinessFilesTableViewController?
 
@@ -38,6 +43,7 @@ class SidePanelViewController: UIViewController {
             self.businessFilesTableViewController = segue.destination as? BusinessFilesTableViewController
             setBusinessFilesTableViewControllerViewModel()
             businessFilesTableViewController!.onSelection = onBusinessFileSelection
+            businessFilesTableViewController!.onPullToRefresh = onPullToRefresh
         default:
             break
         }

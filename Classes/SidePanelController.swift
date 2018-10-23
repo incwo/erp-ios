@@ -54,6 +54,9 @@ class SidePanelController: NSObject {
             self?.selectedBusinessFile = businessFile
             self?.dismiss()
         }
+        sideViewController.onPullToRefresh = { [weak self] in
+            self?.loadBusinessFiles(in: sideViewController)
+        }
         
         if lastFetchDate == nil || (Date().timeIntervalSince(lastFetchDate!) > 60*5) {
             loadBusinessFiles(in: sideViewController)
@@ -103,6 +106,4 @@ class SidePanelController: NSObject {
     func dismiss() {
         navigationController?.dismiss(animated: true, completion: nil)
     }
-    
-    // TODO: pull to refresh
 }

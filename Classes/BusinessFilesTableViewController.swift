@@ -15,6 +15,7 @@ class BusinessFilesTableViewController: UITableViewController {
     
     public var viewModel: ViewModel? {
         didSet {
+            refreshControl?.endRefreshing()
             tableView.reloadData()
         }
     }
@@ -22,8 +23,17 @@ class BusinessFilesTableViewController: UITableViewController {
     /// Called when a Business File is selected in the table
     public var onSelection: ((FCLFormsBusinessFile) -> ())?
     
+    public var onPullToRefresh: ( ()->() )?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+    
+    @objc func refresh() {
+        onPullToRefresh?()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
