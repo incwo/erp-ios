@@ -1,6 +1,6 @@
 #import "FCLOfficeContentViewController.h"
 #import "facilescan-Swift.h"
-#import "FCLLoginController.h"
+#import "FCLLoginViewController.h"
 #import "FCLSession.h"
 #import "PFWebViewController.h"
 #import "OANetworkActivityIndicator.h"

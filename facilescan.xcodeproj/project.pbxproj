@@ -65,7 +65,7 @@
 		20BAEC81119078610081484B /* UIImage+OAImageResize.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BAEC80119078610081484B /* UIImage+OAImageResize.m */; };
 		20E88FB011919B8B00C8D766 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20E88FAF11919B8B00C8D766 /* Entitlements.plist */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		28C286E10D94DF7D0034E888 /* FCLLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* FCLLoginController.m */; };
+		28C286E10D94DF7D0034E888 /* FCLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* FCLLoginViewController.m */; };
 		31A62EE11A497C1C005C33BF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31A62EE01A497C1C005C33BF /* Crashlytics.framework */; };
 		3ACF002418D8A7C900BEEA95 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ACF002318D8A7C900BEEA95 /* Main-iPad.storyboard */; };
 		3AD230E3184DE43E0078C4C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD230E2184DE43E0078C4C2 /* Images.xcassets */; };
@@ -198,8 +198,8 @@
 		20E88FAF11919B8B00C8D766 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefix.pch; sourceTree = "<group>"; };
-		28C286DF0D94DF7D0034E888 /* FCLLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLLoginController.h; sourceTree = "<group>"; };
-		28C286E00D94DF7D0034E888 /* FCLLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLLoginController.m; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* FCLLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLLoginViewController.h; sourceTree = "<group>"; };
+		28C286E00D94DF7D0034E888 /* FCLLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLLoginViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		31A62EE01A497C1C005C33BF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		3ACF002318D8A7C900BEEA95 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
@@ -458,8 +458,8 @@
 		DF243649216B903A00A41B31 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				28C286DF0D94DF7D0034E888 /* FCLLoginController.h */,
-				28C286E00D94DF7D0034E888 /* FCLLoginController.m */,
+				28C286DF0D94DF7D0034E888 /* FCLLoginViewController.h */,
+				28C286E00D94DF7D0034E888 /* FCLLoginViewController.m */,
 				DF243647216B853300A41B31 /* Login.storyboard */,
 				DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */,
 			);
@@ -695,7 +695,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				DF1C7955217DB9A5005419EA /* SidePanelController.swift in Sources */,
 				1D3623260D0F684500981E51 /* FCLAppDelegate.m in Sources */,
-				28C286E10D94DF7D0034E888 /* FCLLoginController.m in Sources */,
+				28C286E10D94DF7D0034E888 /* FCLLoginViewController.m in Sources */,
 				56E1F4AB18A23CE100DC6404 /* PFWebViewController.m in Sources */,
 				2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */,
 				DF1C7951217DB84C005419EA /* SidePanelViewController.swift in Sources */,

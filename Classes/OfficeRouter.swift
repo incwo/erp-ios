@@ -15,8 +15,8 @@ protocol OfficeRouterDelegate: class {
 class OfficeRouter: NSObject {
     public weak var delegate: OfficeRouterDelegate?
     @objc public let navigationController: UINavigationController
-    private lazy var loginViewController: FCLLoginController = {
-        let loginController = FCLLoginController(delegate: self, email: FCLSession.saved()?.username)
+    private lazy var loginViewController: FCLLoginViewController = {
+        let loginController = FCLLoginViewController(delegate: self, email: FCLSession.saved()?.username)
         loginController.title = "Bureau"
         return loginController
     }()
@@ -71,12 +71,12 @@ class OfficeRouter: NSObject {
     }
 }
 
-extension OfficeRouter: FCLLoginControllerDelegate {
-    func loginControllerWantsAccountCreation(_ controller: FCLLoginController) {
+extension OfficeRouter: FCLLoginViewControllerDelegate {
+    func loginViewControllerWantsAccountCreation(_ controller: FCLLoginViewController) {
         pushAccountCreationViewController()
     }
     
-    func loginControllerDidFail(_ controller: FCLLoginController, error: Error) {
+    func loginViewControllerDidFail(_ controller: FCLLoginViewController, error: Error) {
         navigationController.topViewController?.fcl_presentAlert(forError: error)
     }
 }

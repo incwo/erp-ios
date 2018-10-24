@@ -9,7 +9,7 @@
 #import "FCLBusinessFilesFetch.h"
 #import "FCLForm.h"
 #import "FCLFormListViewController.h"
-#import "FCLLoginController.h"
+#import "FCLLoginViewController.h"
 #import "FCLOfficeContentViewController.h"
 #import "FCLSelectedBusinessFile.h"
 #import "FCLSession.h"

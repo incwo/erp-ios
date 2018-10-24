@@ -1,11 +1,11 @@
-#import "FCLLoginController.h"
+#import "FCLLoginViewController.h"
 #import "FCLSession.h"
 #import "PHTTPConnection.h"
 #import "MBProgressHUD.h"
 
-@interface FCLLoginController () <UITextFieldDelegate>
+@interface FCLLoginViewController () <UITextFieldDelegate>
 
-@property (weak) id <FCLLoginControllerDelegate> delegate;
+@property (weak) id <FCLLoginViewControllerDelegate> delegate;
 @property PHTTPConnection *connection;
 @property MBProgressHUD *loadingHUD;
 
@@ -15,9 +15,9 @@
 
 @end
 
-@implementation FCLLoginController
+@implementation FCLLoginViewController
 
--(nonnull instancetype) initWithDelegate:(id <FCLLoginControllerDelegate>)delegate email:(nullable NSString *)email {
+-(nonnull instancetype) initWithDelegate:(id <FCLLoginViewControllerDelegate>)delegate email:(nullable NSString *)email {
     self = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateInitialViewController];
     NSAssert(self, @"Could not load the Login view controller from its Storyboard.");
     if (self) {
@@ -103,7 +103,7 @@
     self.loadingHUD.mode = MBProgressHUDModeIndeterminate;
     self.loadingHUD.labelText = NSLocalizedString(@"Connexion...", @"");
     
-    __weak FCLLoginController *weakSelf = self;
+    __weak FCLLoginViewController *weakSelf = self;
     [self.connection startWithCompletionBlock:^{
         [weakSelf.loadingHUD hide:YES];
         weakSelf.loadingHUD = nil;
@@ -116,14 +116,14 @@
             weakSelf.passwordTextField.text = nil;
         } else {
             NSLog(@"COULD NOT LOG IN: %@", weakSelf.connection.error);
-            [weakSelf.delegate loginControllerDidFail:self error:weakSelf.connection.error];
+            [weakSelf.delegate loginViewControllerDidFail:self error:weakSelf.connection.error];
         }
         weakSelf.connection = nil;
     }];
 }
 
 - (IBAction)createAccount:(id)sender {
-    [self.delegate loginControllerWantsAccountCreation:self];
+    [self.delegate loginViewControllerWantsAccountCreation:self];
 }
 
 -(void) updateLogInButtonEnabled {
