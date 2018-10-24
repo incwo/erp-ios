@@ -9,37 +9,20 @@ import Foundation
 import UIKit
 
 class SidePanelController: NSObject {
+    let businessFilesList: BusinessFilesList
     var navigationController: UINavigationController?
-    var businessFilesFetch: FCLBusinessFilesFetch?
-    var lastFetchDate: Date?
-    var businessFiles: [FCLFormsBusinessFile]?
-    var selectedBusinessFile: FCLFormsBusinessFile? {
-        didSet {
-            NotificationCenter.default.post(name: Notification.Name.FCLSelectedBusinessFile, object: nil, userInfo: [FCLSelectedBusinessFileKey: selectedBusinessFile as Any])
-        }
-    }
-    
     lazy var sideTransitioningDelegate = SideTransitioningDelegate()
     var sidePanelViewController: SidePanelViewController?
     
-    override init() {
+    init(businessFilesList: BusinessFilesList) {
+        self.businessFilesList = businessFilesList
         super.init()
-    
-        if let session = FCLSession.saved() {
-            self.businessFilesFetch = FCLBusinessFilesFetch(session: session)
-        }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignIn, object: nil, queue: nil) { [weak self] (_) in
-            guard let session = FCLSession.saved() else {
-                fatalError()
-            }
-            
-            self?.businessFilesFetch = FCLBusinessFilesFetch(session: session)
             self?.updateLoggedInViewModel()
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignOut, object: nil, queue: nil) { [weak self] (notification) in
-            self?.businessFilesFetch = nil
             self?.updateLoggedInViewModel()
         }
     }
@@ -55,12 +38,13 @@ class SidePanelController: NSObject {
             self?.dismiss()
         }
         sideViewController.onBusinessFileSelection = { [weak self] (businessFile) in
-            self?.selectedBusinessFile = businessFile
+            self?.businessFilesList.selectBusinessFile(businessFile)
+            self?.updateBusinessFilesTableView()
             self?.dismiss()
         }
-        sideViewController.onPullToRefresh = { [weak self] in
-            self?.loadBusinessFiles()
-        }
+//        sideViewController.onPullToRefresh = { [weak self] in
+//            self?.updateBusinessFilesTableView()
+//        }
         sideViewController.onLogInButton = { [weak self] in
             // Afficher le panneau de login
 //            self?.updateLoggedInViewModel(in: sideViewController)
@@ -70,50 +54,25 @@ class SidePanelController: NSObject {
         }
         
         updateLoggedInViewModel()
-        
-        if lastFetchDate == nil || (Date().timeIntervalSince(lastFetchDate!) > 60*5) {
-            loadBusinessFiles()
-        } else if let businessFiles = businessFiles,
-            let selectedBusinessFile = selectedBusinessFile {
-            sideViewController.viewModel = SidePanelViewController.ViewModel(businessFiles: businessFiles, selectedBusinessFile: selectedBusinessFile)
-        } else {
-            sideViewController.viewModel = nil
-        }
+        updateBusinessFilesTableView()
+
         
         navigationController!.modalPresentationStyle = .custom
         navigationController!.transitioningDelegate = sideTransitioningDelegate
         viewController.present(navigationController!, animated: true, completion: nil)
     }
     
-    private func loadBusinessFiles() {
-        guard let businessFilesFetch = businessFilesFetch else {
-            return
-        }
-        
-        businessFilesFetch.fetchAllSuccess({ [weak self] (businessFiles) in
-            self?.lastFetchDate = Date()
-            self?.businessFiles = businessFiles
-            
-            guard businessFiles.count > 0 else {
+    private func updateBusinessFilesTableView() {
+        businessFilesList.getBusinessFiles { [weak self] (result) in
+            switch result {
+            case .list(let businessFiles, let selection):
+                self?.sidePanelViewController?.viewModel = SidePanelViewController.ViewModel(businessFiles: businessFiles, selectedBusinessFile: selection)
+            case .loggedOut:
                 self?.sidePanelViewController?.viewModel = nil
-                return
+            case .failure(let error):
+                self?.sidePanelViewController?.fcl_presentAlert(forError: error)
             }
-            
-            // If the selected business file is not part of the new list, select the first one from the new list
-            let selected: FCLFormsBusinessFile
-            if let selectedBusinessFile = self?.selectedBusinessFile {
-                if businessFiles.contains(selectedBusinessFile) {
-                    selected = selectedBusinessFile
-                } else {
-                    selected = businessFiles[0]
-                }
-            } else {
-                selected = businessFiles[0]
-            }
-            self?.sidePanelViewController?.viewModel = SidePanelViewController.ViewModel(businessFiles: businessFiles, selectedBusinessFile: selected)
-        }, failure: { [weak self] (error) in
-            self?.sidePanelViewController?.fcl_presentAlert(forError: error)
-        })
+        }
     }
     
     func dismiss() {

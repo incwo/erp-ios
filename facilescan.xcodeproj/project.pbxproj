@@ -84,6 +84,7 @@
 		DF1C7955217DB9A5005419EA /* SidePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C7954217DB9A5005419EA /* SidePanelController.swift */; };
 		DF1C795F217E0503005419EA /* FCLSelectedBusinessFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1C795E217E0503005419EA /* FCLSelectedBusinessFile.m */; };
 		DF1C7964217F1D0B005419EA /* SideTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C7963217F1D0B005419EA /* SideTransition.swift */; };
+		DF1C79662180B75E005419EA /* BusinessFilesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C79652180B75E005419EA /* BusinessFilesList.swift */; };
 		DF243648216B853300A41B31 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF243647216B853300A41B31 /* Login.storyboard */; };
 		DF32F19D216C965C003297D8 /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */; };
 		DF4A0C6B21709F84004F72F0 /* FCLBusinessFilesFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4A0C6A21709F84004F72F0 /* FCLBusinessFilesFetch.m */; };
@@ -224,6 +225,7 @@
 		DF1C795D217E0503005419EA /* FCLSelectedBusinessFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLSelectedBusinessFile.h; sourceTree = "<group>"; };
 		DF1C795E217E0503005419EA /* FCLSelectedBusinessFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLSelectedBusinessFile.m; sourceTree = "<group>"; };
 		DF1C7963217F1D0B005419EA /* SideTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideTransition.swift; sourceTree = "<group>"; };
+		DF1C79652180B75E005419EA /* BusinessFilesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFilesList.swift; sourceTree = "<group>"; };
 		DF243647216B853300A41B31 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		DF32F19A216C965C003297D8 /* facile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "facile-Bridging-Header.h"; path = "Classes/facile-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				DF1C795D217E0503005419EA /* FCLSelectedBusinessFile.h */,
+				DF1C79652180B75E005419EA /* BusinessFilesList.swift */,
 				DF1C795E217E0503005419EA /* FCLSelectedBusinessFile.m */,
 				DF1C7954217DB9A5005419EA /* SidePanelController.swift */,
 				DF1C7948217DB84B005419EA /* SidePanel.storyboard */,
@@ -699,6 +702,7 @@
 				56E1F4AB18A23CE100DC6404 /* PFWebViewController.m in Sources */,
 				2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */,
 				DF1C7951217DB84C005419EA /* SidePanelViewController.swift in Sources */,
+				DF1C79662180B75E005419EA /* BusinessFilesList.swift in Sources */,
 				56E1F4AE18A23DA700DC6404 /* PXWWWFormSerialization.m in Sources */,
 				DF32F19D216C965C003297D8 /* AccountCreationViewController.swift in Sources */,
 				2008E824118A25C100607BAC /* OAHTTPQueue.m in Sources */,
