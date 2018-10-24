@@ -80,7 +80,7 @@ class SidePresentationController: UIPresentationController {
     }
     
     override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
-        return CGSize(width: parentSize.width*(3.0/4.0), height: parentSize.height)
+        return CGSize(width: parentSize.width * 0.75, height: parentSize.height)
     }
     
     override var frameOfPresentedViewInContainerView: CGRect {
