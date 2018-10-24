@@ -39,9 +39,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="I15-Rx-Mww"/>
                                 </constraints>
-                                <connections>
-                                    <segue destination="C7V-Lj-nJ0" kind="embed" id="EVL-5T-Fpc"/>
-                                </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9U-bF-0n6">
                                 <rect key="frame" x="0.0" y="64" width="320" height="432"/>
@@ -70,6 +67,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="loggedContainerView" destination="qo6-mI-n2c" id="Ui2-ip-daK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceJ-jc-jQC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,25 +78,13 @@
         <!--loggedIn-->
         <scene sceneID="FDN-aW-HnD">
             <objects>
-                <viewController title="loggedIn" id="aY0-cg-jCA" customClass="LoggedInViewController" customModule="facilescan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loggedIn" title="loggedIn" id="aY0-cg-jCA" customClass="LoggedInViewController" customModule="facilescan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CUC-Fb-MaF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compte" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXJ-XG-cgq">
-                                <rect key="frame" x="8" y="8" width="55" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.57999999999999996" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="rpradenc@incwo.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDQ-9X-Q2O">
-                                <rect key="frame" x="71" y="8" width="241" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vo9-PQ-dbP">
-                                <rect key="frame" x="71" y="34" width="109" height="30"/>
+                                <rect key="frame" x="8" y="34" width="109" height="30"/>
                                 <state key="normal" title="Se déconnecter">
                                     <color key="titleColor" red="0.8622185202" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -104,16 +92,20 @@
                                     <action selector="logOut:" destination="aY0-cg-jCA" eventType="touchUpInside" id="OBd-wH-8ZZ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="rpradenc@incwo.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDQ-9X-Q2O">
+                                <rect key="frame" x="8" y="8" width="304" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.1137254902" green="0.19215686269999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Y4o-eO-z0t" firstAttribute="bottom" secondItem="vo9-PQ-dbP" secondAttribute="bottom" constant="8" id="4gP-oc-mDn"/>
-                            <constraint firstItem="hXJ-XG-cgq" firstAttribute="firstBaseline" secondItem="KDQ-9X-Q2O" secondAttribute="firstBaseline" id="53B-nl-atf"/>
-                            <constraint firstItem="hXJ-XG-cgq" firstAttribute="leading" secondItem="Y4o-eO-z0t" secondAttribute="leading" constant="8" id="BRc-Qc-Xr2"/>
-                            <constraint firstItem="vo9-PQ-dbP" firstAttribute="leading" secondItem="KDQ-9X-Q2O" secondAttribute="leading" id="Ywh-uc-u9h"/>
-                            <constraint firstItem="hXJ-XG-cgq" firstAttribute="top" secondItem="Y4o-eO-z0t" secondAttribute="top" constant="8" id="d3a-fu-HcX"/>
-                            <constraint firstItem="Y4o-eO-z0t" firstAttribute="trailing" secondItem="KDQ-9X-Q2O" secondAttribute="trailing" constant="8" id="fmn-JW-vIt"/>
-                            <constraint firstItem="KDQ-9X-Q2O" firstAttribute="leading" secondItem="hXJ-XG-cgq" secondAttribute="trailing" constant="8" id="oNM-qM-ARd"/>
+                            <constraint firstItem="KDQ-9X-Q2O" firstAttribute="leading" secondItem="Y4o-eO-z0t" secondAttribute="leading" constant="8" id="9rg-62-scz"/>
+                            <constraint firstItem="Y4o-eO-z0t" firstAttribute="bottom" secondItem="vo9-PQ-dbP" secondAttribute="bottom" constant="8" id="MZ1-cF-1Ym"/>
+                            <constraint firstItem="Y4o-eO-z0t" firstAttribute="trailing" secondItem="KDQ-9X-Q2O" secondAttribute="trailing" constant="8" id="NXM-PV-uKo"/>
+                            <constraint firstItem="vo9-PQ-dbP" firstAttribute="leading" secondItem="Y4o-eO-z0t" secondAttribute="leading" constant="8" id="n1K-mE-VAj"/>
+                            <constraint firstItem="KDQ-9X-Q2O" firstAttribute="top" secondItem="Y4o-eO-z0t" secondAttribute="top" constant="8" id="uyb-P6-dnW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Y4o-eO-z0t"/>
                     </view>
@@ -122,7 +114,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="72"/>
                     <connections>
-                        <outlet property="logOutButton" destination="vo9-PQ-dbP" id="j6I-dD-ep1"/>
                         <outlet property="usernameLabel" destination="KDQ-9X-Q2O" id="odI-tt-Dl5"/>
                     </connections>
                 </viewController>
@@ -170,25 +161,19 @@
         <!--loggedOut-->
         <scene sceneID="u7P-Ks-GRI">
             <objects>
-                <viewController title="loggedOut" id="C7V-Lj-nJ0" customClass="LoggedOutViewController" customModule="facilescan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loggedOut" title="loggedOut" id="C7V-Lj-nJ0" customClass="LoggedOutViewController" customModule="facilescan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zw9-hU-CtS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Compte" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYn-KV-Ah0">
-                                <rect key="frame" x="8" y="8" width="55" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.57999999999999996" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Déconnecté" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8nn-bO-FPt">
-                                <rect key="frame" x="71" y="8" width="83" height="18"/>
+                                <rect key="frame" x="8" y="8" width="83" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="br5-OS-Dqo">
-                                <rect key="frame" x="71" y="34" width="147" height="30"/>
+                                <rect key="frame" x="8" y="34" width="147" height="30"/>
                                 <state key="normal" title="Se connecter à incwo"/>
                                 <connections>
                                     <action selector="logIn:" destination="C7V-Lj-nJ0" eventType="touchUpInside" id="Xun-96-Tal"/>
@@ -197,12 +182,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1137254902" green="0.19215686269999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="KYn-KV-Ah0" firstAttribute="leading" secondItem="5yN-x0-y8R" secondAttribute="leading" constant="8" id="7fZ-v3-70A"/>
-                            <constraint firstItem="KYn-KV-Ah0" firstAttribute="top" secondItem="5yN-x0-y8R" secondAttribute="top" constant="8" id="7wn-pc-Jbx"/>
-                            <constraint firstItem="8nn-bO-FPt" firstAttribute="firstBaseline" secondItem="KYn-KV-Ah0" secondAttribute="firstBaseline" id="Lcc-4m-0PL"/>
-                            <constraint firstItem="br5-OS-Dqo" firstAttribute="leading" secondItem="8nn-bO-FPt" secondAttribute="leading" id="WBH-De-uHD"/>
-                            <constraint firstItem="5yN-x0-y8R" firstAttribute="bottom" secondItem="br5-OS-Dqo" secondAttribute="bottom" constant="8" id="npT-Q8-cCy"/>
-                            <constraint firstItem="8nn-bO-FPt" firstAttribute="leading" secondItem="KYn-KV-Ah0" secondAttribute="trailing" constant="8" id="x2R-se-tTg"/>
+                            <constraint firstItem="5yN-x0-y8R" firstAttribute="bottom" secondItem="br5-OS-Dqo" secondAttribute="bottom" constant="8" id="5gh-lS-4pS"/>
+                            <constraint firstItem="8nn-bO-FPt" firstAttribute="top" secondItem="5yN-x0-y8R" secondAttribute="top" constant="8" id="8UG-jb-pnJ"/>
+                            <constraint firstItem="8nn-bO-FPt" firstAttribute="leading" secondItem="5yN-x0-y8R" secondAttribute="leading" constant="8" id="Rhx-Z6-agl"/>
+                            <constraint firstItem="br5-OS-Dqo" firstAttribute="leading" secondItem="5yN-x0-y8R" secondAttribute="leading" constant="8" id="V3N-yM-UM4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5yN-x0-y8R"/>
                     </view>

@@ -10,7 +10,9 @@ import UIKit
 class LoggedInViewController: UIViewController {
     public var username: String? {
         didSet {
-            usernameLabel.text = username
+            if usernameLabel != nil {
+                usernameLabel.text = username
+            }
         }
     }
     public var onLogOutButton: ( ()->() )?

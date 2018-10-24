@@ -20,6 +20,7 @@ class SidePanelController: NSObject {
     }
     
     lazy var sideTransitioningDelegate = SideTransitioningDelegate()
+    var sidePanelViewController: SidePanelViewController?
     
     override init() {
         super.init()
@@ -34,10 +35,12 @@ class SidePanelController: NSObject {
             }
             
             self?.businessFilesFetch = FCLBusinessFilesFetch(session: session)
+            self?.updateLoggedInViewModel()
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignOut, object: nil, queue: nil) { [weak self] (notification) in
             self?.businessFilesFetch = nil
+            self?.updateLoggedInViewModel()
         }
     }
     
@@ -46,6 +49,7 @@ class SidePanelController: NSObject {
         guard let sideViewController = navigationController?.viewControllers.first as? SidePanelViewController else {
             fatalError("SidePanelVC should be on the navigation stack at that point.")
         }
+        self.sidePanelViewController = sideViewController
         
         sideViewController.onCloseButton = { [weak self] in
             self?.dismiss()
@@ -55,11 +59,20 @@ class SidePanelController: NSObject {
             self?.dismiss()
         }
         sideViewController.onPullToRefresh = { [weak self] in
-            self?.loadBusinessFiles(in: sideViewController)
+            self?.loadBusinessFiles()
+        }
+        sideViewController.onLogInButton = { [weak self] in
+            // Afficher le panneau de login
+//            self?.updateLoggedInViewModel(in: sideViewController)
+        }
+        sideViewController.onLogOutButton = {
+            FCLSession.removeSavedSession()
         }
         
+        updateLoggedInViewModel()
+        
         if lastFetchDate == nil || (Date().timeIntervalSince(lastFetchDate!) > 60*5) {
-            loadBusinessFiles(in: sideViewController)
+            loadBusinessFiles()
         } else if let businessFiles = businessFiles,
             let selectedBusinessFile = selectedBusinessFile {
             sideViewController.viewModel = SidePanelViewController.ViewModel(businessFiles: businessFiles, selectedBusinessFile: selectedBusinessFile)
@@ -72,7 +85,7 @@ class SidePanelController: NSObject {
         viewController.present(navigationController!, animated: true, completion: nil)
     }
     
-    private func loadBusinessFiles(in sideViewController: SidePanelViewController) {
+    private func loadBusinessFiles() {
         guard let businessFilesFetch = businessFilesFetch else {
             return
         }
@@ -82,7 +95,7 @@ class SidePanelController: NSObject {
             self?.businessFiles = businessFiles
             
             guard businessFiles.count > 0 else {
-                sideViewController.viewModel = nil
+                self?.sidePanelViewController?.viewModel = nil
                 return
             }
             
@@ -97,13 +110,22 @@ class SidePanelController: NSObject {
             } else {
                 selected = businessFiles[0]
             }
-            sideViewController.viewModel = SidePanelViewController.ViewModel(businessFiles: businessFiles, selectedBusinessFile: selected)
-        }, failure: { (error) in
-            sideViewController.fcl_presentAlert(forError: error)
+            self?.sidePanelViewController?.viewModel = SidePanelViewController.ViewModel(businessFiles: businessFiles, selectedBusinessFile: selected)
+        }, failure: { [weak self] (error) in
+            self?.sidePanelViewController?.fcl_presentAlert(forError: error)
         })
     }
     
     func dismiss() {
         navigationController?.dismiss(animated: true, completion: nil)
+        sidePanelViewController = nil
+    }
+    
+    private func updateLoggedInViewModel() {
+        if let session = FCLSession.saved() {
+            sidePanelViewController?.loggedViewModel = SidePanelViewController.LoggedViewModel.loggedIn(username: session.username)
+        } else {
+            sidePanelViewController?.loggedViewModel = SidePanelViewController.LoggedViewModel.loggedOut
+        }
     }
 }

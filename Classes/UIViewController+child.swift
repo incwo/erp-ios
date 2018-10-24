@@ -26,6 +26,17 @@ extension UIViewController {
         child.view.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
     }
     
+    public func add(_ child: UIViewController, into containerView: UIView) {
+        child.view.translatesAutoresizingMaskIntoConstraints = false
+        addChild(child)
+        containerView.addSubview(child.view)
+        child.didMove(toParent: self)
+        
+        let viewsDic = ["child": child.view] as [String: Any]
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[child]|", options: [], metrics: nil, views: viewsDic))
+        containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[child]|", options: [], metrics: nil, views: viewsDic))
+    }
+    
     public func remove() {
         if parent == nil {
             return
