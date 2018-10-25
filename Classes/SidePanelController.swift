@@ -42,9 +42,9 @@ class SidePanelController: NSObject {
             self?.updateBusinessFilesTableView()
             self?.dismiss()
         }
-//        sideViewController.onPullToRefresh = { [weak self] in
-//            self?.updateBusinessFilesTableView()
-//        }
+        sideViewController.onPullToRefresh = { [weak self] in
+            self?.updateBusinessFilesTableView(refresh: true)
+        }
         sideViewController.onLogInButton = { [weak self] in
             // Afficher le panneau de login
 //            self?.updateLoggedInViewModel(in: sideViewController)
@@ -62,7 +62,11 @@ class SidePanelController: NSObject {
         viewController.present(navigationController!, animated: true, completion: nil)
     }
     
-    private func updateBusinessFilesTableView() {
+    private func updateBusinessFilesTableView(refresh: Bool = false) {
+        if refresh {
+            businessFilesList.invalidateCachedList()
+        }
+        
         businessFilesList.getBusinessFiles { [weak self] (result) in
             switch result {
             case .list(let businessFiles, let selection):
