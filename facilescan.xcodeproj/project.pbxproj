@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623260D0F684500981E51 /* FCLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* FCLAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -85,6 +84,7 @@
 		DF1C795F217E0503005419EA /* FCLSelectedBusinessFile.m in Sources */ = {isa = PBXBuildFile; fileRef = DF1C795E217E0503005419EA /* FCLSelectedBusinessFile.m */; };
 		DF1C7964217F1D0B005419EA /* SideTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C7963217F1D0B005419EA /* SideTransition.swift */; };
 		DF1C79662180B75E005419EA /* BusinessFilesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C79652180B75E005419EA /* BusinessFilesList.swift */; };
+		DF1C79682181C466005419EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C79672181C466005419EA /* AppDelegate.swift */; };
 		DF243648216B853300A41B31 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF243647216B853300A41B31 /* Login.storyboard */; };
 		DF32F19D216C965C003297D8 /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */; };
 		DF4A0C6B21709F84004F72F0 /* FCLBusinessFilesFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4A0C6A21709F84004F72F0 /* FCLBusinessFilesFetch.m */; };
@@ -98,8 +98,6 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* FCLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* FCLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* facilescan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = facilescan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2008E81E118A25C100607BAC /* OAHTTPDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHTTPDownload.h; sourceTree = "<group>"; };
@@ -226,6 +224,7 @@
 		DF1C795E217E0503005419EA /* FCLSelectedBusinessFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLSelectedBusinessFile.m; sourceTree = "<group>"; };
 		DF1C7963217F1D0B005419EA /* SideTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideTransition.swift; sourceTree = "<group>"; };
 		DF1C79652180B75E005419EA /* BusinessFilesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFilesList.swift; sourceTree = "<group>"; };
+		DF1C79672181C466005419EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DF243647216B853300A41B31 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		DF32F19A216C965C003297D8 /* facile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "facile-Bridging-Header.h"; path = "Classes/facile-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
@@ -474,8 +473,7 @@
 			children = (
 				56E1F4A718A23C9100DC6404 /* Main.storyboard */,
 				3ACF002318D8A7C900BEEA95 /* Main-iPad.storyboard */,
-				1D3623240D0F684500981E51 /* FCLAppDelegate.h */,
-				1D3623250D0F684500981E51 /* FCLAppDelegate.m */,
+				DF1C79672181C466005419EA /* AppDelegate.swift */,
 				DF6CA4992175DB2D001E8207 /* AppRouter.swift */,
 				E2BDD32E2069180700BA988F /* FCLAppearance.h */,
 				E2BDD32F2069180700BA988F /* FCLAppearance.m */,
@@ -697,7 +695,6 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				DF1C7955217DB9A5005419EA /* SidePanelController.swift in Sources */,
-				1D3623260D0F684500981E51 /* FCLAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* FCLLoginViewController.m in Sources */,
 				56E1F4AB18A23CE100DC6404 /* PFWebViewController.m in Sources */,
 				2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */,
@@ -707,6 +704,7 @@
 				DF32F19D216C965C003297D8 /* AccountCreationViewController.swift in Sources */,
 				2008E824118A25C100607BAC /* OAHTTPQueue.m in Sources */,
 				2008E830118A25F400607BAC /* OANetworkActivityIndicator.m in Sources */,
+				DF1C79682181C466005419EA /* AppDelegate.swift in Sources */,
 				20A65377118AD41A00C94599 /* FCLFormsBusinessFile.m in Sources */,
 				20A6537A118AD4B600C94599 /* FCLForm.m in Sources */,
 				20A6537D118AD51E00C94599 /* FCLBusinessFilesParser.m in Sources */,

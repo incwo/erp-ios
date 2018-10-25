@@ -30,7 +30,7 @@ typedef NS_ENUM(NSUInteger, FCLVideoSearchMode) {
 
 @implementation FCLVideosViewController
 
-+ (id) catalogController
++ (instancetype) catalogController
 {
     FCLVideosViewController* videosViewController = [[self alloc] initWithNibName:nil bundle:nil];
     videosViewController.title = NSLocalizedString(@"Vidéos", nil);
@@ -38,7 +38,7 @@ typedef NS_ENUM(NSUInteger, FCLVideoSearchMode) {
     return videosViewController;
 }
 
-+ (id) videosControllerWithVideoItems:(NSArray*)videoItems title:(NSString*)title
++ (instancetype) videosControllerWithVideoItems:(NSArray*)videoItems title:(NSString*)title
 {
     FCLVideosViewController* vc = [[self alloc] initWithNibName:nil bundle:nil];
     vc.title = title;
