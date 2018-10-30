@@ -443,8 +443,8 @@
 		DF1C7947217DB835005419EA /* Side Panel */ = {
 			isa = PBXGroup;
 			children = (
-				DF1C795D217E0503005419EA /* FCLSelectedBusinessFile.h */,
 				DF1C79652180B75E005419EA /* BusinessFilesList.swift */,
+				DF1C795D217E0503005419EA /* FCLSelectedBusinessFile.h */,
 				DF1C795E217E0503005419EA /* FCLSelectedBusinessFile.m */,
 				DF1C7954217DB9A5005419EA /* SidePanelController.swift */,
 				DF1C7948217DB84B005419EA /* SidePanel.storyboard */,

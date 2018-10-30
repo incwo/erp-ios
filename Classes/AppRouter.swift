@@ -14,15 +14,12 @@ class AppRouter: NSObject {
     let scanRouter: ScanRouter
     let sidePanelController: SidePanelController
     
-    let businessFilesList: BusinessFilesList
-    
     @objc
-    init(rootViewController: UIViewController, officeRouter: OfficeRouter, scanRouter: ScanRouter) {
+    init(rootViewController: UIViewController, sidePanelController: SidePanelController, officeRouter: OfficeRouter, scanRouter: ScanRouter) {
         self.rootViewController = rootViewController
         self.officeRouter = officeRouter
         self.scanRouter = scanRouter
-        self.businessFilesList = BusinessFilesList()
-        self.sidePanelController = SidePanelController(businessFilesList: businessFilesList)
+        self.sidePanelController = sidePanelController
         super.init()
         
         officeRouter.delegate = self;

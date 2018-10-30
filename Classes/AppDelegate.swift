@@ -16,6 +16,10 @@ let BaseUrl = "https://www.incwo.com"
 class AppDelegate: NSObject, UIApplicationDelegate {
     @IBOutlet var window: UIWindow?
     
+    let businessFilesList = BusinessFilesList()
+    
+    lazy var sidePanelController = SidePanelController(businessFilesList: businessFilesList)
+    
     lazy var officeRouter: OfficeRouter = {
         let officeRouter = OfficeRouter()
         officeRouter.navigationController.tabBarItem = UITabBarItem(title: "Bureau", image: UIImage(named: "FCLTabBarOffice"), selectedImage: UIImage(named: "FCLTabBarOfficeSelected"))
@@ -73,7 +77,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             Fabric.with([Crashlytics.self()])
         }
 
-        appRouter = AppRouter(rootViewController: self.tabBarController, officeRouter: self.officeRouter, scanRouter: self.scanRouter)
+        appRouter = AppRouter(rootViewController: self.tabBarController, sidePanelController: sidePanelController, officeRouter: officeRouter, scanRouter: scanRouter)
+        
+        // If there is a saved Session, this forces the initial loading.
+        // When loaded, the first BusinessFile will be selected and a notification sent.
+        businessFilesList.getBusinessFiles { (_) in }
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         window!.rootViewController = tabBarController
