@@ -16,7 +16,6 @@
                 <outlet property="reloadButton" destination="14" id="36"/>
                 <outlet property="stopButton" destination="34" id="37"/>
                 <outlet property="view" destination="1" id="3"/>
-                <outlet property="webView" destination="4" id="7"/>
                 <outlet property="webViewControls" destination="5" id="6"/>
             </connections>
         </placeholder>
@@ -24,22 +23,7 @@
         <view contentMode="scaleToFill" id="1">
             <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="8"/>
-                    </connections>
-                </webView>
-            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="K3y-Ne-bbI"/>
-                <constraint firstAttribute="bottom" secondItem="4" secondAttribute="bottom" id="Kvn-zl-COj"/>
-                <constraint firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" id="Wqc-eN-wki"/>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="aPf-px-t9X"/>
-            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="273.60000000000002" y="146.62668665667167"/>

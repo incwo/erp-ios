@@ -15,6 +15,5 @@
 @property (nonnull, nonatomic) FCLSession* session;
 
 -(void) loadBusinessFileWithId:(nonnull NSString *)businessFileId;
--(nullable NSURL *)currentURL;
 
 @end

@@ -10,7 +10,6 @@
 
 @interface FCLOfficeContentViewController () <UIWebViewDelegate>
 
-@property(nonatomic) IBOutlet UIWebView* webView;
 @property(nonatomic) IBOutlet UIView* webViewControls;
 
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
@@ -18,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *reloadButton;
 @property (strong, nonatomic) IBOutlet UIButton *stopButton;
 
+@property(strong, nonatomic) UIWebView *webView;
 @property (nonatomic) BOOL loading;
 
 @end
@@ -31,6 +31,7 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"] style:(UIBarButtonItemStylePlain) target:self action:@selector(showSidePanel:)];
     
+    [self addWebView];
     self.navigationItem.titleView = self.webViewControls;
     [self updateControls];
 }
@@ -45,8 +46,22 @@
     NSParameterAssert(self.session);
 }
 
--(NSURL *)currentURL {
-    return self.webView.request.URL;
+// MARK: WebView
+
+-(void) addWebView {
+    self.webView = [[UIWebView alloc] init];
+    self.webView.delegate = self;
+    
+    self.webView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.webView];
+    NSDictionary *viewsDic = @{ @"webView": self.webView };
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[webView]|" options:0 metrics:nil views:viewsDic]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[webView]|" options:0 metrics:nil views:viewsDic]];
+}
+
+-(void) removeWebView {
+    [self.webView removeFromSuperview];
+    self.webView = nil;
 }
 
 // MARK: Rotation
@@ -129,6 +144,12 @@
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setFCLSession:self.session];
+    
+    // The History of the web view must be cleared or the user can go to a different business file using the Back or Forward commands.
+    // Since Apple does not provide any method to clear the history of UIWebView (!), the less terrible way is to instantiate a new WebView.
+    [self removeWebView];
+    [self addWebView];
+    
     [self.webView loadRequest:request];
 }
 
