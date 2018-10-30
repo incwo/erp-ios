@@ -24,6 +24,7 @@ class SidePanelController: NSObject {
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignOut, object: nil, queue: nil) { [weak self] (notification) in
             self?.updateLoggedInViewModel()
+            self?.updateBusinessFilesTableView() // To show an empty list
         }
     }
     
