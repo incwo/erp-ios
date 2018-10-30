@@ -7,23 +7,29 @@
 
 import Foundation
 
-@objc
-class AppRouter: NSObject {
+class AppRouter {
     let rootViewController: UIViewController
     let officeRouter: OfficeRouter
     let scanRouter: ScanRouter
     let sidePanelController: SidePanelController
     
-    @objc
-    init(rootViewController: UIViewController, sidePanelController: SidePanelController, officeRouter: OfficeRouter, scanRouter: ScanRouter) {
+    init(rootViewController: UIViewController, businessFilesList: BusinessFilesList, sidePanelController: SidePanelController, officeRouter: OfficeRouter, scanRouter: ScanRouter) {
         self.rootViewController = rootViewController
         self.officeRouter = officeRouter
         self.scanRouter = scanRouter
         self.sidePanelController = sidePanelController
-        super.init()
         
         officeRouter.delegate = self;
         scanRouter.delegate = self
+        
+        // If there is a saved Session, this forces the initial loading.
+        // When loaded, the first BusinessFile will be selected and a notification sent.
+        businessFilesList.getBusinessFiles { (_) in }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignIn, object: nil, queue: nil) { (_) in
+            // Force loading business files after logging in
+            businessFilesList.getBusinessFiles { (_) in }
+        }
     }
 }
 

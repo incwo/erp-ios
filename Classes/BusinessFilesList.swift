@@ -25,19 +25,11 @@ class BusinessFilesList {
     private var lastFetchDate: Date?
     
     init() {
-        if let session = FCLSession.saved() {
-            self.businessFilesFetch = FCLBusinessFilesFetch(session: session)
-        }
-        
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignIn, object: nil, queue: nil) { [weak self] (_) in
-            guard let session = FCLSession.saved() else {
-                fatalError()
-            }
-            self?.businessFilesFetch = FCLBusinessFilesFetch(session: session)
-        }
-        
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignOut, object: nil, queue: nil) { [weak self] (notification) in
             self?.businessFilesFetch = nil
+            self?.businessFiles = nil
+            self?.selection = nil
+            self?.lastFetchDate = nil
         }
     }
     
@@ -45,7 +37,7 @@ class BusinessFilesList {
     ///
     /// The class keeps a cached list of Business Files. The list is only loaded if the cache is invalid.
     public func getBusinessFiles(completion: @escaping (GetResult)->()) {
-        guard let businessFilesFetch = businessFilesFetch else {
+        guard let session = FCLSession.saved() else {
             completion(.loggedOut)
             return
         }
@@ -57,7 +49,10 @@ class BusinessFilesList {
             }
             completion(.list(businessFiles: businessFiles, selection: selection))
         } else {
-            businessFilesFetch.fetchAllSuccess({ [weak self] (businessFiles) in
+            if businessFilesFetch == nil {
+                businessFilesFetch = FCLBusinessFilesFetch(session: session)
+            }
+            businessFilesFetch!.fetchAllSuccess({ [weak self] (businessFiles) in
                 guard businessFiles.count > 0 else {
                     completion(.failure(error: NSError(domain: "BusinessFilesList", code: 0, userInfo: [NSLocalizedDescriptionKey: "The server returned an empty list of Business Files"])))
                     return

@@ -77,11 +77,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             Fabric.with([Crashlytics.self()])
         }
 
-        appRouter = AppRouter(rootViewController: self.tabBarController, sidePanelController: sidePanelController, officeRouter: officeRouter, scanRouter: scanRouter)
-        
-        // If there is a saved Session, this forces the initial loading.
-        // When loaded, the first BusinessFile will be selected and a notification sent.
-        businessFilesList.getBusinessFiles { (_) in }
+        appRouter = AppRouter(rootViewController: self.tabBarController, businessFilesList: businessFilesList, sidePanelController: sidePanelController, officeRouter: officeRouter, scanRouter: scanRouter)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         window!.rootViewController = tabBarController
