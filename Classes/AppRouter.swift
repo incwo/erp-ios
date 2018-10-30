@@ -9,12 +9,14 @@ import Foundation
 
 class AppRouter {
     let rootViewController: UIViewController
+    let businessFilesList: BusinessFilesList
     let officeRouter: OfficeRouter
     let scanRouter: ScanRouter
     let sidePanelController: SidePanelController
     
     init(rootViewController: UIViewController, businessFilesList: BusinessFilesList, sidePanelController: SidePanelController, officeRouter: OfficeRouter, scanRouter: ScanRouter) {
         self.rootViewController = rootViewController
+        self.businessFilesList = businessFilesList
         self.officeRouter = officeRouter
         self.scanRouter = scanRouter
         self.sidePanelController = sidePanelController
@@ -24,11 +26,17 @@ class AppRouter {
         
         // If there is a saved Session, this forces the initial loading.
         // When loaded, the first BusinessFile will be selected and a notification sent.
-        businessFilesList.getBusinessFiles { (_) in }
+        forceLoadingBusinessFilesList()
         
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignIn, object: nil, queue: nil) { (_) in
-            // Force loading business files after logging in
-            businessFilesList.getBusinessFiles { (_) in }
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignIn, object: nil, queue: nil) { [weak self] (_) in
+            self?.forceLoadingBusinessFilesList()
+        }
+    }
+    
+    private func forceLoadingBusinessFilesList() {
+        MBProgressHUD.showAdded(to: rootViewController.view, animated: true)
+        businessFilesList.getBusinessFiles { [weak self] (_) in
+            MBProgressHUD.hide(for: self?.rootViewController.view, animated: true)
         }
     }
 }

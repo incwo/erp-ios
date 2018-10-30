@@ -62,9 +62,13 @@ class SidePanelController: NSObject {
     private func updateBusinessFilesTableView(refresh: Bool = false) {
         if refresh {
             businessFilesList.invalidateCachedList()
+        } else {
+            // The HUD must not show when refreshing because there already is the Refresh Control.
+            MBProgressHUD.showAdded(to: sidePanelViewController?.view, animated: true)
         }
         
         businessFilesList.getBusinessFiles { [weak self] (result) in
+            MBProgressHUD.hide(for: self?.sidePanelViewController?.view, animated: true)
             switch result {
             case .list(let businessFiles, let selection):
                 self?.sidePanelViewController?.viewModel = SidePanelViewController.ViewModel(businessFiles: businessFiles, selectedBusinessFile: selection)
