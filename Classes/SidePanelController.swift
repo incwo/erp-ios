@@ -46,10 +46,6 @@ class SidePanelController: NSObject {
         sideViewController.onPullToRefresh = { [weak self] in
             self?.updateBusinessFilesTableView(refresh: true)
         }
-        sideViewController.onLogInButton = { [weak self] in
-            // Afficher le panneau de login
-//            self?.updateLoggedInViewModel(in: sideViewController)
-        }
         sideViewController.onLogOutButton = {
             FCLSession.removeSavedSession()
         }

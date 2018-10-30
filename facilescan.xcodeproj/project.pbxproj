@@ -76,7 +76,6 @@
 		DF17902A216CE8AE00BE89F7 /* UIViewController+child.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF179029216CE8AE00BE89F7 /* UIViewController+child.swift */; };
 		DF17902C216E04C800BE89F7 /* ScanRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF17902B216E04C800BE89F7 /* ScanRouter.swift */; };
 		DF1C794D217DB84C005419EA /* SidePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1C7948217DB84B005419EA /* SidePanel.storyboard */; };
-		DF1C794E217DB84C005419EA /* LoggedOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C7949217DB84B005419EA /* LoggedOutViewController.swift */; };
 		DF1C794F217DB84C005419EA /* BusinessFilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C794A217DB84B005419EA /* BusinessFilesTableViewController.swift */; };
 		DF1C7950217DB84C005419EA /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C794B217DB84B005419EA /* LoggedInViewController.swift */; };
 		DF1C7951217DB84C005419EA /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C794C217DB84C005419EA /* SidePanelViewController.swift */; };
@@ -215,7 +214,6 @@
 		DF179029216CE8AE00BE89F7 /* UIViewController+child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+child.swift"; sourceTree = "<group>"; };
 		DF17902B216E04C800BE89F7 /* ScanRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRouter.swift; sourceTree = "<group>"; };
 		DF1C7948217DB84B005419EA /* SidePanel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SidePanel.storyboard; sourceTree = "<group>"; };
-		DF1C7949217DB84B005419EA /* LoggedOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutViewController.swift; sourceTree = "<group>"; };
 		DF1C794A217DB84B005419EA /* BusinessFilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessFilesTableViewController.swift; sourceTree = "<group>"; };
 		DF1C794B217DB84B005419EA /* LoggedInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
 		DF1C794C217DB84C005419EA /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
@@ -450,7 +448,6 @@
 				DF1C7948217DB84B005419EA /* SidePanel.storyboard */,
 				DF1C794C217DB84C005419EA /* SidePanelViewController.swift */,
 				DF1C794A217DB84B005419EA /* BusinessFilesTableViewController.swift */,
-				DF1C7949217DB84B005419EA /* LoggedOutViewController.swift */,
 				DF1C794B217DB84B005419EA /* LoggedInViewController.swift */,
 				DF1C7963217F1D0B005419EA /* SideTransition.swift */,
 			);
@@ -720,7 +717,6 @@
 				2060C57E11901A9800EF2405 /* FCLOptionsViewController.m in Sources */,
 				20BAEC81119078610081484B /* UIImage+OAImageResize.m in Sources */,
 				209DCD9716B80FDA00BF1CC0 /* FCLOfficeContentViewController.m in Sources */,
-				DF1C794E217DB84C005419EA /* LoggedOutViewController.swift in Sources */,
 				DFC2C1AD2087273E008B333B /* FCLNavigationItemTitleView.m in Sources */,
 				209DCD9A16B8100500BF1CC0 /* FCLVideosViewController.m in Sources */,
 				209DCD9D16B8101700BF1CC0 /* FCLNewsViewController.m in Sources */,

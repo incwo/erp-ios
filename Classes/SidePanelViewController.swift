@@ -42,12 +42,6 @@ class SidePanelViewController: UIViewController {
         }
     }
     
-    public var onLogInButton: ( ()->() )? {
-        didSet {
-            loggedOutViewController?.onLogInButton = onLogInButton
-        }
-    }
-    
     public var onLogOutButton: ( ()->() )? {
         didSet {
             loggedInViewController?.onLogOutButton = onLogOutButton
@@ -56,7 +50,7 @@ class SidePanelViewController: UIViewController {
 
     private var businessFilesTableViewController: BusinessFilesTableViewController?
     private var loggedInViewController: LoggedInViewController?
-    private var loggedOutViewController: LoggedOutViewController?
+    private var loggedOutViewController: UIViewController?
 
     // MARK: Outlets
     @IBOutlet weak var loggedContainerView: UIView!
@@ -122,8 +116,7 @@ class SidePanelViewController: UIViewController {
         loggedInViewController?.remove()
         loggedInViewController = nil
         
-        self.loggedOutViewController = storyboard?.instantiateViewController(withIdentifier: "loggedOut") as? LoggedOutViewController
-        loggedOutViewController!.onLogInButton = onLogInButton
+        self.loggedOutViewController = storyboard?.instantiateViewController(withIdentifier: "loggedOut")
         add(loggedOutViewController!, into: loggedContainerView)
     }
 }
