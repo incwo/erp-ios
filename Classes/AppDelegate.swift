@@ -52,6 +52,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             UINavigationController(rootViewController: videosViewController),
             UINavigationController(rootViewController: newsViewController)
         ]
+        tabBarController.view.backgroundColor = UIColor.white
         return tabBarController
     } ()
     
