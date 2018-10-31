@@ -36,6 +36,12 @@
     [self addWebView];
     self.navigationItem.titleView = self.webViewControls;
     [self updateControls];
+    
+    // This restricts the content to the area between the navbar and the tabbar.
+    // Otherwise, the top of the webview is shown below the navbar.
+    // This is not the recommanded way on iOS 11+ (Safe Area should be used instead), but
+    // at least it works seemlessly on iOS 9 and 10.
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void) dealloc {
@@ -67,9 +73,12 @@
     
     self.webView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.webView];
-    NSDictionary *viewsDic = @{ @"webView": self.webView };
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[webView]|" options:0 metrics:nil views:viewsDic]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[webView]|" options:0 metrics:nil views:viewsDic]];
+    
+    [self.webView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [self.webView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
+    [self.webView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+    [self.webView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+    [self.webView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
 }
 
 -(void) removeWebView {
