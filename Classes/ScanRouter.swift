@@ -125,7 +125,11 @@ extension ScanRouter: FCLFormListViewControllerDelegate {
     }
     
     func formListViewControllerRefresh(_ controller: FCLFormListViewController) {
-        fetchBusinessFile(id: controller.businessFile!.identifier) { [weak self] (businessFile) in
+        guard let currentBusinessFile = controller.businessFile else {
+            fatalError()
+        }
+        
+        fetchBusinessFile(id: currentBusinessFile.identifier) { [weak self] (businessFile) in
             self?.formListViewController?.businessFile = businessFile
         }
     }
