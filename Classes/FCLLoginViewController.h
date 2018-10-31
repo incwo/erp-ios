@@ -5,7 +5,6 @@
 @protocol FCLLoginViewControllerDelegate <NSObject>
 
 -(void) loginViewControllerWantsAccountCreation:(nonnull FCLLoginViewController *)controller;
--(void) loginViewControllerDidFail:(nonnull FCLLoginViewController *)controller error:(nonnull NSError *)error;
 
 @end
 

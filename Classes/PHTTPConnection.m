@@ -155,7 +155,7 @@ static NSArray *sharedSSLTrustedHosts = nil;
     return (self.isStarted && !self.isFinished);
 }
 
-- (void) start
+- (void)  start
 {
     if (self.isStarted) {
         return;

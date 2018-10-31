@@ -101,10 +101,6 @@ extension ScanRouter: FCLLoginViewControllerDelegate {
     func loginViewControllerWantsAccountCreation(_ controller: FCLLoginViewController) {
         pushAccountCreationViewController()
     }
-    
-    func loginViewControllerDidFail(_ controller: FCLLoginViewController, error: Error) {
-        presentAlert(for: error)
-    }
 }
 
 extension ScanRouter: AccountCreationViewControllerDelegate {

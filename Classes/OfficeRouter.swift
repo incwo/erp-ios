@@ -75,10 +75,6 @@ extension OfficeRouter: FCLLoginViewControllerDelegate {
     func loginViewControllerWantsAccountCreation(_ controller: FCLLoginViewController) {
         pushAccountCreationViewController()
     }
-    
-    func loginViewControllerDidFail(_ controller: FCLLoginViewController, error: Error) {
-        navigationController.topViewController?.fcl_presentAlert(forError: error)
-    }
 }
 
 extension OfficeRouter: AccountCreationViewControllerDelegate {

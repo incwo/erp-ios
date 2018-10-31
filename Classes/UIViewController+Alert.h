@@ -10,5 +10,6 @@
 @interface UIViewController (Alert)
 
 -(void) FCL_presentAlertForError:(NSError *)error;
+- (void) FCL_presentAlertWithTitle:(NSString *)title message:(NSString *)message;
 
 @end

@@ -2,6 +2,7 @@
 #import "FCLSession.h"
 #import "PHTTPConnection.h"
 #import "MBProgressHUD.h"
+#import "UIViewController+Alert.h"
 
 @interface FCLLoginViewController () <UITextFieldDelegate>
 
@@ -88,9 +89,8 @@
     
     FCLSession *session = [[FCLSession alloc] initWithUsername:[self loginField] password:[self passwordField]];
   
-//#warning Need a more efficient way to sign in.
+    // The 'r' parameter was useful because Orange would cache the URL. Is it still useful?
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d", session.facileBaseURL, rand()]];
-//    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_my_email?r=%d", session.facileBaseURL, rand()]];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60];
     [request setHTTPShouldHandleCookies:NO];
     [request setFCLSession:session];
@@ -116,11 +116,12 @@
             weakSelf.passwordTextField.text = nil;
         } else {
             NSLog(@"COULD NOT LOG IN: %@", weakSelf.connection.error);
-            [weakSelf.delegate loginViewControllerDidFail:self error:weakSelf.connection.error];
+            [weakSelf FCL_presentAlertWithTitle:@"Échec de la connexion" message:@"Veuillez vérifier votre adresse e-mail et votre mot de passe, puis réessayez."];
         }
         weakSelf.connection = nil;
     }];
 }
+
 
 - (IBAction)createAccount:(id)sender {
     [self.delegate loginViewControllerWantsAccountCreation:self];
