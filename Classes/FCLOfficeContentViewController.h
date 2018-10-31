@@ -14,6 +14,7 @@
 @property (nullable, weak) id <FCLOfficeContentViewControllerDelegate> delegate;
 @property (nonnull, nonatomic) FCLSession* session;
 
--(void) loadBusinessFileWithId:(nonnull NSString *)businessFileId;
+/// The id of the business file to show in the webview.
+@property (nullable) NSString *businessFileId;
 
 @end

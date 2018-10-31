@@ -18,7 +18,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *stopButton;
 
 @property(strong, nonatomic) UIWebView *webView;
+@property BOOL visible;
 @property (nonatomic) BOOL loading;
+@property BOOL showingCurrentBusinessFile;
 
 @end
 
@@ -44,6 +46,17 @@
     [super viewDidAppear:animated];
     
     NSParameterAssert(self.session);
+    self.visible = YES;
+    
+    if(!self.showingCurrentBusinessFile && self.businessFileId) {
+        [self loadBusinessFileWithId:self.businessFileId];
+    }
+}
+
+-(void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
+    self.visible = NO;
 }
 
 // MARK: WebView
@@ -115,28 +128,30 @@
 }
 
 
-#pragma - Configuration
+// MARK: HTML page
 
-- (void) loadHomepage
-{
-    // According to email from Guillaume 21/01/2013:
-    // Would that be acceptable to login by going to "account/login" with params[:email] / params[:password] as credentials ? It would save us time.
+@synthesize businessFileId = _businessFileId;
+-(NSString *)businessFileId {
+    @synchronized (self) {
+        return _businessFileId;
+    }
+}
+
+- (void)setBusinessFileId:(NSString *)businessFileId {
+    @synchronized (self) {
+        if(businessFileId == _businessFileId) {
+            return;
+        }
+        _businessFileId = businessFileId;
+    }
     
-    NSString* authQueryString = [NSString stringWithFormat:@"email=%@&password=%@",
-                                 [self.session.username stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]],
-                                 [self.session.password stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-    
-    // Note: this url somehow redirects to the home page.
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/login?mobile=1&remember_me=1&%@", self.session.facileBaseURL, authQueryString]];
-    
-    // This redirects sucessfully where needed (but only after signed in from the webview)
-    //NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/login_mobile?r=%d", self.session.facileBaseURL, rand()]];
-    
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"POST"];
-    [request setFCLSession:self.session];
-    [self.webView loadRequest:request];
-    [self updateControls];
+    if(self.visible && businessFileId) {
+        [self loadBusinessFileWithId:businessFileId];
+    } else {
+        // There is no need to load the page for the new business file if the view is not shown.
+        // It will loaded be when the view becomes visible.
+        self.showingCurrentBusinessFile = NO;
+    }
 }
 
 -(void) loadBusinessFileWithId:(NSString *)businessFileId {
@@ -151,6 +166,7 @@
     [self addWebView];
     
     [self.webView loadRequest:request];
+    self.showingCurrentBusinessFile = YES;
 }
 
 - (void) updateControls {
