@@ -23,9 +23,20 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
 }
 
 + (instancetype) savedSession {
+    // In versions prior to 2.8, credentials were stored in NSUserDefaults. Which was terrible.
+    // This is our chance to read them and erase them for good.
+    // We should get rid of this code someday, when we consider that most users had the chance
+    // to switch from the old to the new system.
+    NSString *userDefaultsUsername = [[NSUserDefaults standardUserDefaults] objectForKey:@"FCLSessionUsername"];
+    NSString *userDefaultsPassword = [[NSUserDefaults standardUserDefaults] objectForKey:@"FCLSessionPassword"];
+    if(userDefaultsUsername.length > 0 && userDefaultsPassword.length > 0) {
+        [[self class] saveUsername:userDefaultsUsername password:userDefaultsPassword];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FCLSessionUsername"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FCLSessionPassword"];
+    }
+    
     NSString *username = [[self class] savedUsername];
     NSString *password = [[self class] savedPassword];
-    
     if (username.length > 0 && password.length > 0) {
         return [[FCLSession alloc] initWithUsername:username password:password];
     } else {
