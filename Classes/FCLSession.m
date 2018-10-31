@@ -23,8 +23,8 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
 }
 
 + (instancetype) savedSession {
-    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"FCLSessionUsername"];
-    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:@"FCLSessionPassword"];
+    NSString *username = [[self class] savedUsername];
+    NSString *password = [[self class] savedPassword];
     
     if (username.length > 0 && password.length > 0) {
         return [[FCLSession alloc] initWithUsername:username password:password];
@@ -33,12 +33,8 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
     }
 }
 
-+ (void) removeSavedSession
-{
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FCLSessionUsername"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FCLSessionPassword"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
++ (void) removeSavedSession {
+    [[self class] removeCredentials];
     [[NSNotificationCenter defaultCenter] postNotificationName:FCLSessionDidSignOutNotification object:nil];
 }
 
@@ -51,12 +47,8 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
     }
 }
 
-- (void) saveSession
-{
-    [[NSUserDefaults standardUserDefaults] setObject:self.username ?: @"" forKey:@"FCLSessionUsername"];
-    [[NSUserDefaults standardUserDefaults] setObject:self.password ?: @"" forKey:@"FCLSessionPassword"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
+- (void) saveSession {
+    [[self class] saveUsername:self.username password:self.password];
     [[NSNotificationCenter defaultCenter] postNotificationName:FCLSessionDidSignInNotification object:self];
 }
 
@@ -75,6 +67,37 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
     NSDictionary *parameters = @{ @"bundle_id": bundleID };
     NSString *queryString = [PXWWWFormSerialization stringWithDictionary:parameters options:0];
     return [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/iframe/pos_new_account?%@", [self facileBaseURL], queryString]]];
+}
+
+// MARK: Storing Credentials
+
++(NSURLProtectionSpace *) protectionSpace {
+    static dispatch_once_t onceToken;
+    static NSURLProtectionSpace *protectionSpace = nil;
+    dispatch_once(&onceToken, ^{
+        protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:@"incwo.com" port:80 protocol:@"https" realm:nil authenticationMethod:NSURLAuthenticationMethodHTTPBasic];
+    });
+    return protectionSpace;
+}
+
++(void) saveUsername:(NSString *)username password:(NSString *)password {
+    NSURLCredential *credential = [[NSURLCredential alloc] initWithUser:username password:password persistence:NSURLCredentialPersistencePermanent];
+    [[NSURLCredentialStorage sharedCredentialStorage] setDefaultCredential:credential forProtectionSpace:[self protectionSpace]];
+}
+
++(NSString *) savedUsername {
+    NSURLCredential *credential = [[NSURLCredentialStorage sharedCredentialStorage] defaultCredentialForProtectionSpace:[self protectionSpace]];
+    return credential.user;
+}
+
++(NSString *) savedPassword {
+    NSURLCredential *credential = [[NSURLCredentialStorage sharedCredentialStorage] defaultCredentialForProtectionSpace:[self protectionSpace]];
+    return credential.password;
+}
+
++(void) removeCredentials {
+    NSURLCredential *credential = [[NSURLCredentialStorage sharedCredentialStorage] defaultCredentialForProtectionSpace:[self protectionSpace]];
+    [[NSURLCredentialStorage sharedCredentialStorage] removeCredential:credential forProtectionSpace:[self protectionSpace]];
 }
 
 @end
