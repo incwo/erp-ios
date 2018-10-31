@@ -60,7 +60,7 @@
                         <viewLayoutGuide key="safeArea" id="EgW-5p-phG"/>
                     </view>
                     <navigationItem key="navigationItem" title="Vos applications" id="LB7-zw-0Ue">
-                        <barButtonItem key="rightBarButtonItem" image="Close" style="plain" id="b0a-Wl-poZ">
+                        <barButtonItem key="rightBarButtonItem" image="Close" id="b0a-Wl-poZ">
                             <connections>
                                 <action selector="close:" destination="Kex-TN-p1e" id="TKJ-Ih-hJq"/>
                             </connections>
