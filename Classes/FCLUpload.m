@@ -73,7 +73,7 @@
                 [fieldsTag appendFormat:@"<%@>", field.key];
                 [fieldsTag appendFormat:@"<file_name>%@.png</file_name>\n", field.key];
                 [fieldsTag appendFormat:@"<file_size>%lu</file_size>\n", (unsigned long)[signatureData length]];
-                [fieldsTag appendFormat:@"<file_data_base64>%@</file_data_base64>\n", [signatureData base64EncodedDataWithOptions:0]];
+                [fieldsTag appendFormat:@"<file_data_base64>%@</file_data_base64>\n", [signatureData base64EncodedStringWithOptions:0]];
                 [fieldsTag appendFormat:@"</%@>", field.key];
             }
         }
