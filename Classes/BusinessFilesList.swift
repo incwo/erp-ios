@@ -20,6 +20,7 @@ class BusinessFilesList {
     private var selection: FCLFormsBusinessFile? {
         didSet {
             NotificationCenter.default.post(name: Notification.Name.FCLSelectedBusinessFile, object: nil, userInfo: [FCLSelectedBusinessFileKey: selection as Any])
+            saveBusinessFileIdentifier(selection?.identifier)
         }
     }
     private var lastFetchDate: Date?
@@ -67,17 +68,34 @@ class BusinessFilesList {
                         self?.selection = businessFiles[0]
                     } // else: keep the same selection
                 } else { // No selection yet
-                    self?.selection = businessFiles[0]
+                    // Maybe one was saved
+                    if let savedIdentifier = self?.savedBusinessFileIdentifier(),
+                        let match = (businessFiles.filter { $0.identifier == savedIdentifier }).first {
+                        self?.selection = match
+                    } else {
+                        self?.selection = businessFiles[0]
+                    }
                 }
                 
                 if let selection = self?.selection { // Should always be true
                     completion(.list(businessFiles: businessFiles, selection: selection))
                 }
+                
                 }, failure: { (error) in
                     completion(.failure(error: error))
                     return
             })
         }
+    }
+    
+    let SelectedBusinessFileKey = "SelectedBusinessFile"
+    private func saveBusinessFileIdentifier(_ identifier: String?) {
+        if let identifier = identifier {
+            UserDefaults.standard.set(identifier, forKey: SelectedBusinessFileKey)
+        }
+    }
+    private func savedBusinessFileIdentifier() -> String? {
+        return UserDefaults.standard.string(forKey: SelectedBusinessFileKey)
     }
     
     /// Selects a business file among the list of business files.
@@ -105,4 +123,8 @@ class BusinessFilesList {
     public func invalidateCachedList() {
         lastFetchDate = nil
     }
+}
+
+extension BusinessFilesList {
+    
 }
