@@ -14,7 +14,7 @@ protocol ScanRouterDelegate: class {
 @objc
 class ScanRouter: NSObject {
     public weak var delegate: ScanRouterDelegate?
-    private var businessFilesFetch: FCLBusinessFilesFetch!
+    private var businessFilesFetch: FCLBusinessFilesFetch? = nil
     
     @objc public let navigationController: UINavigationController
     private lazy var loginViewController: FCLLoginViewController = {
@@ -29,15 +29,6 @@ class ScanRouter: NSObject {
         super.init()
         
         navigationController.viewControllers = [loginViewController];
-        
-        // TODO: Present the content when the user gets logged in
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignIn, object: nil, queue: nil) { [weak self] (_) in
-            guard let session = FCLSession.saved() else {
-                fatalError("Should be logged in")
-            }
-            
-            self?.businessFilesFetch = FCLBusinessFilesFetch(session: session)
-        }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSelectedBusinessFile, object: nil, queue: nil) { [weak self] (notification) in
             if let businessFile = notification.userInfo?[FCLSelectedBusinessFileKey] as? FCLFormsBusinessFile {
@@ -65,7 +56,15 @@ class ScanRouter: NSObject {
     // MARK: Fetching business files
     
     private func fetchBusinessFile(id: String, success: @escaping (FCLFormsBusinessFile)->() ) {
-        businessFilesFetch.fetchOne(withId: id, success: { (businessFile) in
+        if businessFilesFetch == nil {
+            guard let session = FCLSession.saved() else {
+                fatalError("Should be logged in")
+            }
+            
+            self.businessFilesFetch = FCLBusinessFilesFetch(session: session)
+        }
+        
+        businessFilesFetch?.fetchOne(withId: id, success: { (businessFile) in
             success(businessFile)
         }, failure: { (error) in
             DispatchQueue.main.async { [weak self] in

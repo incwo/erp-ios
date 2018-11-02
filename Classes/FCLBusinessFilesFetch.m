@@ -30,6 +30,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [self.download cancel];
+}
+
 -(void) fetchAllSuccess:(FCLBusinessFilesFetchSuccess)successHandler failure:(FCLBusinessFilesFetchFailure)failureHandler {
     NSParameterAssert(successHandler);
     _successHandler = successHandler;
