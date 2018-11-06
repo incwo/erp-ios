@@ -1,4 +1,4 @@
-@protocol OAHTTPDownload;
+@class OAHTTPDownload;
 @interface FCLUpload : NSObject
 
 @property(nonatomic,strong) NSString* fileId;
@@ -9,6 +9,6 @@
 @property(nonatomic,strong) NSString* username;
 @property(nonatomic,strong) NSString* password;
 
-- (id<OAHTTPDownload>) OAHTTPDownload;
+- (OAHTTPDownload *) OAHTTPDownload;
 
 @end

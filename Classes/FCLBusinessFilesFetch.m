@@ -84,7 +84,7 @@
 }
 
 // MARK: OAHTTPDownloadDelegate
-- (void) oadownloadDidFinishLoading:(id<OAHTTPDownload>)download {
+- (void) oadownloadDidFinishLoading:(id<OAHTTPDownloadProtocol>)download {
     NSData *xmlData = download.receivedData;
     NSArray *businessFiles = [FCLBusinessFilesParser businessFilesFromXMLData:xmlData];
     if(businessFiles) {
@@ -93,7 +93,7 @@
         self.failureHandler([NSError errorWithDomain:@"Business Files" code:0 userInfo:@{NSLocalizedDescriptionKey: @"Could not parse the Business Files XML data."}]);
     }
 }
-- (void) oadownload:(id<OAHTTPDownload>)download didFailWithError:(NSError *)error {
+- (void) oadownload:(id<OAHTTPDownloadProtocol>)download didFailWithError:(NSError *)error {
     self.failureHandler(error);
 }
 

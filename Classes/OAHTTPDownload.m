@@ -8,19 +8,19 @@
 
 #pragma mark Init
 
-+ (id) download
++ (instancetype) download
 {
     return [[self alloc] init];
 }
 
-+ (id) downloadWithRequest:(NSURLRequest*)request
++ (instancetype) downloadWithRequest:(NSURLRequest*)request
 {
     OAHTTPDownload* download = [self download];
     [download setRequest:request];
     return download;
 }
 
-+ (id) downloadWithURL:(NSURL*)url;
++ (instancetype) downloadWithURL:(NSURL*)url;
 {
     OAHTTPDownload* download = [self download];
     [download setURL:url];
@@ -63,7 +63,7 @@
 
 -(BOOL) isEqual:(id)other
 {
-    return [other conformsToProtocol:@protocol(OAHTTPDownload)] && [[self URL] isEqual:[other URL]];
+    return [other conformsToProtocol:@protocol(OAHTTPDownloadProtocol)] && [[self URL] isEqual:[other URL]];
 }
 
 -(NSUInteger) hash

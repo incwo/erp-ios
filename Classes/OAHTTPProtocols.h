@@ -1,4 +1,4 @@
-@protocol OAHTTPDownload;
+@protocol OAHTTPDownloadProtocol;
 
 /*
 Rejection from AppStore: 26.01.2010 (Entrepreneur application)
@@ -12,12 +12,12 @@ Regards,
 iPhone Developer Program
 */
 @protocol OAHTTPDownloadDelegate <NSObject>
-- (void) oadownloadDidFinishLoading:(id<OAHTTPDownload>)download;
-- (void) oadownload:(id<OAHTTPDownload>)download didFailWithError:(NSError *)error;
+- (void) oadownloadDidFinishLoading:(id<OAHTTPDownloadProtocol>)download;
+- (void) oadownload:(id<OAHTTPDownloadProtocol>)download didFailWithError:(NSError *)error;
 @optional
-- (void) oadownload:(id<OAHTTPDownload>)download didReceiveResponse:(NSHTTPURLResponse *)response;
-- (void) oadownload:(id<OAHTTPDownload>)download didReceiveData:(NSData *)chunk;
-- (BOOL) oadownload:(id<OAHTTPDownload>)download shouldHandleAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
+- (void) oadownload:(id<OAHTTPDownloadProtocol>)download didReceiveResponse:(NSHTTPURLResponse *)response;
+- (void) oadownload:(id<OAHTTPDownloadProtocol>)download didReceiveData:(NSData *)chunk;
+- (BOOL) oadownload:(id<OAHTTPDownloadProtocol>)download shouldHandleAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
 @end
 
 
@@ -25,7 +25,7 @@ iPhone Developer Program
 
 - (void) addOperation:(NSOperation*)op;
 
-- (id<OAHTTPDownload>) currentDownload;
+- (id<OAHTTPDownloadProtocol>) currentDownload;
 
 - (id<OAHTTPDownloadDelegate>) delegate;
 - (void) setDelegate:(id<OAHTTPDownloadDelegate>) delegate;
@@ -35,14 +35,14 @@ iPhone Developer Program
 - (void) pushPause;
 - (void) popPause;
 
-- (void) appendDownload:(id<OAHTTPDownload>) download;
-- (void) appendDownloadOnce:(id<OAHTTPDownload>) download;
-- (void) appendDownloadOnce:(id<OAHTTPDownload>) download withStackLimit:(NSUInteger)limit;
-- (void) prependDownload:(id<OAHTTPDownload>) download;
-- (void) prependDownloadOnce:(id<OAHTTPDownload>) download;
-- (void) prependDownloadOnce:(id<OAHTTPDownload>) download withStackLimit:(NSUInteger)limit;
+- (void) appendDownload:(id<OAHTTPDownloadProtocol>) download;
+- (void) appendDownloadOnce:(id<OAHTTPDownloadProtocol>) download;
+- (void) appendDownloadOnce:(id<OAHTTPDownloadProtocol>) download withStackLimit:(NSUInteger)limit;
+- (void) prependDownload:(id<OAHTTPDownloadProtocol>) download;
+- (void) prependDownloadOnce:(id<OAHTTPDownloadProtocol>) download;
+- (void) prependDownloadOnce:(id<OAHTTPDownloadProtocol>) download withStackLimit:(NSUInteger)limit;
 
-- (void) removeDownload:(id<OAHTTPDownload>) download;
+- (void) removeDownload:(id<OAHTTPDownloadProtocol>) download;
 
 - (void) cancelCurrentDownload;
 - (void) cancelAllDownloads;
@@ -54,11 +54,11 @@ iPhone Developer Program
 @end
 
 
-@protocol OAHTTPDownload <NSObject>
+@protocol OAHTTPDownloadProtocol <NSObject>
 
-+ (id) download;
-+ (id) downloadWithRequest:(NSURLRequest*)request;
-+ (id) downloadWithURL:(NSURL*)url;
++ (instancetype) download;
++ (instancetype) downloadWithRequest:(NSURLRequest*)request;
++ (instancetype) downloadWithURL:(NSURL*)url;
 
 - (id<OAHTTPQueue>) queue;
 - (void) setQueue:(id<OAHTTPQueue>) queue;

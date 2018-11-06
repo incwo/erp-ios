@@ -57,14 +57,14 @@ static FCLUploader* sharedUploader;
 
 #pragma mark OAHTTPDownloadDelegate
 
-- (void) oadownloadDidFinishLoading:(id<OAHTTPDownload>)download
+- (void) oadownloadDidFinishLoading:(id<OAHTTPDownloadProtocol>)download
 {
     NSString *dataString = [[NSString alloc] initWithData:[download receivedData] encoding:NSUTF8StringEncoding];
     NSLog(@"Finished. Received data: %@", dataString);
     [self.delegate uploaderDidUpdateStatus:self];
 }
 
-- (void) oadownload:(id<OAHTTPDownload>)download didFailWithError:(NSError*)error
+- (void) oadownload:(id<OAHTTPDownloadProtocol>)download didFailWithError:(NSError*)error
 {
     NSLog(@"ERROR: OAHTTPDownload: %@", [error localizedDescription]);
     [self.delegate uploader:self didFailWithError:error];

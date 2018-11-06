@@ -1,6 +1,6 @@
 #import "OAHTTPProtocols.h"
 
-@interface OAHTTPDownload : NSObject <OAHTTPDownload, NSCoding>
+@interface OAHTTPDownload : NSObject <OAHTTPDownloadProtocol, NSCoding>
 
 @property(nonatomic,strong) NSURLRequest*  request;
 @property(nonatomic,strong) NSMutableData* receivedData;

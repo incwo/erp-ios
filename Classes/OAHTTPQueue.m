@@ -72,19 +72,19 @@
 #pragma mark Adding downloads to the queue
 
 
-- (void) appendDownload:(id<OAHTTPDownload>) download
+- (void) appendDownload:(id<OAHTTPDownloadProtocol>) download
 {
     [queue addObject:download];
     [self proceed];
 }
 
-- (void) prependDownload:(id<OAHTTPDownload>) download
+- (void) prependDownload:(id<OAHTTPDownloadProtocol>) download
 {
     [queue insertObject:download atIndex:0];
     [self proceed];
 }
 
-- (void) appendDownloadOnce:(id<OAHTTPDownload>) download
+- (void) appendDownloadOnce:(id<OAHTTPDownloadProtocol>) download
 {
     if (![queue containsObject:download] && ![currentDownload isEqual:download])
     {
@@ -92,7 +92,7 @@
     }
 }
 
-- (void) prependDownloadOnce:(id<OAHTTPDownload>) download
+- (void) prependDownloadOnce:(id<OAHTTPDownloadProtocol>) download
 {
     if (![queue containsObject:download] && ![currentDownload isEqual:download])
     {
@@ -100,7 +100,7 @@
     }
 }
 
-- (void) appendDownloadOnce:(id<OAHTTPDownload>) download withStackLimit:(NSUInteger)limit
+- (void) appendDownloadOnce:(id<OAHTTPDownloadProtocol>) download withStackLimit:(NSUInteger)limit
 {
     [queue removeObject:download];
     [self appendDownloadOnce:download];
@@ -112,7 +112,7 @@
     }
 }
 
-- (void) prependDownloadOnce:(id<OAHTTPDownload>) download withStackLimit:(NSUInteger)limit
+- (void) prependDownloadOnce:(id<OAHTTPDownloadProtocol>) download withStackLimit:(NSUInteger)limit
 {
     [queue removeObject:download];
     [self prependDownloadOnce:download];
@@ -124,7 +124,7 @@
     }
 }
 
-- (void) removeDownload:(id<OAHTTPDownload>) download
+- (void) removeDownload:(id<OAHTTPDownloadProtocol>) download
 {
     [queue removeObject:download];
     if ([currentDownload isEqual:download])
@@ -189,7 +189,7 @@
 #pragma mark Private routines
 
 
-- (void) setCurrentDownload:(id<OAHTTPDownload>)download
+- (void) setCurrentDownload:(id<OAHTTPDownloadProtocol>)download
 {
     if (downloadDelegate) currentDownload.delegate = nil;
     currentDownload.queue = nil;
@@ -230,13 +230,13 @@
 #pragma mark OAHTTPDownloadDelegate
 
 // For more callbacks user should set downloadDelegate
-- (void) oadownloadDidFinishLoading:(id<OAHTTPDownload>)download
+- (void) oadownloadDidFinishLoading:(id<OAHTTPDownloadProtocol>)download
 {
     [self.delegate oadownloadDidFinishLoading:download];
     [self finishAndProceed];
 }
 
-- (void) oadownload:(id<OAHTTPDownload>)download didFailWithError:(NSError *)error
+- (void) oadownload:(id<OAHTTPDownloadProtocol>)download didFailWithError:(NSError *)error
 {
     [self.delegate oadownload:download didFailWithError:error];
     [self finishAndProceed];

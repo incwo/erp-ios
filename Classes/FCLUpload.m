@@ -107,7 +107,7 @@
     return request;
 }
 
-- (id<OAHTTPDownload>) OAHTTPDownload
+- (OAHTTPDownload *) OAHTTPDownload
 {
     OAHTTPDownload* download = [OAHTTPDownload downloadWithRequest:[self request]];
     download.username = self.username;
