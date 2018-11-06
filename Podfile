@@ -6,5 +6,6 @@ target 'facile' do
   	# Pods for facile
 	pod 'Fabric'
 	pod 'Crashlytics'
+    pod 'SWXMLHash', '~> 4.7.0'
 
 end
