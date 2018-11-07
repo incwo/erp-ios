@@ -9,3 +9,4 @@
 
 extern NSString * const FCLSelectedBusinessFileNotification;
 extern NSString * const FCLSelectedBusinessFileIdKey;
+extern NSString * const FCLSelectedBusinessFileNameKey;

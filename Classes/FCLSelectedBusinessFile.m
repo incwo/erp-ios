@@ -9,3 +9,4 @@
 
 NSString * const FCLSelectedBusinessFileNotification = @"FCLSelectedBusinessFileNotification";
 NSString * const FCLSelectedBusinessFileIdKey = @"FCLSelectedBusinessFileIdKey";
+NSString * const FCLSelectedBusinessFileNameKey = @"FCLSelectedBusinessFileNameKey";

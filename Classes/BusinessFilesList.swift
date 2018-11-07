@@ -19,7 +19,11 @@ class BusinessFilesList {
     private var businessFiles: [BusinessFile]?
     private var selection: BusinessFile? {
         didSet {
-            NotificationCenter.default.post(name: Notification.Name.FCLSelectedBusinessFile, object: nil, userInfo: [FCLSelectedBusinessFileIdKey: selection?.identifier as Any])
+            let userInfo = [
+                FCLSelectedBusinessFileIdKey: selection?.identifier as Any,
+                FCLSelectedBusinessFileNameKey: selection?.name as Any
+            ]
+            NotificationCenter.default.post(name: Notification.Name.FCLSelectedBusinessFile, object: nil, userInfo: userInfo)
             saveBusinessFileIdentifier(selection?.identifier)
         }
     }
