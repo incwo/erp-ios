@@ -48,7 +48,7 @@
 -(void) fetchOneWithId:(nonnull NSString *)identifier success:(nonnull FCLFormsBusinessFilesSingleFetchSuccess)successHandler failure:(nonnull FCLFormsBusinessFilesFetchFailure)failureHandler {
     NSParameterAssert(successHandler);
     _successHandler = ^(NSArray *businessFiles) {
-        successHandler(businessFiles.count > 0 ? businessFiles[0] : @[]);
+        successHandler(businessFiles.count > 0 ? businessFiles[0] : nil);
     };
     NSParameterAssert(failureHandler);
     _failureHandler = failureHandler;

@@ -12,7 +12,7 @@
 @interface FCLFormsBusinessFilesFetch : NSObject
 
 typedef void (^FCLFormsBusinessFilesFetchSuccess)( NSArray <FCLFormsBusinessFile *> * _Nonnull businessFiles);
-typedef void (^FCLFormsBusinessFilesSingleFetchSuccess)(FCLFormsBusinessFile * _Nonnull businessFile);
+typedef void (^FCLFormsBusinessFilesSingleFetchSuccess)(FCLFormsBusinessFile * _Nullable businessFile); // Returns nil if loading was a success, but there's no FormsBusinessFile for this id
 typedef void (^FCLFormsBusinessFilesFetchFailure)( NSError * _Nonnull error);
 
 -(nonnull instancetype) initWithSession:(nonnull FCLSession *)session;

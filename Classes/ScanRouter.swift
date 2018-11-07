@@ -57,7 +57,7 @@ class ScanRouter: NSObject {
     
     // MARK: Fetching Form business files
     
-    private func fetchFormsBusinessFile(id: String, success: @escaping (FCLFormsBusinessFile)->() ) {
+    private func fetchFormsBusinessFile(id: String, success: @escaping (FCLFormsBusinessFile?)->() ) {
         if businessFilesFetch == nil {
             guard let session = FCLSession.saved() else {
                 fatalError("Should be logged in")
