@@ -16,7 +16,7 @@ class OfficeRouter: NSObject {
     public weak var delegate: OfficeRouterDelegate?
     @objc public let navigationController: UINavigationController
     private lazy var loginViewController: FCLLoginViewController = {
-        let loginController = FCLLoginViewController(delegate: self, email: FCLSession.saved()?.username)
+        let loginController = FCLLoginViewController(delegate: self)
         loginController.title = "Bureau"
         return loginController
     }()

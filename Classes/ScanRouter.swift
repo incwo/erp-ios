@@ -21,8 +21,10 @@ class ScanRouter: NSObject {
         self.navigationController = UINavigationController()
         super.init()
         
-        if FCLSession.saved() == nil {
-            content = .login
+        defer { // Otherwise, the content would not not be set, because properties observer don't apply in init().
+            if FCLSession.saved() == nil {
+                self.content = .login
+            }
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSelectedBusinessFile, object: nil, queue: nil) { [weak self] (notification) in
@@ -65,15 +67,17 @@ class ScanRouter: NSObject {
             case .none:
                 contentViewController = nil
             case .login:
-                loginViewController = newLoginViewController()
+                let loginViewController = newLoginViewController()
                 contentViewController = loginViewController
+                self.loginViewController = loginViewController
             case .loading (let businessFileName):
                 contentViewController = newLoadingViewController(businessFileName: businessFileName)
             case .noForms (let businessFileName):
                 contentViewController = newNoFormsViewController(businessFileName: businessFileName)
             case .forms (let formsBusinessFile):
-                formListViewController = newFormListViewController(formsBusinessFile: formsBusinessFile)
+                let formListViewController = newFormListViewController(formsBusinessFile: formsBusinessFile)
                 contentViewController = formListViewController
+                self.formListViewController = formListViewController
             }
         }
     }
@@ -96,7 +100,7 @@ class ScanRouter: NSObject {
     
     private var loginViewController: FCLLoginViewController?
     private func newLoginViewController() -> FCLLoginViewController {
-        let loginController = FCLLoginViewController(delegate: self, email: FCLSession.saved()?.username)
+        let loginController = FCLLoginViewController(delegate: self)
         loginController.title = "Scan"
         return loginController
     }

@@ -18,13 +18,12 @@
 
 @implementation FCLLoginViewController
 
--(nonnull instancetype) initWithDelegate:(id <FCLLoginViewControllerDelegate>)delegate email:(nullable NSString *)email {
+-(nonnull instancetype) initWithDelegate:(id <FCLLoginViewControllerDelegate>)delegate {
     self = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateInitialViewController];
     NSAssert(self, @"Could not load the Login view controller from its Storyboard.");
     if (self) {
         NSParameterAssert(delegate);
         _delegate = delegate;
-        _email = email;
     }
     return self;
 }
