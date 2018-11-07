@@ -11,48 +11,123 @@ protocol ScanRouterDelegate: class {
     func scanRouterPresentSidePanel()
 }
 
-@objc
 class ScanRouter: NSObject {
     public weak var delegate: ScanRouterDelegate?
     private var businessFilesFetch: FCLFormsBusinessFilesFetch? = nil
     
-    @objc public let navigationController: UINavigationController
-    private lazy var loginViewController: FCLLoginViewController = {
-        let loginController = FCLLoginViewController(delegate: self, email: FCLSession.saved()?.username)
-        loginController.title = "Scan"
-        return loginController
-    }()
-    private var formListViewController: FCLFormListViewController?
+    public let navigationController: UINavigationController
     
     override init() {
         self.navigationController = UINavigationController()
         super.init()
         
-        navigationController.viewControllers = [loginViewController];
+        if FCLSession.saved() == nil {
+            content = .login
+        }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSelectedBusinessFile, object: nil, queue: nil) { [weak self] (notification) in
             if let businessFileId = notification.userInfo?[FCLSelectedBusinessFileIdKey] as? String {
-                if let formListViewController = self?.formListViewController {
-                    // Come back or stay on the Forms List
-                    self?.navigationController.popToViewController(formListViewController, animated: true)
-                } else {
-                    // We're on the Login VC.
-                    self?.pushFormList()
-                }
-                
+                self?.content = .loading
                 self?.fetchFormsBusinessFile(id: businessFileId) { [weak self] (formsBusinessFile) in
-                    self?.formListViewController?.formsBusinessFile = formsBusinessFile
+                    if let formsBusinessFile = formsBusinessFile {
+                        self?.content = .forms(formsBusinessFile: formsBusinessFile)
+                    } else {
+                        self?.content = .noForms
+                    }
                 }
             }
         }
         
         // Go back to the Root VC (Log in) when the user is signing out
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSessionDidSignOut, object: nil, queue: nil) { [weak self] (notification) in
-            
             self?.businessFilesFetch = nil
-            self?.navigationController.popToRootViewController(animated: true)
-            self?.formListViewController = nil
+            self?.content = .login
         }
+    }
+    
+    // MARK: Content View Controllers
+    
+    private lazy var scanViewController: UIViewController = {
+        return UIViewController()
+    }()
+    
+    enum Content {
+        case none
+        case login
+        case loading
+        case noForms
+        case forms (formsBusinessFile: FCLFormsBusinessFile)
+    }
+    var content: Content = .none {
+        didSet {
+            switch content {
+            case .none:
+                contentViewController = nil
+            case .login:
+                loginViewController = newLoginViewController()
+                contentViewController = loginViewController
+            case .loading:
+                contentViewController = newLoadingViewController()
+            case .noForms:
+                contentViewController = newNoFormsViewController()
+            case .forms (let formsBusinessFile):
+                formListViewController = newFormListViewController(formsBusinessFile: formsBusinessFile)
+                contentViewController = formListViewController
+            }
+        }
+    }
+    
+    var contentViewController: UIViewController? {
+        willSet {
+            contentViewController?.remove()
+            loginViewController = nil
+            formListViewController = nil
+        }
+        
+        didSet {
+            if let contentViewController = contentViewController {
+                navigationController.viewControllers = [contentViewController]
+            } else {
+                navigationController.viewControllers = []
+            }
+        }
+    }
+    
+    private var loginViewController: FCLLoginViewController?
+    private func newLoginViewController() -> FCLLoginViewController {
+        let loginController = FCLLoginViewController(delegate: self, email: FCLSession.saved()?.username)
+        loginController.title = "Scan"
+        return loginController
+    }
+    
+    private func newLoadingViewController() -> UIViewController {
+        return UIViewController(nibName: "LoadingViewController", bundle: nil)
+    }
+    
+    private func newNoFormsViewController() -> UIViewController {
+        return UIViewController(nibName: "NoFormsViewController", bundle: nil)
+    }
+    
+    private var formListViewController: FCLFormListViewController?
+    private func newFormListViewController(formsBusinessFile: FCLFormsBusinessFile) -> FCLFormListViewController {
+        let formListViewController = FCLFormListViewController(nibName: nil, bundle: nil)
+        formListViewController.delegate = self
+        formListViewController.formsBusinessFile = formsBusinessFile
+        if let session = FCLSession.saved() {
+            formListViewController.username = session.username
+            formListViewController.password = session.password
+        }
+        return formListViewController;
+    }
+    
+    // MARK: View Controllers
+    private func pushAccountCreationViewController() {
+        let accountCreationController = AccountCreationViewController(delegate: self)
+        navigationController.pushViewController(accountCreationController, animated: true)
+    }
+    
+    private func presentAlert(for error: Error) {
+        navigationController.topViewController?.fcl_presentAlert(forError: error)
     }
     
     // MARK: Fetching Form business files
@@ -74,28 +149,6 @@ class ScanRouter: NSObject {
             }
         })
     }
-    
-    // MARK: View Controllers
-    private func pushAccountCreationViewController() {
-        let accountCreationController = AccountCreationViewController(delegate: self)
-        navigationController.pushViewController(accountCreationController, animated: true)
-    }
-    
-    private func pushFormList() {
-        guard let session = FCLSession.saved() else {
-            fatalError("It is expected to have a saved Session at this stage")
-        }
-        
-        self.formListViewController = FCLFormListViewController(nibName: nil, bundle: nil)
-        formListViewController!.delegate = self
-        formListViewController!.username = session.username
-        formListViewController!.password = session.password
-        navigationController.pushViewController(formListViewController!, animated: true)
-    }
-    
-    private func presentAlert(for error: Error) {
-        navigationController.topViewController?.fcl_presentAlert(forError: error)
-    }
 }
 
 extension ScanRouter: FCLLoginViewControllerDelegate {    
@@ -106,7 +159,7 @@ extension ScanRouter: FCLLoginViewControllerDelegate {
 
 extension ScanRouter: AccountCreationViewControllerDelegate {
     func accountCreationViewControllerDidCreateAccount(_ controller: AccountCreationViewController, email: String) {
-        loginViewController.email = email;
+        loginViewController?.email = email;
         navigationController.popViewController(animated: true)
     }
     

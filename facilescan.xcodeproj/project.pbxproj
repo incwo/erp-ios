@@ -92,6 +92,9 @@
 		DF681F982191D20700094C3A /* BusinessFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF681F972191D20700094C3A /* BusinessFile.swift */; };
 		DF6CA49A2175DB2D001E8207 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6CA4992175DB2D001E8207 /* AppRouter.swift */; };
 		DF8B05062192DD180056DDD7 /* FCLFormsBusinessFilesFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4A0C6A21709F84004F72F0 /* FCLFormsBusinessFilesFetch.m */; };
+		DF8B05102192FCAF0056DDD7 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8B050F2192FCAF0056DDD7 /* LoadingViewController.xib */; };
+		DF8B05122192FD280056DDD7 /* NoFormsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8B05112192FD280056DDD7 /* NoFormsViewController.xib */; };
+		DF8B0516219329400056DDD7 /* NoFormsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B0515219329400056DDD7 /* NoFormsViewController.swift */; };
 		DFC2C1AD2087273E008B333B /* FCLNavigationItemTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */; };
 		DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */; };
 		E2BDD3302069180700BA988F /* FCLAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BDD32F2069180700BA988F /* FCLAppearance.m */; };
@@ -235,6 +238,9 @@
 		DF681F952191C4F000094C3A /* URLRequest+BasicAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+BasicAuth.swift"; sourceTree = "<group>"; };
 		DF681F972191D20700094C3A /* BusinessFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFile.swift; sourceTree = "<group>"; };
 		DF6CA4992175DB2D001E8207 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		DF8B050F2192FCAF0056DDD7 /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
+		DF8B05112192FD280056DDD7 /* NoFormsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFormsViewController.xib; sourceTree = "<group>"; };
+		DF8B0515219329400056DDD7 /* NoFormsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFormsViewController.swift; sourceTree = "<group>"; };
 		DFC2C1AB2087273E008B333B /* FCLNavigationItemTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLNavigationItemTitleView.h; sourceTree = "<group>"; };
 		DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLNavigationItemTitleView.m; sourceTree = "<group>"; };
 		DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
@@ -505,6 +511,9 @@
 			isa = PBXGroup;
 			children = (
 				DF17902B216E04C800BE89F7 /* ScanRouter.swift */,
+				DF8B050F2192FCAF0056DDD7 /* LoadingViewController.xib */,
+				DF8B0515219329400056DDD7 /* NoFormsViewController.swift */,
+				DF8B05112192FD280056DDD7 /* NoFormsViewController.xib */,
 				20A653EE118B040600C94599 /* FCLFormListViewController.h */,
 				20A653EF118B040600C94599 /* FCLFormListViewController.m */,
 				20A653F1118B06FD00C94599 /* FCLFormListViewController.xib */,
@@ -625,12 +634,14 @@
 				2060C58511901C5600EF2405 /* FCLOptionsViewController.xib in Resources */,
 				E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */,
 				20E88FB011919B8B00C8D766 /* Entitlements.plist in Resources */,
+				DF8B05102192FCAF0056DDD7 /* LoadingViewController.xib in Resources */,
 				209DCDB316B822FB00BF1CC0 /* FCLOfficeContentViewController.xib in Resources */,
 				3AD230E3184DE43E0078C4C2 /* Images.xcassets in Resources */,
 				203C91DA16BAB3BF00C37D50 /* FCLNewsViewController.xib in Resources */,
 				DF243648216B853300A41B31 /* Login.storyboard in Resources */,
 				203C91DC16BAB3CE00C37D50 /* FCLVideosViewController.xib in Resources */,
 				56E1F4A818A23C9100DC6404 /* Main.storyboard in Resources */,
+				DF8B05122192FD280056DDD7 /* NoFormsViewController.xib in Resources */,
 				203C91E116BAB51300C37D50 /* FCLWebViewController.xib in Resources */,
 				20B9115416BADEF2009D1391 /* FCLTransparentPixel.png in Resources */,
 				20B9115616BBC02C009D1391 /* FCLNoVideo.png in Resources */,
@@ -763,6 +774,7 @@
 				203C91C516BAA99000C37D50 /* PFeedItem.m in Sources */,
 				203C91C616BAA99000C37D50 /* PFeedItemEnclosure.m in Sources */,
 				203C91CB16BAA9B900C37D50 /* PDictionaryExtensions.m in Sources */,
+				DF8B0516219329400056DDD7 /* NoFormsViewController.swift in Sources */,
 				DF681F942191A4C300094C3A /* BusinessFilesFetch.swift in Sources */,
 				DF8B05062192DD180056DDD7 /* FCLFormsBusinessFilesFetch.m in Sources */,
 				203C91CC16BAA9B900C37D50 /* PStringExtensions.m in Sources */,
