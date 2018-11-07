@@ -27,12 +27,13 @@ class ScanRouter: NSObject {
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSelectedBusinessFile, object: nil, queue: nil) { [weak self] (notification) in
             if let businessFileId = notification.userInfo?[FCLSelectedBusinessFileIdKey] as? String {
+                let businessFileName = notification.userInfo?[FCLSelectedBusinessFileNameKey] as? String
                 self?.content = .loading
                 self?.fetchFormsBusinessFile(id: businessFileId) { [weak self] (formsBusinessFile) in
                     if let formsBusinessFile = formsBusinessFile {
                         self?.content = .forms(formsBusinessFile: formsBusinessFile)
                     } else {
-                        self?.content = .noForms
+                        self?.content = .noForms(businessFileName: businessFileName)
                     }
                 }
             }
@@ -55,7 +56,7 @@ class ScanRouter: NSObject {
         case none
         case login
         case loading
-        case noForms
+        case noForms (businessFileName: String?)
         case forms (formsBusinessFile: FCLFormsBusinessFile)
     }
     var content: Content = .none {
@@ -68,8 +69,8 @@ class ScanRouter: NSObject {
                 contentViewController = loginViewController
             case .loading:
                 contentViewController = newLoadingViewController()
-            case .noForms:
-                contentViewController = newNoFormsViewController()
+            case .noForms (let businessFileName):
+                contentViewController = newNoFormsViewController(businessFileName: businessFileName)
             case .forms (let formsBusinessFile):
                 formListViewController = newFormListViewController(formsBusinessFile: formsBusinessFile)
                 contentViewController = formListViewController
@@ -104,8 +105,11 @@ class ScanRouter: NSObject {
         return UIViewController(nibName: "LoadingViewController", bundle: nil)
     }
     
-    private func newNoFormsViewController() -> UIViewController {
-        return UIViewController(nibName: "NoFormsViewController", bundle: nil)
+    private func newNoFormsViewController(businessFileName: String?) -> UIViewController {
+        let noFormsViewController = NoFormsViewController(nibName: nil, bundle: nil)
+        noFormsViewController.delegate = self
+        noFormsViewController.businessFileName = businessFileName
+        return noFormsViewController
     }
     
     private var formListViewController: FCLFormListViewController?
@@ -170,6 +174,12 @@ extension ScanRouter: AccountCreationViewControllerDelegate {
     func accountCreationViewControllerDidFail(_ controller: AccountCreationViewController, error: NSError) {
         presentAlert(for: error)
         navigationController.popViewController(animated: true)
+    }
+}
+
+extension ScanRouter: NoFormsViewControllerDelegate {
+    func noFormsViewControllerSidePanel(_ sender: NoFormsViewController) {
+        delegate?.scanRouterPresentSidePanel()
     }
 }
 
