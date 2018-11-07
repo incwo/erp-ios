@@ -14,7 +14,7 @@ protocol ScanRouterDelegate: class {
 @objc
 class ScanRouter: NSObject {
     public weak var delegate: ScanRouterDelegate?
-    private var businessFilesFetch: FCLBusinessFilesFetch? = nil
+    private var businessFilesFetch: FCLFormsBusinessFilesFetch? = nil
     
     @objc public let navigationController: UINavigationController
     private lazy var loginViewController: FCLLoginViewController = {
@@ -61,7 +61,7 @@ class ScanRouter: NSObject {
                 fatalError("Should be logged in")
             }
             
-            self.businessFilesFetch = FCLBusinessFilesFetch(session: session)
+            self.businessFilesFetch = FCLFormsBusinessFilesFetch(session: session)
         }
         
         businessFilesFetch?.fetchOne(withId: id, success: { (businessFile) in

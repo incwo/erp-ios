@@ -1,25 +1,25 @@
 //
-//  FCLBusinessFilesFetch.m
+//  FCLFormsBusinessFilesFetch.m
 //  facile
 //
 //  Created by Renaud Pradenc on 12/10/2018.
 //
 
-#import "FCLBusinessFilesFetch.h"
+#import "FCLFormsBusinessFilesFetch.h"
 #import "OAHTTPDownload.h"
 #import "FCLBusinessFilesParser.h"
 
-@interface FCLBusinessFilesFetch () <OAHTTPDownloadDelegate>
+@interface FCLFormsBusinessFilesFetch () <OAHTTPDownloadDelegate>
 
 @property FCLSession *session;
-@property FCLBusinessFilesFetchSuccess successHandler;
-@property FCLBusinessFilesFetchFailure failureHandler;
+@property FCLFormsBusinessFilesFetchSuccess successHandler;
+@property FCLFormsBusinessFilesFetchFailure failureHandler;
 
 @property(nonatomic) OAHTTPDownload *download;
 
 @end
 
-@implementation FCLBusinessFilesFetch
+@implementation FCLFormsBusinessFilesFetch
 
 -(nonnull instancetype) initWithSession:(nonnull FCLSession *)session {
     self = [super init];
@@ -35,7 +35,7 @@
     [self.download cancel];
 }
 
--(void) fetchAllSuccess:(FCLBusinessFilesFetchSuccess)successHandler failure:(FCLBusinessFilesFetchFailure)failureHandler {
+-(void) fetchAllSuccess:(FCLFormsBusinessFilesFetchSuccess)successHandler failure:(FCLFormsBusinessFilesFetchFailure)failureHandler {
     NSParameterAssert(successHandler);
     _successHandler = successHandler;
     NSParameterAssert(failureHandler);
@@ -45,7 +45,7 @@
     [self loadBusinessFilesAtURL:[[self class] URLForSession:self.session]];
 }
 
--(void) fetchOneWithId:(nonnull NSString *)identifier success:(nonnull FCLBusinessFilesSingleFetchSuccess)successHandler failure:(nonnull FCLBusinessFilesFetchFailure)failureHandler {
+-(void) fetchOneWithId:(nonnull NSString *)identifier success:(nonnull FCLFormsBusinessFilesSingleFetchSuccess)successHandler failure:(nonnull FCLFormsBusinessFilesFetchFailure)failureHandler {
     NSParameterAssert(successHandler);
     _successHandler = ^(NSArray *businessFiles) {
         successHandler(businessFiles.count > 0 ? businessFiles[0] : @[]);

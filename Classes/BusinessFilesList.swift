@@ -15,7 +15,7 @@ class BusinessFilesList {
         case failure (error: Error)
     }
     
-    private var businessFilesFetch: FCLBusinessFilesFetch?
+    private var businessFilesFetch: FCLFormsBusinessFilesFetch?
     private var businessFiles: [FCLFormsBusinessFile]?
     private var selection: FCLFormsBusinessFile? {
         didSet {
@@ -51,7 +51,7 @@ class BusinessFilesList {
             completion(.list(businessFiles: businessFiles, selection: selection))
         } else {
             if businessFilesFetch == nil {
-                businessFilesFetch = FCLBusinessFilesFetch(session: session)
+                businessFilesFetch = FCLFormsBusinessFilesFetch(session: session)
             }
             businessFilesFetch!.fetchAllSuccess({ [weak self] (businessFiles) in
                 guard businessFiles.count > 0 else {
