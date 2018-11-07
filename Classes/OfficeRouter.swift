@@ -37,12 +37,12 @@ class OfficeRouter: NSObject {
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSelectedBusinessFile, object: nil, queue: nil) { [weak self] (notification) in
-            if let businessFile = notification.userInfo?[FCLSelectedBusinessFileKey] as? FCLFormsBusinessFile {
+            if let businessFileId = notification.userInfo?[FCLSelectedBusinessFileIdKey] as? String {
                 if let contentViewController = self?.contentViewController {
-                    contentViewController.businessFileId = businessFile.identifier
+                    contentViewController.businessFileId = businessFileId
                 } else {
                     self?.pushContentViewController(animated: true)
-                    self?.contentViewController?.businessFileId = businessFile.identifier
+                    self?.contentViewController?.businessFileId = businessFileId
                 }
             }
         }

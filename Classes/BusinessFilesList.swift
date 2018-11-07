@@ -10,16 +10,16 @@ import Foundation
 /// Maintains an up-to-date list of Business Files.
 class BusinessFilesList {
     enum GetResult {
-        case list (businessFiles: [FCLFormsBusinessFile], selection: FCLFormsBusinessFile)
+        case list (businessFiles: [BusinessFile], selection: BusinessFile)
         case loggedOut
         case failure (error: Error)
     }
     
-    private var businessFilesFetch: FCLFormsBusinessFilesFetch?
-    private var businessFiles: [FCLFormsBusinessFile]?
-    private var selection: FCLFormsBusinessFile? {
+    private var businessFilesFetch: BusinessFilesFetch?
+    private var businessFiles: [BusinessFile]?
+    private var selection: BusinessFile? {
         didSet {
-            NotificationCenter.default.post(name: Notification.Name.FCLSelectedBusinessFile, object: nil, userInfo: [FCLSelectedBusinessFileKey: selection as Any])
+            NotificationCenter.default.post(name: Notification.Name.FCLSelectedBusinessFile, object: nil, userInfo: [FCLSelectedBusinessFileIdKey: selection?.identifier as Any])
             saveBusinessFileIdentifier(selection?.identifier)
         }
     }
@@ -51,9 +51,9 @@ class BusinessFilesList {
             completion(.list(businessFiles: businessFiles, selection: selection))
         } else {
             if businessFilesFetch == nil {
-                businessFilesFetch = FCLFormsBusinessFilesFetch(session: session)
+                businessFilesFetch = BusinessFilesFetch(session: session)
             }
-            businessFilesFetch!.fetchAllSuccess({ [weak self] (businessFiles) in
+            businessFilesFetch!.fetch(success: { [weak self] (businessFiles) in
                 guard businessFiles.count > 0 else {
                     completion(.failure(error: NSError(domain: "BusinessFilesList", code: 0, userInfo: [NSLocalizedDescriptionKey: "The server returned an empty list of Business Files"])))
                     return
@@ -64,7 +64,7 @@ class BusinessFilesList {
                 
                 // If the current selection is not part of the new list, select the first one from the new list
                 if let selection = self?.selection {
-                    if !businessFiles.contains(selection) {
+                    if businessFiles.filter({ $0.identifier == selection.identifier}).count == 0 {
                         self?.selection = businessFiles[0]
                     } // else: keep the same selection
                 } else { // No selection yet
@@ -80,10 +80,8 @@ class BusinessFilesList {
                 if let selection = self?.selection { // Should always be true
                     completion(.list(businessFiles: businessFiles, selection: selection))
                 }
-                
-                }, failure: { (error) in
-                    completion(.failure(error: error))
-                    return
+            }, failure: { (error) in
+                completion(.failure(error: error))
             })
         }
     }
@@ -101,9 +99,9 @@ class BusinessFilesList {
     /// Selects a business file among the list of business files.
     ///
     /// If the cached list of business files does not contain 'businessFile', then nothing happens.
-    public func selectBusinessFile(_ businessFile: FCLFormsBusinessFile) {
+    public func selectBusinessFile(_ businessFile: BusinessFile) {
         guard let businessFiles = businessFiles,
-            businessFiles.contains(businessFile) else {
+            (businessFiles.filter({$0.identifier == businessFile.identifier}).count > 0) else {
             return
         }
         
@@ -123,8 +121,4 @@ class BusinessFilesList {
     public func invalidateCachedList() {
         lastFetchDate = nil
     }
-}
-
-extension BusinessFilesList {
-    
 }

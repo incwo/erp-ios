@@ -8,4 +8,4 @@
 #import "FCLSelectedBusinessFile.h"
 
 NSString * const FCLSelectedBusinessFileNotification = @"FCLSelectedBusinessFileNotification";
-NSString * const FCLSelectedBusinessFileKey = @"FCLSelectedBusinessFileKey";
+NSString * const FCLSelectedBusinessFileIdKey = @"FCLSelectedBusinessFileIdKey";

@@ -9,8 +9,8 @@ import UIKit
 
 class BusinessFilesTableViewController: UITableViewController {
     struct ViewModel {
-        let businessFiles: [FCLFormsBusinessFile]
-        let selectedBusinessFile: FCLFormsBusinessFile
+        let businessFiles: [BusinessFile]
+        let selectedBusinessFile: BusinessFile
     }
     
     public var viewModel: ViewModel? {
@@ -21,7 +21,7 @@ class BusinessFilesTableViewController: UITableViewController {
     }
     
     /// Called when a Business File is selected in the table
-    public var onSelection: ((FCLFormsBusinessFile) -> ())?
+    public var onSelection: ((BusinessFile) -> ())?
     
     public var onPullToRefresh: ( ()->() )?
     
@@ -52,7 +52,7 @@ class BusinessFilesTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "businessFileCell", for: indexPath)
         cell.textLabel?.text = businessFile.name
-        cell.accessoryType = (businessFile == viewModel.selectedBusinessFile) ? .checkmark : .none
+        cell.accessoryType = (businessFile.identifier == viewModel.selectedBusinessFile.identifier) ? .checkmark : .none
 
         return cell
     }

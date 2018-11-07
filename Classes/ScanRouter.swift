@@ -31,7 +31,7 @@ class ScanRouter: NSObject {
         navigationController.viewControllers = [loginViewController];
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSelectedBusinessFile, object: nil, queue: nil) { [weak self] (notification) in
-            if let businessFile = notification.userInfo?[FCLSelectedBusinessFileKey] as? FCLFormsBusinessFile {
+            if let businessFileId = notification.userInfo?[FCLSelectedBusinessFileIdKey] as? String {
                 if let formListViewController = self?.formListViewController {
                     // Come back or stay on the Forms List
                     self?.navigationController.popToViewController(formListViewController, animated: true)
@@ -40,7 +40,9 @@ class ScanRouter: NSObject {
                     self?.pushFormList()
                 }
                 
-                self?.formListViewController?.businessFile = businessFile
+                self?.fetchFormsBusinessFile(id: businessFileId) { [weak self] (formsBusinessFile) in
+                    self?.formListViewController?.formsBusinessFile = formsBusinessFile
+                }
             }
         }
         
@@ -53,9 +55,9 @@ class ScanRouter: NSObject {
         }
     }
     
-    // MARK: Fetching business files
+    // MARK: Fetching Form business files
     
-    private func fetchBusinessFile(id: String, success: @escaping (FCLFormsBusinessFile)->() ) {
+    private func fetchFormsBusinessFile(id: String, success: @escaping (FCLFormsBusinessFile)->() ) {
         if businessFilesFetch == nil {
             guard let session = FCLSession.saved() else {
                 fatalError("Should be logged in")
@@ -124,12 +126,12 @@ extension ScanRouter: FCLFormListViewControllerDelegate {
     }
     
     func formListViewControllerRefresh(_ controller: FCLFormListViewController) {
-        guard let currentBusinessFile = controller.businessFile else {
+        guard let currentBusinessFile = controller.formsBusinessFile else {
             fatalError()
         }
         
-        fetchBusinessFile(id: currentBusinessFile.identifier) { [weak self] (businessFile) in
-            self?.formListViewController?.businessFile = businessFile
+        fetchFormsBusinessFile(id: currentBusinessFile.identifier) { [weak self] (businessFile) in
+            self?.formListViewController?.formsBusinessFile = businessFile
         }
     }
 }

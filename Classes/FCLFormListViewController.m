@@ -16,11 +16,11 @@
 
 @implementation FCLFormListViewController
 
-@synthesize businessFile = _businessFile;
--(void)setBusinessFile:(FCLFormsBusinessFile *)businessFile {
+@synthesize formsBusinessFile = _formsBusinessFile;
+-(void)setFormsBusinessFile:(FCLFormsBusinessFile *)businessFile {
     @synchronized (self) {
-        if(businessFile != _businessFile) {
-            _businessFile = businessFile;
+        if(businessFile != _formsBusinessFile) {
+            _formsBusinessFile = businessFile;
         }
     }
     
@@ -32,9 +32,9 @@
     });
 }
 
--(FCLFormsBusinessFile *)businessFile {
+-(FCLFormsBusinessFile *)formsBusinessFile {
     @synchronized (self) {
-        return _businessFile;
+        return _formsBusinessFile;
     }
 }
 
@@ -126,7 +126,7 @@
 
 - (NSInteger)tableView:(UITableView*)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) return self.businessFile ? [self.businessFile.forms count] : 0;
+    if (section == 0) return self.formsBusinessFile ? [self.formsBusinessFile.forms count] : 0;
     if (section == 1) return 1;
     return 0;
 }
@@ -139,7 +139,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        cell.textLabel.text = [[self.businessFile.forms objectAtIndex:indexPath.row] name];
+        cell.textLabel.text = [[self.formsBusinessFile.forms objectAtIndex:indexPath.row] name];
         
         return cell;
     } else {
@@ -163,7 +163,7 @@
     {
         self.formController = [[FCLFormViewController alloc] initWithNibName:nil bundle:nil];
         self.formController.delegate = self;
-        self.formController.form = [self.businessFile.forms objectAtIndex:indexPath.row];
+        self.formController.form = [self.formsBusinessFile.forms objectAtIndex:indexPath.row];
         [self.formController.form reset];
         [self.formController.form loadDefaults];
         [self.navigationController pushViewController:self.formController animated:YES];
@@ -205,9 +205,9 @@
     
     [formController.form saveDefaults];
     
-    NSLog(@"Sending form %@ (%@) to business_file %@ (%@)", formController.form.name, formController.form.key, self.businessFile.name, self.businessFile.identifier);
+    NSLog(@"Sending form %@ (%@) to business_file %@ (%@)", formController.form.name, formController.form.key, self.formsBusinessFile.name, self.formsBusinessFile.identifier);
     
-    upload.fileId = self.businessFile.identifier;
+    upload.fileId = self.formsBusinessFile.identifier;
     upload.categoryKey = formController.form.key;
     upload.fields = [formController fields];
     upload.image = formController.image;

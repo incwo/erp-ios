@@ -9,8 +9,8 @@ import UIKit
 
 class SidePanelViewController: UIViewController {
     struct ViewModel {
-        let businessFiles: [FCLFormsBusinessFile]
-        let selectedBusinessFile: FCLFormsBusinessFile
+        let businessFiles: [BusinessFile]
+        let selectedBusinessFile: BusinessFile
     }
     
     enum LoggedViewModel {
@@ -31,7 +31,7 @@ class SidePanelViewController: UIViewController {
     }
     
     public var onCloseButton: ( ()->() )?
-    public var onBusinessFileSelection: ( (FCLFormsBusinessFile) -> () )? {
+    public var onBusinessFileSelection: ( (BusinessFile) -> () )? {
         didSet {
             businessFilesTableViewController?.onSelection = onBusinessFileSelection
         }

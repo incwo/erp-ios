@@ -8,4 +8,4 @@
 #import <Foundation/Foundation.h>
 
 extern NSString * const FCLSelectedBusinessFileNotification;
-extern NSString * const FCLSelectedBusinessFileKey;
+extern NSString * const FCLSelectedBusinessFileIdKey;
