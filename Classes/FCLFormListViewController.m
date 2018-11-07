@@ -27,7 +27,7 @@
     __typeof(self) __weak weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf.refreshControl endRefreshing];
-        weakSelf.title = businessFile.name;
+        weakSelf.navigationItem.title = businessFile.name;
         [weakSelf.tableView reloadData];
     });
 }

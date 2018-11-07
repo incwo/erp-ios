@@ -28,7 +28,7 @@ class ScanRouter: NSObject {
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSelectedBusinessFile, object: nil, queue: nil) { [weak self] (notification) in
             if let businessFileId = notification.userInfo?[FCLSelectedBusinessFileIdKey] as? String {
                 let businessFileName = notification.userInfo?[FCLSelectedBusinessFileNameKey] as? String
-                self?.content = .loading
+                self?.content = .loading(businessFileName: businessFileName)
                 self?.fetchFormsBusinessFile(id: businessFileId) { [weak self] (formsBusinessFile) in
                     if let formsBusinessFile = formsBusinessFile {
                         self?.content = .forms(formsBusinessFile: formsBusinessFile)
@@ -55,7 +55,7 @@ class ScanRouter: NSObject {
     enum Content {
         case none
         case login
-        case loading
+        case loading (businessFileName: String?)
         case noForms (businessFileName: String?)
         case forms (formsBusinessFile: FCLFormsBusinessFile)
     }
@@ -67,8 +67,8 @@ class ScanRouter: NSObject {
             case .login:
                 loginViewController = newLoginViewController()
                 contentViewController = loginViewController
-            case .loading:
-                contentViewController = newLoadingViewController()
+            case .loading (let businessFileName):
+                contentViewController = newLoadingViewController(businessFileName: businessFileName)
             case .noForms (let businessFileName):
                 contentViewController = newNoFormsViewController(businessFileName: businessFileName)
             case .forms (let formsBusinessFile):
@@ -101,8 +101,10 @@ class ScanRouter: NSObject {
         return loginController
     }
     
-    private func newLoadingViewController() -> UIViewController {
-        return UIViewController(nibName: "LoadingViewController", bundle: nil)
+    private func newLoadingViewController(businessFileName: String?) -> UIViewController {
+        let loadingViewController = UIViewController(nibName: "LoadingViewController", bundle: nil)
+        loadingViewController.title = businessFileName
+        return loadingViewController
     }
     
     private func newNoFormsViewController(businessFileName: String?) -> UIViewController {
