@@ -1,3 +1,5 @@
+@import Foundation;
+
 @class FCLFormsBusinessFile;
 
 @interface FCLBusinessFilesParser : NSObject

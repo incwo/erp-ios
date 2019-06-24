@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<user>
+	<title>Files and image-enabled objects</title>
+	<description>Information on files and objects that can receive images</description>
+	<language>en</language>
+	<business_file>
+		<id>30</id>
+		<name>incwo</name>
+		<kind>Bureau Virtuel</kind>
+		<object>
+			<lobjet>Contact</lobjet>
+			<la_classe>contacts</la_classe>
+			<les_champs>
+				<le_nom>Prénom</le_nom>
+				<le_champ>first_name</le_champ>
+				<le_type>string</le_type>
+			</les_champs>
+			<les_champs>
+				<le_nom>Nom</le_nom>
+				<le_champ>last_name</le_champ>
+				<le_type>string</le_type>
+			</les_champs>
+			<les_champs>
+				<le_nom>Société</le_nom>
+				<le_champ>firm</le_champ>
+				<le_type>string</le_type>
+			</les_champs>
+		</object>
+		<object>
+			<lobjet>Note de frais</lobjet>
+			<la_classe>expense_lines</la_classe>
+			<les_champs>
+				<le_nom>Raison</le_nom>
+				<le_champ>description</le_champ>
+				<le_type>string</le_type>
+			</les_champs>
+			<les_champs>
+				<le_nom>Montant TTC</le_nom>
+				<le_champ>amount</le_champ>
+				<le_type>numeric</le_type>
+			</les_champs>
+			<les_champs>
+				<le_nom>Montant TVA</le_nom>
+				<le_champ>vat_value</le_champ>
+				<le_type>numeric</le_type>
+			</les_champs>
+			<les_champs>
+				<le_nom>Analytique</le_nom>
+				<le_champ>type_id</le_champ>
+				<le_type>enum</le_type>
+				<la_valeur key="245">Frais kilométriques</la_valeur>
+				<la_valeur key="246">Frais de carburant</la_valeur>
+				<la_valeur key="620133">Entretien véhicule</la_valeur>
+				<la_valeur key="247">Transport, parking, péage</la_valeur>
+				<la_valeur key="248">Frais de taxi</la_valeur>
+				<la_valeur key="700229">Déplacement</la_valeur>
+				<la_valeur key="249">Repas internes</la_valeur>
+				<la_valeur key="250">Invitations externes</la_valeur>
+				<la_valeur key="251">Frais d'hôtel</la_valeur>
+				<la_valeur key="252">Frais postaux</la_valeur>
+				<la_valeur key="253">Téléphone</la_valeur>
+				<la_valeur key="254">Documentation</la_valeur>
+				<la_valeur key="571">Fournitures</la_valeur>
+				<la_valeur key="572">Matières premières</la_valeur>
+				<la_valeur key="255">Divers</la_valeur>
+			</les_champs>
+			<les_champs>
+				<le_nom>Date</le_nom>
+				<le_champ>date_offset</le_champ>
+				<le_type>enum</le_type>
+				<la_valeur key="0">lun 24 Juin 2019</la_valeur>
+				<la_valeur key="-1">dim 23 Juin 2019</la_valeur>
+				<la_valeur key="-2">sam 22 Juin 2019</la_valeur>
+				<la_valeur key="-3">ven 21 Juin 2019</la_valeur>
+				<la_valeur key="-4">jeu 20 Juin 2019</la_valeur>
+				<la_valeur key="-5">mer 19 Juin 2019</la_valeur>
+				<la_valeur key="-6">mar 18 Juin 2019</la_valeur>
+				<la_valeur key="-7">lun 17 Juin 2019</la_valeur>
+				<la_valeur key="-8">dim 16 Juin 2019</la_valeur>
+				<la_valeur key="-9">sam 15 Juin 2019</la_valeur>
+				<la_valeur key="-10">ven 14 Juin 2019</la_valeur>
+				<la_valeur key="-11">jeu 13 Juin 2019</la_valeur>
+				<la_valeur key="-12">mer 12 Juin 2019</la_valeur>
+				<la_valeur key="-13">mar 11 Juin 2019</la_valeur>
+				<la_valeur key="-14">lun 10 Juin 2019</la_valeur>
+				<la_valeur key="-15">dim  9 Juin 2019</la_valeur>
+				<la_valeur key="-16">sam  8 Juin 2019</la_valeur>
+				<la_valeur key="-17">ven  7 Juin 2019</la_valeur>
+				<la_valeur key="-18">jeu  6 Juin 2019</la_valeur>
+				<la_valeur key="-19">mer  5 Juin 2019</la_valeur>
+				<la_valeur key="-20">mar  4 Juin 2019</la_valeur>
+				<la_valeur key="-21">lun  3 Juin 2019</la_valeur>
+				<la_valeur key="-22">dim  2 Juin 2019</la_valeur>
+				<la_valeur key="-23">sam  1 Juin 2019</la_valeur>
+				<la_valeur key="-24">ven 31 Mai 2019</la_valeur>
+				<la_valeur key="-25">jeu 30 Mai 2019</la_valeur>
+				<la_valeur key="-26">mer 29 Mai 2019</la_valeur>
+				<la_valeur key="-27">mar 28 Mai 2019</la_valeur>
+				<la_valeur key="-28">lun 27 Mai 2019</la_valeur>
+				<la_valeur key="-29">dim 26 Mai 2019</la_valeur>
+				<la_valeur key="-30">sam 25 Mai 2019</la_valeur>
+			</les_champs>
+			<les_champs>
+				<le_nom>A notifier</le_nom>
+				<le_champ>user_to_notify_id</le_champ>
+				<le_type>enum</le_type>
+				<la_valeur key="46">Delphine Favory</la_valeur>
+				<la_valeur key="43">Guillaume Besse</la_valeur>
+			</les_champs>
+		</object>
+		<object>
+			<lobjet>A classer</lobjet>
+			<la_classe>upload_files</la_classe>
+			<les_champs>
+				<le_nom>Commentaires</le_nom>
+				<le_champ>note</le_champ>
+				<le_type>string</le_type>
+			</les_champs>
+		</object>
+		<object>
+			<lobjet>A faire</lobjet>
+			<la_classe>tasks</la_classe>
+			<les_champs>
+				<le_nom>Faire quoi</le_nom>
+				<le_champ>title</le_champ>
+				<le_type>string</le_type>
+			</les_champs>
+			<les_champs>
+				<le_nom>Quand</le_nom>
+				<le_champ>days</le_champ>
+				<le_type>enum</le_type>
+				<la_valeur key="1">Demain</la_valeur>
+				<la_valeur key="2">Après-demain</la_valeur>
+				<la_valeur key="4">D'ici 4 jours</la_valeur>
+				<la_valeur key="7">D'ici 1 semaine</la_valeur>
+				<la_valeur key="30">D'ici 1 mois</la_valeur>
+			</les_champs>
+			<les_champs>
+				<le_nom>Qui</le_nom>
+				<le_champ>assigned_user_id</le_champ>
+				<le_type>enum</le_type>
+				<la_valeur key="43">Guillaume Besse</la_valeur>
+				<la_valeur key="78">Dimitri Dagot</la_valeur>
+				<la_valeur key="77">Eric Langrognet</la_valeur>
+				<la_valeur key="44">Jean-Baptiste De Chocqueuse</la_valeur>
+				<la_valeur key="297553">Cyril Gaime</la_valeur>
+				<la_valeur key="46">Delphine Favory</la_valeur>
+				<la_valeur key="6060">Fyne Acosta Glendel Joubert</la_valeur>
+				<la_valeur key="188837">Rodriguez Perez Henry Leonardo</la_valeur>
+				<la_valeur key="193448">Huertas Colmenares William Andrés</la_valeur>
+				<la_valeur key="277321">Yeison Andres Molina Salcedo</la_valeur>
+				<la_valeur key="289729">Julie Lecaille</la_valeur>
+				<la_valeur key="468023">Amélie El Jaaouani</la_valeur>
+				<la_valeur key="486834">Cyrielle Puyravaud</la_valeur>
+				<la_valeur key="493184">Lizeth Paola Cuadros Olarte</la_valeur>
+				<la_valeur key="506271">Clément Chabeauti</la_valeur>
+				<la_valeur key="537348">Renaud Pradenc</la_valeur>
+				<la_valeur key="513382">Aimad Satfaoui</la_valeur>
+				<la_valeur key="552568">Camille Besset</la_valeur>
+				<la_valeur key="562293">Valentin Barbillon</la_valeur>
+				<la_valeur key="588797">Thibaut Vauthier</la_valeur>
+			</les_champs>
+		</object>
+		<object>
+			<lobjet>Ecrire sur le mur</lobjet>
+			<la_classe>wall_items</la_classe>
+			<les_champs>
+				<le_nom>Commentaires</le_nom>
+				<le_champ>note</le_champ>
+				<le_type>text</le_type>
+			</les_champs>
+		</object>
+		<object>
+			<lobjet>Bons de livraison à signer</lobjet>
+			<la_classe>folder</la_classe>
+			<items>
+				<object>
+					<lobjet>Signer le BL BL1906-00242</lobjet>
+					<la_classe>proposal_sheets+9055588</la_classe>
+					<les_champs>
+						<le_nom>Signature</le_nom>
+						<le_champ>my_signature</le_champ>
+						<le_type>signature</le_type>
+						<description>Je valide la livraison BL1906-00242</description>
+					</les_champs>
+				</object>
+				<object>
+					<lobjet>Signer le BL BL1905-00240</lobjet>
+					<la_classe>proposal_sheets+8822623</la_classe>
+					<les_champs>
+						<le_nom>Signature</le_nom>
+						<le_champ>my_signature</le_champ>
+						<le_type>signature</le_type>
+						<description>Je valide la livraison BL1905-00240</description>
+					</les_champs>
+				</object>
+				<object>
+					<lobjet>Signer le BL BL1905-00239</lobjet>
+					<la_classe>proposal_sheets+8805943</la_classe>
+					<les_champs>
+						<le_nom>Signature</le_nom>
+						<le_champ>my_signature</le_champ>
+						<le_type>signature</le_type>
+						<description>Je valide la livraison BL1905-00239</description>
+					</les_champs>
+				</object>
+				<object>
+					<lobjet>Signer le BL BL1905-00238</lobjet>
+					<la_classe>proposal_sheets+8775383</la_classe>
+					<les_champs>
+						<le_nom>Signature</le_nom>
+						<le_champ>my_signature</le_champ>
+						<le_type>signature</le_type>
+						<description>Je valide la livraison BL1905-00238</description>
+					</les_champs>
+				</object>
+				<object>
+					<lobjet>Signer le BL BL1904-00237</lobjet>
+					<la_classe>proposal_sheets+8634418</la_classe>
+					<les_champs>
+						<le_nom>Signature</le_nom>
+						<le_champ>my_signature</le_champ>
+						<le_type>signature</le_type>
+						<description>Je valide la livraison BL1904-00237</description>
+					</les_champs>
+				</object>
+				<object>
+					<lobjet>Signer le BL BL1903-00235</lobjet>
+					<la_classe>proposal_sheets+8199429</la_classe>
+					<les_champs>
+						<le_nom>Signature</le_nom>
+						<le_champ>my_signature</le_champ>
+						<le_type>signature</le_type>
+						<description>Je valide la livraison BL1903-00235</description>
+					</les_champs>
+				</object>
+				<object>
+					<lobjet>Signer le BL BL1903-00234</lobjet>
+					<la_classe>proposal_sheets+8199254</la_classe>
+					<les_champs>
+						<le_nom>Signature</le_nom>
+						<le_champ>my_signature</le_champ>
+						<le_type>signature</le_type>
+						<description>Je valide la livraison BL1903-00234</description>
+					</les_champs>
+				</object>
+				<object>
+					<lobjet>Signer le BL BL1901-00233</lobjet>
+					<la_classe>proposal_sheets+7753671</la_classe>
+					<les_champs>
+						<le_nom>Signature</le_nom>
+						<le_champ>my_signature</le_champ>
+						<le_type>signature</le_type>
+						<description>Je valide la livraison BL1901-00233</description>
+					</les_champs>
+				</object>
+				<object>
+					<lobjet>Signer le BL BL1811-00231</lobjet>
+					<la_classe>proposal_sheets+7532412</la_classe>
+					<les_champs>
+						<le_nom>Signature</le_nom>
+						<le_champ>my_signature</le_champ>
+						<le_type>signature</le_type>
+						<description>Je valide la livraison BL1811-00231</description>
+					</les_champs>
+				</object>
+				<object>
+					<lobjet>Signer le BL BL1709-00226</lobjet>
+					<la_classe>proposal_sheets+4306994</la_classe>
+					<les_champs>
+						<le_nom>Signature</le_nom>
+						<le_champ>my_signature</le_champ>
+						<le_type>signature</le_type>
+						<description>Je valide la livraison BL1709-00226</description>
+					</les_champs>
+				</object>
+				<object>
+					<lobjet>Signer le BL BL1709-00225</lobjet>
+					<la_classe>proposal_sheets+4306989</la_classe>
+					<les_champs>
+						<le_nom>Signature</le_nom>
+						<le_champ>my_signature</le_champ>
+						<le_type>signature</le_type>
+						<description>Je valide la livraison BL1709-00225</description>
+					</les_champs>
+				</object>
+				<object>
+					<lobjet>Signer le BL BL1612-00224</lobjet>
+					<la_classe>proposal_sheets+3003726</la_classe>
+					<les_champs>
+						<le_nom>Signature</le_nom>
+						<le_champ>my_signature</le_champ>
+						<le_type>signature</le_type>
+						<description>Je valide la livraison BL1612-00224</description>
+					</les_champs>
+				</object>
+			</items>
+		</object>
+	</business_file>
+</user>

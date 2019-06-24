@@ -95,11 +95,26 @@
 		DF8B05102192FCAF0056DDD7 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8B050F2192FCAF0056DDD7 /* LoadingViewController.xib */; };
 		DF8B05122192FD280056DDD7 /* NoFormsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8B05112192FD280056DDD7 /* NoFormsViewController.xib */; };
 		DF8B0516219329400056DDD7 /* NoFormsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B0515219329400056DDD7 /* NoFormsViewController.swift */; };
+		DF9980FC22C0D37900D4E996 /* FormsBusinessFiles.xml in Resources */ = {isa = PBXBuildFile; fileRef = DF9980FB22C0D37900D4E996 /* FormsBusinessFiles.xml */; };
+		DF99810022C0D41400D4E996 /* BusinessFilesParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF9980FF22C0D41400D4E996 /* BusinessFilesParserTests.swift */; };
+		DF99810122C0D43D00D4E996 /* FCLBusinessFilesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6537C118AD51E00C94599 /* FCLBusinessFilesParser.m */; };
+		DF99810222C0FDED00D4E996 /* FCLFormsBusinessFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65376118AD41A00C94599 /* FCLFormsBusinessFile.m */; };
+		DF99810322C1007600D4E996 /* FCLForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65379118AD4B600C94599 /* FCLForm.m */; };
 		DFC2C1AD2087273E008B333B /* FCLNavigationItemTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */; };
 		DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */; };
 		E2BDD3302069180700BA988F /* FCLAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BDD32F2069180700BA988F /* FCLAppearance.m */; };
 		E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2BDD3332069316100BA988F /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DF9980F522C0D32000D4E996 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
+			remoteInfo = facile;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -241,6 +256,11 @@
 		DF8B050F2192FCAF0056DDD7 /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		DF8B05112192FD280056DDD7 /* NoFormsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFormsViewController.xib; sourceTree = "<group>"; };
 		DF8B0515219329400056DDD7 /* NoFormsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFormsViewController.swift; sourceTree = "<group>"; };
+		DF9980F022C0D32000D4E996 /* facilescanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = facilescanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF9980F422C0D32000D4E996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF9980FB22C0D37900D4E996 /* FormsBusinessFiles.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FormsBusinessFiles.xml; sourceTree = "<group>"; };
+		DF9980FE22C0D41400D4E996 /* facilescanTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "facilescanTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		DF9980FF22C0D41400D4E996 /* BusinessFilesParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFilesParserTests.swift; sourceTree = "<group>"; };
 		DFC2C1AB2087273E008B333B /* FCLNavigationItemTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLNavigationItemTitleView.h; sourceTree = "<group>"; };
 		DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLNavigationItemTitleView.m; sourceTree = "<group>"; };
 		DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
@@ -266,6 +286,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DF9980ED22C0D32000D4E996 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -284,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* facilescan.app */,
+				DF9980F022C0D32000D4E996 /* facilescanTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -398,6 +426,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				DF9980F122C0D32000D4E996 /* facilescanTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				B7B60DEE9344364CF10784B4 /* Pods */,
@@ -478,6 +507,25 @@
 				DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		DF9980F122C0D32000D4E996 /* facilescanTests */ = {
+			isa = PBXGroup;
+			children = (
+				DF9980FD22C0D37F00D4E996 /* Test Assets */,
+				DF9980F422C0D32000D4E996 /* Info.plist */,
+				DF9980FF22C0D41400D4E996 /* BusinessFilesParserTests.swift */,
+				DF9980FE22C0D41400D4E996 /* facilescanTests-Bridging-Header.h */,
+			);
+			path = facilescanTests;
+			sourceTree = "<group>";
+		};
+		DF9980FD22C0D37F00D4E996 /* Test Assets */ = {
+			isa = PBXGroup;
+			children = (
+				DF9980FB22C0D37900D4E996 /* FormsBusinessFiles.xml */,
+			);
+			path = "Test Assets";
 			sourceTree = "<group>";
 		};
 		DFFA8619206E1D7F00C52018 /* Application */ = {
@@ -592,18 +640,44 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* facilescan.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DF9980EF22C0D32000D4E996 /* facilescanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF9980FA22C0D32000D4E996 /* Build configuration list for PBXNativeTarget "facilescanTests" */;
+			buildPhases = (
+				DF9980EC22C0D32000D4E996 /* Sources */,
+				DF9980ED22C0D32000D4E996 /* Frameworks */,
+				DF9980EE22C0D32000D4E996 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DF9980F622C0D32000D4E996 /* PBXTargetDependency */,
+			);
+			name = facilescanTests;
+			productName = facilescanTests;
+			productReference = DF9980F022C0D32000D4E996 /* facilescanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1000;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = B7D2BSZ7A4;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
+					};
+					DF9980EF22C0D32000D4E996 = {
+						CreatedOnToolsVersion = 10.2.1;
+						DevelopmentTeam = B7D2BSZ7A4;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1D6058900D05DD3D006BFB54;
 					};
 				};
 			};
@@ -612,6 +686,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
+				English,
 				French,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
@@ -620,6 +695,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* facile */,
+				DF9980EF22C0D32000D4E996 /* facilescanTests */,
 			);
 		};
 /* End PBXProject section */
@@ -652,6 +728,14 @@
 				2010BF6216C14F71009EC753 /* FCLSignatureViewController.xib in Resources */,
 				2047B09E16C172C400DFFA34 /* FCLSignatureSample.png in Resources */,
 				3ACF002418D8A7C900BEEA95 /* Main-iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF9980EE22C0D32000D4E996 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF9980FC22C0D37900D4E996 /* FormsBusinessFiles.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,7 +883,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DF9980EC22C0D32000D4E996 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF99810222C0FDED00D4E996 /* FCLFormsBusinessFile.m in Sources */,
+				DF99810322C1007600D4E996 /* FCLForm.m in Sources */,
+				DF99810122C0D43D00D4E996 /* FCLBusinessFilesParser.m in Sources */,
+				DF99810022C0D41400D4E996 /* BusinessFilesParserTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DF9980F622C0D32000D4E996 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D6058900D05DD3D006BFB54 /* facile */;
+			targetProxy = DF9980F522C0D32000D4E996 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -1009,6 +1112,131 @@
 			};
 			name = Release;
 		};
+		DF9980F722C0D32000D4E996 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = B7D2BSZ7A4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = facilescanTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.incwo.facilescanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "facilescanTests/facilescanTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/facilescan.app/facilescan";
+			};
+			name = Debug;
+		};
+		DF9980F822C0D32000D4E996 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = B7D2BSZ7A4;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = facilescanTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.incwo.facilescanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "facilescanTests/facilescanTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/facilescan.app/facilescan";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DF9980F922C0D32000D4E996 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = B7D2BSZ7A4;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = facilescanTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.incwo.facilescanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "facilescanTests/facilescanTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/facilescan.app/facilescan";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1028,6 +1256,16 @@
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
 				20E88F9111919B0E00C8D766 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF9980FA22C0D32000D4E996 /* Build configuration list for PBXNativeTarget "facilescanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF9980F722C0D32000D4E996 /* Debug */,
+				DF9980F822C0D32000D4E996 /* Release */,
+				DF9980F922C0D32000D4E996 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

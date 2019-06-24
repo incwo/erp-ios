@@ -1,3 +1,5 @@
+@import UIKit;
+
 #import "FCLModel.h"
 
 typedef enum : NSUInteger {
