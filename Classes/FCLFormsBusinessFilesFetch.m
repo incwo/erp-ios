@@ -80,7 +80,10 @@
 }
 
 +(NSURL *) URLForSession:(FCLSession *)session businessFileId:(NSString *)businessFileId {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d&file_id=%@", session.facileBaseURL, rand(), businessFileId]];
+    // r: Makes the URL random so it is not cached (used to cause problems with Orange)
+    // filed_id: the business file identifier
+    // hierarchical : Asks that the numerous objects of the same types are grouped in folders
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d&file_id=%@&hierarchical=1", session.facileBaseURL, rand(), businessFileId]];
 }
 
 // MARK: OAHTTPDownloadDelegate
