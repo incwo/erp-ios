@@ -5,5 +5,6 @@
 @import Foundation;
 
 #import "FCLBusinessFilesParser.h"
+#import "FCLField.h"
 #import "FCLForm.h"
 #import "FCLFormsBusinessFile.h"

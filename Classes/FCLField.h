@@ -2,14 +2,14 @@
 
 #import "FCLModel.h"
 
-typedef enum : NSUInteger {
+typedef NS_ENUM(NSUInteger, FCLFieldType) {
     FCLFieldTypeUnknown,
     FCLFieldTypeString,
     FCLFieldTypeText,
     FCLFieldTypeNumeric,
     FCLFieldTypeEnum,
     FCLFieldTypeSignature,
-} FCLFieldType;
+};
 
 @interface FCLField : FCLModel<UITextFieldDelegate, UITextViewDelegate>
 

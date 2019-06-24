@@ -1,10 +1,13 @@
 #import "FCLModel.h"
+
+@class FCLField;
+
 @interface FCLForm : FCLModel
 
 // Properties set by parsing XML
 @property (readonly) NSString *key;
 @property (readonly) NSString *name;
-@property (readonly) NSArray *fields;
+@property (readonly) NSArray <FCLField *> *fields;
 
 /// Calls -[reset] on all fields.
 - (void) reset;

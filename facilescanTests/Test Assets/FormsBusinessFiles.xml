@@ -284,17 +284,17 @@
 						<description>Je valide la livraison BL1709-00225</description>
 					</les_champs>
 				</object>
-				<object>
-					<lobjet>Signer le BL BL1612-00224</lobjet>
-					<la_classe>proposal_sheets+3003726</la_classe>
-					<les_champs>
-						<le_nom>Signature</le_nom>
-						<le_champ>my_signature</le_champ>
-						<le_type>signature</le_type>
-						<description>Je valide la livraison BL1612-00224</description>
-					</les_champs>
-				</object>
 			</items>
+		</object>
+		<object>
+			<lobjet>Signer le BL BL1612-00224</lobjet>
+			<la_classe>proposal_sheets+3003726</la_classe>
+			<les_champs>
+				<le_nom>Signature</le_nom>
+				<le_champ>my_signature</le_champ>
+				<le_type>signature</le_type>
+				<description>Je valide la livraison BL1612-00224</description>
+			</les_champs>
 		</object>
 	</business_file>
 </user>
