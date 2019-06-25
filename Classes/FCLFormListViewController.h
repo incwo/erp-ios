@@ -19,6 +19,7 @@
 @interface FCLFormListViewController : UITableViewController
 
 @property (nullable, weak) id <FCLFormListViewControllerDelegate> delegate;
-@property (nullable, strong) FCLFormsBusinessFile *formsBusinessFile;
+@property (nullable, strong) NSString *businessFileName;
+@property (nullable, strong) NSArray *formsAndFolders; // FCLForms and FCLFormFolders
 
 @end

@@ -15,12 +15,13 @@ protocol FormListCoordinatorDelegate: class {
 class FormListCoordinator: NSObject {
     weak var delegate: FormListCoordinatorDelegate?
     let navigationController: UINavigationController
-    let businessFile: FCLFormsBusinessFile
+    var businessFile: FCLFormsBusinessFile
     
     private lazy var formListViewController: FCLFormListViewController = {
         let formListViewController = FCLFormListViewController(nibName: nil, bundle: nil)
         formListViewController.delegate = self
-        formListViewController.formsBusinessFile = businessFile
+        formListViewController.businessFileName = businessFile.name
+        formListViewController.formsAndFolders = businessFile.children
         return formListViewController;
     }()
     public var rootViewController: UIViewController {
@@ -82,12 +83,12 @@ extension FormListCoordinator: FCLFormListViewControllerDelegate {
     }
     
     func formListViewControllerRefresh(_ controller: FCLFormListViewController) {
-        guard let currentBusinessFile = controller.formsBusinessFile else {
-            fatalError()
-        }
-        
-        fetchFormsBusinessFile(id: currentBusinessFile.identifier) { [weak self] (businessFile) in
-            self?.formListViewController.formsBusinessFile = businessFile
+        fetchFormsBusinessFile(id: businessFile.identifier) { [weak self] (freshBusinessFile) in
+            if let freshBusinessFile = freshBusinessFile {
+                self?.businessFile = freshBusinessFile
+                self?.formListViewController.businessFileName = freshBusinessFile.name
+                self?.formListViewController.formsAndFolders = freshBusinessFile.children
+            }
         }
     }
     

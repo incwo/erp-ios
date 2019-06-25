@@ -16,25 +16,41 @@
 
 @implementation FCLFormListViewController
 
-@synthesize formsBusinessFile = _formsBusinessFile;
--(void)setFormsBusinessFile:(FCLFormsBusinessFile *)businessFile {
+@synthesize businessFileName = _businessFileName;
+- (void)setBusinessFileName:(NSString *)businessFileName {
     @synchronized (self) {
-        if(businessFile != _formsBusinessFile) {
-            _formsBusinessFile = businessFile;
+        if(businessFileName == _businessFileName) {
+            return;
+        }
+        _businessFileName = businessFileName;
+        self.navigationItem.title = businessFileName;
+    }
+}
+
+- (NSString *)businessFileName {
+    @synchronized (self) {
+        return _businessFileName;
+    }
+}
+
+@synthesize formsAndFolders = _formsAndFolders;
+- (void)setFormsAndFolders:(NSArray *)formsAndFolders {
+    @synchronized (self) {
+        if(formsAndFolders != _formsAndFolders) {
+            _formsAndFolders = formsAndFolders;
         }
     }
     
     __typeof(self) __weak weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf.refreshControl endRefreshing];
-        weakSelf.navigationItem.title = businessFile.name;
         [weakSelf.tableView reloadData];
     });
 }
 
--(FCLFormsBusinessFile *)formsBusinessFile {
+- (NSArray *)formsAndFolders {
     @synchronized (self) {
-        return _formsBusinessFile;
+        return _formsAndFolders;
     }
 }
 
@@ -95,11 +111,11 @@
 
 - (NSInteger)tableView:(UITableView*)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.formsBusinessFile ? [self.formsBusinessFile.children count] : 0;
+    return self.formsAndFolders ? self.formsAndFolders.count : 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id child = [self.formsBusinessFile.children objectAtIndex:indexPath.row];
+    id child = [self.formsAndFolders objectAtIndex:indexPath.row];
     if([child isKindOfClass:[FCLForm class]]) {
         return [self createTitleCellForForm:(FCLForm *)child inTableView:aTableView];
     } else if([child isKindOfClass:[FCLFormFolder class]]) {
@@ -139,7 +155,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id child = [self.formsBusinessFile.children objectAtIndex:indexPath.row];
+    id child = [self.formsAndFolders objectAtIndex:indexPath.row];
     if([child isKindOfClass:[FCLForm class]]) {
         [self.delegate formListViewController:self didSelectForm:(FCLForm *)child];
     }
