@@ -30,11 +30,6 @@
     return _operationQueue;
 }
 
-- (NSArray*) fields
-{
-    return self.form.fields;
-}
-
 // MARK: Lifecycle
 - (void) dealloc
 {
@@ -166,11 +161,11 @@
 
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section < self.fields.count)
+    if (section < self.form.fields.count)
     {
-        return [[self.fields objectAtIndex:section] name];
+        return [[self.form.fields objectAtIndex:section] name];
     }
-    else if (section == self.fields.count && [self showExtraFieldForPicture])
+    else if (section == self.form.fields.count && [self showExtraFieldForPicture])
     {
         return NSLocalizedString(@"Photo", @"");
     }
@@ -179,9 +174,9 @@
 
 - (NSInteger) tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section < self.fields.count)
+    if (section < self.form.fields.count)
     {
-        FCLField* field = [self.fields objectAtIndex:section];
+        FCLField* field = [self.form.fields objectAtIndex:section];
         if (field.type == FCLFieldTypeEnum)
         {
             return 1; // we display a navigation controller to select from the list
@@ -195,7 +190,7 @@
             return 1;
         }
     }
-    else if (section == self.fields.count && [self showExtraFieldForPicture]) // preview
+    else if (section == self.form.fields.count && [self showExtraFieldForPicture]) // preview
     {
         // if there's no camera, do not show redundant photo library button; we'll show photo library anyways
         return ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] ? 2 : 1);
@@ -208,10 +203,10 @@
 
 - (NSString*) reuseIdentifierForIndexPath:(NSIndexPath*)indexPath
 {
-    NSUInteger size = self.fields.count;
+    NSUInteger size = self.form.fields.count;
     if (indexPath.section < size)
     {
-        return [self.fields[indexPath.section] key];
+        return [self.form.fields[indexPath.section] key];
     }
     else if (indexPath.section == size && [self showExtraFieldForPicture])
     {
@@ -240,9 +235,9 @@
         [view removeFromSuperview];
     }
     
-    if (indexPath.section < self.fields.count)
+    if (indexPath.section < self.form.fields.count)
     {
-        FCLField* field = (FCLField*)[self.fields objectAtIndex:indexPath.section];
+        FCLField* field = (FCLField*)[self.form.fields objectAtIndex:indexPath.section];
         
         if (field.type == FCLFieldTypeEnum)
         {
@@ -288,7 +283,7 @@
             [cell.contentView addSubview:uifield];
         }
     }
-    else if (indexPath.section == [self.fields count] && [self showExtraFieldForPicture]) // preview cell
+    else if (indexPath.section == [self.form.fields count] && [self showExtraFieldForPicture]) // preview cell
     {
         if (indexPath.row == 0)
         {
@@ -325,9 +320,9 @@
 
 - (CGFloat)tableView:(UITableView *)aTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section < [self.fields count])
+    if (indexPath.section < [self.form.fields count])
     {
-        FCLField* field = [self.fields objectAtIndex:indexPath.section];
+        FCLField* field = [self.form.fields objectAtIndex:indexPath.section];
         
         if (field.type == FCLFieldTypeText)
         {
@@ -339,7 +334,7 @@
         }
         return 44.0;
     }
-    else if (indexPath.section == [self.fields count] && [self showExtraFieldForPicture]) // preview
+    else if (indexPath.section == [self.form.fields count] && [self showExtraFieldForPicture]) // preview
     {
         if (indexPath.row == 0)
         {
@@ -370,9 +365,9 @@
 - (void) tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    if (indexPath.section < [self.fields count])
+    if (indexPath.section < [self.form.fields count])
     {
-        FCLField* field = [self.fields objectAtIndex:indexPath.section];
+        FCLField* field = [self.form.fields objectAtIndex:indexPath.section];
         if (field.type == FCLFieldTypeEnum)
         {
             FCLOptionsViewController* optionsController = [[FCLOptionsViewController alloc] initWithNibName:nil bundle:nil];
@@ -398,7 +393,7 @@
             [self presentViewController:nc animated:YES completion:nil];
         }
     }
-    else if (indexPath.section == [self.fields count] && [self showExtraFieldForPicture])
+    else if (indexPath.section == [self.form.fields count] && [self showExtraFieldForPicture])
     {
         if (indexPath.row == 0)
         {

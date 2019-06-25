@@ -104,6 +104,7 @@
 		DFC2C1AD2087273E008B333B /* FCLNavigationItemTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */; };
 		DFE0033A22C21C370086640D /* FCLFormFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = DF99811D22C12AFC00D4E996 /* FCLFormFolder.m */; };
 		DFE0033B22C21D670086640D /* FormsBusinessFiles.xml in Resources */ = {isa = PBXBuildFile; fileRef = DF9980FB22C0D37900D4E996 /* FormsBusinessFiles.xml */; };
+		DFE0033D22C241100086640D /* FormListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE0033C22C241100086640D /* FormListCoordinator.swift */; };
 		DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */; };
 		E2BDD3302069180700BA988F /* FCLAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BDD32F2069180700BA988F /* FCLAppearance.m */; };
 		E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2BDD3332069316100BA988F /* Launch Screen.storyboard */; };
@@ -268,6 +269,7 @@
 		DF99811D22C12AFC00D4E996 /* FCLFormFolder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLFormFolder.m; sourceTree = "<group>"; };
 		DFC2C1AB2087273E008B333B /* FCLNavigationItemTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLNavigationItemTitleView.h; sourceTree = "<group>"; };
 		DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLNavigationItemTitleView.m; sourceTree = "<group>"; };
+		DFE0033C22C241100086640D /* FormListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListCoordinator.swift; sourceTree = "<group>"; };
 		DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
 		DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
 		E2BDD32E2069180700BA988F /* FCLAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLAppearance.h; sourceTree = "<group>"; };
@@ -535,6 +537,34 @@
 			path = "Test Assets";
 			sourceTree = "<group>";
 		};
+		DFE0033E22C24AE70086640D /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				DFE0033C22C241100086640D /* FormListCoordinator.swift */,
+				20A653EE118B040600C94599 /* FCLFormListViewController.h */,
+				20A653EF118B040600C94599 /* FCLFormListViewController.m */,
+				20A653F1118B06FD00C94599 /* FCLFormListViewController.xib */,
+				DFFA861E206E57D200C52018 /* Form */,
+			);
+			name = Forms;
+			sourceTree = "<group>";
+		};
+		DFE0033F22C24B0A0086640D /* Signature */ = {
+			isa = PBXGroup;
+			children = (
+				2010BF5E16C14F6C009EC753 /* FCLSignatureViewController.h */,
+				2010BF5F16C14F6F009EC753 /* FCLSignatureViewController.m */,
+				2010BF6016C14F70009EC753 /* FCLSignatureViewController.xib */,
+				2010BF6616C16FB6009EC753 /* FCLHandDrawingView.h */,
+				2010BF6716C16FBC009EC753 /* FCLHandDrawingView.m */,
+				2047B09716C1708500DFFA34 /* CG+OAHelpers.h */,
+				2047B09816C1708500DFFA34 /* CG+OAHelpers.m */,
+				2047B09916C1708500DFFA34 /* OAPath.h */,
+				2047B09A16C1708500DFFA34 /* OAPath.m */,
+			);
+			name = Signature;
+			sourceTree = "<group>";
+		};
 		DFFA8619206E1D7F00C52018 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -569,19 +599,7 @@
 				DF8B050F2192FCAF0056DDD7 /* LoadingViewController.xib */,
 				DF8B0515219329400056DDD7 /* NoFormsViewController.swift */,
 				DF8B05112192FD280056DDD7 /* NoFormsViewController.xib */,
-				20A653EE118B040600C94599 /* FCLFormListViewController.h */,
-				20A653EF118B040600C94599 /* FCLFormListViewController.m */,
-				20A653F1118B06FD00C94599 /* FCLFormListViewController.xib */,
-				DFFA861E206E57D200C52018 /* Form */,
-				2010BF5E16C14F6C009EC753 /* FCLSignatureViewController.h */,
-				2010BF5F16C14F6F009EC753 /* FCLSignatureViewController.m */,
-				2010BF6016C14F70009EC753 /* FCLSignatureViewController.xib */,
-				2010BF6616C16FB6009EC753 /* FCLHandDrawingView.h */,
-				2010BF6716C16FBC009EC753 /* FCLHandDrawingView.m */,
-				2047B09716C1708500DFFA34 /* CG+OAHelpers.h */,
-				2047B09816C1708500DFFA34 /* CG+OAHelpers.m */,
-				2047B09916C1708500DFFA34 /* OAPath.h */,
-				2047B09A16C1708500DFFA34 /* OAPath.m */,
+				DFE0033E22C24AE70086640D /* Forms */,
 			);
 			name = Scan;
 			sourceTree = "<group>";
@@ -619,6 +637,7 @@
 				2060C57C11901A9800EF2405 /* FCLOptionsViewController.h */,
 				2060C57D11901A9800EF2405 /* FCLOptionsViewController.m */,
 				2060C58411901C5600EF2405 /* FCLOptionsViewController.xib */,
+				DFE0033F22C24B0A0086640D /* Signature */,
 			);
 			name = Form;
 			sourceTree = "<group>";
@@ -869,6 +888,7 @@
 				DF8B0516219329400056DDD7 /* NoFormsViewController.swift in Sources */,
 				DF681F942191A4C300094C3A /* BusinessFilesFetch.swift in Sources */,
 				DF8B05062192DD180056DDD7 /* FCLFormsBusinessFilesFetch.m in Sources */,
+				DFE0033D22C241100086640D /* FormListCoordinator.swift in Sources */,
 				203C91CC16BAA9B900C37D50 /* PStringExtensions.m in Sources */,
 				DF6447AB208E191700001A57 /* PDataExtension.m in Sources */,
 				203C91D216BAAA1300C37D50 /* PDateExtension.m in Sources */,

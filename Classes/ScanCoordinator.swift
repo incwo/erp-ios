@@ -13,7 +13,6 @@ protocol ScanCoordinatorDelegate: class {
 
 class ScanCoordinator: NSObject {
     public weak var delegate: ScanCoordinatorDelegate?
-    private var businessFilesFetch: FCLFormsBusinessFilesFetch? = nil
     
     public let navigationController: UINavigationController
     
@@ -54,6 +53,8 @@ class ScanCoordinator: NSObject {
         return UIViewController()
     }()
     
+    private var formListCoordinator: FormListCoordinator? = nil
+    
     enum Content {
         case none
         case login
@@ -75,9 +76,8 @@ class ScanCoordinator: NSObject {
             case .noForms (let businessFileName):
                 contentViewController = newNoFormsViewController(businessFileName: businessFileName)
             case .forms (let formsBusinessFile):
-                let formListViewController = newFormListViewController(formsBusinessFile: formsBusinessFile)
-                contentViewController = formListViewController
-                self.formListViewController = formListViewController
+                formListCoordinator = FormListCoordinator(delegate: self, navigationController: navigationController, businessFile: formsBusinessFile)
+                contentViewController = formListCoordinator!.rootViewController
             }
         }
     }
@@ -86,7 +86,6 @@ class ScanCoordinator: NSObject {
         willSet {
             contentViewController?.remove()
             loginViewController = nil
-            formListViewController = nil
         }
         
         didSet {
@@ -118,19 +117,7 @@ class ScanCoordinator: NSObject {
         return noFormsViewController
     }
     
-    private var formListViewController: FCLFormListViewController?
-    private func newFormListViewController(formsBusinessFile: FCLFormsBusinessFile) -> FCLFormListViewController {
-        let formListViewController = FCLFormListViewController(nibName: nil, bundle: nil)
-        formListViewController.delegate = self
-        formListViewController.formsBusinessFile = formsBusinessFile
-        if let session = FCLSession.saved() {
-            formListViewController.username = session.username
-            formListViewController.password = session.password
-        }
-        return formListViewController;
-    }
-    
-    // MARK: View Controllers
+    // MARK: - View Controllers
     private func pushAccountCreationViewController() {
         let accountCreationController = AccountCreationViewController(delegate: self)
         navigationController.pushViewController(accountCreationController, animated: true)
@@ -140,7 +127,9 @@ class ScanCoordinator: NSObject {
         navigationController.topViewController?.fcl_presentAlert(forError: error)
     }
     
-    // MARK: Fetching Form business files
+    // MARK: - Fetching Form business files
+    
+    private var businessFilesFetch: FCLFormsBusinessFilesFetch? = nil
     
     private func fetchFormsBusinessFile(id: String, success: @escaping (FCLFormsBusinessFile?)->() ) {
         if businessFilesFetch == nil {
@@ -160,6 +149,8 @@ class ScanCoordinator: NSObject {
         })
     }
 }
+
+// MARK: - Delegation
 
 extension ScanCoordinator: FCLLoginViewControllerDelegate {    
     func loginViewControllerWantsAccountCreation(_ controller: FCLLoginViewController) {
@@ -189,18 +180,10 @@ extension ScanCoordinator: NoFormsViewControllerDelegate {
     }
 }
 
-extension ScanCoordinator: FCLFormListViewControllerDelegate {
-    func formListViewControllerSidePanel(_ controller: FCLFormListViewController) {
+extension ScanCoordinator: FormListCoordinatorDelegate {
+    func formListCoordinatorPresentSidePanel() {
         delegate?.scanCoordinatorPresentSidePanel()
     }
-    
-    func formListViewControllerRefresh(_ controller: FCLFormListViewController) {
-        guard let currentBusinessFile = controller.formsBusinessFile else {
-            fatalError()
-        }
-        
-        fetchFormsBusinessFile(id: currentBusinessFile.identifier) { [weak self] (businessFile) in
-            self?.formListViewController?.formsBusinessFile = businessFile
-        }
-    }
 }
+
+

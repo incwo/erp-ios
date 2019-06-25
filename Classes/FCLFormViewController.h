@@ -15,6 +15,4 @@
 @property(nonatomic, strong) FCLForm* form;
 @property(nonatomic, strong) UIImage* image;
 
-- (NSArray*) fields;
-
 @end

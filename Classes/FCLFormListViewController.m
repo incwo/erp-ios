@@ -7,7 +7,7 @@
 #import "FCLUpload.h"
 #import "UIViewController+Alert.h"
 
-@interface FCLFormListViewController () <UploaderDelegate, FCLFormViewControllerDelegate>
+@interface FCLFormListViewController () <UploaderDelegate>
 
 @property(nonatomic, strong) FCLFormViewController *formController;
 @property(nonatomic,strong) IBOutlet UILabel *helpHeaderView;
@@ -45,8 +45,6 @@
     [super viewDidLoad];
     
     NSParameterAssert(self.delegate);
-    NSParameterAssert(self.username);
-    NSParameterAssert(self.password);
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
@@ -169,36 +167,9 @@
 {
     id child = [self.formsBusinessFile.children objectAtIndex:indexPath.row];
     if([child isKindOfClass:[FCLForm class]]) {
-        FCLForm *form = child;
-        self.formController = [[FCLFormViewController alloc] initWithNibName:nil bundle:nil];
-        self.formController.delegate = self;
-        self.formController.form = form;
-        [form reset];
-        [form loadDefaults];
-        [self.navigationController pushViewController:self.formController animated:YES];
+        [self.delegate formListViewController:self didSelectForm:(FCLForm *)child];
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-}
-
-// MARK: FCLFormViewControllerDelegate
-
--(void) formViewControllerSend:(FCLFormViewController *)formController {
-    [self.navigationController popViewControllerAnimated:YES];
-    
-    FCLUpload* upload = [[FCLUpload alloc] init];
-    
-    [formController.form saveDefaults];
-    
-    NSLog(@"Sending form %@ (%@) to business_file %@ (%@)", formController.form.name, formController.form.key, self.formsBusinessFile.name, self.formsBusinessFile.identifier);
-    
-    upload.fileId = self.formsBusinessFile.identifier;
-    upload.categoryKey = formController.form.key;
-    upload.fields = [formController fields];
-    upload.image = formController.image;
-    upload.username = self.username;
-    upload.password = self.password;
-    
-    [[FCLUploader sharedUploader] addUpload:upload];
 }
 
 @end
