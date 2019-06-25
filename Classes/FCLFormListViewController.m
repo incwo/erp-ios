@@ -9,9 +9,8 @@
 
 @interface FCLFormListViewController () <UploaderDelegate, FCLFormViewControllerDelegate>
 
-@property(nonatomic, strong) FCLFormViewController* formController;
-@property(nonatomic,strong) IBOutlet UIView* loadingView;
-@property(nonatomic,strong) IBOutlet UILabel* helpFooterView;
+@property(nonatomic, strong) FCLFormViewController *formController;
+@property(nonatomic,strong) IBOutlet UILabel *helpHeaderView;
 
 @end
 
@@ -55,7 +54,7 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"] style:UIBarButtonItemStylePlain target:self action:@selector(showSidePanel:)];
     
-    self.helpFooterView.text = NSLocalizedString(@"Insérez des photos et signatures sur votre application", @"");
+    self.helpHeaderView.text = NSLocalizedString(@"Insérez des photos et signatures sur votre application", @"");
 }
 
 
@@ -117,43 +116,32 @@
 
 #pragma mark UITableViewDataSource
 
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView
 {
-    return 1; // ([[Uploader sharedUploader] isUploading] ? 2 : 1);
+    return 1;
 }
-
 
 - (NSInteger)tableView:(UITableView*)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) return self.formsBusinessFile ? [self.formsBusinessFile.children count] : 0;
-    if (section == 1) return 1;
-    return 0;
+    return self.formsBusinessFile ? [self.formsBusinessFile.children count] : 0;
 }
 
-
-
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        id child = [self.formsBusinessFile.children objectAtIndex:indexPath.row];
-        if([child isKindOfClass:[FCLForm class]]) {
-            return [self createTitleCellForForm:(FCLForm *)child inTableView:aTableView];
-        } else if([child isKindOfClass:[FCLFormFolder class]]) {
-            return [self createTitleCellForFolder:(FCLFormFolder *)child inTableView:aTableView];
-        } else {
-            NSLog(@"%s Unknown class in formsBusinessFile.children", __PRETTY_FUNCTION__);
-            return [UITableViewCell new];
-        }
+    id child = [self.formsBusinessFile.children objectAtIndex:indexPath.row];
+    if([child isKindOfClass:[FCLForm class]]) {
+        return [self createTitleCellForForm:(FCLForm *)child inTableView:aTableView];
+    } else if([child isKindOfClass:[FCLFormFolder class]]) {
+        return [self createTitleCellForFolder:(FCLFormFolder *)child inTableView:aTableView];
     } else {
-        return [self createLoadingCellInTableView:aTableView];
+        NSLog(@"%s Unknown class in formsBusinessFile.children", __PRETTY_FUNCTION__);
+        return [UITableViewCell new];
     }
 }
 
 -(UITableViewCell *)createTitleCellForForm:(FCLForm *)form inTableView:(UITableView *)tableView {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FormName"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FormTitle"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Formtitle"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FormTitle"];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -165,7 +153,7 @@
 -(UITableViewCell *)createTitleCellForFolder:(FCLFormFolder *)folder inTableView:(UITableView *)tableView {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FolderTitle"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FormName"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FolderTitle"];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -174,62 +162,22 @@
     return cell;
 }
 
-
-- (UITableViewCell *)createLoadingCellInTableView:(UITableView *)tableView {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Loading"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Loading"];
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        cell.textLabel.text = @"Téléchargement...";
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-    return cell;
-}
-
 #pragma mark UITableViewDelegate
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
-    {
-        id child = [self.formsBusinessFile.children objectAtIndex:indexPath.row];
-        if([child isKindOfClass:[FCLForm class]]) {
-            FCLForm *form = child;
-            self.formController = [[FCLFormViewController alloc] initWithNibName:nil bundle:nil];
-            self.formController.delegate = self;
-            self.formController.form = form;
-            [form reset];
-            [form loadDefaults];
-            [self.navigationController pushViewController:self.formController animated:YES];
-        }
+    id child = [self.formsBusinessFile.children objectAtIndex:indexPath.row];
+    if([child isKindOfClass:[FCLForm class]]) {
+        FCLForm *form = child;
+        self.formController = [[FCLFormViewController alloc] initWithNibName:nil bundle:nil];
+        self.formController.delegate = self;
+        self.formController.form = form;
+        [form reset];
+        [form loadDefaults];
+        [self.navigationController pushViewController:self.formController animated:YES];
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if ([[FCLUploader sharedUploader] isUploading])
-    {
-        return 32.0;
-    }
-    else
-    {
-        return 0.0;
-    }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if ([[FCLUploader sharedUploader] isUploading])
-    {
-        return self.loadingView;
-    }
-    else
-    {
-        return nil;
-    }
-    
 }
 
 // MARK: FCLFormViewControllerDelegate
