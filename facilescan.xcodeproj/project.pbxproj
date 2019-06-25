@@ -74,7 +74,7 @@
 		9EB58714BE28C650A5CBCFA9 /* Pods_facile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C360ED63F3A469BA96E35B5E /* Pods_facile.framework */; };
 		DF179028216CE82500BE89F7 /* OfficeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF179027216CE82500BE89F7 /* OfficeRouter.swift */; };
 		DF17902A216CE8AE00BE89F7 /* UIViewController+child.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF179029216CE8AE00BE89F7 /* UIViewController+child.swift */; };
-		DF17902C216E04C800BE89F7 /* ScanRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF17902B216E04C800BE89F7 /* ScanRouter.swift */; };
+		DF17902C216E04C800BE89F7 /* ScanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF17902B216E04C800BE89F7 /* ScanCoordinator.swift */; };
 		DF1C794D217DB84C005419EA /* SidePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF1C7948217DB84B005419EA /* SidePanel.storyboard */; };
 		DF1C794F217DB84C005419EA /* BusinessFilesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C794A217DB84B005419EA /* BusinessFilesTableViewController.swift */; };
 		DF1C7950217DB84C005419EA /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C794B217DB84B005419EA /* LoggedInViewController.swift */; };
@@ -236,7 +236,7 @@
 		C8474124D611147C7B3BE800 /* Pods-facile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-facile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-facile/Pods-facile.debug.xcconfig"; sourceTree = "<group>"; };
 		DF179027216CE82500BE89F7 /* OfficeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeRouter.swift; sourceTree = "<group>"; };
 		DF179029216CE8AE00BE89F7 /* UIViewController+child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+child.swift"; sourceTree = "<group>"; };
-		DF17902B216E04C800BE89F7 /* ScanRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRouter.swift; sourceTree = "<group>"; };
+		DF17902B216E04C800BE89F7 /* ScanCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCoordinator.swift; sourceTree = "<group>"; };
 		DF1C7948217DB84B005419EA /* SidePanel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SidePanel.storyboard; sourceTree = "<group>"; };
 		DF1C794A217DB84B005419EA /* BusinessFilesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessFilesTableViewController.swift; sourceTree = "<group>"; };
 		DF1C794B217DB84B005419EA /* LoggedInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
@@ -565,7 +565,7 @@
 		DFFA861B206E1D9F00C52018 /* Scan */ = {
 			isa = PBXGroup;
 			children = (
-				DF17902B216E04C800BE89F7 /* ScanRouter.swift */,
+				DF17902B216E04C800BE89F7 /* ScanCoordinator.swift */,
 				DF8B050F2192FCAF0056DDD7 /* LoadingViewController.xib */,
 				DF8B0515219329400056DDD7 /* NoFormsViewController.swift */,
 				DF8B05112192FD280056DDD7 /* NoFormsViewController.xib */,
@@ -878,7 +878,7 @@
 				203C91D516BAAA5300C37D50 /* PFeedItemThumbnail.m in Sources */,
 				203C91D816BAAF8F00C37D50 /* FCLFeedLoader.m in Sources */,
 				203C91E016BAB51300C37D50 /* FCLWebViewController.m in Sources */,
-				DF17902C216E04C800BE89F7 /* ScanRouter.swift in Sources */,
+				DF17902C216E04C800BE89F7 /* ScanCoordinator.swift in Sources */,
 				DF1C7950217DB84C005419EA /* LoggedInViewController.swift in Sources */,
 				DF6CA49A2175DB2D001E8207 /* AppRouter.swift in Sources */,
 				20B9115A16BC1D5A009D1391 /* FCLVideoViewController.m in Sources */,

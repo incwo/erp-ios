@@ -1,5 +1,5 @@
 //
-//  ScanRouter.swift
+//  ScanCoordinator.swift
 //  facile
 //
 //  Created by Renaud Pradenc on 10/10/2018.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol ScanRouterDelegate: class {
-    func scanRouterPresentSidePanel()
+protocol ScanCoordinatorDelegate: class {
+    func scanCoordinatorPresentSidePanel()
 }
 
-class ScanRouter: NSObject {
-    public weak var delegate: ScanRouterDelegate?
+class ScanCoordinator: NSObject {
+    public weak var delegate: ScanCoordinatorDelegate?
     private var businessFilesFetch: FCLFormsBusinessFilesFetch? = nil
     
     public let navigationController: UINavigationController
@@ -161,13 +161,13 @@ class ScanRouter: NSObject {
     }
 }
 
-extension ScanRouter: FCLLoginViewControllerDelegate {    
+extension ScanCoordinator: FCLLoginViewControllerDelegate {    
     func loginViewControllerWantsAccountCreation(_ controller: FCLLoginViewController) {
         pushAccountCreationViewController()
     }
 }
 
-extension ScanRouter: AccountCreationViewControllerDelegate {
+extension ScanCoordinator: AccountCreationViewControllerDelegate {
     func accountCreationViewControllerDidCreateAccount(_ controller: AccountCreationViewController, email: String) {
         loginViewController?.email = email;
         navigationController.popViewController(animated: true)
@@ -183,15 +183,15 @@ extension ScanRouter: AccountCreationViewControllerDelegate {
     }
 }
 
-extension ScanRouter: NoFormsViewControllerDelegate {
+extension ScanCoordinator: NoFormsViewControllerDelegate {
     func noFormsViewControllerSidePanel(_ sender: NoFormsViewController) {
-        delegate?.scanRouterPresentSidePanel()
+        delegate?.scanCoordinatorPresentSidePanel()
     }
 }
 
-extension ScanRouter: FCLFormListViewControllerDelegate {
+extension ScanCoordinator: FCLFormListViewControllerDelegate {
     func formListViewControllerSidePanel(_ controller: FCLFormListViewController) {
-        delegate?.scanRouterPresentSidePanel()
+        delegate?.scanCoordinatorPresentSidePanel()
     }
     
     func formListViewControllerRefresh(_ controller: FCLFormListViewController) {

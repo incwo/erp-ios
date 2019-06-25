@@ -26,8 +26,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return officeRouter
     } ()
     
-    lazy var scanRouter: ScanRouter = {
-        let scanRouter = ScanRouter()
+    lazy var scanRouter: ScanCoordinator = {
+        let scanRouter = ScanCoordinator()
         scanRouter.navigationController.tabBarItem = UITabBarItem(title: "Scan", image: UIImage(named: "FCLTabBarScan"), selectedImage: UIImage(named: "FCLTabBarScanSelected"))
         return scanRouter
     } ()

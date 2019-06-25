@@ -11,10 +11,10 @@ class AppRouter {
     let rootViewController: UIViewController
     let businessFilesList: BusinessFilesList
     let officeRouter: OfficeRouter
-    let scanRouter: ScanRouter
+    let scanRouter: ScanCoordinator
     let sidePanelController: SidePanelController
     
-    init(rootViewController: UIViewController, businessFilesList: BusinessFilesList, sidePanelController: SidePanelController, officeRouter: OfficeRouter, scanRouter: ScanRouter) {
+    init(rootViewController: UIViewController, businessFilesList: BusinessFilesList, sidePanelController: SidePanelController, officeRouter: OfficeRouter, scanRouter: ScanCoordinator) {
         self.rootViewController = rootViewController
         self.businessFilesList = businessFilesList
         self.officeRouter = officeRouter
@@ -47,8 +47,8 @@ extension AppRouter: OfficeRouterDelegate {
     }
 }
 
-extension AppRouter: ScanRouterDelegate {
-    func scanRouterPresentSidePanel() {
+extension AppRouter: ScanCoordinatorDelegate {
+    func scanCoordinatorPresentSidePanel() {
         sidePanelController.present(from: rootViewController)
     }
 }
