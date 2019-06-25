@@ -100,7 +100,10 @@
 		DF99810122C0D43D00D4E996 /* FCLBusinessFilesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6537C118AD51E00C94599 /* FCLBusinessFilesParser.m */; };
 		DF99810222C0FDED00D4E996 /* FCLFormsBusinessFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65376118AD41A00C94599 /* FCLFormsBusinessFile.m */; };
 		DF99810322C1007600D4E996 /* FCLForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65379118AD4B600C94599 /* FCLForm.m */; };
+		DF99811E22C12AFC00D4E996 /* FCLFormFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = DF99811D22C12AFC00D4E996 /* FCLFormFolder.m */; };
 		DFC2C1AD2087273E008B333B /* FCLNavigationItemTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */; };
+		DFE0033A22C21C370086640D /* FCLFormFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = DF99811D22C12AFC00D4E996 /* FCLFormFolder.m */; };
+		DFE0033B22C21D670086640D /* FormsBusinessFiles.xml in Resources */ = {isa = PBXBuildFile; fileRef = DF9980FB22C0D37900D4E996 /* FormsBusinessFiles.xml */; };
 		DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */; };
 		E2BDD3302069180700BA988F /* FCLAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BDD32F2069180700BA988F /* FCLAppearance.m */; };
 		E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2BDD3332069316100BA988F /* Launch Screen.storyboard */; };
@@ -261,6 +264,8 @@
 		DF9980FB22C0D37900D4E996 /* FormsBusinessFiles.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FormsBusinessFiles.xml; sourceTree = "<group>"; };
 		DF9980FE22C0D41400D4E996 /* facilescanTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "facilescanTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF9980FF22C0D41400D4E996 /* BusinessFilesParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFilesParserTests.swift; sourceTree = "<group>"; };
+		DF99811C22C12AFC00D4E996 /* FCLFormFolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLFormFolder.h; sourceTree = "<group>"; };
+		DF99811D22C12AFC00D4E996 /* FCLFormFolder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLFormFolder.m; sourceTree = "<group>"; };
 		DFC2C1AB2087273E008B333B /* FCLNavigationItemTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLNavigationItemTitleView.h; sourceTree = "<group>"; };
 		DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLNavigationItemTitleView.m; sourceTree = "<group>"; };
 		DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
@@ -387,6 +392,8 @@
 				20A65379118AD4B600C94599 /* FCLForm.m */,
 				20A6537E118AD5F700C94599 /* FCLField.h */,
 				20A6537F118AD5F700C94599 /* FCLField.m */,
+				DF99811C22C12AFC00D4E996 /* FCLFormFolder.h */,
+				DF99811D22C12AFC00D4E996 /* FCLFormFolder.m */,
 				20A659BC118F0F0700C94599 /* FCLUploader.h */,
 				20A659BD118F0F0700C94599 /* FCLUploader.m */,
 				20A659BF118F0F4900C94599 /* FCLUpload.h */,
@@ -708,6 +715,7 @@
 				20A653F2118B06FD00C94599 /* FCLFormListViewController.xib in Resources */,
 				20A65461118B169800C94599 /* FCLFormViewController.xib in Resources */,
 				2060C58511901C5600EF2405 /* FCLOptionsViewController.xib in Resources */,
+				DFE0033B22C21D670086640D /* FormsBusinessFiles.xml in Resources */,
 				E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */,
 				20E88FB011919B8B00C8D766 /* Entitlements.plist in Resources */,
 				DF8B05102192FCAF0056DDD7 /* LoadingViewController.xib in Resources */,
@@ -864,6 +872,7 @@
 				203C91CC16BAA9B900C37D50 /* PStringExtensions.m in Sources */,
 				DF6447AB208E191700001A57 /* PDataExtension.m in Sources */,
 				203C91D216BAAA1300C37D50 /* PDateExtension.m in Sources */,
+				DF99811E22C12AFC00D4E996 /* FCLFormFolder.m in Sources */,
 				DF179028216CE82500BE89F7 /* OfficeRouter.swift in Sources */,
 				DF1C794F217DB84C005419EA /* BusinessFilesTableViewController.swift in Sources */,
 				203C91D516BAAA5300C37D50 /* PFeedItemThumbnail.m in Sources */,
@@ -890,6 +899,7 @@
 				DF99810222C0FDED00D4E996 /* FCLFormsBusinessFile.m in Sources */,
 				DF99810322C1007600D4E996 /* FCLForm.m in Sources */,
 				DF99810122C0D43D00D4E996 /* FCLBusinessFilesParser.m in Sources */,
+				DFE0033A22C21C370086640D /* FCLFormFolder.m in Sources */,
 				DF99810022C0D41400D4E996 /* BusinessFilesParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

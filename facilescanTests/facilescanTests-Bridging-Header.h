@@ -7,4 +7,5 @@
 #import "FCLBusinessFilesParser.h"
 #import "FCLField.h"
 #import "FCLForm.h"
+#import "FCLFormFolder.h"
 #import "FCLFormsBusinessFile.h"

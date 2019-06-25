@@ -1,6 +1,7 @@
 #import "FCLFormListViewController.h"
 #import "FCLFormsBusinessFile.h"
 #import "FCLForm.h"
+#import "FCLFormFolder.h"
 #import "FCLFormViewController.h"
 #import "FCLUploader.h"
 #import "FCLUpload.h"
@@ -126,32 +127,63 @@
 
 - (NSInteger)tableView:(UITableView*)aTableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) return self.formsBusinessFile ? [self.formsBusinessFile.forms count] : 0;
+    if (section == 0) return self.formsBusinessFile ? [self.formsBusinessFile.children count] : 0;
     if (section == 1) return 1;
     return 0;
 }
 
+
+
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:@"FormName"];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FormName"];
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        id child = [self.formsBusinessFile.children objectAtIndex:indexPath.row];
+        if([child isKindOfClass:[FCLForm class]]) {
+            return [self createTitleCellForForm:(FCLForm *)child inTableView:aTableView];
+        } else if([child isKindOfClass:[FCLFormFolder class]]) {
+            return [self createTitleCellForFolder:(FCLFormFolder *)child inTableView:aTableView];
+        } else {
+            NSLog(@"%s Unknown class in formsBusinessFile.children", __PRETTY_FUNCTION__);
+            return [UITableViewCell new];
         }
-        cell.textLabel.text = [[self.formsBusinessFile.forms objectAtIndex:indexPath.row] name];
-        
-        return cell;
     } else {
-        UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:@"Loading"];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Loading"];
-            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-            cell.textLabel.text = @"Téléchargement...";
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-        return cell;
+        return [self createLoadingCellInTableView:aTableView];
     }
+}
+
+-(UITableViewCell *)createTitleCellForForm:(FCLForm *)form inTableView:(UITableView *)tableView {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FormName"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Formtitle"];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    cell.textLabel.text = [form name];
+    
+    return cell;
+}
+
+-(UITableViewCell *)createTitleCellForFolder:(FCLFormFolder *)folder inTableView:(UITableView *)tableView {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FolderTitle"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FormName"];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    cell.textLabel.text = folder.title;
+    
+    return cell;
+}
+
+
+- (UITableViewCell *)createLoadingCellInTableView:(UITableView *)tableView {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Loading"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Loading"];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.textLabel.text = @"Téléchargement...";
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    return cell;
 }
 
 #pragma mark UITableViewDelegate
@@ -161,12 +193,16 @@
 {
     if (indexPath.section == 0)
     {
-        self.formController = [[FCLFormViewController alloc] initWithNibName:nil bundle:nil];
-        self.formController.delegate = self;
-        self.formController.form = [self.formsBusinessFile.forms objectAtIndex:indexPath.row];
-        [self.formController.form reset];
-        [self.formController.form loadDefaults];
-        [self.navigationController pushViewController:self.formController animated:YES];
+        id child = [self.formsBusinessFile.children objectAtIndex:indexPath.row];
+        if([child isKindOfClass:[FCLForm class]]) {
+            FCLForm *form = child;
+            self.formController = [[FCLFormViewController alloc] initWithNibName:nil bundle:nil];
+            self.formController.delegate = self;
+            self.formController.form = form;
+            [form reset];
+            [form loadDefaults];
+            [self.navigationController pushViewController:self.formController animated:YES];
+        }
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }

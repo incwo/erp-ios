@@ -30,13 +30,13 @@ class BusinessFilesParserTests: XCTestCase {
         XCTAssertEqual(formBusinessFile.name, "incwo")
         XCTAssertEqual(formBusinessFile.kind, "Bureau Virtuel")
         
-        XCTAssertEqual(formBusinessFile.forms.count, 7)
+        XCTAssertEqual(formBusinessFile.children.count, 7)
     }
     
     func testParsesSingleProposalSheet() {
         guard let formsBusinessFiles = FCLBusinessFilesParser.businessFiles(fromXMLData: sampleXmlData),
             let businessFile = formsBusinessFiles.first,
-            let proposalForm = businessFile.forms.last
+            let proposalForm = businessFile.children.last as? FCLForm
         else {
                 XCTFail("Error parsing XML")
                 return
@@ -55,5 +55,24 @@ class BusinessFilesParserTests: XCTestCase {
         XCTAssertEqual(field.key, "my_signature")
         XCTAssertEqual(field.type, .signature)
         XCTAssertEqual(field.fieldDescription, "Je valide la livraison BL1612-00224")
+    }
+    
+    func testParsesFormFolder() {
+        guard let formsBusinessFiles = FCLBusinessFilesParser.businessFiles(fromXMLData: sampleXmlData),
+            let businessFile = formsBusinessFiles.first,
+            let folder = businessFile.children[5] as? FCLFormFolder
+            else {
+                XCTFail("Error parsing XML")
+                return
+        }
+        
+        XCTAssertEqual(folder.title, "Bons de livraison à signer")
+        XCTAssertEqual(folder.forms.count, 11)
+        
+        guard let form = folder.forms.first else {
+            XCTFail("FCLFormFolder.forms were not parsed.")
+            return
+        }
+        XCTAssertEqual(form.name, "Signer le BL BL1906-00242")
     }
 }

@@ -170,122 +170,118 @@
 				<le_type>text</le_type>
 			</les_champs>
 		</object>
-		<object>
-			<lobjet>Bons de livraison à signer</lobjet>
-			<la_classe>folder</la_classe>
-			<items>
-				<object>
-					<lobjet>Signer le BL BL1906-00242</lobjet>
-					<la_classe>proposal_sheets+9055588</la_classe>
-					<les_champs>
-						<le_nom>Signature</le_nom>
-						<le_champ>my_signature</le_champ>
-						<le_type>signature</le_type>
-						<description>Je valide la livraison BL1906-00242</description>
-					</les_champs>
-				</object>
-				<object>
-					<lobjet>Signer le BL BL1905-00240</lobjet>
-					<la_classe>proposal_sheets+8822623</la_classe>
-					<les_champs>
-						<le_nom>Signature</le_nom>
-						<le_champ>my_signature</le_champ>
-						<le_type>signature</le_type>
-						<description>Je valide la livraison BL1905-00240</description>
-					</les_champs>
-				</object>
-				<object>
-					<lobjet>Signer le BL BL1905-00239</lobjet>
-					<la_classe>proposal_sheets+8805943</la_classe>
-					<les_champs>
-						<le_nom>Signature</le_nom>
-						<le_champ>my_signature</le_champ>
-						<le_type>signature</le_type>
-						<description>Je valide la livraison BL1905-00239</description>
-					</les_champs>
-				</object>
-				<object>
-					<lobjet>Signer le BL BL1905-00238</lobjet>
-					<la_classe>proposal_sheets+8775383</la_classe>
-					<les_champs>
-						<le_nom>Signature</le_nom>
-						<le_champ>my_signature</le_champ>
-						<le_type>signature</le_type>
-						<description>Je valide la livraison BL1905-00238</description>
-					</les_champs>
-				</object>
-				<object>
-					<lobjet>Signer le BL BL1904-00237</lobjet>
-					<la_classe>proposal_sheets+8634418</la_classe>
-					<les_champs>
-						<le_nom>Signature</le_nom>
-						<le_champ>my_signature</le_champ>
-						<le_type>signature</le_type>
-						<description>Je valide la livraison BL1904-00237</description>
-					</les_champs>
-				</object>
-				<object>
-					<lobjet>Signer le BL BL1903-00235</lobjet>
-					<la_classe>proposal_sheets+8199429</la_classe>
-					<les_champs>
-						<le_nom>Signature</le_nom>
-						<le_champ>my_signature</le_champ>
-						<le_type>signature</le_type>
-						<description>Je valide la livraison BL1903-00235</description>
-					</les_champs>
-				</object>
-				<object>
-					<lobjet>Signer le BL BL1903-00234</lobjet>
-					<la_classe>proposal_sheets+8199254</la_classe>
-					<les_champs>
-						<le_nom>Signature</le_nom>
-						<le_champ>my_signature</le_champ>
-						<le_type>signature</le_type>
-						<description>Je valide la livraison BL1903-00234</description>
-					</les_champs>
-				</object>
-				<object>
-					<lobjet>Signer le BL BL1901-00233</lobjet>
-					<la_classe>proposal_sheets+7753671</la_classe>
-					<les_champs>
-						<le_nom>Signature</le_nom>
-						<le_champ>my_signature</le_champ>
-						<le_type>signature</le_type>
-						<description>Je valide la livraison BL1901-00233</description>
-					</les_champs>
-				</object>
-				<object>
-					<lobjet>Signer le BL BL1811-00231</lobjet>
-					<la_classe>proposal_sheets+7532412</la_classe>
-					<les_champs>
-						<le_nom>Signature</le_nom>
-						<le_champ>my_signature</le_champ>
-						<le_type>signature</le_type>
-						<description>Je valide la livraison BL1811-00231</description>
-					</les_champs>
-				</object>
-				<object>
-					<lobjet>Signer le BL BL1709-00226</lobjet>
-					<la_classe>proposal_sheets+4306994</la_classe>
-					<les_champs>
-						<le_nom>Signature</le_nom>
-						<le_champ>my_signature</le_champ>
-						<le_type>signature</le_type>
-						<description>Je valide la livraison BL1709-00226</description>
-					</les_champs>
-				</object>
-				<object>
-					<lobjet>Signer le BL BL1709-00225</lobjet>
-					<la_classe>proposal_sheets+4306989</la_classe>
-					<les_champs>
-						<le_nom>Signature</le_nom>
-						<le_champ>my_signature</le_champ>
-						<le_type>signature</le_type>
-						<description>Je valide la livraison BL1709-00225</description>
-					</les_champs>
-				</object>
-			</items>
-		</object>
+		<folder title="Bons de livraison à signer">
+			<object>
+				<lobjet>Signer le BL BL1906-00242</lobjet>
+				<la_classe>proposal_sheets+9055588</la_classe>
+				<les_champs>
+					<le_nom>Signature</le_nom>
+					<le_champ>my_signature</le_champ>
+					<le_type>signature</le_type>
+					<description>Je valide la livraison BL1906-00242</description>
+				</les_champs>
+			</object>
+			<object>
+				<lobjet>Signer le BL BL1905-00240</lobjet>
+				<la_classe>proposal_sheets+8822623</la_classe>
+				<les_champs>
+					<le_nom>Signature</le_nom>
+					<le_champ>my_signature</le_champ>
+					<le_type>signature</le_type>
+					<description>Je valide la livraison BL1905-00240</description>
+				</les_champs>
+			</object>
+			<object>
+				<lobjet>Signer le BL BL1905-00239</lobjet>
+				<la_classe>proposal_sheets+8805943</la_classe>
+				<les_champs>
+					<le_nom>Signature</le_nom>
+					<le_champ>my_signature</le_champ>
+					<le_type>signature</le_type>
+					<description>Je valide la livraison BL1905-00239</description>
+				</les_champs>
+			</object>
+			<object>
+				<lobjet>Signer le BL BL1905-00238</lobjet>
+				<la_classe>proposal_sheets+8775383</la_classe>
+				<les_champs>
+					<le_nom>Signature</le_nom>
+					<le_champ>my_signature</le_champ>
+					<le_type>signature</le_type>
+					<description>Je valide la livraison BL1905-00238</description>
+				</les_champs>
+			</object>
+			<object>
+				<lobjet>Signer le BL BL1904-00237</lobjet>
+				<la_classe>proposal_sheets+8634418</la_classe>
+				<les_champs>
+					<le_nom>Signature</le_nom>
+					<le_champ>my_signature</le_champ>
+					<le_type>signature</le_type>
+					<description>Je valide la livraison BL1904-00237</description>
+				</les_champs>
+			</object>
+			<object>
+				<lobjet>Signer le BL BL1903-00235</lobjet>
+				<la_classe>proposal_sheets+8199429</la_classe>
+				<les_champs>
+					<le_nom>Signature</le_nom>
+					<le_champ>my_signature</le_champ>
+					<le_type>signature</le_type>
+					<description>Je valide la livraison BL1903-00235</description>
+				</les_champs>
+			</object>
+			<object>
+				<lobjet>Signer le BL BL1903-00234</lobjet>
+				<la_classe>proposal_sheets+8199254</la_classe>
+				<les_champs>
+					<le_nom>Signature</le_nom>
+					<le_champ>my_signature</le_champ>
+					<le_type>signature</le_type>
+					<description>Je valide la livraison BL1903-00234</description>
+				</les_champs>
+			</object>
+			<object>
+				<lobjet>Signer le BL BL1901-00233</lobjet>
+				<la_classe>proposal_sheets+7753671</la_classe>
+				<les_champs>
+					<le_nom>Signature</le_nom>
+					<le_champ>my_signature</le_champ>
+					<le_type>signature</le_type>
+					<description>Je valide la livraison BL1901-00233</description>
+				</les_champs>
+			</object>
+			<object>
+				<lobjet>Signer le BL BL1811-00231</lobjet>
+				<la_classe>proposal_sheets+7532412</la_classe>
+				<les_champs>
+					<le_nom>Signature</le_nom>
+					<le_champ>my_signature</le_champ>
+					<le_type>signature</le_type>
+					<description>Je valide la livraison BL1811-00231</description>
+				</les_champs>
+			</object>
+			<object>
+				<lobjet>Signer le BL BL1709-00226</lobjet>
+				<la_classe>proposal_sheets+4306994</la_classe>
+				<les_champs>
+					<le_nom>Signature</le_nom>
+					<le_champ>my_signature</le_champ>
+					<le_type>signature</le_type>
+					<description>Je valide la livraison BL1709-00226</description>
+				</les_champs>
+			</object>
+			<object>
+				<lobjet>Signer le BL BL1709-00225</lobjet>
+				<la_classe>proposal_sheets+4306989</la_classe>
+				<les_champs>
+					<le_nom>Signature</le_nom>
+					<le_champ>my_signature</le_champ>
+					<le_type>signature</le_type>
+					<description>Je valide la livraison BL1709-00225</description>
+				</les_champs>
+			</object>
+		</folder>
 		<object>
 			<lobjet>Signer le BL BL1612-00224</lobjet>
 			<la_classe>proposal_sheets+3003726</la_classe>
