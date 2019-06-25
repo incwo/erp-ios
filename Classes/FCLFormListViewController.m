@@ -16,20 +16,20 @@
 
 @implementation FCLFormListViewController
 
-@synthesize businessFileName = _businessFileName;
-- (void)setBusinessFileName:(NSString *)businessFileName {
+@synthesize title = _title;
+- (void)setTitle:(NSString *)businessFileName {
     @synchronized (self) {
-        if(businessFileName == _businessFileName) {
+        if(businessFileName == _title) {
             return;
         }
-        _businessFileName = businessFileName;
+        _title = businessFileName;
         self.navigationItem.title = businessFileName;
     }
 }
 
-- (NSString *)businessFileName {
+- (NSString *)title {
     @synchronized (self) {
-        return _businessFileName;
+        return _title;
     }
 }
 
@@ -158,6 +158,8 @@
     id child = [self.formsAndFolders objectAtIndex:indexPath.row];
     if([child isKindOfClass:[FCLForm class]]) {
         [self.delegate formListViewController:self didSelectForm:(FCLForm *)child];
+    } else if([child isKindOfClass:[FCLFormFolder class]]){
+        [self.delegate formListViewController:self didSelectFormFolder:(FCLFormFolder *)child];
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }

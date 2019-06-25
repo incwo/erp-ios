@@ -10,6 +10,7 @@
 #import "FCLField.h"
 #import "FCLFormsBusinessFilesFetch.h"
 #import "FCLForm.h"
+#import "FCLFormFolder.h"
 #import "FCLFormListViewController.h"
 #import "FCLFormViewController.h"
 #import "FCLLoginViewController.h"

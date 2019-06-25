@@ -20,7 +20,7 @@ class FormListCoordinator: NSObject {
     private lazy var formListViewController: FCLFormListViewController = {
         let formListViewController = FCLFormListViewController(nibName: nil, bundle: nil)
         formListViewController.delegate = self
-        formListViewController.businessFileName = businessFile.name
+        formListViewController.title = businessFile.name
         formListViewController.formsAndFolders = businessFile.children
         return formListViewController;
     }()
@@ -59,6 +59,15 @@ class FormListCoordinator: NSObject {
         navigationController.pushViewController(formController, animated: true)
     }
     
+    private func present(folder: FCLFormFolder) {
+        let formListController = FCLFormListViewController(nibName: nil, bundle: nil)
+        formListController.delegate = self
+        formListController.title = folder.title
+        formListController.formsAndFolders = folder.forms
+        
+        navigationController.pushViewController(formListController, animated: true)
+    }
+    
     lazy private var businessFilesFetch: FCLFormsBusinessFilesFetch = {
         guard let session = FCLSession.saved() else {
             fatalError("Should be logged in")
@@ -86,7 +95,7 @@ extension FormListCoordinator: FCLFormListViewControllerDelegate {
         fetchFormsBusinessFile(id: businessFile.identifier) { [weak self] (freshBusinessFile) in
             if let freshBusinessFile = freshBusinessFile {
                 self?.businessFile = freshBusinessFile
-                self?.formListViewController.businessFileName = freshBusinessFile.name
+                self?.formListViewController.title = freshBusinessFile.name
                 self?.formListViewController.formsAndFolders = freshBusinessFile.children
             }
         }
@@ -94,6 +103,10 @@ extension FormListCoordinator: FCLFormListViewControllerDelegate {
     
     func formListViewController(_ controller: FCLFormListViewController, didSelect form: FCLForm) {
         present(form: form)
+    }
+    
+    func formListViewController(_ controller: FCLFormListViewController, didSelect formFolder: FCLFormFolder) {
+        present(folder: formFolder)
     }
 }
 

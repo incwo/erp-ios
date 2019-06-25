@@ -1,6 +1,7 @@
 #import "FCLUploader.h"
 
 @class FCLForm;
+@class FCLFormFolder;
 @class FCLFormListViewController;
 @class FCLFormsBusinessFile;
 
@@ -13,13 +14,15 @@
 
 -(void) formListViewController:(nonnull FCLFormListViewController *)controller didSelectForm:(nonnull FCLForm *)form;
 
+-(void) formListViewController:(nonnull FCLFormListViewController *)controller didSelectFormFolder:(nonnull FCLFormFolder *)formFolder;
+
 @end
 
 /// Presents the list of Scan forms
 @interface FCLFormListViewController : UITableViewController
 
 @property (nullable, weak) id <FCLFormListViewControllerDelegate> delegate;
-@property (nullable, strong) NSString *businessFileName;
+@property (nullable, strong) NSString *title;
 @property (nullable, strong) NSArray *formsAndFolders; // FCLForms and FCLFormFolders
 
 @end
