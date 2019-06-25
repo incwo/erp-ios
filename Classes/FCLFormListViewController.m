@@ -7,7 +7,7 @@
 #import "FCLUpload.h"
 #import "UIViewController+Alert.h"
 
-@interface FCLFormListViewController () <UploaderDelegate>
+@interface FCLFormListViewController ()
 
 @property(nonatomic, strong) FCLFormViewController *formController;
 @property(nonatomic,strong) IBOutlet UILabel *helpHeaderView;
@@ -55,19 +55,6 @@
     self.helpHeaderView.text = NSLocalizedString(@"Insérez des photos et signatures sur votre application", @"");
 }
 
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [FCLUploader sharedUploader].delegate = self;
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [FCLUploader sharedUploader].delegate = nil;
-}
-
 // MARK: Actions
 
 -(void)refresh:(id)sender {
@@ -98,19 +85,6 @@
 }
 
 
-
-#pragma mark UploaderDelegate
-
-
-- (void) uploaderDidUpdateStatus:(FCLUploader *)anUploader
-{
-    NSLog(@"uploaderDidUpdateStatus: isUploading: %d", (int)[anUploader isUploading]);
-    [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.0];
-}
-
-- (void)uploader:(FCLUploader *)uploader didFailWithError:(NSError *)error {
-    [self FCL_presentAlertForError:error];
-}
 
 #pragma mark UITableViewDataSource
 

@@ -1,7 +1,7 @@
 #import "OAHTTPProtocols.h"
 
 @class FCLUploader;
-@protocol UploaderDelegate
+@protocol FCLUploaderDelegate
 
 -(void) uploaderDidUpdateStatus:(FCLUploader *)uploader;
 -(void) uploader:(FCLUploader *)uploader didFailWithError:(NSError *)error;
@@ -12,12 +12,12 @@
 @class OAHTTPQueue;
 @interface FCLUploader : NSObject<OAHTTPDownloadDelegate>
 {
-  id<UploaderDelegate> __weak delegate;
+  id<FCLUploaderDelegate> __weak delegate;
   BOOL uploading;
   OAHTTPQueue* queue;
 }
 
-@property(nonatomic,weak) id<UploaderDelegate> delegate;
+@property(nonatomic,weak) id<FCLUploaderDelegate> delegate;
 @property(nonatomic,strong) OAHTTPQueue* queue;
 
 - (BOOL) isUploading;

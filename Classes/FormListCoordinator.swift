@@ -34,6 +34,17 @@ class FormListCoordinator: NSObject {
         self.delegate = delegate
         self.navigationController = navigationController
         self.businessFile = businessFile
+        super.init()
+        
+        FCLUploader.shared()?.delegate = self
+    }
+    
+    deinit {
+        FCLUploader.shared()?.delegate = nil
+    }
+    
+    private func presentAlert(for error: Error) {
+        navigationController.topViewController?.fcl_presentAlert(forError: error)
     }
     
     private func present(form: FCLForm) {
@@ -59,7 +70,7 @@ class FormListCoordinator: NSObject {
             success(businessFile)
         }, failure: { (error) in
             DispatchQueue.main.async { [weak self] in
-                self?.rootViewController.fcl_presentAlert(forError: error)
+                self?.presentAlert(for: error)
             }
         })
     }
@@ -112,6 +123,16 @@ extension FormListCoordinator: FCLFormViewControllerDelegate {
         
         FCLUploader.shared()?.add(upload)
     }
+}
+
+extension FormListCoordinator: FCLUploaderDelegate {
+    func uploaderDidUpdateStatus(_ uploader: FCLUploader!) {
+        NSLog("uploaderDidUpdateStatus: isUploading: \(uploader.isUploading())");
+    }
     
-    
+    func uploader(_ uploader: FCLUploader!, didFailWithError error: Error!) {
+        DispatchQueue.main.async {
+            self.presentAlert(for: error)
+        }
+    }
 }
