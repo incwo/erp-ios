@@ -90,7 +90,7 @@
 		DF681F942191A4C300094C3A /* BusinessFilesFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF681F932191A4C300094C3A /* BusinessFilesFetch.swift */; };
 		DF681F962191C4F000094C3A /* URLRequest+BasicAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF681F952191C4F000094C3A /* URLRequest+BasicAuth.swift */; };
 		DF681F982191D20700094C3A /* BusinessFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF681F972191D20700094C3A /* BusinessFile.swift */; };
-		DF6CA49A2175DB2D001E8207 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6CA4992175DB2D001E8207 /* AppRouter.swift */; };
+		DF6CA49A2175DB2D001E8207 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6CA4992175DB2D001E8207 /* AppCoordinator.swift */; };
 		DF8B05062192DD180056DDD7 /* FCLFormsBusinessFilesFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4A0C6A21709F84004F72F0 /* FCLFormsBusinessFilesFetch.m */; };
 		DF8B05102192FCAF0056DDD7 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8B050F2192FCAF0056DDD7 /* LoadingViewController.xib */; };
 		DF8B05122192FD280056DDD7 /* NoFormsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8B05112192FD280056DDD7 /* NoFormsViewController.xib */; };
@@ -255,7 +255,7 @@
 		DF681F932191A4C300094C3A /* BusinessFilesFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFilesFetch.swift; sourceTree = "<group>"; };
 		DF681F952191C4F000094C3A /* URLRequest+BasicAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+BasicAuth.swift"; sourceTree = "<group>"; };
 		DF681F972191D20700094C3A /* BusinessFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFile.swift; sourceTree = "<group>"; };
-		DF6CA4992175DB2D001E8207 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		DF6CA4992175DB2D001E8207 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		DF8B050F2192FCAF0056DDD7 /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		DF8B05112192FD280056DDD7 /* NoFormsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFormsViewController.xib; sourceTree = "<group>"; };
 		DF8B0515219329400056DDD7 /* NoFormsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFormsViewController.swift; sourceTree = "<group>"; };
@@ -541,7 +541,7 @@
 				56E1F4A718A23C9100DC6404 /* Main.storyboard */,
 				3ACF002318D8A7C900BEEA95 /* Main-iPad.storyboard */,
 				DF1C79672181C466005419EA /* AppDelegate.swift */,
-				DF6CA4992175DB2D001E8207 /* AppRouter.swift */,
+				DF6CA4992175DB2D001E8207 /* AppCoordinator.swift */,
 				E2BDD32E2069180700BA988F /* FCLAppearance.h */,
 				E2BDD32F2069180700BA988F /* FCLAppearance.m */,
 				DF1C7947217DB835005419EA /* Side Panel */,
@@ -880,7 +880,7 @@
 				203C91E016BAB51300C37D50 /* FCLWebViewController.m in Sources */,
 				DF17902C216E04C800BE89F7 /* ScanCoordinator.swift in Sources */,
 				DF1C7950217DB84C005419EA /* LoggedInViewController.swift in Sources */,
-				DF6CA49A2175DB2D001E8207 /* AppRouter.swift in Sources */,
+				DF6CA49A2175DB2D001E8207 /* AppCoordinator.swift in Sources */,
 				20B9115A16BC1D5A009D1391 /* FCLVideoViewController.m in Sources */,
 				2010BF6116C14F71009EC753 /* FCLSignatureViewController.m in Sources */,
 				2010BF6816C16FCC009EC753 /* FCLHandDrawingView.m in Sources */,

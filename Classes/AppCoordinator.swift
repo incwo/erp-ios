@@ -1,5 +1,5 @@
 //
-//  AppRouter.swift
+//  AppCoordinator.swift
 //  facile
 //
 //  Created by Renaud Pradenc on 16/10/2018.
@@ -7,22 +7,22 @@
 
 import Foundation
 
-class AppRouter {
+class AppCoordinator {
     let rootViewController: UIViewController
     let businessFilesList: BusinessFilesList
-    let officeRouter: OfficeCoordinator
-    let scanRouter: ScanCoordinator
+    let officeCoordinator: OfficeCoordinator
+    let scanCoordinator: ScanCoordinator
     let sidePanelController: SidePanelController
     
-    init(rootViewController: UIViewController, businessFilesList: BusinessFilesList, sidePanelController: SidePanelController, officeRouter: OfficeCoordinator, scanRouter: ScanCoordinator) {
+    init(rootViewController: UIViewController, businessFilesList: BusinessFilesList, sidePanelController: SidePanelController, officeCoordinator: OfficeCoordinator, scanCoordinator: ScanCoordinator) {
         self.rootViewController = rootViewController
         self.businessFilesList = businessFilesList
-        self.officeRouter = officeRouter
-        self.scanRouter = scanRouter
+        self.officeCoordinator = officeCoordinator
+        self.scanCoordinator = scanCoordinator
         self.sidePanelController = sidePanelController
         
-        officeRouter.delegate = self;
-        scanRouter.delegate = self
+        officeCoordinator.delegate = self;
+        scanCoordinator.delegate = self
         
         // If there is a saved Session, this forces the initial loading.
         // When loaded, the first BusinessFile will be selected and a notification sent.
@@ -41,13 +41,13 @@ class AppRouter {
     }
 }
 
-extension AppRouter: OfficeCoordinatorDelegate {
+extension AppCoordinator: OfficeCoordinatorDelegate {
     func officeCoordinatorPresentSidePanel() {
         sidePanelController.present(from: rootViewController)
     }
 }
 
-extension AppRouter: ScanCoordinatorDelegate {
+extension AppCoordinator: ScanCoordinatorDelegate {
     func scanCoordinatorPresentSidePanel() {
         sidePanelController.present(from: rootViewController)
     }

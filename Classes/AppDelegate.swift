@@ -20,13 +20,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     lazy var sidePanelController = SidePanelController(businessFilesList: businessFilesList)
     
-    lazy var officeRouter: OfficeCoordinator = {
+    lazy var officeCoordinator: OfficeCoordinator = {
         let officeRouter = OfficeCoordinator()
         officeRouter.navigationController.tabBarItem = UITabBarItem(title: "Bureau", image: UIImage(named: "FCLTabBarOffice"), selectedImage: UIImage(named: "FCLTabBarOfficeSelected"))
         return officeRouter
     } ()
     
-    lazy var scanRouter: ScanCoordinator = {
+    lazy var scanCoordinator: ScanCoordinator = {
         let scanRouter = ScanCoordinator()
         scanRouter.navigationController.tabBarItem = UITabBarItem(title: "Scan", image: UIImage(named: "FCLTabBarScan"), selectedImage: UIImage(named: "FCLTabBarScanSelected"))
         return scanRouter
@@ -47,8 +47,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     lazy var tabBarController: UITabBarController = {
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [
-            officeRouter.navigationController,
-            scanRouter.navigationController,
+            officeCoordinator.navigationController,
+            scanCoordinator.navigationController,
             UINavigationController(rootViewController: videosViewController),
             UINavigationController(rootViewController: newsViewController)
         ]
@@ -56,7 +56,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return tabBarController
     } ()
     
-    var appRouter: AppRouter!
+    var appCoordinator: AppCoordinator!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         PHTTPConnection.setSSLTrustedHosts(["www.incwo.com", "dev.incwo.com"])
@@ -78,7 +78,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             Fabric.with([Crashlytics.self()])
         }
 
-        appRouter = AppRouter(rootViewController: self.tabBarController, businessFilesList: businessFilesList, sidePanelController: sidePanelController, officeRouter: officeRouter, scanRouter: scanRouter)
+        appCoordinator = AppCoordinator(rootViewController: self.tabBarController, businessFilesList: businessFilesList, sidePanelController: sidePanelController, officeCoordinator: officeCoordinator, scanCoordinator: scanCoordinator)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         window!.rootViewController = tabBarController
