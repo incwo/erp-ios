@@ -16,20 +16,37 @@
 
 @implementation FCLFormListViewController
 
-@synthesize title = _title;
-- (void)setTitle:(NSString *)businessFileName {
+@synthesize sidePanelButtonShown = _sidePanelButtonShown;
+- (void)setSidePanelButtonShown:(BOOL)sidePanelButtonShown {
+    if(sidePanelButtonShown == _sidePanelButtonShown) {
+        return;
+    }
+    _sidePanelButtonShown = sidePanelButtonShown;
+    
+    if(_sidePanelButtonShown) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"] style:UIBarButtonItemStylePlain target:self action:@selector(showSidePanel:)];
+    } else {
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+}
+- (BOOL)sidePanelButtonShown {
+    return _sidePanelButtonShown;
+}
+
+@synthesize listTitle = _listTitle;
+- (void)setListTitle:(NSString *)listTitle {
     @synchronized (self) {
-        if(businessFileName == _title) {
+        if(listTitle == _listTitle) {
             return;
         }
-        _title = businessFileName;
-        self.navigationItem.title = businessFileName;
+        _listTitle = listTitle;
+        self.navigationItem.title = listTitle;
     }
 }
 
-- (NSString *)title {
+- (NSString *)listTitle {
     @synchronized (self) {
-        return _title;
+        return _listTitle;
     }
 }
 
@@ -66,10 +83,9 @@
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Tirer pour rafraichir"];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"] style:UIBarButtonItemStylePlain target:self action:@selector(showSidePanel:)];
-    
     self.helpHeaderView.text = NSLocalizedString(@"Insérez des photos et signatures sur votre application", @"");
 }
+
 
 // MARK: Actions
 

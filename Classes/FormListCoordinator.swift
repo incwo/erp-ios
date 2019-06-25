@@ -20,6 +20,7 @@ class FormListCoordinator: NSObject {
     private lazy var formListViewController: FCLFormListViewController = {
         let formListViewController = FCLFormListViewController(nibName: nil, bundle: nil)
         formListViewController.delegate = self
+        formListViewController.sidePanelButtonShown = true
         formListViewController.title = businessFile.name
         formListViewController.formsAndFolders = businessFile.children
         return formListViewController;
@@ -59,9 +60,10 @@ class FormListCoordinator: NSObject {
         navigationController.pushViewController(formController, animated: true)
     }
     
-    private func present(folder: FCLFormFolder) {
+    private func present(folder: FCLFormFolder, sidePanelButtonShown: Bool) {
         let formListController = FCLFormListViewController(nibName: nil, bundle: nil)
         formListController.delegate = self
+        formListController.sidePanelButtonShown = sidePanelButtonShown
         formListController.title = folder.title
         formListController.formsAndFolders = folder.forms
         
@@ -106,7 +108,7 @@ extension FormListCoordinator: FCLFormListViewControllerDelegate {
     }
     
     func formListViewController(_ controller: FCLFormListViewController, didSelect formFolder: FCLFormFolder) {
-        present(folder: formFolder)
+        present(folder: formFolder, sidePanelButtonShown: false)
     }
 }
 

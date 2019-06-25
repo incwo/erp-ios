@@ -22,7 +22,8 @@
 @interface FCLFormListViewController : UITableViewController
 
 @property (nullable, weak) id <FCLFormListViewControllerDelegate> delegate;
-@property (nullable, strong) NSString *title;
+@property (nonatomic) BOOL sidePanelButtonShown;
+@property (nullable, strong) NSString *listTitle;
 @property (nullable, strong) NSArray *formsAndFolders; // FCLForms and FCLFormFolders
 
 @end
