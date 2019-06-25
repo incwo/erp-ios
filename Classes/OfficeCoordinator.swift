@@ -1,5 +1,5 @@
 //
-//  OfficeViewController.swift
+//  OfficeCoordinator.swift
 //  facile
 //
 //  Created by Renaud Pradenc on 09/10/2018.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol OfficeRouterDelegate: class {
-    func officeRouterPresentSidePanel()
+protocol OfficeCoordinatorDelegate: class {
+    func officeCoordinatorPresentSidePanel()
 }
 
 @objc
-class OfficeRouter: NSObject {
-    public weak var delegate: OfficeRouterDelegate?
+class OfficeCoordinator: NSObject {
+    public weak var delegate: OfficeCoordinatorDelegate?
     @objc public let navigationController: UINavigationController
     private lazy var loginViewController: FCLLoginViewController = {
         let loginController = FCLLoginViewController(delegate: self)
@@ -71,13 +71,13 @@ class OfficeRouter: NSObject {
     }
 }
 
-extension OfficeRouter: FCLLoginViewControllerDelegate {
+extension OfficeCoordinator: FCLLoginViewControllerDelegate {
     func loginViewControllerWantsAccountCreation(_ controller: FCLLoginViewController) {
         pushAccountCreationViewController()
     }
 }
 
-extension OfficeRouter: AccountCreationViewControllerDelegate {
+extension OfficeCoordinator: AccountCreationViewControllerDelegate {
     func accountCreationViewControllerDidCreateAccount(_ controller: AccountCreationViewController, email: String) {
         loginViewController.email = email;
         navigationController.popViewController(animated: true)
@@ -93,9 +93,9 @@ extension OfficeRouter: AccountCreationViewControllerDelegate {
     }
 }
 
-extension OfficeRouter: FCLOfficeContentViewControllerDelegate {
+extension OfficeCoordinator: FCLOfficeContentViewControllerDelegate {
     func officeContentViewControllerPresentSidePanel(_ controller: FCLOfficeContentViewController) {
-        delegate?.officeRouterPresentSidePanel()
+        delegate?.officeCoordinatorPresentSidePanel()
     }
     
     func officeContentViewController(_ controller: FCLOfficeContentViewController, didPresent url: URL) {

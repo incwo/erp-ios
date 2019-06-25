@@ -20,8 +20,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     lazy var sidePanelController = SidePanelController(businessFilesList: businessFilesList)
     
-    lazy var officeRouter: OfficeRouter = {
-        let officeRouter = OfficeRouter()
+    lazy var officeRouter: OfficeCoordinator = {
+        let officeRouter = OfficeCoordinator()
         officeRouter.navigationController.tabBarItem = UITabBarItem(title: "Bureau", image: UIImage(named: "FCLTabBarOffice"), selectedImage: UIImage(named: "FCLTabBarOfficeSelected"))
         return officeRouter
     } ()
