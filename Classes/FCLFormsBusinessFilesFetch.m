@@ -88,11 +88,7 @@
 
 // MARK: OAHTTPDownloadDelegate
 - (void) oadownloadDidFinishLoading:(id<OAHTTPDownloadProtocol>)download {
-//    NSData *xmlData = download.receivedData;
-    
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"FormsBusinessFiles" withExtension:@"xml"];
-    NSData *xmlData = [NSData dataWithContentsOfURL:url];
-    
+    NSData *xmlData = download.receivedData;
     NSArray *businessFiles = [FCLBusinessFilesParser businessFilesFromXMLData:xmlData];
     if(businessFiles) {
         self.successHandler(businessFiles);

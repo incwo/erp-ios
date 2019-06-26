@@ -116,24 +116,26 @@ extension FormListCoordinator: FCLFormViewControllerDelegate {
     func formViewControllerSend(_ formViewController: FCLFormViewController!) {
         navigationController.popViewController(animated: true)
         
+        formViewController.form.saveDefaults()
+        send(form: formViewController.form, image: formViewController.image)
+    }
+    
+    private func send(form: FCLForm, image: UIImage) {
         guard let session = FCLSession.saved() else {
-            NSLog("\(#function) No current session! The form is not sent.")
+            NSLog("\(#function) No current session! The form won't be sent.")
             return
         }
         
-        let upload = FCLUpload()
-        formViewController.form.saveDefaults()
-        
-        if let formName = formViewController.form.name,
-            let formKey = formViewController.form.key {
+        if let formName = form.name,
+            let formKey = form.key {
             NSLog("Sending form \(formName) (\(formKey)) to business_file \(businessFile.name) (\(businessFile.identifier))")
         }
         
-        
+        let upload = FCLUpload()
         upload.fileId = businessFile.identifier
-        upload.categoryKey = formViewController.form.key
-        upload.fields = formViewController.form?.fields
-        upload.image = formViewController.image
+        upload.categoryKey = form.key
+        upload.fields = form.fields
+        upload.image = image
         upload.username = session.username
         upload.password = session.password
         
