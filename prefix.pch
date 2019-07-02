@@ -4,7 +4,7 @@
 #import <Availability.h>
 
 #define FACILE_HOSTNAME_DEV  @"dev.incwo.com"
-#define FACILE_BASEURL_DEV   @"https://dev.incwo.com"
+#define FACILE_BASEURL_DEV   @"http://dev.incwo.com"
 
 
 #define FACILE_DEV 0
