@@ -26,7 +26,6 @@
 		203C91CC16BAA9B900C37D50 /* PStringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91CA16BAA9B900C37D50 /* PStringExtensions.m */; };
 		203C91D216BAAA1300C37D50 /* PDateExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91D016BAAA1300C37D50 /* PDateExtension.m */; };
 		203C91D516BAAA5300C37D50 /* PFeedItemThumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91D416BAAA5300C37D50 /* PFeedItemThumbnail.m */; };
-		203C91D816BAAF8F00C37D50 /* FCLFeedLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91D716BAAF8F00C37D50 /* FCLFeedLoader.m */; };
 		203C91DA16BAB3BF00C37D50 /* FCLNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203C91D916BAB3BF00C37D50 /* FCLNewsViewController.xib */; };
 		203C91DC16BAB3CE00C37D50 /* FCLVideosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203C91DB16BAB3CE00C37D50 /* FCLVideosViewController.xib */; };
 		203C91E016BAB51300C37D50 /* FCLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91DE16BAB51100C37D50 /* FCLWebViewController.m */; };
@@ -151,8 +150,6 @@
 		203C91D016BAAA1300C37D50 /* PDateExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDateExtension.m; sourceTree = "<group>"; };
 		203C91D316BAAA5300C37D50 /* PFeedItemThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFeedItemThumbnail.h; sourceTree = "<group>"; };
 		203C91D416BAAA5300C37D50 /* PFeedItemThumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFeedItemThumbnail.m; sourceTree = "<group>"; };
-		203C91D616BAAF8F00C37D50 /* FCLFeedLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLFeedLoader.h; sourceTree = "<group>"; };
-		203C91D716BAAF8F00C37D50 /* FCLFeedLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLFeedLoader.m; sourceTree = "<group>"; };
 		203C91D916BAB3BF00C37D50 /* FCLNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FCLNewsViewController.xib; sourceTree = "<group>"; };
 		203C91DB16BAB3CE00C37D50 /* FCLVideosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FCLVideosViewController.xib; sourceTree = "<group>"; };
 		203C91DD16BAB51100C37D50 /* FCLWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLWebViewController.h; sourceTree = "<group>"; };
@@ -341,8 +338,6 @@
 		203C91BA16BAA73200C37D50 /* Feeds */ = {
 			isa = PBXGroup;
 			children = (
-				203C91D616BAAF8F00C37D50 /* FCLFeedLoader.h */,
-				203C91D716BAAF8F00C37D50 /* FCLFeedLoader.m */,
 				203C91BB16BAA84300C37D50 /* OAXMLDecoder.h */,
 				203C91BC16BAA84300C37D50 /* OAXMLDecoder.m */,
 				203C91BE16BAA99000C37D50 /* PFeed.h */,
@@ -880,7 +875,6 @@
 				DF179028216CE82500BE89F7 /* OfficeCoordinator.swift in Sources */,
 				DF1C794F217DB84C005419EA /* BusinessFilesTableViewController.swift in Sources */,
 				203C91D516BAAA5300C37D50 /* PFeedItemThumbnail.m in Sources */,
-				203C91D816BAAF8F00C37D50 /* FCLFeedLoader.m in Sources */,
 				203C91E016BAB51300C37D50 /* FCLWebViewController.m in Sources */,
 				DF17902C216E04C800BE89F7 /* ScanCoordinator.swift in Sources */,
 				DF1C7950217DB84C005419EA /* LoggedInViewController.swift in Sources */,
