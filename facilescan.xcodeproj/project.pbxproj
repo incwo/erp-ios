@@ -43,7 +43,6 @@
 		209DCDB316B822FB00BF1CC0 /* FCLOfficeContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 209DCDB216B822FB00BF1CC0 /* FCLOfficeContentViewController.xib */; };
 		209DCDB516B82F2F00BF1CC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209DCDB416B82F2F00BF1CC0 /* QuartzCore.framework */; };
 		209DCDCE16B9202000BF1CC0 /* PHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 209DCDC916B9202000BF1CC0 /* PHTTPConnection.m */; };
-		209DCDCF16B9202000BF1CC0 /* PMultipartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 209DCDCC16B9202000BF1CC0 /* PMultipartData.m */; };
 		20A65377118AD41A00C94599 /* FCLFormsBusinessFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65376118AD41A00C94599 /* FCLFormsBusinessFile.m */; };
 		20A6537A118AD4B600C94599 /* FCLForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65379118AD4B600C94599 /* FCLForm.m */; };
 		20A6537D118AD51E00C94599 /* FCLBusinessFilesParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6537C118AD51E00C94599 /* FCLBusinessFilesParser.m */; };
@@ -178,8 +177,6 @@
 		209DCDC816B9202000BF1CC0 /* PHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHTTPConnection.h; sourceTree = "<group>"; };
 		209DCDC916B9202000BF1CC0 /* PHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHTTPConnection.m; sourceTree = "<group>"; };
 		209DCDCA16B9202000BF1CC0 /* PHTTPConnection+Subclasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHTTPConnection+Subclasses.h"; sourceTree = "<group>"; };
-		209DCDCB16B9202000BF1CC0 /* PMultipartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMultipartData.h; sourceTree = "<group>"; };
-		209DCDCC16B9202000BF1CC0 /* PMultipartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMultipartData.m; sourceTree = "<group>"; };
 		20A65375118AD41A00C94599 /* FCLFormsBusinessFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLFormsBusinessFile.h; sourceTree = "<group>"; };
 		20A65376118AD41A00C94599 /* FCLFormsBusinessFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLFormsBusinessFile.m; sourceTree = "<group>"; };
 		20A65378118AD4B600C94599 /* FCLForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLForm.h; sourceTree = "<group>"; };
@@ -384,8 +381,6 @@
 				209DCDC816B9202000BF1CC0 /* PHTTPConnection.h */,
 				209DCDC916B9202000BF1CC0 /* PHTTPConnection.m */,
 				209DCDCA16B9202000BF1CC0 /* PHTTPConnection+Subclasses.h */,
-				209DCDCB16B9202000BF1CC0 /* PMultipartData.h */,
-				209DCDCC16B9202000BF1CC0 /* PMultipartData.m */,
 				DF681F952191C4F000094C3A /* URLRequest+BasicAuth.swift */,
 			);
 			name = Models;
@@ -857,7 +852,6 @@
 				209DCDB116B8188700BF1CC0 /* FCLSession.m in Sources */,
 				209DCDCE16B9202000BF1CC0 /* PHTTPConnection.m in Sources */,
 				DF17902A216CE8AE00BE89F7 /* UIViewController+child.swift in Sources */,
-				209DCDCF16B9202000BF1CC0 /* PMultipartData.m in Sources */,
 				DF1C795F217E0503005419EA /* FCLSelectedBusinessFile.m in Sources */,
 				203C91BD16BAA84300C37D50 /* OAXMLDecoder.m in Sources */,
 				203C91C416BAA99000C37D50 /* PFeed.m in Sources */,
