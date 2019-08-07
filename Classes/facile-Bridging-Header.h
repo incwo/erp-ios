@@ -22,6 +22,5 @@
 #import "FCLUploader.h"
 #import "FCLVideosViewController.h"
 #import "MBProgressHUD.h"
-#import "PHTTPConnection.h"
 #import "OAHTTPDownload.h"
 #import "UIViewController+Alert.h"
