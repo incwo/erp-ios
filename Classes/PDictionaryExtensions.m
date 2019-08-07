@@ -9,22 +9,6 @@
 
 @implementation NSDictionary(PDictionaryExtensions)
 
-- (NSDictionary*) dictionaryByAddingObject:(id)object forKey:(id)key
-{
-	NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:1 + [self count]];
-	[dict addEntriesFromDictionary:self];
-	dict[key] = object;
-	return dict;
-}
-
-- (NSDictionary*) dictionaryByRemovingObjectForKey:(id)key
-{
-	NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:[self count]];
-	[dict addEntriesFromDictionary:self];
-	[dict removeObjectForKey:key];
-	return dict;
-}
-
 - (id) firstObjectForKeys:(id)firstKey, ...
 {
 	va_list args;
