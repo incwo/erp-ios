@@ -1,13 +1,12 @@
 #import "FCLLoginViewController.h"
 #import "FCLSession.h"
-#import "PHTTPConnection.h"
 #import "MBProgressHUD.h"
 #import "UIViewController+Alert.h"
 
 @interface FCLLoginViewController () <UITextFieldDelegate>
 
 @property (weak) id <FCLLoginViewControllerDelegate> delegate;
-@property PHTTPConnection *connection;
+@property NSURLSessionDataTask *credentialsCheckTask;
 @property MBProgressHUD *loadingHUD;
 
 @property (weak, nonatomic) IBOutlet UITextField* emailTextField;
@@ -80,7 +79,7 @@
 
 - (IBAction) logIn:(id)sender
 {
-    if (_connection) return; // ignore repeated taps
+    if (self.credentialsCheckTask) return; // ignore repeated taps
     
     if([self loginField] == nil || [self passwordField] == nil) { // Can happen if validating with the Keyboard
         return;
@@ -90,41 +89,69 @@
     self.loadingHUD.mode = MBProgressHUDModeIndeterminate;
     self.loadingHUD.labelText = NSLocalizedString(@"Connexion...", @"");
     
+    
     FCLSession *session = [[FCLSession alloc] initWithUsername:[self loginField] password:[self passwordField]];
-    __weak FCLLoginViewController *weakSelf = self;
-    [self checkSessionCredentials:session completion:^(BOOL valid) {
-        [weakSelf.loadingHUD hide:YES];
-        weakSelf.loadingHUD = nil;
-        
-        if(valid) {
+    __typeof(self) __weak weakSelf = self;
+    [self checkSessionCredentials:session onAuthorized:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.loadingHUD hide:YES];
+            weakSelf.loadingHUD = nil;
             [session saveSession]; // Emits FCLSessionDidSignInNotification
             
             // This is a little trick to leave the view controller in a consistent state between the Office and Scan tabs.
             weakSelf.emailTextField.text = nil;
             weakSelf.passwordTextField.text = nil;
-        } else {
-            NSLog(@"COULD NOT LOG IN: %@", weakSelf.connection.error);
-            [weakSelf FCL_presentAlertWithTitle:@"Échec de la connexion" message:@"Veuillez vérifier votre adresse e-mail et votre mot de passe, puis réessayez."];
-        }
+        });
+    } onUnauthorized:^(NSInteger httpStatusCode) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.loadingHUD hide:YES];
+            weakSelf.loadingHUD = nil;
+            
+            if(httpStatusCode == 401) {
+                [weakSelf FCL_presentAlertWithTitle:@"Compte invalide" message:@"Veuillez vérifier votre adresse e-mail et votre mot de passe, puis réessayez."];
+            } else {
+                [weakSelf FCL_presentAlertWithTitle:@"Échec de la connexion" message:[NSString stringWithFormat:@"Le serveur a répondu avec le status HTTP %li", httpStatusCode]];
+            }
+        });
+    } onError:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.loadingHUD hide:YES];
+            weakSelf.loadingHUD = nil;
+            [weakSelf FCL_presentAlertForError:error];
+        });
     }];
 }
 
--(void) checkSessionCredentials:(FCLSession *)session completion:(void (^)(BOOL))completion {
+-(void) checkSessionCredentials:(FCLSession *)session onAuthorized:(void (^)(void))onAuthorized onUnauthorized:(void (^)(NSInteger))onUnauthorized onError:(void (^)(NSError *))onError {
     // The 'r' parameter was useful because Orange would cache the URL. Is it still useful?
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d", session.facileBaseURL, rand()]];
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d", session.facileBaseURL, rand()]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60];
     [request setHTTPShouldHandleCookies:NO];
     [request setFCLSession:session];
     
-    self.connection = [PHTTPConnection connectionWithRequest:request];
-    self.connection.username = session.username;
-    self.connection.password = session.password;
-    
     __typeof(self) __weak weakSelf = self;
-    [self.connection startWithCompletionBlock:^{
-        completion(weakSelf.connection.data != nil);
-        weakSelf.connection = nil;
+    self.credentialsCheckTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        weakSelf.credentialsCheckTask = nil;
+        
+        if(error) {
+            onError(error);
+            return;
+        }
+        
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        if(httpResponse.statusCode < 200 || httpResponse.statusCode > 299) {
+            onUnauthorized(httpResponse.statusCode);
+            return;
+        }
+        
+        if(data == nil) {
+            onError([NSError errorWithDomain:@"Login credentials" code:0 userInfo:@{NSLocalizedDescriptionKey: @"No data returned by the server."}]);
+            return;
+        }
+        
+        onAuthorized();
     }];
+    [self.credentialsCheckTask resume];
 }
 
 
