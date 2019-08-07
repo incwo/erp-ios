@@ -58,13 +58,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     var appCoordinator: AppCoordinator!
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        
-        // WebView causes memory leaks without this configuration.
-        // See http://discussions.apple.com/thread.jspa?threadID=1785052
-        // Also without this NSURLConnection caches everything
-        URLCache.shared.memoryCapacity = 0
-        
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {        
         FCLUploader.shared()?.start()
         FCLAppearance.setup()
         
