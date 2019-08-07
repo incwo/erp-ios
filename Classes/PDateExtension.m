@@ -154,22 +154,4 @@
 	return [dateFormatter stringFromDate:self];
 }
 
-
-+(BOOL) resourceWithClientDate:(NSDate*)clientDate requiresUpdateConsideringHeaders:(NSDictionary*)headers
-{
-	// If no headers, we consider we cant decide, so we require update.
-	// If no client date, we consider we have no cache, so we require update.
-	if (headers == nil || clientDate == nil) return YES;
-	
-	NSString* lastModifiedHeader = [headers objectForKey:@"Last-Modified"];
-	
-	// If no last-modified headers, we cant decide, so we require update
-	if (lastModifiedHeader == nil) return YES;
-	
-	// Our client date is later than our server date ? No update needed. Otherwise update !
-	NSDate* serverDate = [NSDate dateWithHTTPDate:lastModifiedHeader];
-	if (serverDate && [serverDate compare:clientDate] == NSOrderedAscending)
-		return NO;
-	return YES;
-}
 @end

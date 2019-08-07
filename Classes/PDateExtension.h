@@ -11,7 +11,4 @@
 + (NSDate*) dateWithHTTPDate:(NSString*)httpDate;
 - (NSString*) httpDateString;
 
-// utility method :
-//
-+ (BOOL) resourceWithClientDate:(NSDate*)clientDate requiresUpdateConsideringHeaders:(NSDictionary*)headers;
 @end
