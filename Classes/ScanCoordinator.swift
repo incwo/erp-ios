@@ -29,12 +29,14 @@ class ScanCoordinator: NSObject {
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSelectedBusinessFile, object: nil, queue: nil) { [weak self] (notification) in
             if let businessFileId = notification.userInfo?[FCLSelectedBusinessFileIdKey] as? String {
                 let businessFileName = notification.userInfo?[FCLSelectedBusinessFileNameKey] as? String
-                self?.content = .loading(businessFileName: businessFileName)
-                self?.fetchFormsBusinessFile(id: businessFileId) { [weak self] (formsBusinessFile) in
-                    if let formsBusinessFile = formsBusinessFile {
-                        self?.content = .forms(formsBusinessFile: formsBusinessFile)
-                    } else {
-                        self?.content = .noForms(businessFileName: businessFileName)
+                DispatchQueue.main.async {
+                    self?.content = .loading(businessFileName: businessFileName)
+                    self?.fetchFormsBusinessFile(id: businessFileId) { [weak self] (formsBusinessFile) in
+                        if let formsBusinessFile = formsBusinessFile {
+                            self?.content = .forms(formsBusinessFile: formsBusinessFile)
+                        } else {
+                            self?.content = .noForms(businessFileName: businessFileName)
+                        }
                     }
                 }
             }

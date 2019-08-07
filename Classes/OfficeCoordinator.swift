@@ -38,11 +38,13 @@ class OfficeCoordinator: NSObject {
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FCLSelectedBusinessFile, object: nil, queue: nil) { [weak self] (notification) in
             if let businessFileId = notification.userInfo?[FCLSelectedBusinessFileIdKey] as? String {
-                if let contentViewController = self?.contentViewController {
-                    contentViewController.businessFileId = businessFileId
-                } else {
-                    self?.pushContentViewController(animated: true)
-                    self?.contentViewController?.businessFileId = businessFileId
+                DispatchQueue.main.async {
+                    if let contentViewController = self?.contentViewController {
+                        contentViewController.businessFileId = businessFileId
+                    } else {
+                        self?.pushContentViewController(animated: true)
+                        self?.contentViewController?.businessFileId = businessFileId
+                    }
                 }
             }
         }

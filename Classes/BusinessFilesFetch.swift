@@ -8,30 +8,28 @@
 import Foundation
 import SWXMLHash
 
-class BusinessFilesFetch: NSObject { // Inherits NSObject because it is necessary for OAHTTPDownloadDelegate
+class BusinessFilesFetch {
     typealias SuccessHandler = ([BusinessFile])->()
     typealias FailureHandler = (Error)->()
     
     let session: FCLSession
     var successHandler: SuccessHandler!
     var failureHandler: FailureHandler!
-    var download: OAHTTPDownload?
+    var sessionTask: URLSessionTask?
     
     public init(session: FCLSession) {
         self.session = session
-        
-        super.init()
     }
     
     deinit {
-        download?.cancel()
+        sessionTask?.cancel()
     }
     
     public func fetch(success: @escaping SuccessHandler, failure: @escaping FailureHandler) {
         self.successHandler = success
         self.failureHandler = failure
         
-        download?.cancel() // The method might be called while still fetching
+        sessionTask?.cancel() // The method might be called while still fetching
         
         guard let url = URL(string: "\(session.facileBaseURL())/account/index/0.xml?target=incwo_erp") else {
             NSLog("\(#function) URL is invalid")
@@ -39,34 +37,35 @@ class BusinessFilesFetch: NSObject { // Inherits NSObject because it is necessar
         }
         var request = URLRequest(url: url)
         request.setBasicAuthHeader(username: session.username, password: session.password)
-        
-        download = OAHTTPDownload.download(with: request)
-        download!.username = session.username
-        download!.password = session.password
-        download!.delegate = self
-        download!.shouldAllowSelfSignedCert = true
-        download!.start()
-    }
-}
-
-extension BusinessFilesFetch: OAHTTPDownloadDelegate {
-    func oadownloadDidFinishLoading(_ download: OAHTTPDownloadProtocol!) {
-        guard let xmlData = download.receivedData() else {
-            failureHandler(NSError(domain: "\(#file)", code: 0, userInfo: [NSLocalizedDescriptionKey: "Empty XML data received."]))
-            return
-        }
-        
-        do {
-            let xml = SWXMLHash.parse(xmlData)
-            let businessFiles: [BusinessFile] = try xml["business_files"]["business_file"].value()
-            successHandler(businessFiles)
-        } catch {
-            failureHandler(error)
-        }
-    }
-    
-    func oadownload(_ download: OAHTTPDownloadProtocol!, didFailWithError error: Error!) {
-        failureHandler(error)
+        sessionTask = URLSession(configuration: .default).dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
+            if let error = error {
+                self?.failureHandler(error)
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return
+            }
+            
+            guard 200...299 ~= httpResponse.statusCode else {
+                let error = NSError(domain: "BusinessFilesFetch", code: 0, userInfo: [NSLocalizedDescriptionKey: "Server responded with a \(httpResponse.statusCode) status code."])
+                self?.failureHandler(error)
+                return
+            }
+            
+            guard let xmlData = data else {
+                return
+            }
+            
+            do {
+                let xml = SWXMLHash.parse(xmlData)
+                let businessFiles: [BusinessFile] = try xml["business_files"]["business_file"].value()
+                self?.successHandler(businessFiles)
+            } catch {
+                self?.failureHandler(error)
+            }
+        })
+        sessionTask?.resume()
     }
 }
 

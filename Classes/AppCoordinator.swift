@@ -36,7 +36,9 @@ class AppCoordinator {
     private func forceLoadingBusinessFilesList() {
         MBProgressHUD.showAdded(to: rootViewController.view, animated: true)
         businessFilesList.getBusinessFiles { [weak self] (_) in
-            MBProgressHUD.hide(for: self?.rootViewController.view, animated: true)
+            DispatchQueue.main.async {
+                MBProgressHUD.hide(for: self?.rootViewController.view, animated: true)
+            }
         }
     }
 }
