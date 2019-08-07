@@ -42,19 +42,6 @@ NSString* const PHTTPConnectionErrorResponseBodyDataKey = @"PHTTPConnectionError
 
 #pragma mark Factory
 
-static NSArray *sharedSSLTrustedHosts = nil;
-
-+ (void) setSSLTrustedHosts:(NSArray *)SSLTrustedHosts
-{
-    sharedSSLTrustedHosts = SSLTrustedHosts;
-}
-
-+ (NSArray*) SSLTrustedHosts
-{
-    return sharedSSLTrustedHosts;
-}
-
-
 + (id) connectionWithURL:(NSURL*)URL
 {
 	return [self connectionWithURL:URL delegate:nil];

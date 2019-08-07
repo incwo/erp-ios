@@ -59,7 +59,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     var appCoordinator: AppCoordinator!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        PHTTPConnection.setSSLTrustedHosts(["www.incwo.com", "dev.incwo.com"])
         
         // WebView causes memory leaks without this configuration.
         // See http://discussions.apple.com/thread.jspa?threadID=1785052

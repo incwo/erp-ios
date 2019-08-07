@@ -47,14 +47,6 @@ extern NSString* const PHTTPConnectionErrorResponseBodyDataKey;
 
 @property(nonatomic, weak) id<PHTTPConnectionDelegate> delegate;
 
-
-#pragma mark - Global Configuration
-
-// The default list of hosts which should not trigger kCFURLErrorServerCertificateUntrusted.
-+ (void) setSSLTrustedHosts:(NSArray *)SSLTrustedHosts;
-+ (NSArray*) SSLTrustedHosts;
-
-
 #pragma mark - Configuration
 
 @property(nonatomic) NSURLRequest *request; // Behavior is undefined if you set request and URL.
