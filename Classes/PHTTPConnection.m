@@ -1,5 +1,4 @@
 #import "PHTTPConnection.h"
-#import "PHTTPConnection+Subclasses.h"
 
 // This is to setup usage of one of the objects: OANetworkActivityIndicator or PNetworkActivityStack
 #if !defined(PHTTPConnectionNetworkActivityStack)
@@ -142,7 +141,7 @@ NSString* const PHTTPConnectionErrorResponseBodyDataKey = @"PHTTPConnectionError
     return (self.isStarted && !self.isFinished);
 }
 
-- (void)  start
+- (void) start
 {
     if (self.isStarted) {
         return;

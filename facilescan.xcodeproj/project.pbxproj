@@ -176,7 +176,6 @@
 		209DCDB416B82F2F00BF1CC0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		209DCDC816B9202000BF1CC0 /* PHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHTTPConnection.h; sourceTree = "<group>"; };
 		209DCDC916B9202000BF1CC0 /* PHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHTTPConnection.m; sourceTree = "<group>"; };
-		209DCDCA16B9202000BF1CC0 /* PHTTPConnection+Subclasses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PHTTPConnection+Subclasses.h"; sourceTree = "<group>"; };
 		20A65375118AD41A00C94599 /* FCLFormsBusinessFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLFormsBusinessFile.h; sourceTree = "<group>"; };
 		20A65376118AD41A00C94599 /* FCLFormsBusinessFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLFormsBusinessFile.m; sourceTree = "<group>"; };
 		20A65378118AD4B600C94599 /* FCLForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLForm.h; sourceTree = "<group>"; };
@@ -380,7 +379,6 @@
 				20A659C0118F0F4900C94599 /* FCLUpload.m */,
 				209DCDC816B9202000BF1CC0 /* PHTTPConnection.h */,
 				209DCDC916B9202000BF1CC0 /* PHTTPConnection.m */,
-				209DCDCA16B9202000BF1CC0 /* PHTTPConnection+Subclasses.h */,
 				DF681F952191C4F000094C3A /* URLRequest+BasicAuth.swift */,
 			);
 			name = Models;
