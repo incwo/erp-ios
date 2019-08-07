@@ -70,15 +70,15 @@ class FormListCoordinator: NSObject {
         navigationController.pushViewController(formListController, animated: true)
     }
     
-    lazy private var businessFilesFetch: FCLFormsBusinessFilesFetch = {
+    lazy private var businessFilesFetch: FormsBusinessFilesFetch = {
         guard let session = FCLSession.saved() else {
             fatalError("Should be logged in")
         }
-        return FCLFormsBusinessFilesFetch(session: session)
+        return FormsBusinessFilesFetch(session: session)
     }()
     
     private func fetchFormsBusinessFile(id: String, success: @escaping (FCLFormsBusinessFile?)->() ) {
-        businessFilesFetch.fetchOne(withId: id, success: { (businessFile) in
+        businessFilesFetch.fetchOne(businessFileId: id, success: { (businessFile) in
             success(businessFile)
         }, failure: { (error) in
             DispatchQueue.main.async { [weak self] in
@@ -97,8 +97,10 @@ extension FormListCoordinator: FCLFormListViewControllerDelegate {
         fetchFormsBusinessFile(id: businessFile.identifier) { [weak self] (freshBusinessFile) in
             if let freshBusinessFile = freshBusinessFile {
                 self?.businessFile = freshBusinessFile
-                self?.formListViewController.title = freshBusinessFile.name
-                self?.formListViewController.formsAndFolders = freshBusinessFile.children
+                DispatchQueue.main.async {
+                    self?.formListViewController.title = freshBusinessFile.name
+                    self?.formListViewController.formsAndFolders = freshBusinessFile.children
+                }
             }
         }
     }

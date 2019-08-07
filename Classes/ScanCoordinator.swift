@@ -32,10 +32,12 @@ class ScanCoordinator: NSObject {
                 DispatchQueue.main.async {
                     self?.content = .loading(businessFileName: businessFileName)
                     self?.fetchFormsBusinessFile(id: businessFileId) { [weak self] (formsBusinessFile) in
-                        if let formsBusinessFile = formsBusinessFile {
-                            self?.content = .forms(formsBusinessFile: formsBusinessFile)
-                        } else {
-                            self?.content = .noForms(businessFileName: businessFileName)
+                        DispatchQueue.main.async {
+                            if let formsBusinessFile = formsBusinessFile {
+                                self?.content = .forms(formsBusinessFile: formsBusinessFile)
+                            } else {
+                                self?.content = .noForms(businessFileName: businessFileName)
+                            }
                         }
                     }
                 }
@@ -131,7 +133,7 @@ class ScanCoordinator: NSObject {
     
     // MARK: - Fetching Form business files
     
-    private var businessFilesFetch: FCLFormsBusinessFilesFetch? = nil
+    private var businessFilesFetch: FormsBusinessFilesFetch? = nil
     
     private func fetchFormsBusinessFile(id: String, success: @escaping (FCLFormsBusinessFile?)->() ) {
         if businessFilesFetch == nil {
@@ -139,10 +141,10 @@ class ScanCoordinator: NSObject {
                 fatalError("Should be logged in")
             }
             
-            self.businessFilesFetch = FCLFormsBusinessFilesFetch(session: session)
+            self.businessFilesFetch = FormsBusinessFilesFetch(session: session)
         }
         
-        businessFilesFetch?.fetchOne(withId: id, success: { (businessFile) in
+        businessFilesFetch?.fetchOne(businessFileId: id, success: { (businessFile) in
             success(businessFile)
         }, failure: { (error) in
             DispatchQueue.main.async { [weak self] in

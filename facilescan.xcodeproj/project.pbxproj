@@ -91,7 +91,6 @@
 		DF681F962191C4F000094C3A /* URLRequest+BasicAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF681F952191C4F000094C3A /* URLRequest+BasicAuth.swift */; };
 		DF681F982191D20700094C3A /* BusinessFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF681F972191D20700094C3A /* BusinessFile.swift */; };
 		DF6CA49A2175DB2D001E8207 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6CA4992175DB2D001E8207 /* AppCoordinator.swift */; };
-		DF8B05062192DD180056DDD7 /* FCLFormsBusinessFilesFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4A0C6A21709F84004F72F0 /* FCLFormsBusinessFilesFetch.m */; };
 		DF8B05102192FCAF0056DDD7 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8B050F2192FCAF0056DDD7 /* LoadingViewController.xib */; };
 		DF8B05122192FD280056DDD7 /* NoFormsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8B05112192FD280056DDD7 /* NoFormsViewController.xib */; };
 		DF8B0516219329400056DDD7 /* NoFormsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B0515219329400056DDD7 /* NoFormsViewController.swift */; };
@@ -102,6 +101,7 @@
 		DF99810322C1007600D4E996 /* FCLForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65379118AD4B600C94599 /* FCLForm.m */; };
 		DF99811E22C12AFC00D4E996 /* FCLFormFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = DF99811D22C12AFC00D4E996 /* FCLFormFolder.m */; };
 		DFC2C1AD2087273E008B333B /* FCLNavigationItemTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */; };
+		DFD4D9AE22FABA8E005D6DD5 /* FormsBusinessFilesFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD4D9AD22FABA8E005D6DD5 /* FormsBusinessFilesFetch.swift */; };
 		DFE0033A22C21C370086640D /* FCLFormFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = DF99811D22C12AFC00D4E996 /* FCLFormFolder.m */; };
 		DFE0033D22C241100086640D /* FormListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE0033C22C241100086640D /* FormListCoordinator.swift */; };
 		DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */; };
@@ -250,8 +250,6 @@
 		DF243647216B853300A41B31 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		DF32F19A216C965C003297D8 /* facile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "facile-Bridging-Header.h"; path = "Classes/facile-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
-		DF4A0C6921709F84004F72F0 /* FCLFormsBusinessFilesFetch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLFormsBusinessFilesFetch.h; sourceTree = "<group>"; };
-		DF4A0C6A21709F84004F72F0 /* FCLFormsBusinessFilesFetch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLFormsBusinessFilesFetch.m; sourceTree = "<group>"; };
 		DF681F932191A4C300094C3A /* BusinessFilesFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFilesFetch.swift; sourceTree = "<group>"; };
 		DF681F952191C4F000094C3A /* URLRequest+BasicAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+BasicAuth.swift"; sourceTree = "<group>"; };
 		DF681F972191D20700094C3A /* BusinessFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFile.swift; sourceTree = "<group>"; };
@@ -268,6 +266,7 @@
 		DF99811D22C12AFC00D4E996 /* FCLFormFolder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLFormFolder.m; sourceTree = "<group>"; };
 		DFC2C1AB2087273E008B333B /* FCLNavigationItemTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLNavigationItemTitleView.h; sourceTree = "<group>"; };
 		DFC2C1AC2087273E008B333B /* FCLNavigationItemTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLNavigationItemTitleView.m; sourceTree = "<group>"; };
+		DFD4D9AD22FABA8E005D6DD5 /* FormsBusinessFilesFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsBusinessFilesFetch.swift; sourceTree = "<group>"; };
 		DFE0033C22C241100086640D /* FormListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListCoordinator.swift; sourceTree = "<group>"; };
 		DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
 		DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
@@ -379,8 +378,7 @@
 			children = (
 				209DCDAF16B8188700BF1CC0 /* FCLSession.h */,
 				209DCDB016B8188700BF1CC0 /* FCLSession.m */,
-				DF4A0C6921709F84004F72F0 /* FCLFormsBusinessFilesFetch.h */,
-				DF4A0C6A21709F84004F72F0 /* FCLFormsBusinessFilesFetch.m */,
+				DFD4D9AD22FABA8E005D6DD5 /* FormsBusinessFilesFetch.swift */,
 				DF681F972191D20700094C3A /* BusinessFile.swift */,
 				DF681F932191A4C300094C3A /* BusinessFilesFetch.swift */,
 				20A6537B118AD51E00C94599 /* FCLBusinessFilesParser.h */,
@@ -858,6 +856,7 @@
 				20A65377118AD41A00C94599 /* FCLFormsBusinessFile.m in Sources */,
 				20A6537A118AD4B600C94599 /* FCLForm.m in Sources */,
 				20A6537D118AD51E00C94599 /* FCLBusinessFilesParser.m in Sources */,
+				DFD4D9AE22FABA8E005D6DD5 /* FormsBusinessFilesFetch.swift in Sources */,
 				DF681F962191C4F000094C3A /* URLRequest+BasicAuth.swift in Sources */,
 				DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */,
 				20A65380118AD5F700C94599 /* FCLField.m in Sources */,
@@ -885,7 +884,6 @@
 				203C91CB16BAA9B900C37D50 /* PDictionaryExtensions.m in Sources */,
 				DF8B0516219329400056DDD7 /* NoFormsViewController.swift in Sources */,
 				DF681F942191A4C300094C3A /* BusinessFilesFetch.swift in Sources */,
-				DF8B05062192DD180056DDD7 /* FCLFormsBusinessFilesFetch.m in Sources */,
 				DFE0033D22C241100086640D /* FormListCoordinator.swift in Sources */,
 				203C91CC16BAA9B900C37D50 /* PStringExtensions.m in Sources */,
 				DF6447AB208E191700001A57 /* PDataExtension.m in Sources */,
