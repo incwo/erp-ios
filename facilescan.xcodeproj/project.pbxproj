@@ -85,7 +85,6 @@
 		DF1C79682181C466005419EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1C79672181C466005419EA /* AppDelegate.swift */; };
 		DF243648216B853300A41B31 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF243647216B853300A41B31 /* Login.storyboard */; };
 		DF32F19D216C965C003297D8 /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32F19B216C965C003297D8 /* AccountCreationViewController.swift */; };
-		DF6447AB208E191700001A57 /* PDataExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91CE16BAAA1300C37D50 /* PDataExtension.m */; };
 		DF681F942191A4C300094C3A /* BusinessFilesFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF681F932191A4C300094C3A /* BusinessFilesFetch.swift */; };
 		DF681F962191C4F000094C3A /* URLRequest+BasicAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF681F952191C4F000094C3A /* URLRequest+BasicAuth.swift */; };
 		DF681F982191D20700094C3A /* BusinessFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF681F972191D20700094C3A /* BusinessFile.swift */; };
@@ -148,8 +147,6 @@
 		203C91C816BAA9B900C37D50 /* PDictionaryExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDictionaryExtensions.m; sourceTree = "<group>"; };
 		203C91C916BAA9B900C37D50 /* PStringExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PStringExtensions.h; sourceTree = "<group>"; };
 		203C91CA16BAA9B900C37D50 /* PStringExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PStringExtensions.m; sourceTree = "<group>"; };
-		203C91CD16BAAA1300C37D50 /* PDataExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDataExtension.h; sourceTree = "<group>"; };
-		203C91CE16BAAA1300C37D50 /* PDataExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDataExtension.m; sourceTree = "<group>"; };
 		203C91CF16BAAA1300C37D50 /* PDateExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDateExtension.h; sourceTree = "<group>"; };
 		203C91D016BAAA1300C37D50 /* PDateExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDateExtension.m; sourceTree = "<group>"; };
 		203C91D316BAAA5300C37D50 /* PFeedItemThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFeedItemThumbnail.h; sourceTree = "<group>"; };
@@ -360,8 +357,6 @@
 				203C91C816BAA9B900C37D50 /* PDictionaryExtensions.m */,
 				203C91C916BAA9B900C37D50 /* PStringExtensions.h */,
 				203C91CA16BAA9B900C37D50 /* PStringExtensions.m */,
-				203C91CD16BAAA1300C37D50 /* PDataExtension.h */,
-				203C91CE16BAAA1300C37D50 /* PDataExtension.m */,
 				203C91CF16BAAA1300C37D50 /* PDateExtension.h */,
 				203C91D016BAAA1300C37D50 /* PDateExtension.m */,
 			);
@@ -880,7 +875,6 @@
 				DF681F942191A4C300094C3A /* BusinessFilesFetch.swift in Sources */,
 				DFE0033D22C241100086640D /* FormListCoordinator.swift in Sources */,
 				203C91CC16BAA9B900C37D50 /* PStringExtensions.m in Sources */,
-				DF6447AB208E191700001A57 /* PDataExtension.m in Sources */,
 				203C91D216BAAA1300C37D50 /* PDateExtension.m in Sources */,
 				DF99811E22C12AFC00D4E996 /* FCLFormFolder.m in Sources */,
 				DF179028216CE82500BE89F7 /* OfficeCoordinator.swift in Sources */,
