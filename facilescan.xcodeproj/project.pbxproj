@@ -54,7 +54,6 @@
 		20A653F2118B06FD00C94599 /* FCLFormListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A653F1118B06FD00C94599 /* FCLFormListViewController.xib */; };
 		20A65437118B106800C94599 /* FCLFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A65436118B106800C94599 /* FCLFormViewController.m */; };
 		20A65461118B169800C94599 /* FCLFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20A65460118B169800C94599 /* FCLFormViewController.xib */; };
-		20A6568C118ED30B00C94599 /* OANavigationState.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6568B118ED30B00C94599 /* OANavigationState.m */; };
 		20A659BE118F0F0700C94599 /* FCLUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A659BD118F0F0700C94599 /* FCLUploader.m */; };
 		20A659C1118F0F4900C94599 /* FCLUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A659C0118F0F4900C94599 /* FCLUpload.m */; };
 		20B9115416BADEF2009D1391 /* FCLTransparentPixel.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B9115316BADEF2009D1391 /* FCLTransparentPixel.png */; };
@@ -204,8 +203,6 @@
 		20A65435118B106800C94599 /* FCLFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLFormViewController.h; sourceTree = "<group>"; };
 		20A65436118B106800C94599 /* FCLFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLFormViewController.m; sourceTree = "<group>"; };
 		20A65460118B169800C94599 /* FCLFormViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FCLFormViewController.xib; path = ../FCLFormViewController.xib; sourceTree = "<group>"; };
-		20A6568A118ED30B00C94599 /* OANavigationState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OANavigationState.h; sourceTree = "<group>"; };
-		20A6568B118ED30B00C94599 /* OANavigationState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OANavigationState.m; sourceTree = "<group>"; };
 		20A659BC118F0F0700C94599 /* FCLUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLUploader.h; sourceTree = "<group>"; };
 		20A659BD118F0F0700C94599 /* FCLUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLUploader.m; sourceTree = "<group>"; };
 		20A659BF118F0F4900C94599 /* FCLUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLUpload.h; sourceTree = "<group>"; };
@@ -338,8 +335,6 @@
 				DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */,
 				DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */,
 				DF179029216CE8AE00BE89F7 /* UIViewController+child.swift */,
-				20A6568A118ED30B00C94599 /* OANavigationState.h */,
-				20A6568B118ED30B00C94599 /* OANavigationState.m */,
 				56E1F4AC18A23DA700DC6404 /* PXWWWFormSerialization.h */,
 				56E1F4AD18A23DA700DC6404 /* PXWWWFormSerialization.m */,
 			);
@@ -863,7 +858,6 @@
 				20A65383118AEC2700C94599 /* FCLModel.m in Sources */,
 				20A653F0118B040600C94599 /* FCLFormListViewController.m in Sources */,
 				20A65437118B106800C94599 /* FCLFormViewController.m in Sources */,
-				20A6568C118ED30B00C94599 /* OANavigationState.m in Sources */,
 				20A659BE118F0F0700C94599 /* FCLUploader.m in Sources */,
 				20A659C1118F0F4900C94599 /* FCLUpload.m in Sources */,
 				2060C57E11901A9800EF2405 /* FCLOptionsViewController.m in Sources */,
