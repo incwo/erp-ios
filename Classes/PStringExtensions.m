@@ -4,7 +4,6 @@
 //
 
 #import "PStringExtensions.h"
-#import <CommonCrypto/CommonDigest.h>
 
 NSArray* gNSStringPStringExtensionsHTMLEntities = nil;
 
@@ -56,67 +55,6 @@ NSArray* gNSStringPStringExtensionsHTMLEntities = nil;
 		++index;
 	}
 	return intValue;
-}
-
-- (NSString*) md5HexDigest
-{
-  const char *cStr = [self UTF8String];
-  unsigned char result[CC_MD5_DIGEST_LENGTH];
-  
-  CC_MD5(cStr, (unsigned int)strlen(cStr), result);
-  
-  return [NSString 
-          stringWithFormat: @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-          result[0], result[1],
-          result[2], result[3],
-          result[4], result[5],
-          result[6], result[7],
-          result[8], result[9],
-          result[10], result[11],
-          result[12], result[13],
-          result[14], result[15]
-  ];  
-}
-
-- (NSString*) stringByKeepingCharactersInSet:(NSCharacterSet*)set
-{
-	NSMutableString* res = [NSMutableString stringWithCapacity:[self length]];
-	int vi = 0;
-	for (vi = 0; vi < [self length]; vi++)
-	{
-		unichar c = [self characterAtIndex:vi];
-		if ([set characterIsMember:c])
-			[res appendFormat:@"%C", c, nil];
-	}
-	return res;
-}
-
-- (NSString*) stringByRemovingCharactersInSet:(NSCharacterSet*)set
-{
-	NSMutableString* res = [NSMutableString stringWithCapacity:[self length]];
-	int vi = 0;
-	for (vi = 0; vi < [self length]; vi++)
-	{
-		unichar c = [self characterAtIndex:vi];
-		if (! [set characterIsMember:c])
-			[res appendFormat:@"%C", c, nil];
-	}
-	return res;
-}
-
-- (NSString*) stringByEscapingXMLEntities
-{
-	CFRange strrng = CFRangeMake(0, CFStringGetLength((CFStringRef)self));
-	
-	CFMutableStringRef retstr = CFStringCreateMutableCopy(NULL, strrng.length * 5, (CFStringRef)self);
-	CFStringFindAndReplace(retstr, CFSTR("&"), CFSTR("&amp;"), strrng, 0);
-	strrng.length = CFStringGetLength(retstr);
-	CFStringFindAndReplace(retstr, CFSTR("<"), CFSTR("&lt;"), strrng, 0);
-	strrng.length = CFStringGetLength(retstr);
-	CFStringFindAndReplace(retstr, CFSTR(">"), CFSTR("&gt;"), strrng, 0);
-	
-    NSString *nsstring = [NSString stringWithString:(NSString*)CFBridgingRelease(retstr)];
-    return nsstring;
 }
 
 - (NSString*) stringByAddingPercentEscapesToSpaces
@@ -208,37 +146,6 @@ NSArray* gNSStringPStringExtensionsHTMLEntities = nil;
 	return [self substringToIndex:range.location];
 }
 
-
-#if TARGET_OS_IPHONE
-- (UIFont*) fontThatFits:(CGSize)size withFont:(UIFont*)font
-{
-    UIFont* result = font;
-    CGFloat pointSize = font.pointSize;
-    while (YES)
-    {
-        CGSize theSize = [self PSizeWithFont:result];
-        if (theSize.width <= size.width && theSize.height <= size.height)
-            break;
-        else
-        {
-            if (pointSize > 7)
-                result = [UIFont fontWithName:result.fontName size:--pointSize];
-            else
-            {
-                result = nil;
-                break;
-            }
-        }
-    }
-    return result;
-}
-
-- (CGSize) PSizeWithFont:(UIFont*)font
-{
-    return [self sizeWithAttributes:@{ NSFontAttributeName: font }];
-}
-
-#endif
 @end
 
 @implementation NSString(PStringPrivateExtensions)
