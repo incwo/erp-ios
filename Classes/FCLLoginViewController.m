@@ -86,8 +86,30 @@
         return;
     }
     
+    self.loadingHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.loadingHUD.mode = MBProgressHUDModeIndeterminate;
+    self.loadingHUD.labelText = NSLocalizedString(@"Connexion...", @"");
+    
     FCLSession *session = [[FCLSession alloc] initWithUsername:[self loginField] password:[self passwordField]];
-  
+    __weak FCLLoginViewController *weakSelf = self;
+    [self checkSessionCredentials:session completion:^(BOOL valid) {
+        [weakSelf.loadingHUD hide:YES];
+        weakSelf.loadingHUD = nil;
+        
+        if(valid) {
+            [session saveSession]; // Emits FCLSessionDidSignInNotification
+            
+            // This is a little trick to leave the view controller in a consistent state between the Office and Scan tabs.
+            weakSelf.emailTextField.text = nil;
+            weakSelf.passwordTextField.text = nil;
+        } else {
+            NSLog(@"COULD NOT LOG IN: %@", weakSelf.connection.error);
+            [weakSelf FCL_presentAlertWithTitle:@"Échec de la connexion" message:@"Veuillez vérifier votre adresse e-mail et votre mot de passe, puis réessayez."];
+        }
+    }];
+}
+
+-(void) checkSessionCredentials:(FCLSession *)session completion:(void (^)(BOOL))completion {
     // The 'r' parameter was useful because Orange would cache the URL. Is it still useful?
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d", session.facileBaseURL, rand()]];
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60];
@@ -98,25 +120,9 @@
     self.connection.username = session.username;
     self.connection.password = session.password;
     
-    self.loadingHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.loadingHUD.mode = MBProgressHUDModeIndeterminate;
-    self.loadingHUD.labelText = NSLocalizedString(@"Connexion...", @"");
-    
-    __weak FCLLoginViewController *weakSelf = self;
+    __typeof(self) __weak weakSelf = self;
     [self.connection startWithCompletionBlock:^{
-        [weakSelf.loadingHUD hide:YES];
-        weakSelf.loadingHUD = nil;
-        
-        if (weakSelf.connection.data) {
-            [session saveSession]; // Emits FCLSessionDidSignInNotification
-            
-            // This is a little trick to leave the view controller in a consistent state between the Office and Scan tabs.
-            weakSelf.emailTextField.text = nil;
-            weakSelf.passwordTextField.text = nil;
-        } else {
-            NSLog(@"COULD NOT LOG IN: %@", weakSelf.connection.error);
-            [weakSelf FCL_presentAlertWithTitle:@"Échec de la connexion" message:@"Veuillez vérifier votre adresse e-mail et votre mot de passe, puis réessayez."];
-        }
+        completion(weakSelf.connection.data != nil);
         weakSelf.connection = nil;
     }];
 }

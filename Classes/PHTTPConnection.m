@@ -82,7 +82,7 @@ NSString* const PHTTPConnectionErrorResponseBodyDataKey = @"PHTTPConnectionError
 	if ((self = [super init]))
 	{
 		self.userDictionary = [NSMutableDictionary dictionary];
-        self.SSLTrustedHosts = [[self class] SSLTrustedHosts];
+        //self.SSLTrustedHosts = [[self class] SSLTrustedHosts];
 	}
 	return self;
 }
