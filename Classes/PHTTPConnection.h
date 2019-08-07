@@ -3,8 +3,6 @@
 //
 // Define the PHTTPConnectionNetworkActivityStack macro to an object that implements the push and pop selectors (see PNetworkActivityStack)
 
-#import "POperation.h"
-
 // PHTTPConnectionErrorDomain (HTTP response code not in [200, 399]):
 // - HTTP response code is error.code
 // - NSData* sent by server is [error.userInfo objectForKey:PHTTPConnectionErrorResponseBodyDataKey];
@@ -33,7 +31,7 @@ extern NSString* const PHTTPConnectionErrorResponseBodyDataKey;
 - (NSURLRequest *)HTTPConnection:(PHTTPConnection*)aConnection requestForURL:(NSURL *)URL;
 @end
 
-@interface PHTTPConnection : NSObject <POperation, NSCoding>
+@interface PHTTPConnection : NSObject <NSCoding>
 
 #pragma mark - Building a PHTTPConnection
 
