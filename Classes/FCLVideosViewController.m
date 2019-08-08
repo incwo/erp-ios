@@ -137,117 +137,128 @@ typedef NS_ENUM(NSUInteger, FCLVideoSearchMode) {
     }
 }
 
-- (void) displayVideosWithXMLData:(NSData*)data
+- (void) displayVideosWithXMLData:(NSData *)data
 {
     if (!data) return;
     
+    __typeof(self) __weak weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        
-        NSMutableArray* videoItems = [NSMutableArray array];
-        NSMutableDictionary* categoryCounts = [NSMutableDictionary dictionary];
-        
-        __block NSMutableDictionary* item = nil;
-        
-        OAXMLDecoder* xmlDecoder = [OAXMLDecoder parseData:data withBlock:^(OAXMLDecoder *decoder) {
-            
-            //  <medias type="array">
-            //      <pagination>...</pagination>
-            //      <media>
-            //          <id>543169</id>
-            //          <serie>app_training</serie>
-            //          <kind>tutorial</kind>
-            //          <reference>Supprimer une facture</reference>
-            //          <title>Supprimer une facture</title>
-            //          <permalink>supprimer-une-facture-543169</permalink>
-            //          <subtitle>Supprimer une facture client</subtitle>
-            //          <support>youtube</support>
-            //          <video_reference>4enHEl7TNzA</video_reference>
-            //          <publication_date>09-11-2012-00-00</publication_date>
-            //          <view_count>102</view_count>
-            //          <view_count_frozen>100</view_count_frozen>
-            //          <view_count_frozen_at>31-01-2013-12-01</view_count_frozen_at>
-            //          <is_running>1</is_running>
-            //          <created_at>09-11-2012-17-31</created_at>
-            //          <creator_id>43</creator_id>
-            //          <modified_at>09-11-2012-18-11</modified_at>
-            //          <modifier_id>43</modifier_id>
-            //          <language>fr</language>
-            //          <original_air_date>09-11-2012-00-00</original_air_date>
-            //          <click_count>2</click_count>
-            //          <positive_reviews>1</positive_reviews>
-            //          <negative_reviews>0</negative_reviews>
-            //          <average_review>1</average_review>
-            //          <training_value>1000</training_value>
-            //          <feature>factures</feature>
-            //          <feature2>cashflow</feature2>
-            //      </media>
-            
-            [decoder startElement:@"medias" withBlock:^{
-                [decoder startElement:@"media" withBlock:^{
-                    
-                    item = [NSMutableDictionary dictionary];
-                    
-                    [decoder endElement:@"id" withBlock:^{
-                        item[@"id"] = decoder.currentStringStripped ?: @"";
-                    }];
-                    [decoder endElement:@"video_reference" withBlock:^{
-                        item[@"youtube_id"] = decoder.currentStringStripped ?: @"";
-                    }];
-                    [decoder endElement:@"permalink" withBlock:^{
-                        item[@"permalink"] = decoder.currentStringStripped ?: @"";
-                    }];
-                    [decoder endElement:@"title" withBlock:^{
-                        item[@"title"] = decoder.currentStringStripped ?: @"";
-                    }];
-                    [decoder endElement:@"created_at" withBlock:^{
-                        // TODO: parse the created_at into a NSDate object
-                        item[@"created_at"] = decoder.currentStringStripped ?: @"";
-                    }];
-                    [decoder endElement:@"feature" withBlock:^{
-                        if (![item[@"categories"] isKindOfClass:[NSArray class]])
-                        {
-                            item[@"categories"] = [NSMutableArray array];
-                        }
-                        if (decoder.currentString.length > 0)
-                        {
-                            [item[@"categories"] addObject:decoder.currentStringStripped];
-                            if (!categoryCounts[decoder.currentStringStripped])
-                            {
-                                categoryCounts[decoder.currentStringStripped] = @0;
-                            }
-                            categoryCounts[decoder.currentStringStripped] = @(1 + [categoryCounts[decoder.currentStringStripped] integerValue]);
-                        }
-                        [item[@"categories"] addObject:@""];
-                        categoryCounts[@""] = @(1 + [categoryCounts[@""] integerValue]);
-                    }];
-                }];
-                [decoder endElement:@"media" withBlock:^{
-                    if (item.count > 0) [videoItems addObject:item];
-                }];
-            }];
-        }];
-        
-        if (xmlDecoder.error)
-        {
-            NSLog(@"Video XML parsing error: %@", xmlDecoder.error);
-        }
-        //NSLog(@"Parsed %d video items: %@", videoItems.count, videoItems);
+        NSError *xmlParsingError;
+        NSArray *videoItems;
+        NSDictionary *countByCategories;
+        BOOL success = [self videoItems:&videoItems countByCategories:&countByCategories forXMLData:data error:&xmlParsingError];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (xmlDecoder.error) {
-                [self FCL_presentAlertForError:xmlDecoder.error];
-            }
-            
-            if (videoItems.count > 0)
-            {
-                self.videoItems = nil;
-                self.allVideoItems = videoItems;
-                self.videoCategories = [[categoryCounts allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-                self.videoCategoriesCounts = categoryCounts;
-                [self.tableView reloadData];
+            if(success) {
+                if(videoItems.count > 0) {
+                    self.videoItems = nil;
+                    self.allVideoItems = videoItems;
+                    self.videoCategories = [[countByCategories allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+                    self.videoCategoriesCounts = countByCategories;
+                    [self.tableView reloadData];
+                }
+            } else {
+                [weakSelf FCL_presentAlertForError:xmlParsingError];
             }
         });
     });
+}
+
+
+-(BOOL) videoItems:(NSArray **)outVideoItems countByCategories:(NSDictionary **)outCountByCategories forXMLData:(NSData *)xmlData error:(NSError **)error {
+    NSMutableArray *videoItems = [NSMutableArray array];
+    NSMutableDictionary *categoryCounts = [NSMutableDictionary dictionary];
+    
+    __block NSMutableDictionary* item = nil;
+    
+    OAXMLDecoder* xmlDecoder = [OAXMLDecoder parseData:xmlData withBlock:^(OAXMLDecoder *decoder) {
+        
+        //  <medias type="array">
+        //      <pagination>...</pagination>
+        //      <media>
+        //          <id>543169</id>
+        //          <serie>app_training</serie>
+        //          <kind>tutorial</kind>
+        //          <reference>Supprimer une facture</reference>
+        //          <title>Supprimer une facture</title>
+        //          <permalink>supprimer-une-facture-543169</permalink>
+        //          <subtitle>Supprimer une facture client</subtitle>
+        //          <support>youtube</support>
+        //          <video_reference>4enHEl7TNzA</video_reference>
+        //          <publication_date>09-11-2012-00-00</publication_date>
+        //          <view_count>102</view_count>
+        //          <view_count_frozen>100</view_count_frozen>
+        //          <view_count_frozen_at>31-01-2013-12-01</view_count_frozen_at>
+        //          <is_running>1</is_running>
+        //          <created_at>09-11-2012-17-31</created_at>
+        //          <creator_id>43</creator_id>
+        //          <modified_at>09-11-2012-18-11</modified_at>
+        //          <modifier_id>43</modifier_id>
+        //          <language>fr</language>
+        //          <original_air_date>09-11-2012-00-00</original_air_date>
+        //          <click_count>2</click_count>
+        //          <positive_reviews>1</positive_reviews>
+        //          <negative_reviews>0</negative_reviews>
+        //          <average_review>1</average_review>
+        //          <training_value>1000</training_value>
+        //          <feature>factures</feature>
+        //          <feature2>cashflow</feature2>
+        //      </media>
+        
+        [decoder startElement:@"medias" withBlock:^{
+            [decoder startElement:@"media" withBlock:^{
+                
+                item = [NSMutableDictionary dictionary];
+                
+                [decoder endElement:@"id" withBlock:^{
+                    item[@"id"] = decoder.currentStringStripped ?: @"";
+                }];
+                [decoder endElement:@"video_reference" withBlock:^{
+                    item[@"youtube_id"] = decoder.currentStringStripped ?: @"";
+                }];
+                [decoder endElement:@"permalink" withBlock:^{
+                    item[@"permalink"] = decoder.currentStringStripped ?: @"";
+                }];
+                [decoder endElement:@"title" withBlock:^{
+                    item[@"title"] = decoder.currentStringStripped ?: @"";
+                }];
+                [decoder endElement:@"created_at" withBlock:^{
+                    // TODO: parse the created_at into a NSDate object
+                    item[@"created_at"] = decoder.currentStringStripped ?: @"";
+                }];
+                [decoder endElement:@"feature" withBlock:^{
+                    if (![item[@"categories"] isKindOfClass:[NSArray class]])
+                    {
+                        item[@"categories"] = [NSMutableArray array];
+                    }
+                    if (decoder.currentString.length > 0)
+                    {
+                        [item[@"categories"] addObject:decoder.currentStringStripped];
+                        if (!categoryCounts[decoder.currentStringStripped])
+                        {
+                            categoryCounts[decoder.currentStringStripped] = @0;
+                        }
+                        categoryCounts[decoder.currentStringStripped] = @(1 + [categoryCounts[decoder.currentStringStripped] integerValue]);
+                    }
+                    [item[@"categories"] addObject:@""];
+                    categoryCounts[@""] = @(1 + [categoryCounts[@""] integerValue]);
+                }];
+            }];
+            [decoder endElement:@"media" withBlock:^{
+                if (item.count > 0) [videoItems addObject:item];
+            }];
+        }];
+    }];
+    
+    if (xmlDecoder.error) {
+        *error = xmlDecoder.error;
+        return nil;
+    }
+    
+    *outVideoItems = videoItems;
+    *outCountByCategories = categoryCounts;
+    
+    return videoItems;
 }
 
 - (NSURL*) URLForYoutubePageWithItem:(id)item
