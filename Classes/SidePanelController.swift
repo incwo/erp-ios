@@ -68,14 +68,16 @@ class SidePanelController: NSObject {
         }
         
         businessFilesList.getBusinessFiles { [weak self] (result) in
-            MBProgressHUD.hide(for: self?.sidePanelViewController?.view, animated: true)
-            switch result {
-            case .list(let businessFiles, let selection):
-                self?.sidePanelViewController?.viewModel = SidePanelViewController.ViewModel(businessFiles: businessFiles, selectedBusinessFile: selection)
-            case .loggedOut:
-                self?.sidePanelViewController?.viewModel = nil
-            case .failure(let error):
-                self?.sidePanelViewController?.fcl_presentAlert(forError: error)
+            DispatchQueue.main.async {
+                MBProgressHUD.hide(for: self?.sidePanelViewController?.view, animated: true)
+                switch result {
+                case .list(let businessFiles, let selection):
+                    self?.sidePanelViewController?.viewModel = SidePanelViewController.ViewModel(businessFiles: businessFiles, selectedBusinessFile: selection)
+                case .loggedOut:
+                    self?.sidePanelViewController?.viewModel = nil
+                case .failure(let error):
+                    self?.sidePanelViewController?.fcl_presentAlert(forError: error)
+                }
             }
         }
     }
