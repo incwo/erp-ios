@@ -122,7 +122,7 @@ extension FormListCoordinator: FCLFormViewControllerDelegate {
         send(form: formViewController.form, image: formViewController.image)
     }
     
-    private func send(form: FCLForm, image: UIImage) {
+    private func send(form: FCLForm, image: UIImage?) {
         guard let session = FCLSession.saved() else {
             NSLog("\(#function) No current session! The form won't be sent.")
             return
