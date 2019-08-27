@@ -62,10 +62,7 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28C286E10D94DF7D0034E888 /* FCLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* FCLLoginViewController.m */; };
 		31A62EE11A497C1C005C33BF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31A62EE01A497C1C005C33BF /* Crashlytics.framework */; };
-		3ACF002418D8A7C900BEEA95 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ACF002318D8A7C900BEEA95 /* Main-iPad.storyboard */; };
 		3AD230E3184DE43E0078C4C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD230E2184DE43E0078C4C2 /* Images.xcassets */; };
-		56E1F4A818A23C9100DC6404 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56E1F4A718A23C9100DC6404 /* Main.storyboard */; };
-		56E1F4AB18A23CE100DC6404 /* PFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1F4AA18A23CE100DC6404 /* PFWebViewController.m */; };
 		56E1F4AE18A23DA700DC6404 /* PXWWWFormSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1F4AD18A23DA700DC6404 /* PXWWWFormSerialization.m */; };
 		9EB58714BE28C650A5CBCFA9 /* Pods_facile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C360ED63F3A469BA96E35B5E /* Pods_facile.framework */; };
 		DF179028216CE82500BE89F7 /* OfficeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF179027216CE82500BE89F7 /* OfficeCoordinator.swift */; };
@@ -207,11 +204,7 @@
 		28C286E00D94DF7D0034E888 /* FCLLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLLoginViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		31A62EE01A497C1C005C33BF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		3ACF002318D8A7C900BEEA95 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
 		3AD230E2184DE43E0078C4C2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		56E1F4A718A23C9100DC6404 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		56E1F4A918A23CE100DC6404 /* PFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFWebViewController.h; sourceTree = "<group>"; };
-		56E1F4AA18A23CE100DC6404 /* PFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFWebViewController.m; sourceTree = "<group>"; };
 		56E1F4AC18A23DA700DC6404 /* PXWWWFormSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXWWWFormSerialization.h; sourceTree = "<group>"; };
 		56E1F4AD18A23DA700DC6404 /* PXWWWFormSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXWWWFormSerialization.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -388,8 +381,6 @@
 				DFFA861B206E1D9F00C52018 /* Scan */,
 				DFFA861C206E1DD600C52018 /* Videos */,
 				DFFA861D206E1DED00C52018 /* News */,
-				56E1F4A918A23CE100DC6404 /* PFWebViewController.h */,
-				56E1F4AA18A23CE100DC6404 /* PFWebViewController.m */,
 				203C91DD16BAB51100C37D50 /* FCLWebViewController.h */,
 				203C91DE16BAB51100C37D50 /* FCLWebViewController.m */,
 				203C91DF16BAB51200C37D50 /* FCLWebViewController.xib */,
@@ -536,8 +527,6 @@
 		DFFA8619206E1D7F00C52018 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				56E1F4A718A23C9100DC6404 /* Main.storyboard */,
-				3ACF002318D8A7C900BEEA95 /* Main-iPad.storyboard */,
 				DF1C79672181C466005419EA /* AppDelegate.swift */,
 				DF6CA4992175DB2D001E8207 /* AppCoordinator.swift */,
 				E2BDD32E2069180700BA988F /* FCLAppearance.h */,
@@ -710,7 +699,6 @@
 				203C91DA16BAB3BF00C37D50 /* FCLNewsViewController.xib in Resources */,
 				DF243648216B853300A41B31 /* Login.storyboard in Resources */,
 				203C91DC16BAB3CE00C37D50 /* FCLVideosViewController.xib in Resources */,
-				56E1F4A818A23C9100DC6404 /* Main.storyboard in Resources */,
 				DF8B05122192FD280056DDD7 /* NoFormsViewController.xib in Resources */,
 				203C91E116BAB51300C37D50 /* FCLWebViewController.xib in Resources */,
 				20B9115416BADEF2009D1391 /* FCLTransparentPixel.png in Resources */,
@@ -721,7 +709,6 @@
 				2010BF5D16C13CF6009EC753 /* FCLPhotoPlaceholder.png in Resources */,
 				2010BF6216C14F71009EC753 /* FCLSignatureViewController.xib in Resources */,
 				2047B09E16C172C400DFFA34 /* FCLSignatureSample.png in Resources */,
-				3ACF002418D8A7C900BEEA95 /* Main-iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,7 +801,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				DF1C7955217DB9A5005419EA /* SidePanelController.swift in Sources */,
 				28C286E10D94DF7D0034E888 /* FCLLoginViewController.m in Sources */,
-				56E1F4AB18A23CE100DC6404 /* PFWebViewController.m in Sources */,
 				2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */,
 				DF681F982191D20700094C3A /* BusinessFile.swift in Sources */,
 				DF1C7951217DB84C005419EA /* SidePanelViewController.swift in Sources */,
