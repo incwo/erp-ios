@@ -7,14 +7,14 @@
 #import "UIViewController+Alert.h"
 
 @interface FCLNewsViewController ()
-@property(nonatomic) NSArray* newsItems;
+
+@property NSArray* newsItems;
+@property NSDate *lastCheckDate;
+@property UINib *cellNib;
+
 @end
 
-@implementation FCLNewsViewController {
-    NSDate* _lastCheckDate;
-    UINib* _cellNib;
-    NSDateFormatter* _dateFormatter;
-}
+@implementation FCLNewsViewController
 
 // MARK: Lifecycle
 
@@ -283,18 +283,24 @@
     
     id item = self.newsItems[indexPath.row];
     
-    if (!_dateFormatter)
-    {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        _dateFormatter.timeStyle = NSDateFormatterShortStyle;
-        _dateFormatter.dateStyle = NSDateFormatterMediumStyle;
-    }
-    dateLabel.text = item[@"date"] ? [_dateFormatter stringFromDate:item[@"date"]] : @"";
+    dateLabel.text = item[@"date"] ? [self.dateFormatter stringFromDate:item[@"date"]] : @"";
     titleLabel.text = item[@"title"] ?: @"";
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
+}
+
+-(NSDateFormatter *) dateFormatter {
+    static NSDateFormatter *dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.timeStyle = NSDateFormatterShortStyle;
+        dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+    });
+    
+    return dateFormatter;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
