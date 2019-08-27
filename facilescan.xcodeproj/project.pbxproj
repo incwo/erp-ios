@@ -65,6 +65,7 @@
 		3AD230E3184DE43E0078C4C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD230E2184DE43E0078C4C2 /* Images.xcassets */; };
 		56E1F4AE18A23DA700DC6404 /* PXWWWFormSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1F4AD18A23DA700DC6404 /* PXWWWFormSerialization.m */; };
 		9EB58714BE28C650A5CBCFA9 /* Pods_facile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C360ED63F3A469BA96E35B5E /* Pods_facile.framework */; };
+		DF0C2FE32315858B0093F68B /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C2FE22315858B0093F68B /* NewsItem.swift */; };
 		DF179028216CE82500BE89F7 /* OfficeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF179027216CE82500BE89F7 /* OfficeCoordinator.swift */; };
 		DF17902A216CE8AE00BE89F7 /* UIViewController+child.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF179029216CE8AE00BE89F7 /* UIViewController+child.swift */; };
 		DF17902C216E04C800BE89F7 /* ScanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF17902B216E04C800BE89F7 /* ScanCoordinator.swift */; };
@@ -210,6 +211,7 @@
 		8D1107310486CEB800E47090 /* info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C360ED63F3A469BA96E35B5E /* Pods_facile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_facile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8474124D611147C7B3BE800 /* Pods-facile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-facile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-facile/Pods-facile.debug.xcconfig"; sourceTree = "<group>"; };
+		DF0C2FE22315858B0093F68B /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		DF179027216CE82500BE89F7 /* OfficeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeCoordinator.swift; sourceTree = "<group>"; };
 		DF179029216CE8AE00BE89F7 /* UIViewController+child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+child.swift"; sourceTree = "<group>"; };
 		DF17902B216E04C800BE89F7 /* ScanCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCoordinator.swift; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 			children = (
 				209DCD9B16B8101700BF1CC0 /* FCLNewsViewController.h */,
 				209DCD9C16B8101700BF1CC0 /* FCLNewsViewController.m */,
+				DF0C2FE22315858B0093F68B /* NewsItem.swift */,
 				203C91D916BAB3BF00C37D50 /* FCLNewsViewController.xib */,
 				2010BF5A16C00263009EC753 /* FCLNewsCellContentView.xib */,
 			);
@@ -799,6 +802,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				DF0C2FE32315858B0093F68B /* NewsItem.swift in Sources */,
 				DF1C7955217DB9A5005419EA /* SidePanelController.swift in Sources */,
 				28C286E10D94DF7D0034E888 /* FCLLoginViewController.m in Sources */,
 				2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */,

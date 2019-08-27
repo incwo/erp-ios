@@ -1,3 +1,4 @@
+#import "facilescan-Swift.h"
 #import "FCLNewsViewController.h"
 #import "FCLWebViewController.h"
 #import "PStringExtensions.h"
@@ -8,7 +9,7 @@
 
 @interface FCLNewsViewController ()
 
-@property NSArray* newsItems;
+@property NSArray <NewsItem *> *newsItems;
 @property NSDate *lastCheckDate;
 @property UINib *cellNib;
 
@@ -118,38 +119,37 @@
     });
 }
 
--(NSArray <NSDictionary *> *)newItemsFromXMLData:(NSData *)data error:(NSError **)outError {
+-(NSArray <NewsItem *> *)newItemsFromXMLData:(NSData *)data error:(NSError **)outError {
     NSMutableArray* newsItems = [NSMutableArray array];
-    __block NSMutableDictionary* item = nil;
     OAXMLDecoder* xmlDecoder = [OAXMLDecoder parseData:data withBlock:^(OAXMLDecoder *decoder) {
         
         [decoder startElement:@"rss" withBlock:^{
             [decoder startElement:@"channel" withBlock:^{
+                __block NewsItem *item = nil;
                 [decoder startElement:@"item" withBlock:^{
-                    
-                    item = [NSMutableDictionary dictionary];
+                    item = [[NewsItem alloc] init];
                     
                     [decoder endElement:@"title" withBlock:^{
-                        item[@"title"] = decoder.currentStringStripped ?: @"";
+                        item.title = decoder.currentStringStripped ?: @"";
                     }];
                     [decoder endElement:@"description" withBlock:^{
-                        item[@"HTML"] = decoder.currentStringStripped ?: @"";
+                        item.html = decoder.currentStringStripped ?: @"";
                     }];
                     [decoder endElement:@"pubDate" withBlock:^{
                         NSDate* date = [NSDate dateWithHTTPDate:decoder.currentStringStripped ?: @""];
-                        if (date) item[@"date"] = date;
+                        if (date) item.date = date;
                     }];
                     [decoder endElement:@"guid" withBlock:^{
-                        item[@"UUID"] = decoder.currentStringStripped ?: @"";
+                        item.uuid = decoder.currentStringStripped ?: @"";
                     }];
                     [decoder endElement:@"link" withBlock:^{
                         // TODO: parse the created_at into a NSDate object
                         NSURL* url = [NSURL URLWithString:decoder.currentStringStripped];
-                        if (url) item[@"URL"] = url;
+                        if (url) item.url = url;
                     }];
                 }];
                 [decoder endElement:@"item" withBlock:^{
-                    if (item.count > 0) [newsItems addObject:item];
+                    if ([item anyFieldSet]) [newsItems addObject:item];
                 }];
             }];
         }];
@@ -193,14 +193,14 @@
 - (void) updateUnreadCounts
 {
     int count = (int)[self unreadCount];
-    self.title = NSLocalizedString(@"Actualités", @""); //[NSString stringWithFormat:@"%@ (%d)", NSLocalizedString(@"Actualités", @""), count];
+    self.title = NSLocalizedString(@"Actualités", @"");
     self.tabBarItem.title = NSLocalizedString(@"Actualités", @"");
     self.tabBarItem.badgeValue = count > 0 ? [NSString stringWithFormat:@"%d", count] : nil;
 }
 
 - (NSUInteger) unreadCount
 {
-    NSMutableSet* set = [NSMutableSet setWithArray:[self.newsItems valueForKey:@"UUID"]];
+    NSMutableSet* set = [NSMutableSet setWithArray:[self.newsItems valueForKey:@"uuid"]];
     [set minusSet:[NSSet setWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:kItemsMarkedAsRead] ?: @[]]];
     return set.count;
 }
@@ -215,33 +215,33 @@
 
 - (void) markAllAsRead
 {
-    [[NSUserDefaults standardUserDefaults] setObject:([self.newsItems valueForKey:@"UUID"] ?: @[]) forKey:kItemsMarkedAsRead];
+    [[NSUserDefaults standardUserDefaults] setObject:([self.newsItems valueForKey:@"uuid"] ?: @[]) forKey:kItemsMarkedAsRead];
 }
 
-- (void) markItemAsRead:(NSString*)uuid
+- (void) markItemAsRead:(NewsItem *)newsItem
 {
-    if (!uuid) return;
+    if (!newsItem.uuid) return;
     
     NSMutableSet* set = [NSMutableSet setWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:kItemsMarkedAsRead] ?: @[]];
     if (!set)
     {
         set = [NSMutableSet set];
     }
-    [set addObject:uuid];
+    [set addObject:newsItem.uuid];
     
     // Make sure we do not accumulate uuids for the news not accessible anymore.
     if (self.newsItems.count > 0)
     {
-        [set intersectSet:[NSSet setWithArray:[self.newsItems valueForKey:@"UUID"]]];
+        [set intersectSet:[NSSet setWithArray:[self.newsItems valueForKey:@"uuid"]]];
     }
     [[NSUserDefaults standardUserDefaults] setObject:[set allObjects] forKey:kItemsMarkedAsRead];
     [self updateUnreadCounts];
 }
 
-- (BOOL) isItemRead:(NSString*)uuid
+- (BOOL) isItemRead:(NewsItem *)newsItem
 {
-    if (!uuid) return NO;
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:kItemsMarkedAsRead] containsObject:uuid];
+    if (!newsItem.uuid) return NO;
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:kItemsMarkedAsRead] containsObject:newsItem.uuid];
 }
 
 
@@ -283,10 +283,10 @@
     UILabel* dateLabel = (id)[contentView viewWithTag:1];
     UILabel* titleLabel = (id)[contentView viewWithTag:2];
     
-    id item = self.newsItems[indexPath.row];
+    NewsItem *item = self.newsItems[indexPath.row];
     
-    dateLabel.text = item[@"date"] ? [self.dateFormatter stringFromDate:item[@"date"]] : @"";
-    titleLabel.text = item[@"title"] ?: @"";
+    dateLabel.text = item.date ? [self.dateFormatter stringFromDate:item.date] : @"";
+    titleLabel.text = item.title ?: @"";
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -305,14 +305,15 @@
     return dateFormatter;
 }
 
+// TODO: Add outlets to the cell and use autolayout
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id item = self.newsItems[indexPath.row];
+    NewsItem *item = self.newsItems[indexPath.row];
     UIView* contentView = cell.contentView.subviews[0];
     UILabel* titleLabel = (id)[contentView viewWithTag:2];
     
     {
-        BOOL itemRead = [self isItemRead:item[@"UUID"]];
+        BOOL itemRead = [self isItemRead:item];
         
         titleLabel.font = itemRead ? [UIFont systemFontOfSize:16.0] : [UIFont boldSystemFontOfSize:16.0]; // standard font size
         titleLabel.textColor = itemRead ? [UIColor colorWithWhite:0.2 alpha:1.0] : [UIColor blackColor];
@@ -329,25 +330,27 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    id item = self.newsItems[indexPath.row];
+    NewsItem *item = self.newsItems[indexPath.row];
+    [self presentWebPageForItem:item];
+    [self markItemAsRead:item];
+}
+
+-(void) presentWebPageForItem:(NewsItem *)item {
     NSUInteger viewPortWidth = [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone ? 600 : 800;
     
     NSString* stylePrefix =
     [NSString stringWithFormat:@"<html><head><meta name=\"viewport\" content=\"width=%lu\"></head><body>"
-    "<style>\n"
-        " *{ font-family: sans-serif}\n"
-        " body{ padding:10px}\n"
-        " h1{ margin: 0 0 10px 0; font-size:2em; }\n"
-    "</style>\n", (unsigned long)viewPortWidth];
+     "<style>\n"
+     " *{ font-family: sans-serif}\n"
+     " body{ padding:10px}\n"
+     " h1{ margin: 0 0 10px 0; font-size:2em; }\n"
+     "</style>\n", (unsigned long)viewPortWidth];
     
-    NSString *content = item[@"HTML"];
-    NSString *httpsContent = [content stringByReplacingOccurrencesOfString:@"http://" withString:@"https://"];
-    NSString *html = [[stylePrefix stringByAppendingFormat:@"<h1>%@</h1>", item[@"title"]] stringByAppendingString:httpsContent];
-    FCLWebViewController* vc = [[FCLWebViewController alloc] initWithHTML:html baseURL:item[@"URL"]];
+    NSString *httpsContent = [item.html stringByReplacingOccurrencesOfString:@"http://" withString:@"https://"];
+    NSString *html = [[stylePrefix stringByAppendingFormat:@"<h1>%@</h1>", item.title] stringByAppendingString:httpsContent];
+    FCLWebViewController* vc = [[FCLWebViewController alloc] initWithHTML:html baseURL:item.url];
     vc.title = NSLocalizedString(@"Article", @"");
     [self.navigationController pushViewController:vc animated:YES];
-    
-    [self markItemAsRead:item[@"UUID"]];
 }
 
 
