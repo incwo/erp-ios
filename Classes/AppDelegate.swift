@@ -39,7 +39,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     } ()
     
     lazy var newsViewController: FCLNewsViewController = {
-        let controller = FCLNewsViewController(nibName: nil, bundle: nil)
+        let controller = UIStoryboard(name: "News", bundle: nil).instantiateInitialViewController() as! FCLNewsViewController
         controller.tabBarItem = UITabBarItem(title: "Actualités", image: UIImage(named: "FCLTabBarNews"), selectedImage: UIImage(named: "FCLTabBarNewsSelected"))
         return controller
     } ()

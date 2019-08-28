@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VMF-bs-0z4">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--News View Controller-->
+        <scene sceneID="HZz-OA-dka">
+            <objects>
+                <tableViewController id="VMF-bs-0z4" customClass="FCLNewsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ra2-Sb-0WT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NewsItemCell" rowHeight="100" id="P7R-eV-vTU" customClass="NewsItemCell" customModule="facilescan" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P7R-eV-vTU" id="9Up-dc-49l">
+                                    <rect key="frame" x="0.0" y="0.0" width="376" height="99.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="December 17, 2054" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUN-b2-TOy">
+                                            <rect key="frame" x="20" y="11" width="348" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.17393705248832703" green="0.36093869805335999" blue="0.57649928331375122" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" verticalHuggingPriority="249" text="Some long header of typical size in our RSS feed server from a french server somewhere in Paris." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9s-P3-r91">
+                                            <rect key="frame" x="20" y="31" width="348" height="58"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="B9s-P3-r91" firstAttribute="leading" secondItem="9Up-dc-49l" secondAttribute="leadingMargin" id="6BJ-Bt-zW6"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="B9s-P3-r91" secondAttribute="bottom" id="L9l-13-TUe"/>
+                                        <constraint firstItem="IUN-b2-TOy" firstAttribute="top" secondItem="9Up-dc-49l" secondAttribute="topMargin" id="LpC-U1-L82"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="B9s-P3-r91" secondAttribute="trailing" id="Ss4-ZU-57H"/>
+                                        <constraint firstItem="B9s-P3-r91" firstAttribute="firstBaseline" secondItem="IUN-b2-TOy" secondAttribute="baseline" constant="20" symbolType="layoutAnchor" id="a5p-GI-vD5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="IUN-b2-TOy" secondAttribute="trailing" id="cAY-GO-FAJ"/>
+                                        <constraint firstItem="IUN-b2-TOy" firstAttribute="leading" secondItem="9Up-dc-49l" secondAttribute="leadingMargin" id="dhB-Gw-usb"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="IUN-b2-TOy" id="UxQ-Co-vcJ"/>
+                                    <outlet property="titleLabel" destination="B9s-P3-r91" id="OEn-nm-t2b"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="VMF-bs-0z4" id="lu7-yN-iFt"/>
+                            <outlet property="delegate" destination="VMF-bs-0z4" id="FNt-qc-3cL"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TWK-1e-nAZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="98.550724637681171" y="215.625"/>
+        </scene>
+    </scenes>
+</document>

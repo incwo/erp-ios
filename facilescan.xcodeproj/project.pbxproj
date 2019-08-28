@@ -13,7 +13,6 @@
 		2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E81F118A25C100607BAC /* OAHTTPDownload.m */; };
 		2008E824118A25C100607BAC /* OAHTTPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E822118A25C100607BAC /* OAHTTPQueue.m */; };
 		2008E830118A25F400607BAC /* OANetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E82F118A25F400607BAC /* OANetworkActivityIndicator.m */; };
-		2010BF5B16C00264009EC753 /* FCLNewsCellContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2010BF5A16C00263009EC753 /* FCLNewsCellContentView.xib */; };
 		2010BF5D16C13CF6009EC753 /* FCLPhotoPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2010BF5C16C13CF6009EC753 /* FCLPhotoPlaceholder.png */; };
 		2010BF6116C14F71009EC753 /* FCLSignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2010BF5F16C14F6F009EC753 /* FCLSignatureViewController.m */; };
 		2010BF6216C14F71009EC753 /* FCLSignatureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2010BF6016C14F70009EC753 /* FCLSignatureViewController.xib */; };
@@ -26,7 +25,6 @@
 		203C91CC16BAA9B900C37D50 /* PStringExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91CA16BAA9B900C37D50 /* PStringExtensions.m */; };
 		203C91D216BAAA1300C37D50 /* PDateExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91D016BAAA1300C37D50 /* PDateExtension.m */; };
 		203C91D516BAAA5300C37D50 /* PFeedItemThumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91D416BAAA5300C37D50 /* PFeedItemThumbnail.m */; };
-		203C91DA16BAB3BF00C37D50 /* FCLNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203C91D916BAB3BF00C37D50 /* FCLNewsViewController.xib */; };
 		203C91DC16BAB3CE00C37D50 /* FCLVideosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203C91DB16BAB3CE00C37D50 /* FCLVideosViewController.xib */; };
 		203C91E016BAB51300C37D50 /* FCLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 203C91DE16BAB51100C37D50 /* FCLWebViewController.m */; };
 		203C91E116BAB51300C37D50 /* FCLWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203C91DF16BAB51200C37D50 /* FCLWebViewController.xib */; };
@@ -66,6 +64,8 @@
 		56E1F4AE18A23DA700DC6404 /* PXWWWFormSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1F4AD18A23DA700DC6404 /* PXWWWFormSerialization.m */; };
 		9EB58714BE28C650A5CBCFA9 /* Pods_facile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C360ED63F3A469BA96E35B5E /* Pods_facile.framework */; };
 		DF0C2FE32315858B0093F68B /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C2FE22315858B0093F68B /* NewsItem.swift */; };
+		DF0C2FE523167C410093F68B /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF0C2FE423167C410093F68B /* News.storyboard */; };
+		DF0C2FE723167E600093F68B /* NewsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C2FE623167E600093F68B /* NewsItemCell.swift */; };
 		DF179028216CE82500BE89F7 /* OfficeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF179027216CE82500BE89F7 /* OfficeCoordinator.swift */; };
 		DF17902A216CE8AE00BE89F7 /* UIViewController+child.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF179029216CE8AE00BE89F7 /* UIViewController+child.swift */; };
 		DF17902C216E04C800BE89F7 /* ScanCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF17902B216E04C800BE89F7 /* ScanCoordinator.swift */; };
@@ -123,7 +123,6 @@
 		2008E822118A25C100607BAC /* OAHTTPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHTTPQueue.m; sourceTree = "<group>"; };
 		2008E82E118A25F400607BAC /* OANetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OANetworkActivityIndicator.h; sourceTree = "<group>"; };
 		2008E82F118A25F400607BAC /* OANetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OANetworkActivityIndicator.m; sourceTree = "<group>"; };
-		2010BF5A16C00263009EC753 /* FCLNewsCellContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FCLNewsCellContentView.xib; sourceTree = "<group>"; };
 		2010BF5C16C13CF6009EC753 /* FCLPhotoPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FCLPhotoPlaceholder.png; sourceTree = "<group>"; };
 		2010BF5E16C14F6C009EC753 /* FCLSignatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLSignatureViewController.h; sourceTree = "<group>"; };
 		2010BF5F16C14F6F009EC753 /* FCLSignatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLSignatureViewController.m; sourceTree = "<group>"; };
@@ -146,7 +145,6 @@
 		203C91D016BAAA1300C37D50 /* PDateExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDateExtension.m; sourceTree = "<group>"; };
 		203C91D316BAAA5300C37D50 /* PFeedItemThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFeedItemThumbnail.h; sourceTree = "<group>"; };
 		203C91D416BAAA5300C37D50 /* PFeedItemThumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFeedItemThumbnail.m; sourceTree = "<group>"; };
-		203C91D916BAB3BF00C37D50 /* FCLNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FCLNewsViewController.xib; sourceTree = "<group>"; };
 		203C91DB16BAB3CE00C37D50 /* FCLVideosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FCLVideosViewController.xib; sourceTree = "<group>"; };
 		203C91DD16BAB51100C37D50 /* FCLWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLWebViewController.h; sourceTree = "<group>"; };
 		203C91DE16BAB51100C37D50 /* FCLWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLWebViewController.m; sourceTree = "<group>"; };
@@ -212,6 +210,8 @@
 		C360ED63F3A469BA96E35B5E /* Pods_facile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_facile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8474124D611147C7B3BE800 /* Pods-facile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-facile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-facile/Pods-facile.debug.xcconfig"; sourceTree = "<group>"; };
 		DF0C2FE22315858B0093F68B /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
+		DF0C2FE423167C410093F68B /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
+		DF0C2FE623167E600093F68B /* NewsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemCell.swift; sourceTree = "<group>"; };
 		DF179027216CE82500BE89F7 /* OfficeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeCoordinator.swift; sourceTree = "<group>"; };
 		DF179029216CE8AE00BE89F7 /* UIViewController+child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+child.swift"; sourceTree = "<group>"; };
 		DF17902B216E04C800BE89F7 /* ScanCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCoordinator.swift; sourceTree = "<group>"; };
@@ -582,8 +582,8 @@
 				209DCD9B16B8101700BF1CC0 /* FCLNewsViewController.h */,
 				209DCD9C16B8101700BF1CC0 /* FCLNewsViewController.m */,
 				DF0C2FE22315858B0093F68B /* NewsItem.swift */,
-				203C91D916BAB3BF00C37D50 /* FCLNewsViewController.xib */,
-				2010BF5A16C00263009EC753 /* FCLNewsCellContentView.xib */,
+				DF0C2FE423167C410093F68B /* News.storyboard */,
+				DF0C2FE623167E600093F68B /* NewsItemCell.swift */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -696,10 +696,10 @@
 				2060C58511901C5600EF2405 /* FCLOptionsViewController.xib in Resources */,
 				E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */,
 				20E88FB011919B8B00C8D766 /* Entitlements.plist in Resources */,
+				DF0C2FE523167C410093F68B /* News.storyboard in Resources */,
 				DF8B05102192FCAF0056DDD7 /* LoadingViewController.xib in Resources */,
 				209DCDB316B822FB00BF1CC0 /* FCLOfficeContentViewController.xib in Resources */,
 				3AD230E3184DE43E0078C4C2 /* Images.xcassets in Resources */,
-				203C91DA16BAB3BF00C37D50 /* FCLNewsViewController.xib in Resources */,
 				DF243648216B853300A41B31 /* Login.storyboard in Resources */,
 				203C91DC16BAB3CE00C37D50 /* FCLVideosViewController.xib in Resources */,
 				DF8B05122192FD280056DDD7 /* NoFormsViewController.xib in Resources */,
@@ -708,7 +708,6 @@
 				20B9115616BBC02C009D1391 /* FCLNoVideo.png in Resources */,
 				20B9115B16BC1D5A009D1391 /* FCLVideoViewController.xib in Resources */,
 				DF1C794D217DB84C005419EA /* SidePanel.storyboard in Resources */,
-				2010BF5B16C00264009EC753 /* FCLNewsCellContentView.xib in Resources */,
 				2010BF5D16C13CF6009EC753 /* FCLPhotoPlaceholder.png in Resources */,
 				2010BF6216C14F71009EC753 /* FCLSignatureViewController.xib in Resources */,
 				2047B09E16C172C400DFFA34 /* FCLSignatureSample.png in Resources */,
@@ -810,6 +809,7 @@
 				DF1C7951217DB84C005419EA /* SidePanelViewController.swift in Sources */,
 				DF1C79662180B75E005419EA /* BusinessFilesList.swift in Sources */,
 				56E1F4AE18A23DA700DC6404 /* PXWWWFormSerialization.m in Sources */,
+				DF0C2FE723167E600093F68B /* NewsItemCell.swift in Sources */,
 				DF32F19D216C965C003297D8 /* AccountCreationViewController.swift in Sources */,
 				2008E824118A25C100607BAC /* OAHTTPQueue.m in Sources */,
 				2008E830118A25F400607BAC /* OANetworkActivityIndicator.m in Sources */,

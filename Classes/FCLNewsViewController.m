@@ -245,13 +245,7 @@
 }
 
 
-
-
-
-
 #pragma mark - UITableView
-
-
 
 - (NSInteger)tableView:(UITableView*)aTableView numberOfRowsInSection:(NSInteger)section
 {
@@ -260,70 +254,13 @@
 
 - (UITableViewCell *)tableView:(UITableView*)aTableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSString* reuseIdentifier = @"Cell";
-    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-    }
-    
-    if (!_cellNib)
-    {
-        _cellNib = [UINib nibWithNibName:@"FCLNewsCellContentView" bundle:nil];
-    }
-    
-    if (cell.contentView.subviews.count == 0)
-    {
-        UIView* v = [_cellNib instantiateWithOwner:nil options:nil][0];
-        [cell.contentView addSubview:v];
-        v.frame = cell.contentView.bounds;
-    }
-    
-    UIView* contentView = cell.contentView.subviews[0];
-    UILabel* dateLabel = (id)[contentView viewWithTag:1];
-    UILabel* titleLabel = (id)[contentView viewWithTag:2];
-    
     NewsItem *item = self.newsItems[indexPath.row];
-    
-    dateLabel.text = item.date ? [self.dateFormatter stringFromDate:item.date] : @"";
-    titleLabel.text = item.title ?: @"";
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    NewsItemCell *cell = [aTableView dequeueReusableCellWithIdentifier:@"NewsItemCell" forIndexPath:indexPath];
+    cell.date = item.date;
+    cell.title = item.title;
+    cell.isRead = [self isItemRead:item];
     
     return cell;
-}
-
--(NSDateFormatter *) dateFormatter {
-    static NSDateFormatter *dateFormatter = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.timeStyle = NSDateFormatterShortStyle;
-        dateFormatter.dateStyle = NSDateFormatterMediumStyle;
-    });
-    
-    return dateFormatter;
-}
-
-// TODO: Add outlets to the cell and use autolayout
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NewsItem *item = self.newsItems[indexPath.row];
-    UIView* contentView = cell.contentView.subviews[0];
-    UILabel* titleLabel = (id)[contentView viewWithTag:2];
-    
-    {
-        BOOL itemRead = [self isItemRead:item];
-        
-        titleLabel.font = itemRead ? [UIFont systemFontOfSize:16.0] : [UIFont boldSystemFontOfSize:16.0]; // standard font size
-        titleLabel.textColor = itemRead ? [UIColor colorWithWhite:0.2 alpha:1.0] : [UIColor blackColor];
-        CGRect rect = titleLabel.frame;
-        CGSize boundedSize = CGSizeMake(rect.size.width, 10);
-        CGSize size = [titleLabel sizeThatFits:boundedSize];
-        //NSLog(@"size that fits: %@ => %@", NSStringFromCGSize(boundedSize), NSStringFromCGSize(size));
-        rect.size.height = MIN(58.0, size.height);
-        titleLabel.frame = rect;
-    }
 }
 
 
