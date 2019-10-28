@@ -35,8 +35,24 @@ class NewsItemCell: UITableViewCell {
     // TODO: the title should be bold when not read
     @objc var isRead: Bool = false {
         didSet {
-            titleLabel.textColor = isRead ? UIColor(white: 0.3, alpha: 1.0) : .black
+            titleLabel.textColor = titleColor(isRead: isRead)
             titleLabel.font = UIFont.systemFont(ofSize: 15.0, weight: isRead ? .regular : .semibold)
+        }
+    }
+    
+    private func titleColor(isRead: Bool) -> UIColor {
+        if #available(iOS 11, *) {
+            if isRead {
+                return UIColor(named: "news.title.read")!
+            } else {
+                return UIColor(named: "news.title.unread")!
+            }
+        } else { // < iOS 11
+            if isRead {
+                return UIColor(white: 0.3, alpha: 1.0)
+            } else {
+                return .black
+            }
         }
     }
     

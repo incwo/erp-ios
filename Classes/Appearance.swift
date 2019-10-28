@@ -42,4 +42,12 @@ class Appearance: NSObject {
             return UIColor(red: 218.0/255.0, green: 79.0/255.0, blue: 73.0/255.0, alpha: 1.0)
         }
     }
+    
+    @objc static func tabBarControllerBackgroundColor() -> UIColor {
+        if #available(iOS 11, *) {
+            return UIColor(named: "tabBarController.background")!
+        } else {
+            return UIColor.white
+        }
+    }
 }
