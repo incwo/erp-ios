@@ -84,6 +84,7 @@
 		DF681F962191C4F000094C3A /* URLRequest+BasicAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF681F952191C4F000094C3A /* URLRequest+BasicAuth.swift */; };
 		DF681F982191D20700094C3A /* BusinessFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF681F972191D20700094C3A /* BusinessFile.swift */; };
 		DF6CA49A2175DB2D001E8207 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6CA4992175DB2D001E8207 /* AppCoordinator.swift */; };
+		DF742F0B2366FA45002178C0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF742F0A2366FA45002178C0 /* Colors.xcassets */; };
 		DF8B05102192FCAF0056DDD7 /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8B050F2192FCAF0056DDD7 /* LoadingViewController.xib */; };
 		DF8B05122192FD280056DDD7 /* NoFormsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8B05112192FD280056DDD7 /* NoFormsViewController.xib */; };
 		DF8B0516219329400056DDD7 /* NoFormsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B0515219329400056DDD7 /* NoFormsViewController.swift */; };
@@ -232,6 +233,7 @@
 		DF681F952191C4F000094C3A /* URLRequest+BasicAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+BasicAuth.swift"; sourceTree = "<group>"; };
 		DF681F972191D20700094C3A /* BusinessFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessFile.swift; sourceTree = "<group>"; };
 		DF6CA4992175DB2D001E8207 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		DF742F0A2366FA45002178C0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		DF8B050F2192FCAF0056DDD7 /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		DF8B05112192FD280056DDD7 /* NoFormsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFormsViewController.xib; sourceTree = "<group>"; };
 		DF8B0515219329400056DDD7 /* NoFormsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFormsViewController.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				3AD230E2184DE43E0078C4C2 /* Images.xcassets */,
+				DF742F0A2366FA45002178C0 /* Colors.xcassets */,
 				E2BDD3332069316100BA988F /* Launch Screen.storyboard */,
 				20B9115516BBC02C009D1391 /* FCLNoVideo.png */,
 				20B9115316BADEF2009D1391 /* FCLTransparentPixel.png */,
@@ -695,6 +698,7 @@
 				E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */,
 				20E88FB011919B8B00C8D766 /* Entitlements.plist in Resources */,
 				DF0C2FE523167C410093F68B /* News.storyboard in Resources */,
+				DF742F0B2366FA45002178C0 /* Colors.xcassets in Resources */,
 				DF8B05102192FCAF0056DDD7 /* LoadingViewController.xib in Resources */,
 				209DCDB316B822FB00BF1CC0 /* FCLOfficeContentViewController.xib in Resources */,
 				3AD230E3184DE43E0078C4C2 /* Images.xcassets in Resources */,
