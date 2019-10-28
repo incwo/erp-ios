@@ -45,7 +45,7 @@
         NSLog(@"form view was reloaded. setting image to imageView");
     }
     self.title = self.form.name;
-    self.imageView.image = self.image ?: [UIImage imageNamed:@"FCLPhotoPlaceholder"];
+    self.imageView.image = self.image ?: [UIImage imageNamed:@"PhotoPlaceholder"];
 }
 
 // MARK: Rotation

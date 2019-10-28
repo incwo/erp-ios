@@ -13,7 +13,6 @@
 		2008E823118A25C100607BAC /* OAHTTPDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E81F118A25C100607BAC /* OAHTTPDownload.m */; };
 		2008E824118A25C100607BAC /* OAHTTPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E822118A25C100607BAC /* OAHTTPQueue.m */; };
 		2008E830118A25F400607BAC /* OANetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2008E82F118A25F400607BAC /* OANetworkActivityIndicator.m */; };
-		2010BF5D16C13CF6009EC753 /* FCLPhotoPlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2010BF5C16C13CF6009EC753 /* FCLPhotoPlaceholder.png */; };
 		2010BF6116C14F71009EC753 /* FCLSignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2010BF5F16C14F6F009EC753 /* FCLSignatureViewController.m */; };
 		2010BF6216C14F71009EC753 /* FCLSignatureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2010BF6016C14F70009EC753 /* FCLSignatureViewController.xib */; };
 		2010BF6816C16FCC009EC753 /* FCLHandDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2010BF6716C16FBC009EC753 /* FCLHandDrawingView.m */; };
@@ -124,7 +123,6 @@
 		2008E822118A25C100607BAC /* OAHTTPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHTTPQueue.m; sourceTree = "<group>"; };
 		2008E82E118A25F400607BAC /* OANetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OANetworkActivityIndicator.h; sourceTree = "<group>"; };
 		2008E82F118A25F400607BAC /* OANetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OANetworkActivityIndicator.m; sourceTree = "<group>"; };
-		2010BF5C16C13CF6009EC753 /* FCLPhotoPlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FCLPhotoPlaceholder.png; sourceTree = "<group>"; };
 		2010BF5E16C14F6C009EC753 /* FCLSignatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLSignatureViewController.h; sourceTree = "<group>"; };
 		2010BF5F16C14F6F009EC753 /* FCLSignatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCLSignatureViewController.m; sourceTree = "<group>"; };
 		2010BF6016C14F70009EC753 /* FCLSignatureViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FCLSignatureViewController.xib; sourceTree = "<group>"; };
@@ -423,7 +421,6 @@
 				E2BDD3332069316100BA988F /* Launch Screen.storyboard */,
 				20B9115516BBC02C009D1391 /* FCLNoVideo.png */,
 				20B9115316BADEF2009D1391 /* FCLTransparentPixel.png */,
-				2010BF5C16C13CF6009EC753 /* FCLPhotoPlaceholder.png */,
 				2047B09D16C172C400DFFA34 /* FCLSignatureSample.png */,
 				8D1107310486CEB800E47090 /* info.plist */,
 				20E88FAF11919B8B00C8D766 /* Entitlements.plist */,
@@ -710,7 +707,6 @@
 				20B9115616BBC02C009D1391 /* FCLNoVideo.png in Resources */,
 				20B9115B16BC1D5A009D1391 /* FCLVideoViewController.xib in Resources */,
 				DF1C794D217DB84C005419EA /* SidePanel.storyboard in Resources */,
-				2010BF5D16C13CF6009EC753 /* FCLPhotoPlaceholder.png in Resources */,
 				2010BF6216C14F71009EC753 /* FCLSignatureViewController.xib in Resources */,
 				2047B09E16C172C400DFFA34 /* FCLSignatureSample.png in Resources */,
 			);
