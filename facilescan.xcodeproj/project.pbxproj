@@ -98,7 +98,7 @@
 		DFE0033A22C21C370086640D /* FCLFormFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = DF99811D22C12AFC00D4E996 /* FCLFormFolder.m */; };
 		DFE0033D22C241100086640D /* FormListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE0033C22C241100086640D /* FormListCoordinator.swift */; };
 		DFE24FE42122E4EC004C069D /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */; };
-		E2BDD3302069180700BA988F /* FCLAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BDD32F2069180700BA988F /* FCLAppearance.m */; };
+		DFEC199F2366F3B300A52DBA /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEC199E2366F3B300A52DBA /* Appearance.swift */; };
 		E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2BDD3332069316100BA988F /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -248,8 +248,7 @@
 		DFE0033C22C241100086640D /* FormListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormListCoordinator.swift; sourceTree = "<group>"; };
 		DFE24FE22122E4EC004C069D /* UIViewController+Alert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
 		DFE24FE32122E4EC004C069D /* UIViewController+Alert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
-		E2BDD32E2069180700BA988F /* FCLAppearance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCLAppearance.h; sourceTree = "<group>"; };
-		E2BDD32F2069180700BA988F /* FCLAppearance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCLAppearance.m; sourceTree = "<group>"; };
+		DFEC199E2366F3B300A52DBA /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		E2BDD3332069316100BA988F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		EE69DD725D0B596D53FD4D2E /* Pods-facile.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-facile.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-facile/Pods-facile.distribution.xcconfig"; sourceTree = "<group>"; };
 		F307FC36162940EDD38EC744 /* Pods-facile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-facile.release.xcconfig"; path = "Pods/Target Support Files/Pods-facile/Pods-facile.release.xcconfig"; sourceTree = "<group>"; };
@@ -531,8 +530,7 @@
 			children = (
 				DF1C79672181C466005419EA /* AppDelegate.swift */,
 				DF6CA4992175DB2D001E8207 /* AppCoordinator.swift */,
-				E2BDD32E2069180700BA988F /* FCLAppearance.h */,
-				E2BDD32F2069180700BA988F /* FCLAppearance.m */,
+				DFEC199E2366F3B300A52DBA /* Appearance.swift */,
 				DF1C7947217DB835005419EA /* Side Panel */,
 			);
 			name = Application;
@@ -839,6 +837,7 @@
 				203C91C416BAA99000C37D50 /* PFeed.m in Sources */,
 				203C91C516BAA99000C37D50 /* PFeedItem.m in Sources */,
 				203C91C616BAA99000C37D50 /* PFeedItemEnclosure.m in Sources */,
+				DFEC199F2366F3B300A52DBA /* Appearance.swift in Sources */,
 				203C91CB16BAA9B900C37D50 /* PDictionaryExtensions.m in Sources */,
 				DF8B0516219329400056DDD7 /* NoFormsViewController.swift in Sources */,
 				DF681F942191A4C300094C3A /* BusinessFilesFetch.swift in Sources */,
@@ -859,7 +858,6 @@
 				2047B09B16C1708500DFFA34 /* CG+OAHelpers.m in Sources */,
 				2047B09C16C1708500DFFA34 /* OAPath.m in Sources */,
 				2081BFFD16D3822500106A2F /* MBProgressHUD.m in Sources */,
-				E2BDD3302069180700BA988F /* FCLAppearance.m in Sources */,
 				DF1C7964217F1D0B005419EA /* SideTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

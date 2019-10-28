@@ -60,7 +60,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {        
         FCLUploader.shared()?.start()
-        FCLAppearance.setup()
+        Appearance.setup()
         
         // Fabric insists that its framework must be the last one initalized, since it catches exceptions.
         if let fabricDic = Bundle.main.object(forInfoDictionaryKey: "Fabric") as? [String: Any],
