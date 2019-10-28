@@ -388,6 +388,7 @@
             };
             
             UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:vc];
+            nc.modalPresentationStyle = UIModalPresentationFullScreen; // This would take a smaller portion of the screen, but on iOS 13+, the "Swipe to dismiss" gesture prevents drawing
             [self presentViewController:nc animated:YES completion:nil];
         }
     }
