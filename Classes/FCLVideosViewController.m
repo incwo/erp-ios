@@ -58,11 +58,6 @@ typedef NS_ENUM(NSUInteger, FCLVideoSearchMode) {
 		self.searchBar.placeholder = NSLocalizedString(@"Recherche videos", @"");
 		self.searchBar.delegate = self;
 		self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        self.searchBar.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
-        if ([self.searchBar respondsToSelector:@selector(setBackgroundImage:)])
-        {
-            self.searchBar.backgroundImage = [UIImage imageNamed:@"FCLTransparentPixel.png"];
-        }
         self.navigationItem.titleView = self.searchBar;
     }
 }
