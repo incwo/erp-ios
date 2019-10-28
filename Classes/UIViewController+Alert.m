@@ -10,17 +10,18 @@
 @implementation UIViewController (Alert)
 
 -(void) FCL_presentAlertForError:(NSError *)error {
-    UIAlertController *alert = [[UIAlertController alloc] init];
-    
+    NSString *title;
+    NSString *message;
     NSString *reason = [error localizedFailureReason];
     if(reason) {
-        alert.title = [error localizedDescription];
-        alert.message = reason;
-        
+        title = [error localizedDescription];
+        message = reason;
     } else {
-        alert.title = @"Erreur";
-        alert.message = [error localizedDescription];
+        title = @"Erreur";
+        message = [error localizedDescription];
     }
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     
     [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [alert dismissViewControllerAnimated:YES completion:nil];

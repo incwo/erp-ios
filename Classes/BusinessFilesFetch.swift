@@ -48,7 +48,7 @@ class BusinessFilesFetch {
             }
             
             guard 200...299 ~= httpResponse.statusCode else {
-                let error = NSError(domain: "BusinessFilesFetch", code: 0, userInfo: [NSLocalizedDescriptionKey: "Server responded with a \(httpResponse.statusCode) status code."])
+                let error = NSError(domain: "BusinessFilesFetch", code: 0, userInfo: [NSLocalizedDescriptionKey: "Le serveur a répondu avec le code de statut \(httpResponse.statusCode)."])
                 self?.failureHandler(error)
                 return
             }
