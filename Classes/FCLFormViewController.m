@@ -1,3 +1,4 @@
+#import "facilescan-Swift.h"
 #import "FCLFormViewController.h"
 #import "FCLForm.h"
 #import "FCLField.h"
@@ -223,7 +224,6 @@
     NSString* cellIdentifier = [self reuseIdentifierForIndexPath:indexPath];
     UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     
-    cell.backgroundColor = [UIColor whiteColor];
     cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     
     cell.accessoryType = UITableViewCellAccessoryNone;
@@ -287,8 +287,6 @@
     {
         if (indexPath.row == 0)
         {
-            //cell.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1.0];
-            //cell.backgroundColor = [UIColor colorWithPatternImage:self.image];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             if (self.imageView)
             {
@@ -305,7 +303,7 @@
     else // send button
     {
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.textLabel.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = [Appearance accentColor];
         cell.textLabel.text = NSLocalizedString(@"Envoyer", @"");
     }
     

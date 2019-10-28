@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,16 +24,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="324" height="60"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                 <color key="backgroundColor" red="0.23999999999999999" green="0.23999999999999999" blue="0.23999999999999999" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                <color key="textColor" red="0.39761093258857727" green="0.39761093258857727" blue="0.39761093258857727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                <nil key="textColor"/>
                 <nil key="highlightedColor"/>
-                <color key="shadowColor" red="1" green="1" blue="1" alpha="0.60999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                 <size key="shadowOffset" width="0.0" height="1"/>
             </label>
             <connections>
                 <outlet property="dataSource" destination="-1" id="7"/>
                 <outlet property="delegate" destination="-1" id="8"/>
             </connections>
+            <point key="canvasLocation" x="139" y="155"/>
         </tableView>
     </objects>
 </document>
