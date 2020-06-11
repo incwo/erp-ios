@@ -8,4 +8,4 @@ xcuserdata
 fastlane/README.md
 fastlane/report.xml
 
-sensitive_info.plist
+GoogleService-Info.plist

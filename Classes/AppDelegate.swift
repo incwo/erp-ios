@@ -7,8 +7,8 @@
 
 import Foundation
 import UIKit
-import Fabric
-import Crashlytics
+import FirebaseCore
+import FirebaseCrashlytics
 
 let HostName = "www.incwo.com"
 let BaseUrl = "https://www.incwo.com"
@@ -59,17 +59,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     var appCoordinator: AppCoordinator!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {        
+
+        FirebaseApp.configure() // Enables Crashlytics, notably
+        // Because we don't want to make our API key public, the GoogleService-Info.plist file is not commited
+        // in our git repo. You will need to generate you own in Firebase (or remove all Firebase dependencies).
+        
         FCLUploader.shared()?.start()
         Appearance.setup()
-        
-        // Fabric insists that its framework must be the last one initalized, since it catches exceptions.
-        if let fabricDic = Bundle.main.object(forInfoDictionaryKey: "Fabric") as? [String: Any],
-            fabricDic["APIKey"] != nil {
-            // Only init if the key is set in info.plist.
-            // The key is set at build time using a script.
-            // We did not open-source our key, for good reasons!
-            Fabric.with([Crashlytics.self()])
-        }
 
         appCoordinator = AppCoordinator(rootViewController: self.tabBarController, businessFilesList: businessFilesList, sidePanelController: sidePanelController, officeCoordinator: officeCoordinator, scanCoordinator: scanCoordinator)
         
