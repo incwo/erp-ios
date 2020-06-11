@@ -54,7 +54,6 @@
 		20B9115A16BC1D5A009D1391 /* FCLVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B9115816BC1D58009D1391 /* FCLVideoViewController.m */; };
 		20B9115B16BC1D5A009D1391 /* FCLVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B9115916BC1D59009D1391 /* FCLVideoViewController.xib */; };
 		20BAEC81119078610081484B /* UIImage+OAImageResize.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BAEC80119078610081484B /* UIImage+OAImageResize.m */; };
-		20E88FB011919B8B00C8D766 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20E88FAF11919B8B00C8D766 /* Entitlements.plist */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28C286E10D94DF7D0034E888 /* FCLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* FCLLoginViewController.m */; };
 		3AD230E3184DE43E0078C4C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD230E2184DE43E0078C4C2 /* Images.xcassets */; };
@@ -195,7 +194,6 @@
 		20B9115916BC1D59009D1391 /* FCLVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FCLVideoViewController.xib; sourceTree = "<group>"; };
 		20BAEC7F119078610081484B /* UIImage+OAImageResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OAImageResize.h"; sourceTree = "<group>"; };
 		20BAEC80119078610081484B /* UIImage+OAImageResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+OAImageResize.m"; sourceTree = "<group>"; };
-		20E88FAF11919B8B00C8D766 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefix.pch; sourceTree = "<group>"; };
 		28C286DF0D94DF7D0034E888 /* FCLLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCLLoginViewController.h; sourceTree = "<group>"; };
@@ -426,7 +424,6 @@
 				20B9115516BBC02C009D1391 /* FCLNoVideo.png */,
 				2047B09D16C172C400DFFA34 /* FCLSignatureSample.png */,
 				8D1107310486CEB800E47090 /* info.plist */,
-				20E88FAF11919B8B00C8D766 /* Entitlements.plist */,
 				DF796C0324921B76004ECBC6 /* GoogleService-Info.plist */,
 			);
 			name = Resources;
@@ -701,7 +698,6 @@
 				20A65461118B169800C94599 /* FCLFormViewController.xib in Resources */,
 				2060C58511901C5600EF2405 /* FCLOptionsViewController.xib in Resources */,
 				E2BDD3342069316100BA988F /* Launch Screen.storyboard in Resources */,
-				20E88FB011919B8B00C8D766 /* Entitlements.plist in Resources */,
 				DF0C2FE523167C410093F68B /* News.storyboard in Resources */,
 				DF742F0B2366FA45002178C0 /* Colors.xcassets in Resources */,
 				DF8B05102192FCAF0056DDD7 /* LoadingViewController.xib in Resources */,
@@ -913,15 +909,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C8474124D611147C7B3BE800 /* Pods-facile.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 15;
+				DEVELOPMENT_TEAM = B7D2BSZ7A4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -932,7 +927,7 @@
 				GCC_PREFIX_HEADER = prefix.pch;
 				INFOPLIST_FILE = info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.11;
+				MARKETING_VERSION = 2.11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.facilescan;
 				PRODUCT_NAME = facilescan;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -947,15 +942,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F307FC36162940EDD38EC744 /* Pods-facile.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 15;
+				DEVELOPMENT_TEAM = B7D2BSZ7A4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -964,7 +958,7 @@
 				GCC_PREFIX_HEADER = prefix.pch;
 				INFOPLIST_FILE = info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.11;
+				MARKETING_VERSION = 2.11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.facilescan;
 				PRODUCT_NAME = facilescan;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -996,7 +990,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1008,7 +1001,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "422D8DC7-6682-4463-B556-42A7EF7843D3";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -1017,16 +1009,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE69DD725D0B596D53FD4D2E /* Pods-facile.distribution.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 14;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 15;
+				DEVELOPMENT_TEAM = B7D2BSZ7A4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1035,7 +1025,7 @@
 				GCC_PREFIX_HEADER = prefix.pch;
 				INFOPLIST_FILE = info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.11;
+				MARKETING_VERSION = 2.11.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.facilescan;
 				PRODUCT_NAME = facilescan;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1067,7 +1057,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1105,7 +1094,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1139,10 +1127,8 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = B7D2BSZ7A4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1185,10 +1171,8 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = B7D2BSZ7A4;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1226,10 +1210,8 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = B7D2BSZ7A4;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
