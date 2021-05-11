@@ -5,17 +5,11 @@
 
 @implementation FCLUpload
 
-@synthesize fileId;
-@synthesize categoryKey;
-@synthesize image;
-@synthesize fields;
-
-@synthesize username;
-@synthesize password;
-
-
 - (NSMutableURLRequest*) request
 {
+    NSParameterAssert(self.session);
+    NSParameterAssert(self.fileId);
+    
     NSData* imageData = nil;
     
     if (self.image)
@@ -28,9 +22,7 @@
         }
     }
     
-    FCLSession* session = [[FCLSession alloc] initWithUsername:self.username password:self.password];
-    
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/upload_files.xml", session.facileBaseURL, self.fileId]];
+    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/upload_files.xml", self.session.baseURL, self.fileId]];
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
     
     [request setValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:(id)kCFBundleVersionKey] forHTTPHeaderField:@"X_FACILE_VERSION"];
@@ -94,13 +86,8 @@
     [request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postData length]] forHTTPHeaderField:@"Content-Length"];
     NSString* contentType = @"application/xml";
     [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
-    
-    // headers["Authorization"] = "Basic " + Base64.encode64("login:password")
-    NSData* loginPassData = [[NSString stringWithFormat:@"%@:%@", self.username, self.password] dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
-    NSString* basicAuthHeader = [@"Basic " stringByAppendingString:[loginPassData base64EncodedStringWithOptions:0]];
-    [request setValue:basicAuthHeader forHTTPHeaderField:@"Authorization"];
-    
-    [request setHTTPBody:postData];
+
+    [request setBasicAuthHeadersForSession:self.session];
     
     NSLog(@"Upload: Content-Length: %lu", (unsigned long)[postData length]);
     
@@ -110,8 +97,8 @@
 - (OAHTTPDownload *) OAHTTPDownload
 {
     OAHTTPDownload* download = [OAHTTPDownload downloadWithRequest:[self request]];
-    download.username = self.username;
-    download.password = self.password;
+    download.username = self.session.username;
+    download.password = self.session.password;
     download.shouldAllowSelfSignedCert = YES;
     return download;
 }

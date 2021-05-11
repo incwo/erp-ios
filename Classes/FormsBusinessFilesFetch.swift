@@ -86,13 +86,13 @@ class FormsBusinessFilesFetch {
     }
     
     private static func url(session: FCLSession) -> URL? {
-        let base = session.facileBaseURL()
+        let base = session.baseURL()
         let urlRandomization = Int32.random(in: 0..<Int32.max)
         return URL(string: base + "/account/get_files_and_image_enabled_objects/0.xml?r=\(urlRandomization)")
     }
     
     private static func url(session: FCLSession, businessFileId: String) -> URL? {
-        let base = session.facileBaseURL()
+        let base = session.baseURL()
         let urlRandomization = Int32.random(in: 0..<Int32.max)
         
         // r: Makes the URL random so it is not cached (used to cause problems with Orange)

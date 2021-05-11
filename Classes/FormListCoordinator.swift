@@ -138,8 +138,7 @@ extension FormListCoordinator: FCLFormViewControllerDelegate {
         upload.categoryKey = form.key
         upload.fields = form.fields
         upload.image = image
-        upload.username = session.username
-        upload.password = session.password
+        upload.session = session
         
         FCLUploader.shared()?.add(upload)
     }

@@ -260,7 +260,7 @@ typedef NS_ENUM(NSUInteger, FCLVideoSearchMode) {
 {
     if (item[@"permalink"])
     {
-        return [NSURL URLWithString:[NSString stringWithFormat:@"%@/iframe/training/%@", [FCLSession facileBaseURL], item[@"permalink"]]];
+        return [NSURL URLWithString:[NSString stringWithFormat:@"%@/iframe/training/%@", [FCLSession unauthenticatedBaseURL], item[@"permalink"]]];
     }
     return [NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@", item[@"youtube_id"]]];
 }

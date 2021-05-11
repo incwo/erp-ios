@@ -166,7 +166,7 @@
     NSString *urlString = [@"https://www.incwo.com/navigation_mobile/home/" stringByAppendingString:businessFileId];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setFCLSession:self.session];
+    [request setBasicAuthHeadersForSession:self.session];
     
     // The History of the web view must be cleared or the user can go to a different business file using the Back or Forward commands.
     // Since Apple does not provide any method to clear the history of UIWebView (!), the less terrible way is to instantiate a new WebView.

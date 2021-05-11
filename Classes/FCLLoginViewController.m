@@ -3,6 +3,9 @@
 #import "MBProgressHUD.h"
 #import "UIViewController+Alert.h"
 
+// Convert empty strings to nil
+#define TEXT_OR_NIL(text)  (text.length > 0 ? text : nil)
+
 @interface FCLLoginViewController () <UITextFieldDelegate>
 
 @property (weak) id <FCLLoginViewControllerDelegate> delegate;
@@ -37,6 +40,7 @@
     self.navigationItem.title = @"Connexion";
     self.emailTextField.delegate = self;
     self.passwordTextField.delegate = self;
+    self.shardTextField.delegate = self;
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Connexion", @"") style:UIBarButtonItemStylePlain target:nil action:nil];
 }
@@ -85,7 +89,7 @@
 {
     if (self.credentialsCheckTask) return; // ignore repeated taps
     
-    if([self loginField] == nil || [self passwordField] == nil) { // Can happen if validating with the Keyboard
+    if(self.login == nil || self.password == nil) { // Can happen if validating with the Keyboard
         return;
     }
     
@@ -94,7 +98,7 @@
     self.loadingHUD.labelText = NSLocalizedString(@"Connexion...", @"");
     
     
-    FCLSession *session = [[FCLSession alloc] initWithUsername:[self loginField] password:[self passwordField]];
+    FCLSession *session = [[FCLSession alloc] initWithUsername:self.login password:self.password shard:self.shard];
     __typeof(self) __weak weakSelf = self;
     [self checkSessionCredentials:session onAuthorized:^{
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -128,10 +132,10 @@
 
 -(void) checkSessionCredentials:(FCLSession *)session onAuthorized:(void (^)(void))onAuthorized onUnauthorized:(void (^)(NSInteger))onUnauthorized onError:(void (^)(NSError *))onError {
     // The 'r' parameter was useful because Orange would cache the URL. Is it still useful?
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d", session.facileBaseURL, rand()]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/get_files_and_image_enabled_objects/0.xml?r=%d", session.baseURL, rand()]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60];
     [request setHTTPShouldHandleCookies:NO];
-    [request setFCLSession:session];
+    [request setBasicAuthHeadersForSession:session];
     
     __typeof(self) __weak weakSelf = self;
     self.credentialsCheckTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -164,17 +168,19 @@
 }
 
 -(void) updateLogInButtonEnabled {
-    self.logInButton.enabled = [self loginField] && [self passwordField];
+    self.logInButton.enabled = [self login] && [self password];
 }
 
-- (NSString *) loginField
-{
-    return (self.emailTextField.text && ![self.emailTextField.text isEqualToString:@""]) ? self.emailTextField.text : nil;
+- (NSString *) login {
+    return TEXT_OR_NIL(self.emailTextField.text);
 }
 
-- (NSString *) passwordField
-{
-    return (self.passwordTextField.text && ![self.passwordTextField.text isEqualToString:@""]) ? self.passwordTextField.text : nil;
+- (NSString *) password {
+    return TEXT_OR_NIL(self.passwordTextField.text);
+}
+
+- (NSString *) shard {
+    return TEXT_OR_NIL(self.shardTextField.text);
 }
 
 
@@ -188,7 +194,13 @@
         [self.passwordTextField becomeFirstResponder];
     }
     
-    if (textField == self.passwordTextField)
+    else if (textField == self.passwordTextField)
+    {
+        [textField resignFirstResponder];
+        [self.shardTextField becomeFirstResponder];
+    }
+    
+    else if (textField == self.shardTextField)
     {
         [textField resignFirstResponder];
         [self logIn: self];

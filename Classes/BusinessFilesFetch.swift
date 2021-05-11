@@ -31,7 +31,7 @@ class BusinessFilesFetch {
         
         sessionTask?.cancel() // The method might be called while still fetching
         
-        guard let url = URL(string: "\(session.facileBaseURL())/account/index/0.xml?target=incwo_erp") else {
+        guard let url = URL(string: "\(session.baseURL())/account/index/0.xml?target=incwo_erp") else {
             NSLog("\(#function) URL is invalid")
             return
         }

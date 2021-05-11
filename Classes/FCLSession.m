@@ -6,18 +6,23 @@ NSString* const FCLSessionEmailKey = @"FCLSessionEmail";
 NSString* const FCLSessionDidSignInNotification = @"FCLSessionDidSignInNotification";
 NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotification";
 
+NSString* const FCLSessionShardKey = @"FCLSessionShard";
+
 @interface FCLSession ()
 @end
 
 @implementation FCLSession
 
--(nonnull instancetype) initWithUsername:(nonnull NSString *)username password:(nonnull NSString *)password {
+-(nonnull instancetype) initWithUsername:(nonnull NSString *)username password:(nonnull NSString *)password shard:(nullable NSString *)shard {
     self = [super init];
     if (self) {
         NSParameterAssert(username);
         _username = username;
         NSParameterAssert(password);
         _password = password;
+        
+        if(shard.length == 0) shard = nil;
+        _shard = shard;
     }
     return self;
 }
@@ -29,8 +34,9 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
     // to switch from the old to the new system.
     NSString *userDefaultsUsername = [[NSUserDefaults standardUserDefaults] objectForKey:@"FCLSessionUsername"];
     NSString *userDefaultsPassword = [[NSUserDefaults standardUserDefaults] objectForKey:@"FCLSessionPassword"];
+    NSString *shard = [self savedShard];
     if(userDefaultsUsername.length > 0 && userDefaultsPassword.length > 0) {
-        [[self class] saveUsername:userDefaultsUsername password:userDefaultsPassword];
+        [[self class] saveUsername:userDefaultsUsername password:userDefaultsPassword shard:shard];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FCLSessionUsername"];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FCLSessionPassword"];
     }
@@ -38,7 +44,7 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
     NSString *username = [[self class] savedUsername];
     NSString *password = [[self class] savedPassword];
     if (username.length > 0 && password.length > 0) {
-        return [[FCLSession alloc] initWithUsername:username password:password];
+        return [[FCLSession alloc] initWithUsername:username password:password shard:shard];
     } else {
         return nil;
     }
@@ -49,35 +55,35 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
     [[NSNotificationCenter defaultCenter] postNotificationName:FCLSessionDidSignOutNotification object:nil];
 }
 
-+ (NSString*) facileBaseURL {
-    FCLSession *savedSession = [FCLSession savedSession];
-    if(savedSession) {
-        return [savedSession facileBaseURL];
+- (NSString *) baseURL {
+    if(self.shard) {
+        if([self.shard isEqualToString:@"dev"]) {
+            return @"http://dev.incwo.com";
+        } else {
+            return [NSString stringWithFormat:@"https://%@.incwo.com", self.shard];
+        }
     } else {
-        return FACILE_BASEURL;
+        return @"https://www.incwo.com";
     }
+}
+
++ (NSString *) unauthenticatedBaseURL {
+    return @"https://www.incwo.com";
 }
 
 - (void) saveSession {
-    [[self class] saveUsername:self.username password:self.password];
+    [[self class] saveUsername:self.username password:self.password shard:self.shard];
     [[NSNotificationCenter defaultCenter] postNotificationName:FCLSessionDidSignInNotification object:self];
 }
 
-- (NSString*) facileBaseURL {
-    NSArray *devAccounts = @[@"guillaume.besse@gmail.com"];
-    if ([devAccounts containsObject:[self.username lowercaseString]]) {
-        return FACILE_BASEURL_DEV;
-    } else {
-        return FACILE_BASEURL;
-    }
-}
+
 
 + (NSURLRequest *)signupRequest
 {
     NSString *bundleID = [[NSBundle mainBundle].infoDictionary objectForKey:(NSString *)kCFBundleIdentifierKey];
     NSDictionary *parameters = @{ @"bundle_id": bundleID };
     NSString *queryString = [PXWWWFormSerialization stringWithDictionary:parameters options:0];
-    return [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/iframe/pos_new_account?%@", [self facileBaseURL], queryString]]];
+    return [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/iframe/pos_new_account?%@", [self unauthenticatedBaseURL], queryString]]];
 }
 
 // MARK: Storing Credentials
@@ -91,9 +97,11 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
     return protectionSpace;
 }
 
-+(void) saveUsername:(NSString *)username password:(NSString *)password {
++(void) saveUsername:(NSString *)username password:(NSString *)password shard:(NSString *)shard {
     NSURLCredential *credential = [[NSURLCredential alloc] initWithUser:username password:password persistence:NSURLCredentialPersistencePermanent];
     [[NSURLCredentialStorage sharedCredentialStorage] setDefaultCredential:credential forProtectionSpace:[self protectionSpace]];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:shard forKey:FCLSessionShardKey];
 }
 
 +(NSString *) savedUsername {
@@ -106,9 +114,15 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
     return credential.password;
 }
 
++(NSString *) savedShard {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:FCLSessionShardKey];
+}
+
 +(void) removeCredentials {
     NSURLCredential *credential = [[NSURLCredentialStorage sharedCredentialStorage] defaultCredentialForProtectionSpace:[self protectionSpace]];
     [[NSURLCredentialStorage sharedCredentialStorage] removeCredential:credential forProtectionSpace:[self protectionSpace]];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:nil forKey:FCLSessionShardKey];
 }
 
 @end
@@ -116,7 +130,7 @@ NSString* const FCLSessionDidSignOutNotification = @"FCLSessionDidSignOutNotific
 
 @implementation NSMutableURLRequest (FCLSession)
 
-- (void) setFCLSession:(nonnull FCLSession *)session
+- (void) setBasicAuthHeadersForSession:(nonnull FCLSession *)session
 {
     NSData* data = [[NSString stringWithFormat:@"%@:%@", session.username, session.password] dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
     NSString* value = [@"Basic " stringByAppendingString:[data base64EncodedStringWithOptions:0]];
