@@ -11,6 +11,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField* emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField* passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *shardTextField;
 @property (weak, nonatomic) IBOutlet UIButton *logInButton;
 
 @end
@@ -76,6 +77,9 @@
     [self updateLogInButtonEnabled];
 }
 
+- (IBAction)showShardingHelp:(id)sender {
+    [self FCL_presentAlertWithTitle:@"Espace privé ?" message:@"Certains clients disposent d'une instance de serveur privée, avec son propre stockage et sa propre puissance de calcul.\n\nSi vous ne disposez pas d'un tel espace, laissez le champ vide."];
+}
 
 - (IBAction) logIn:(id)sender
 {

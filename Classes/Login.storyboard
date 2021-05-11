@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vSA-rU-23M">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vSA-rU-23M">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,10 +20,10 @@
                             <tableViewSection id="E2g-ZI-Dnb">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="143" id="huO-jd-AA1">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="143"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="huO-jd-AA1" id="JBY-zd-aLs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="142.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="143"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FCLFacileLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Bu3-lk-ulI">
@@ -36,7 +34,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vous devez vous connecter pour accéder à cette rubrique " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgd-CJ-5Y8">
-                                                    <rect key="frame" x="16" y="96" width="343" height="36"/>
+                                                    <rect key="frame" x="16" y="96.5" width="343" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.70196078429999997" green="0.70196078429999997" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -61,16 +59,15 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1137254902" green="0.19215686269999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="192" id="ocv-DO-rG2">
-                                        <rect key="frame" x="0.0" y="143" width="375" height="192"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="220" id="ocv-DO-rG2">
+                                        <rect key="frame" x="0.0" y="167.5" width="375" height="220"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ocv-DO-rG2" id="dT0-I6-Flg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="191.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Adresse e-mail" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hjB-ms-2rd">
-                                                    <rect key="frame" x="16" y="18" width="343" height="30"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="16" y="18" width="343" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="username"/>
                                                     <connections>
@@ -78,16 +75,31 @@
                                                     </connections>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mot de passe" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Czd-UH-3e1">
-                                                    <rect key="frame" x="16" y="56" width="343" height="30"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="16" y="60" width="343" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                                     <connections>
                                                         <action selector="passwordEditingChanged:" destination="vSA-rU-23M" eventType="editingChanged" id="wxe-4y-t9M"/>
                                                     </connections>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSx-ta-yMz">
-                                                    <rect key="frame" x="141.5" y="112" width="92" height="30"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Espace privé" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Cb8-aR-gm1">
+                                                    <rect key="frame" x="16" y="102" width="297" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
+                                                </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyz-BO-qya">
+                                                    <rect key="frame" x="321" y="97" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="Ctq-NA-bpD"/>
+                                                        <constraint firstAttribute="height" constant="44" id="KpP-hW-WDd"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Help"/>
+                                                    <connections>
+                                                        <action selector="showShardingHelp:" destination="vSA-rU-23M" eventType="touchUpInside" id="BJQ-x0-zZn"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSx-ta-yMz">
+                                                    <rect key="frame" x="141.5" y="156" width="92" height="30"/>
                                                     <state key="normal" title="Se connecter"/>
                                                     <connections>
                                                         <action selector="logIn:" destination="vSA-rU-23M" eventType="touchUpInside" id="wjp-6Q-548"/>
@@ -95,22 +107,27 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="fSx-ta-yMz" firstAttribute="top" secondItem="Czd-UH-3e1" secondAttribute="bottom" constant="26" id="1OI-27-1NA"/>
+                                                <constraint firstItem="pyz-BO-qya" firstAttribute="centerY" secondItem="Cb8-aR-gm1" secondAttribute="centerY" id="1LM-W8-UuD"/>
                                                 <constraint firstItem="hjB-ms-2rd" firstAttribute="top" secondItem="dT0-I6-Flg" secondAttribute="topMargin" constant="7" id="3GH-Tj-L6X"/>
                                                 <constraint firstItem="Czd-UH-3e1" firstAttribute="trailing" secondItem="dT0-I6-Flg" secondAttribute="trailingMargin" id="3y1-jh-Ogh"/>
+                                                <constraint firstAttribute="trailing" secondItem="pyz-BO-qya" secondAttribute="trailing" constant="10" id="E64-8Y-1Nh"/>
+                                                <constraint firstItem="fSx-ta-yMz" firstAttribute="top" secondItem="Cb8-aR-gm1" secondAttribute="bottom" constant="20" id="IHd-uC-ZTA"/>
+                                                <constraint firstItem="Cb8-aR-gm1" firstAttribute="leading" secondItem="dT0-I6-Flg" secondAttribute="leading" constant="16" id="JXm-ez-lZK"/>
+                                                <constraint firstItem="Cb8-aR-gm1" firstAttribute="top" secondItem="Czd-UH-3e1" secondAttribute="bottom" constant="8" symbolic="YES" id="N3s-XU-BwR"/>
                                                 <constraint firstItem="hjB-ms-2rd" firstAttribute="trailing" secondItem="dT0-I6-Flg" secondAttribute="trailingMargin" id="VgS-eX-yLd"/>
                                                 <constraint firstItem="Czd-UH-3e1" firstAttribute="leading" secondItem="dT0-I6-Flg" secondAttribute="leadingMargin" id="XM7-Zg-7H0"/>
                                                 <constraint firstItem="hjB-ms-2rd" firstAttribute="leading" secondItem="dT0-I6-Flg" secondAttribute="leadingMargin" id="dqA-Bm-WAN"/>
                                                 <constraint firstItem="Czd-UH-3e1" firstAttribute="top" secondItem="hjB-ms-2rd" secondAttribute="bottom" constant="8" id="hJu-Jq-zEb"/>
+                                                <constraint firstItem="pyz-BO-qya" firstAttribute="leading" secondItem="Cb8-aR-gm1" secondAttribute="trailing" constant="8" symbolic="YES" id="n16-HB-YXb"/>
                                                 <constraint firstItem="fSx-ta-yMz" firstAttribute="centerX" secondItem="dT0-I6-Flg" secondAttribute="centerX" id="rlN-Ys-PNl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="87" id="cTA-0a-UMs">
-                                        <rect key="frame" x="0.0" y="335" width="375" height="87"/>
+                                        <rect key="frame" x="0.0" y="387.5" width="375" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cTA-0a-UMs" id="Yho-vP-tub">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pas encore de compte incwo ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBe-XI-NNr">
@@ -119,7 +136,7 @@
                                                     <color key="textColor" white="0.29999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2l-2a-pHg">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2l-2a-pHg">
                                                     <rect key="frame" x="130" y="44" width="115" height="30"/>
                                                     <state key="normal" title="Créer un compte"/>
                                                     <connections>
@@ -147,14 +164,16 @@
                         <outlet property="emailTextField" destination="hjB-ms-2rd" id="PaM-Ge-djd"/>
                         <outlet property="logInButton" destination="fSx-ta-yMz" id="s2Z-fr-6Wq"/>
                         <outlet property="passwordTextField" destination="Czd-UH-3e1" id="Via-gK-loG"/>
+                        <outlet property="shardTextField" destination="Cb8-aR-gm1" id="7Y9-Tl-8E1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEP-kn-pIv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-243.75" y="-130.98591549295776"/>
+            <point key="canvasLocation" x="-244" y="-131.78410794602701"/>
         </scene>
     </scenes>
     <resources>
         <image name="FCLFacileLogo" width="30" height="30"/>
+        <image name="Help" width="33" height="33"/>
     </resources>
 </document>
