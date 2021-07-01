@@ -71,7 +71,7 @@
 }
 
 - (IBAction)showShardingHelp:(id)sender {
-    [self FCL_presentAlertWithTitle:@"Espace privé ?" message:@"Certains clients disposent d'une instance de serveur privée, avec son propre stockage et sa propre puissance de calcul.\n\nSi vous ne disposez pas d'un tel espace, laissez le champ vide."];
+    [self FCL_presentAlertWithTitle:@"Un «shard» ?" message:@"Un «shard» est une instance de serveur privée, avec son propre stockage et sa propre puissance de calcul.\n\nSi votre entreprise n'utilise pas de shard, laissez le champ vide."];
 }
 
 - (IBAction) logIn:(id)sender
