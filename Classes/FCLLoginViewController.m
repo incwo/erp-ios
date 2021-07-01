@@ -8,7 +8,6 @@
 
 @interface FCLLoginViewController () <UITextFieldDelegate>
 
-@property (weak) id <FCLLoginViewControllerDelegate> delegate;
 @property NSURLSessionDataTask *credentialsCheckTask;
 @property MBProgressHUD *loadingHUD;
 
@@ -20,16 +19,6 @@
 @end
 
 @implementation FCLLoginViewController
-
--(nonnull instancetype) initWithDelegate:(id <FCLLoginViewControllerDelegate>)delegate {
-    self = [[UIStoryboard storyboardWithName:@"Login" bundle:nil] instantiateInitialViewController];
-    NSAssert(self, @"Could not load the Login view controller from its Storyboard.");
-    if (self) {
-        NSParameterAssert(delegate);
-        _delegate = delegate;
-    }
-    return self;
-}
 
 #pragma mark - UIViewController
 

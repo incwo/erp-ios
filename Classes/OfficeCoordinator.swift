@@ -16,7 +16,8 @@ class OfficeCoordinator: NSObject {
     public weak var delegate: OfficeCoordinatorDelegate?
     @objc public let navigationController: UINavigationController
     private lazy var loginViewController: FCLLoginViewController = {
-        let loginController = FCLLoginViewController(delegate: self)
+        let loginController = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController() as! FCLLoginViewController
+        loginController.delegate = self
         loginController.title = "Bureau"
         return loginController
     }()

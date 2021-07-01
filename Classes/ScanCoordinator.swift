@@ -103,7 +103,8 @@ class ScanCoordinator: NSObject {
     
     private var loginViewController: FCLLoginViewController?
     private func newLoginViewController() -> FCLLoginViewController {
-        let loginController = FCLLoginViewController(delegate: self)
+        let loginController = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController() as! FCLLoginViewController
+        loginController.delegate = self
         loginController.title = "Scan"
         return loginController
     }
