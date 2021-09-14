@@ -88,6 +88,7 @@
     [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
 
     [request setBasicAuthHeadersForSession:self.session];
+    [request setHTTPBody:postData];
     
     NSLog(@"Upload: Content-Length: %lu", (unsigned long)[postData length]);
     
